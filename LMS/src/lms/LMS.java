@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -18,6 +19,7 @@ public class LMS extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        stage.initStyle(StageStyle.TRANSPARENT);
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         
         Scene scene = new Scene(root);

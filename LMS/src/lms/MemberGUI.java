@@ -38,14 +38,9 @@ public class MemberGUI extends DefaultGUI
     private Button search; // Value injected by FXMLLoader
 
 
-    // Handler for Button[fx:id="borrow"] onAction
-    public void borrow(ActionEvent event) {
-        // handle the event here
-    }
-
-    // Handler for Button[fx:id="home"] onAction
+// Handler for Button[fx:id="home"] onAction
     public void home(ActionEvent event) {
-        try{Node node=(Node) event.getSource();
+       try{Node node=(Node) event.getSource();
   Stage stage=(Stage) node.getScene().getWindow();
   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Welcome.fxml"));     
 Parent root = (Parent)fxmlLoader.load();          
@@ -58,15 +53,64 @@ controller.setText(name.getText());
         catch(IOException e){};
     }
 
+    // Handler for Button[fx:id="borrow"] onAction
+    public void borrow(ActionEvent event) {
+       try{Node node=(Node) event.getSource();
+  Stage stage=(Stage) node.getScene().getWindow();
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Borrow.fxml"));     
+Parent root = (Parent)fxmlLoader.load();          
+BorrowController controller = fxmlLoader.<BorrowController>getController();
+controller.setText(name.getText());
+  Scene scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+        }
+        catch(IOException e){};
+    }
+    // Handler for Button[fx:id="history"] onAction
+    public void history(ActionEvent event) {
+        try{Node node=(Node) event.getSource();
+  Stage stage=(Stage) node.getScene().getWindow();
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("History.fxml"));     
+Parent root = (Parent)fxmlLoader.load();          
+HistoryController controller = fxmlLoader.<HistoryController>getController();
+controller.setText(name.getText());
+  Scene scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+        }
+        catch(IOException e){};
+    }
+
 
     // Handler for Button[fx:id="search"] onAction
     public void search(ActionEvent event) {
-        // handle the event here
+        try{Node node=(Node) event.getSource();
+  Stage stage=(Stage) node.getScene().getWindow();
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Search.fxml"));     
+Parent root = (Parent)fxmlLoader.load();          
+SearchController controller = fxmlLoader.<SearchController>getController();
+controller.setText(name.getText());
+  Scene scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+        }
+        catch(IOException e){};
     }
 
     // Handler for Button[fx:id="rentals"] onAction
     public void showRentals(ActionEvent event) {
-        // handle the event here
+        try{Node node=(Node) event.getSource();
+  Stage stage=(Stage) node.getScene().getWindow();
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Rentals.fxml"));     
+Parent root = (Parent)fxmlLoader.load();          
+RentalsController controller = fxmlLoader.<RentalsController>getController();
+controller.setText(name.getText());
+  Scene scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+        }
+        catch(IOException e){};
     }
 
     @Override // This method is called by the FXMLLoader when initialization is complete

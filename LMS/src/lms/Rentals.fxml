@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.WelcomeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.RentalsController">
   <children>
     <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
@@ -51,21 +51,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Text fill="#4333ff" fontSmoothingType="LCD" layoutX="242.0" layoutY="170.0" scaleX="8.297533968590082" scaleY="8.768967205090552" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.5" strokeType="OUTSIDE" strokeWidth="0.3" text="LAMS">
-                      <effect>
-                        <Lighting diffuseConstant="1.3015873015873016" specularConstant="0.8238095238095238" surfaceScale="3.96031746031746">
-                          <bumpInput>
-                            <Shadow />
-                          </bumpInput>
-                          <light>
-                            <javafx.scene.effect.Light.Distant />
-                          </light>
-                        </Lighting>
-                      </effect>
-                      <font>
-                        <Font name="Gill Sans MT" size="12.0" />
-                      </font>
-                    </Text>
+                    <Label layoutX="239.0" layoutY="157.0" text="Here Is MyMaterials" />
                   </children>
                 </AnchorPane>
               </items>

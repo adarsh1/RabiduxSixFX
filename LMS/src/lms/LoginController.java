@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class LoginController
@@ -31,6 +33,9 @@ public class LoginController
 
     @FXML //  fx:id="usrname"
     private TextField usrname; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="quit"
+    private ImageView quit; // Value injected by FXMLLoader
 
     // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void login(ActionEvent event)throws IOException{
@@ -45,6 +50,10 @@ controller.setText(usrname.getText());
   stage.setScene(scene);
   stage.show();
 
+    }
+    // Handler for ImageView[fx:id="quit"] onMouseClicked
+    public void quit(MouseEvent event) {
+        System.exit(0);
     }
 
    @Override // This method is called by the FXMLLoader when initialization is complete

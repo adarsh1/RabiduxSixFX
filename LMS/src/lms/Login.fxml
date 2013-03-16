@@ -4,6 +4,7 @@
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -19,5 +20,10 @@
     <Button layoutX="239.0" layoutY="165.0" mnemonicParsing="false" onAction="#login" text="Login" />
     <PasswordField fx:id="password" layoutX="95.0" layoutY="123.0" prefWidth="200.0" />
     <Label layoutX="26.0" layoutY="126.0" text="Password" />
+    <ImageView fx:id="quit" fitHeight="25.1875" fitWidth="25.1875" layoutX="292.0" layoutY="2.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
+      <image>
+        <Image url="@images/Button-Close-icon.png" preserveRatio="false" smooth="false" />
+      </image>
+    </ImageView>
   </children>
 </AnchorPane>
