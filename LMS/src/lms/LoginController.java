@@ -58,10 +58,10 @@ controller.setText(usrname.getText());
 
    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-        assert label != null : "fx:id=\"label\" was not injected: check your FXML file 'Sample.fxml'.";
-        assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'Sample.fxml'.";
-        assert usrname != null : "fx:id=\"usrname\" was not injected: check your FXML file 'Sample.fxml'.";
-
+        assert label != null : "fx:id=\"label\" was not injected: check your FXML file 'Login.fxml'.";
+        assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'Login.fxml'.";
+        assert usrname != null : "fx:id=\"usrname\" was not injected: check your FXML file 'Login.fxml'.";
+        assert quit != null : "fx:id=\"quit\" was not injected: check your FXML file 'Login.fxml'.";
         // initialize your logic here: all @FXML variables will have been injected
 
     }
