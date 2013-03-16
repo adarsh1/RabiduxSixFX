@@ -51,7 +51,27 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Label layoutX="225.0" layoutY="141.0" text="Here Is Borrowing" />
+                    <Label layoutX="54.0" layoutY="46.0" text="Borrow :">
+                      <font>
+                        <Font size="14.0" />
+                      </font>
+                    </Label>
+                    <Label layoutX="80.0" layoutY="89.0" text="Book ID :" />
+                    <TextField id="bookID" fx:id="bID" layoutX="143.0" layoutY="86.0" prefWidth="200.0" />
+                    <Button layoutX="372.0" layoutY="87.0" mnemonicParsing="false" onAction="#lend" text="Borrow" />
+                    <Pane fx:id="result" layoutX="47.0" layoutY="151.0" prefHeight="154.0" prefWidth="412.0" visible="false">
+                      <children>
+                        <Text fx:id="title" layoutX="34.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text id="Author" fx:id="author" layoutX="34.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="isbn" layoutX="34.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Button fx:id="confirmbutton" layoutX="177.0" layoutY="118.0" minHeight="16.0" mnemonicParsing="false" onAction="#confirm" prefHeight="22.000015258789062" prefWidth="57.999977929684974" text="Confirm">
+                          <font>
+                            <Font name="System Bold" size="10.0" />
+                          </font>
+                        </Button>
+                        <Text fx:id="success" fill="#0c9900" layoutX="112.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                      </children>
+                    </Pane>
                   </children>
                 </AnchorPane>
               </items>
