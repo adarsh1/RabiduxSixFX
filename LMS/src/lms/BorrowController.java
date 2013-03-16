@@ -48,11 +48,16 @@ public class BorrowController extends MemberGUI implements Initializable{
         {title.setText("Software Engineering");
          author.setText("Matthew Riley");
          isbn.setText("SB3984TH");
+         confirmbutton.setVisible(true);
+         success.setText("");
         }
         else
         {
           title.setText("The book id is invalid or currently unavaiable for borrowing");
           confirmbutton.setVisible(false);
+          author.setText("");
+          isbn.setText("");
+          success.setText("");
         }
            result.setVisible(true);
         

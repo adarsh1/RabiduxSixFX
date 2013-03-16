@@ -51,7 +51,24 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Label layoutX="239.0" layoutY="157.0" text="Here Is Search" />
+                    <Label layoutX="55.0" layoutY="46.0" text="Search :">
+                      <font>
+                        <Font size="14.0" />
+                      </font>
+                    </Label>
+                    <TextField id="bookID" fx:id="searchfield" layoutX="117.0" layoutY="47.0" prefWidth="229.0" />
+                    <Button layoutX="368.0" layoutY="48.0" mnemonicParsing="false" text="Search" />
+                    <RadioButton fx:id="skeyword" layoutX="117.0" layoutY="69.0" mnemonicParsing="false" selected="true" text="Keyword">
+                      <font>
+                        <Font size="10.0" fx:id="x2" />
+                      </font>
+                      <toggleGroup>
+                        <ToggleGroup fx:id="soptions" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="stitle" font="$x2" layoutX="182.0" layoutY="70.0" mnemonicParsing="false" text="Title" toggleGroup="$soptions" />
+                    <RadioButton fx:id="sauthor" font="$x2" layoutX="234.0" layoutY="70.0" mnemonicParsing="false" text="Author" toggleGroup="$soptions" />
+                    <RadioButton fx:id="sisbn" font="$x2" layoutX="291.0" layoutY="70.0" mnemonicParsing="false" text="ISBN" toggleGroup="$soptions" />
                   </children>
                 </AnchorPane>
               </items>
