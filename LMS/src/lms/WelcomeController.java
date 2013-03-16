@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 
-public class WelcomeController extends DefaultGUI implements Initializable{
+public class WelcomeController extends MemberGUI implements Initializable{
    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
        assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'Welcome.fxml'.";

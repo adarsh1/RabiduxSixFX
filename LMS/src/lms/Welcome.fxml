@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -11,9 +12,24 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.WelcomeController">
   <children>
-    <SplitPane dividerPositions="0.17892976588628762" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+    <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <TilePane hgap="20.0" layoutY="57.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
+              <children>
+                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="31.0" prefWidth="70.0" text="Home" />
+                <Button fx:id="borrow" mnemonicParsing="false" onAction="#borrow" prefHeight="31.0" prefWidth="70.0" text="Borrow" />
+                <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="31.0" prefWidth="70.0" text="Search" />
+                <Button fx:id="rentals" mnemonicParsing="false" onAction="#showRentals" prefHeight="31.0" prefWidth="70.0" text="Rentals" />
+                <Button fx:id="history" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="History" />
+              </children>
+              <padding>
+                <Insets left="8.0" />
+              </padding>
+            </TilePane>
+          </children>
+        </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
             <SplitPane dividerPositions="0.1590909090909091" focusTraversable="true" orientation="VERTICAL" prefHeight="398.0" prefWidth="488.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
@@ -33,7 +49,25 @@
                     </ImageView>
                   </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <children>
+                    <Text fill="#4333ff" fontSmoothingType="LCD" layoutX="242.0" layoutY="170.0" scaleX="8.297533968590082" scaleY="8.768967205090552" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.5" strokeType="OUTSIDE" strokeWidth="0.3" text="LAMS">
+                      <effect>
+                        <Lighting diffuseConstant="1.3015873015873016" specularConstant="0.8238095238095238" surfaceScale="3.96031746031746">
+                          <bumpInput>
+                            <Shadow />
+                          </bumpInput>
+                          <light>
+                            <javafx.scene.effect.Light.Distant />
+                          </light>
+                        </Lighting>
+                      </effect>
+                      <font>
+                        <Font name="Gill Sans MT" size="12.0" />
+                      </font>
+                    </Text>
+                  </children>
+                </AnchorPane>
               </items>
             </SplitPane>
           </children>

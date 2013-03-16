@@ -42,7 +42,7 @@ public abstract class DefaultGUI
         
    final Popup confirmLogOut = new Popup();
 
-   
+
     VBox popUpVBox = new VBox(10);
      popUpVBox.setPadding(new Insets(10));
     
