@@ -50,7 +50,7 @@ controller.setText(name.getText());
   stage.setScene(scene);
   stage.show();
         }
-        catch(IOException e){};
+        catch(IOException e){System.out.println("ERROR:Welcome.fxml not found!!");}
     }
 
     // Handler for Button[fx:id="borrow"] onAction
@@ -65,7 +65,7 @@ controller.setText(name.getText());
   stage.setScene(scene);
   stage.show();
         }
-        catch(IOException e){};
+        catch(IOException e){System.out.println("ERROR:Borrow.fxml not found!!");}
     }
     // Handler for Button[fx:id="history"] onAction
     public void history(ActionEvent event) {
@@ -79,7 +79,7 @@ controller.setText(name.getText());
   stage.setScene(scene);
   stage.show();
         }
-        catch(IOException e){};
+        catch(IOException e){System.out.println("ERROR:History.fxml not found!!");}
     }
 
 
@@ -95,7 +95,7 @@ controller.setText(name.getText());
   stage.setScene(scene);
   stage.show();
         }
-        catch(IOException e){};
+        catch(IOException e){System.out.println("ERROR:Search.fxml not found!!");}
     }
 
     // Handler for Button[fx:id="rentals"] onAction
@@ -110,7 +110,7 @@ controller.setText(name.getText());
   stage.setScene(scene);
   stage.show();
         }
-        catch(IOException e){};
+        catch(IOException e){System.out.println("ERROR:Rentals.fxml not found!!");}
     }
 
     @Override // This method is called by the FXMLLoader when initialization is complete
