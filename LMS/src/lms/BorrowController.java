@@ -42,6 +42,8 @@ public class BorrowController extends MemberGUI implements Initializable{
      // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void lend(ActionEvent event)throws IOException{
         boolean bookfoundandborrowable = true;
+        confirmbutton.setVisible(true);
+        success.setText("");
         if(bookfoundandborrowable)
         {title.setText("Software Engineering");
          author.setText("Matthew Riley");

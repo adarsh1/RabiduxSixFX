@@ -64,8 +64,7 @@ public abstract class DefaultGUI
     popUpBoxButtons.getChildren().addAll(yes,no);
     popUpVBox.getChildren().add(popUpBoxButtons);
     //Style the pop up box
-    popUpVBox.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.55) , 5, 1, 0 , 1 );-fx-background-color: linear-gradient(indianred,darkred);-fx-stroke: black;-fx-stroke-width: 5;");
-    
+    popUpVBox.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.55) , 5, 1, 0 , 1 );-fx-background-color: linear-gradient(to bottom, #191970 20% , #008080);-fx-stroke: black;-fx-stroke-width: 5;");
     confirmLogOut.getContent().add(popUpVBox);
     
     Node node=(Node) event.getSource();
