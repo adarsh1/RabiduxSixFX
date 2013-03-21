@@ -1,0 +1,39 @@
+/* 
+    Document   : Search
+    Created on : Mar 21, 2013, 4:24:21 AM
+    Author     : Adarsh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+#individual{-fx-border-width: 2px;
+            -fx-border-color: lightgrey;
+            -fx-border-radius: 20px;
+            -fx-arc-width: 10px;
+            -fx-arc-height: 10px;
+    -fx-background-color: cadetblue;
+    -fx-background-radius: 20px;
+    -fx-font-family:"Century Schoolbook";
+    -fx-font-size:14;
+}
+#individual:hover{
+    -fx-border-width: 2px;
+            -fx-border-color: black;
+            -fx-border-radius: 20px;
+            -fx-arc-width: 10px;
+            -fx-arc-height: 10px;
+    -fx-background-color: teal;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+    -fx-font-family:"Century Schoolbook";
+   -fx-font-weight:bold;
+    -fx-font-size:14;
+}
+.scroll{
+    -fx-background-color: transparent;
+}
+
+

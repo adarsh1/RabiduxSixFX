@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.SearchController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.IndividualViewGUIController">
   <children>
     <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
@@ -52,50 +51,27 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Label layoutX="55.0" layoutY="46.0" text="Search :">
+                    <ImageView fx:id="cover" fitHeight="172.76766967773438" fitWidth="112.52631025774426" layoutX="379.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@images/default_book_cover.jpg" preserveRatio="false" smooth="false" />
+                      </image>
+                    </ImageView>
+                    <Text fx:id="title" layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title Of Book 2nd Edition Champak Publishing" textAlignment="CENTER" wrappingWidth="350.0">
                       <font>
-                        <Font size="14.0" />
+                        <Font name="Century Schoolbook Bold" size="17.0" />
                       </font>
-                    </Label>
-                    <TextField id="bookID" fx:id="searchfield" layoutX="117.0" layoutY="47.0" prefWidth="229.0" />
-                    <Button layoutX="368.0" layoutY="48.0" mnemonicParsing="false" onAction="#searchbook" text="Search" />
-                    <RadioButton fx:id="skeyword" layoutX="117.0" layoutY="69.0" mnemonicParsing="false" selected="true" text="Keyword">
-                      <font>
-                        <Font size="10.0" fx:id="x2" />
-                      </font>
-                      <toggleGroup>
-                        <ToggleGroup fx:id="soptions" />
-                      </toggleGroup>
-                    </RadioButton>
-                    <RadioButton fx:id="stitle" font="$x2" layoutX="182.0" layoutY="70.0" mnemonicParsing="false" text="Title" toggleGroup="$soptions" />
-                    <RadioButton fx:id="sauthor" font="$x2" layoutX="234.0" layoutY="70.0" mnemonicParsing="false" text="Author" toggleGroup="$soptions" />
-                    <RadioButton fx:id="sisbn" font="$x2" layoutX="291.0" layoutY="70.0" mnemonicParsing="false" text="ISBN" toggleGroup="$soptions" />
-                    <VBox fx:id="vb" layoutX="265.0" layoutY="116.0" prefHeight="200.0" prefWidth="206.0" visible="false" />
-                    <ScrollPane fx:id="scrollpane" layoutX="55.0" layoutY="104.0" prefHeight="211.0" prefWidth="390.0" styleClass="scroll" visible="false">
+                    </Text>
+                    <ScrollPane layoutX="28.0" layoutY="202.0" prefHeight="115.0" prefWidth="451.6470947265625">
                       <content>
-                        <Pane prefHeight="98.0" prefWidth="295.0" styleClass="individual">
-                          <children>
-                            <ImageView fitHeight="84.0" fitWidth="70.0" layoutX="226.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                <Image url="@images/default_book_cover.jpg" preserveRatio="false" smooth="false" />
-                              </image>
-                            </ImageView>
-                            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="210.0">
-                              <font>
-                                <Font name="System Bold" size="14.0" />
-                              </font>
-                            </Text>
-                            <Text layoutX="8.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text Description, take limited characters add ..." wrappingWidth="215.0" />
-                          </children>
-                          <stylesheets>
-                            <URL value="@css/Search.css" />
-                          </stylesheets>
-                        </Pane>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                       </content>
-                      <stylesheets>
-                        <URL value="@css/Search.css" />
-                      </stylesheets>
                     </ScrollPane>
+                    <Text fx:id="isbn" layoutX="28.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN:0000000000">
+                      <font>
+                        <Font name="Century Schoolbook" size="12.0" fx:id="x2" />
+                      </font>
+                    </Text>
+                    <Text fx:id="author" font="$x2" layoutX="28.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author: Thomas Edison" />
                   </children>
                 </AnchorPane>
               </items>
