@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.LoginController">
+<AnchorPane id="AnchorPane" onKeyReleased="#enter" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.LoginController">
   <children>
     <Label fx:id="label" layoutX="26.0" layoutY="81.0" minHeight="16.0" minWidth="69.0" text="Username" />
     <Text layoutX="105.0" layoutY="50.0" stroke="#43ff33" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
@@ -16,7 +16,7 @@
         <Font name="Harrington" size="40.0" />
       </font>
     </Text>
-    <TextField fx:id="usrname" layoutX="95.0" layoutY="78.0" prefWidth="200.0" />
+    <TextField fx:id="usrname" layoutX="95.0" layoutY="75.0" prefWidth="199.9998779296875" />
     <Button layoutX="239.0" layoutY="165.0" mnemonicParsing="false" onAction="#login" text="Login" />
     <PasswordField fx:id="password" layoutX="95.0" layoutY="123.0" prefWidth="200.0" />
     <Label layoutX="26.0" layoutY="126.0" text="Password" />
