@@ -44,7 +44,7 @@ public class SearchController extends MemberGUI implements Initializable{
       vb.setVisible(true);
       scrollpane.setContent(vb);
       int i;
-      for(i=0;i<20;i++)
+      for(i=0;i<50;i++)
       {  
           Text t = new Text(10, 50, "This is a test");
           vb.getChildren().add(t);
