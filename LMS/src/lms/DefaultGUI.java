@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,8 +42,7 @@ public abstract class DefaultGUI
     public void logout(MouseEvent event) {
         
    final Popup confirmLogOut = new Popup();
-
-
+   confirmLogOut.centerOnScreen();
     VBox popUpVBox = new VBox(10);
      popUpVBox.setPadding(new Insets(10));
     

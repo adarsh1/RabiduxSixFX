@@ -1,0 +1,16 @@
+/* 
+    Document   : Login
+    Created on : Mar 21, 2013, 10:41:34 PM
+    Author     : Adarsh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.lpanel{
+    -fx-background-image: url("loginwall.jpg");
+    -fx-background-repeat:round;
+    -fx-background-radius: 20px;
+}

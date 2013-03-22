@@ -9,7 +9,7 @@
 root { 
     display: block;
 }
-#individual{-fx-border-width: 2px;
+.scroll-pane.Pane{-fx-border-width: 2px;
             -fx-border-color: lightgrey;
             -fx-border-radius: 20px;
             -fx-arc-width: 10px;
@@ -19,7 +19,7 @@ root {
     -fx-font-family:"Century Schoolbook";
     -fx-font-size:14;
 }
-#individual:hover{
+.scroll-pane.Pane:hover{
     -fx-border-width: 2px;
             -fx-border-color: black;
             -fx-border-radius: 20px;

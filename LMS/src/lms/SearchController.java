@@ -62,7 +62,7 @@ public class SearchController extends MemberGUI implements Initializable{
       int i;
       for(i=0;i<50;i++)
       {  Pane p=new Pane();
-            createIndividual(p);
+            createIndividual(p,i);
           vb.getChildren().add(p);
       }
       
@@ -77,8 +77,9 @@ public class SearchController extends MemberGUI implements Initializable{
 
     }
 
-    private void createIndividual(Pane p) {
-        p.setId("individual");
+    private void createIndividual(Pane p,int i) {
+        p.setId(""+i);
+        p.getStyleClass().add("individual");
         p.setMinSize(295, 98);
         ImageView img=new ImageView(new Image(SearchController.class.getResourceAsStream("images/default_book_cover.jpg")));
         img.setFitHeight(80);
@@ -96,27 +97,29 @@ public class SearchController extends MemberGUI implements Initializable{
         t.setTextAlignment(TextAlignment.CENTER);
          p.getChildren().addAll(t,img);
          tempT=t.getText();
-         tempC="images/default_book_cover.jpg";
          tempISBN="1111111111";
          tempAuthor="Charles Dickens";
+         tempC="images/default_book_cover.jpg";
           p.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            
             @Override
             public void handle(MouseEvent e){
                 Node node=(Node) e.getSource();
+                
+                int i=Integer.parseInt(node.getId());
                 Stage stage=(Stage) node.getScene().getWindow();
-        try{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IndividualViewGUI.fxml"));
-        Parent root = (Parent)fxmlLoader.load();          
-      IndividualViewGUIController controller = fxmlLoader.<IndividualViewGUIController>getController();
-      controller.setTitle(tempT);
-      controller.setImage(tempC);
-      controller.setAuthor(tempAuthor);
-      controller.setIsbn(tempISBN);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        }
+                
+                try{
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IndividualViewGUI.fxml"));
+                Parent root = (Parent)fxmlLoader.load();          
+                IndividualViewGUIController controller = fxmlLoader.<IndividualViewGUIController>getController();
+                controller.setTitle(tempT);
+                controller.setImage(tempC);
+                controller.setAuthor(tempAuthor);
+                controller.setIsbn(tempISBN);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                }
         catch(IOException ei){;}
             }
         });

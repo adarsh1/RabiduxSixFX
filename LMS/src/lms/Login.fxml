@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -8,22 +9,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" onKeyReleased="#enter" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.LoginController">
+<AnchorPane id="AnchorPane" onKeyReleased="#enter" prefHeight="200.0" prefWidth="320.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.LoginController">
   <children>
-    <Label fx:id="label" layoutX="26.0" layoutY="81.0" minHeight="16.0" minWidth="69.0" text="Username" />
-    <Text layoutX="105.0" layoutY="50.0" stroke="#43ff33" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+    <Label fx:id="label" layoutX="26.0" layoutY="78.0" minHeight="16.0" minWidth="69.0" text="Username" textFill="WHITE">
+      <labelFor>
+        <TextField fx:id="usrname" layoutX="95.0" layoutY="75.0" prefWidth="199.9998779296875" />
+      </labelFor>
+    </Label>
+    <Text fill="radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 100.0px 100.0px, radius 200.0px, 0xff0000ff 0.0%, 0x0000ffff 30.0%, 0x000000ff 100.0%)" layoutX="114.0" layoutY="50.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.2" text="Login">
       <font>
-        <Font name="Harrington" size="40.0" />
+        <Font name="Segoe UI Semibold" size="40.0" />
       </font>
     </Text>
-    <TextField fx:id="usrname" layoutX="95.0" layoutY="75.0" prefWidth="199.9998779296875" />
+    <fx:reference source="usrname" />
     <Button layoutX="239.0" layoutY="165.0" mnemonicParsing="false" onAction="#login" text="Login" />
     <PasswordField fx:id="password" layoutX="95.0" layoutY="123.0" prefWidth="200.0" />
-    <Label layoutX="26.0" layoutY="126.0" text="Password" />
-    <ImageView fx:id="quit" fitHeight="25.1875" fitWidth="25.1875" layoutX="292.0" layoutY="2.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
+    <Label labelFor="$password" layoutX="26.0" layoutY="126.0" text="Password" textFill="WHITE" />
+    <ImageView fx:id="quit" fitHeight="25.1875" fitWidth="25.1875" layoutX="288.0" layoutY="6.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
       <image>
         <Image url="@images/Button-Close-icon.png" preserveRatio="false" smooth="false" />
       </image>
     </ImageView>
   </children>
+  <stylesheets>
+    <URL value="@css/Login.css" />
+  </stylesheets>
 </AnchorPane>

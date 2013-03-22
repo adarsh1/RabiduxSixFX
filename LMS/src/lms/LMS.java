@@ -19,7 +19,7 @@ public class LMS extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        stage.initStyle(StageStyle.TRANSPARENT);
+       stage.initStyle(StageStyle.TRANSPARENT);
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         
         Scene scene = new Scene(root);
