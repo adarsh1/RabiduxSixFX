@@ -1,0 +1,17 @@
+/* 
+    Document   : DefaultGUI
+    Created on : Mar 22, 2013, 5:00:08 AM
+    Author     : Adarsh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.topbar{
+    -fx-background-color:  #475871;
+}
+#logout:hover{
+    -fx-cursor: hand;
+}

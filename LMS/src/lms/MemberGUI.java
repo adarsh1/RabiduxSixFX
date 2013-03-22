@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 
 public class MemberGUI extends DefaultGUI
     implements Initializable {
-
     @FXML //  fx:id="borrow"
     private Button borrow; // Value injected by FXMLLoader
 

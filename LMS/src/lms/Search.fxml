@@ -15,7 +15,7 @@
   <children>
     <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar">
           <children>
             <TilePane hgap="20.0" layoutY="57.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
               <children>
@@ -35,7 +35,7 @@
           <children>
             <SplitPane dividerPositions="0.1590909090909091" focusTraversable="true" orientation="VERTICAL" prefHeight="398.0" prefWidth="488.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="topbar">
                   <children>
                     <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
                       <font>
@@ -43,7 +43,7 @@
                       </font>
                     </Text>
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="410.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="441.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
                         <Image url="@images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
@@ -105,4 +105,9 @@
       </items>
     </SplitPane>
   </children>
+  <stylesheets>
+    <URL value="@css/DefaultGUI.css" />
+    <URL value="@css/MemberGUI.css" />
+    <URL value="@css/Search.css" />
+  </stylesheets>
 </AnchorPane>

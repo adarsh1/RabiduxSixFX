@@ -1,0 +1,17 @@
+/* 
+    Document   : MemberGUI
+    Created on : Mar 22, 2013, 4:58:58 AM
+    Author     : Adarsh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.sidebar{
+    -fx-background-image: url("loginwall.jpg");
+    -fx-background-repeat:round;
+    -fx-background-radius: 20px;
+}

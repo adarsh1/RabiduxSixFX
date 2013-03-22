@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
@@ -14,7 +15,7 @@
   <children>
     <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar">
           <children>
             <TilePane hgap="20.0" layoutY="57.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
               <children>
@@ -34,7 +35,7 @@
           <children>
             <SplitPane dividerPositions="0.1590909090909091" focusTraversable="true" orientation="VERTICAL" prefHeight="398.0" prefWidth="488.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="topbar">
                   <children>
                     <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
                       <font>
@@ -42,7 +43,7 @@
                       </font>
                     </Text>
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="410.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="441.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
                         <Image url="@images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
@@ -51,7 +52,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Text fill="#4333ff" fontSmoothingType="LCD" layoutX="242.0" layoutY="170.0" scaleX="8.297533968590082" scaleY="8.768967205090552" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.5" strokeType="OUTSIDE" strokeWidth="0.3" text="LAMS">
+                    <Text fill="#008799" fontSmoothingType="LCD" layoutX="242.0" layoutY="170.0" scaleX="8.297533968590082" scaleY="8.768967205090552" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.5" strokeType="OUTSIDE" strokeWidth="0.3" text="LAMS">
                       <effect>
                         <Lighting diffuseConstant="1.3015873015873016" specularConstant="0.8238095238095238" surfaceScale="3.96031746031746">
                           <bumpInput>
@@ -75,4 +76,9 @@
       </items>
     </SplitPane>
   </children>
+  <stylesheets>
+    <URL value="@css/DefaultGUI.css" />
+    <URL value="@css/MemberGUI.css" />
+    <URL value="@css/Welcome.css" />
+  </stylesheets>
 </AnchorPane>
