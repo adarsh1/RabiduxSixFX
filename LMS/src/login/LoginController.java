@@ -3,7 +3,7 @@
  * You can copy and paste this code into your favorite IDE
  **/
 
-package lms;
+package login;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +23,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import lms.WelcomeController;
 
 public class LoginController
     implements Initializable {
