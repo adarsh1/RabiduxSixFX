@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" onKeyReleased="#enter" prefHeight="200.0" prefWidth="320.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.LoginController">
+<AnchorPane id="AnchorPane" onKeyReleased="#enter" prefHeight="200.0" prefWidth="320.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="login.LoginController">
   <children>
     <Label fx:id="label" layoutX="26.0" layoutY="78.0" minHeight="16.0" minWidth="69.0" text="Username" textFill="WHITE">
       <labelFor>
