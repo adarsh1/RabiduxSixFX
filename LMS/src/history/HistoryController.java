@@ -3,7 +3,7 @@
  * You can copy and paste this code into your favorite IDE
  **/
 
-package viewHistory;
+package history;
 
 import java.net.URL;
 import java.util.ResourceBundle;
