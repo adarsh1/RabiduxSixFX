@@ -3,7 +3,7 @@
  * You can copy and paste this code into your favorite IDE
  **/
 
-package lms;
+package borrowbook;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,8 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import baseGUI.MemberFXController;
 
-public class BorrowController extends MemberGUI implements Initializable{
+public class BorrowController extends MemberFXController implements Initializable{
    
     @FXML //  fx:id="confirmbutton"
     private Button confirmbutton; // Value injected by FXMLLoader

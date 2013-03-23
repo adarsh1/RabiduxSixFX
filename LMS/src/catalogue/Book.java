@@ -2,7 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javafxapplication1;
+package catalogue;
+
+import userManagement.Member;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Book {
     
     public boolean isValidBook(String bkID){
         //need to require database here
+        return true;
     }
     
     //all get and set methods
@@ -59,12 +62,15 @@ public class Book {
    //end
     //below method need to access database
     public boolean isAvailabe(){
+        return true;
     }
     
     public boolean isOverdue(){
+        return true;
     }
     
     public boolean isReserved(){
+        return true;
     }
     
     public void reserve(Member member){

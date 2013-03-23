@@ -3,8 +3,12 @@
  * You can copy and paste this code into your favorite IDE
  **/
 
-package lms;
+package baseGUI;
 
+import mymaterials.MyMaterialGUIController;
+import viewHistory.HistoryController;
+import borrowbook.BorrowController;
+import searchbook.SearchController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,9 +21,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import lms.WelcomeController;
 
 
-public class MemberGUI extends DefaultGUI
+public class MemberFXController extends BaseGUIController
     implements Initializable {
     @FXML //  fx:id="borrow"
     private Button borrow; // Value injected by FXMLLoader
@@ -103,7 +108,7 @@ controller.setText(name.getText());
   Stage stage=(Stage) node.getScene().getWindow();
   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Rentals.fxml"));     
 Parent root = (Parent)fxmlLoader.load();          
-RentalsController controller = fxmlLoader.<RentalsController>getController();
+MyMaterialGUIController controller = fxmlLoader.<MyMaterialGUIController>getController();
 controller.setText(name.getText());
   Scene scene = new Scene(root);
   stage.setScene(scene);

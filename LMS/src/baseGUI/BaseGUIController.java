@@ -3,7 +3,7 @@
  * You can copy and paste this code into your favorite IDE
  **/
 
-package lms;
+package baseGUI;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +29,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 
-public abstract class DefaultGUI
+public abstract class BaseGUIController
     implements Initializable {
 
     @FXML //  fx:id="logout"
