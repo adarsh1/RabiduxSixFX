@@ -6,7 +6,7 @@
 package baseGUI;
 
 import mymaterials.MyMaterialGUIController;
-import viewHistory.HistoryController;
+import history.HistoryController;
 import borrowbook.BorrowController;
 import searchbook.SearchController;
 import java.io.IOException;
