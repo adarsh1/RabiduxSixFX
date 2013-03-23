@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package lms;
+package searchbook;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,13 +11,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import baseGUI.MemberFXController;
 
 /**
  * FXML Controller class
  *
  * @author Adarsh
  */
-public class IndividualViewGUIController extends MemberGUI implements Initializable {
+public class IndividualViewGUIController extends MemberFXController implements Initializable {
 
    
     @FXML //  fx:id="author"

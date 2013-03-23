@@ -2,13 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javafxapplication1;
+package userManagement;
+
+import catalogue.Book;
+import java.util.ArrayList;
 
 /**
  *
  * @author mmin001
  */
-public class Member {
+public abstract class Member {
     private String memberID;
     private int maxBorrowing;
     private int itemBorrowed;
@@ -27,16 +30,17 @@ public class Member {
     }
     
     public boolean isEligibleToExtend(){
+        return true;
         
     }
     
-    public Arraylist<Book> getBorrowed(){
+    abstract public ArrayList<Book> getBorrowed();
 
-    }
     
-    public Arraylist<Book> getReserved(){
+    
+    abstract public ArrayList<Book> getReserved();
         
-    }
+    
     
     public String getStatus(){
         return status;

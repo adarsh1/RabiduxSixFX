@@ -3,7 +3,7 @@
  * You can copy and paste this code into your favorite IDE
  **/
 
-package lms;
+package searchbook;
 
 import javafx.scene.text.Text;
 import javafx.scene.control.RadioButton;
@@ -27,8 +27,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import baseGUI.MemberFXController;
 
-public class SearchController extends MemberGUI implements Initializable{
+public class SearchController extends MemberFXController implements Initializable{
   
  
  @FXML //  fx:id="scrollpane"
