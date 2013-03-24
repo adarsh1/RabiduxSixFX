@@ -108,7 +108,7 @@ public class MySQLDB extends Database{
     @Override
     public ResultSet getItemInfo(String itemID) throws SQLException{
         //form a query to determine the type of this item
-        String query = "SELECT type FROM  catalogue_item WHERE item_id=?";
+        String query = "SELECT type FROM catalogue_item WHERE item_id=?";
         PreparedStatement statement = connection.prepareStatement(query); 
         statement.setString(1, itemID);
         //execute the query
@@ -126,6 +126,48 @@ public class MySQLDB extends Database{
         return resultSet;
     }
     
+    //get the info of a user of any type
+    @Override
+    public ResultSet getUserInfo(String userID) throws SQLException{
+        //form a query to determine the type of this item
+        String query = "SELECT * FROM user WHERE user_id=?";
+        PreparedStatement statement = connection.prepareStatement(query); 
+        statement.setString(1, userID);
+        //execute the query
+        resultSet = statement.executeQuery(query);
+        return resultSet;
+    }
+    
+    //get all the current holdings of a given member
+    @Override
+    public ResultSet getCurrentHoldingItem(String memberID) throws SQLException{
+        //form a query to determine the type of this item
+        String query = "SELECT type FROM loan_record WHERE user_id=? AND time_returned IS NULL";
+        PreparedStatement statement = connection.prepareStatement(query); 
+        statement.setString(1, memberID);
+        //execute the query
+        resultSet = statement.executeQuery(query);
+        return resultSet;
+    }
+    
+    //check if a combiantion of username and password exists in DB
+    @Override
+    public boolean isValidUser(String userID, String password) throws SQLException{
+        //form a query
+        String query = "SELECT * FROM  user WHERE account_name=? and password=?";
+        PreparedStatement statement = connection.prepareStatement(query); 
+        statement.setString(1, userID);
+        statement.setString(2, password);
+        //execute the query
+        resultSet = statement.executeQuery(query);
+        //count the number of rows
+        int numberOfRows = getNumberOfRows(resultSet);
+        //if number of rows equals 0, return false
+        return (numberOfRows != 0);
+    }
+    
+    //count the number of rows in a result set
+    @Override
     public int getNumberOfRows(ResultSet resultSet) throws SQLException{
         int counter = 0;
         //iterate to see how many rows in the resultSet
@@ -134,4 +176,6 @@ public class MySQLDB extends Database{
         }
         return counter;
     }
+    
+    
 }

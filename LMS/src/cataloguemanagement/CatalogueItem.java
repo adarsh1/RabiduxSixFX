@@ -35,7 +35,7 @@ public class CatalogueItem {
         DataStore dataStore = new DataStore();
         dataStore.updateItemInfo(itemID);
         //if this item is of book type
-        if (dataStore.getType() == BOOK){
+        if (dataStore.getItemType() == BOOK){
             //instantiate a new book object
             Book book = new Book(itemID);
             //set all mandatory fields
@@ -49,6 +49,7 @@ public class CatalogueItem {
             return (CatalogueItem)book;
         }        
         else{
+            //if it belongs to no specific type
             CatalogueItem catalogueItem = new CatalogueItem(itemID);
             catalogueItem.setAuthor(dataStore.getAuthor());
             catalogueItem.setLocation(dataStore.getLocation());

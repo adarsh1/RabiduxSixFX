@@ -35,4 +35,16 @@ public abstract class Database {
     
     //get all the info of a particular type of item
     public abstract ResultSet getItemInfo(String itemID) throws SQLException;
+    
+    //get the info of a user of any type
+    public abstract ResultSet getUserInfo(String userID) throws SQLException;
+    
+    //get all the current holdings of a given member
+    public abstract ResultSet getCurrentHoldingItem(String memberID) throws SQLException;
+    
+    //check if a combiantion of username and password exists in DB
+    public abstract boolean isValidUser(String userID, String password) throws SQLException;
+    
+    //count the number of rows in a result set
+    public abstract int getNumberOfRows(ResultSet resultSet) throws SQLException;
 }

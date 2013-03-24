@@ -4,6 +4,7 @@ package datamanagement;
 import cataloguemanagement.CatalogueItem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import userManagement.User;
 
 /**
  *
@@ -13,14 +14,20 @@ public class DataStore {
         
     private Database database;
     
-    //fields that may be retrieved from databasee
+    //catalogue item fields that may be retrieved from databasee
     private String location;
     private String author;
     private String title;
     private String ISBN;
     private String publishYear;
     private String genre;
-    private int type;
+    private int itemType;
+    
+    //user fields that may be retrieved from database
+    private String accountName;
+    private int numberOfItemsBorrowed;
+    private double fineAmount;
+    private int userType;
     
     public DataStore(){
         database = new MySQLDB();
@@ -46,17 +53,45 @@ public class DataStore {
         author = resultSet.getString("author");
         location = resultSet.getString("location");
         publishYear = resultSet.getString("publish_year");        
-        type = resultSet.getInt("type");
+        itemType = resultSet.getInt("itemType");
         
-        //if it's of book type
-        if (getType() == CatalogueItem.BOOK){
+        //if it's of book itemType
+        if (getItemType() == CatalogueItem.BOOK){
             //update ISBN and genre as well
             ISBN = resultSet.getString("ISBN");
             genre = resultSet.getString("genre");
         }
         //close connection
-        database.closeConnection();
+        database.closeConnection();        
+    }
+    
+    public void updateUserInfo(String userID) throws SQLException, ClassNotFoundException{
+        //initialize DB connection
+        database.initializeConnection();
+        //retrive the user info from DB
+        ResultSet resultSet = database.getUserInfo(userID);
+        //update all relevant fields from the user table
+        accountName = resultSet.getString("account_name");
+        fineAmount = resultSet.getDouble("fine_amount");
         
+        //if it's a member
+        if (resultSet.getInt("type") == User.STUDENT || resultSet.getInt("type") == User.FACULTY){
+            //retrieve the number of borrowings from DB
+            resultSet = database.getCurrentHoldingItem(userID);
+            numberOfItemsBorrowed = database.getNumberOfRows(resultSet);
+        }
+        else{   //if it's a librarian's ID
+            //nothing for now
+        }        
+    }
+    
+    public boolean isValidUser(String userID, String password) throws SQLException, ClassNotFoundException{
+        //initialize DB connection
+        database.initializeConnection();
+        boolean result = database.isValidUser(userID, password);
+        //close connection
+        database.closeConnection();   
+        return result;
     }
 
     /**
@@ -102,9 +137,37 @@ public class DataStore {
     }
 
     /**
-     * @return the type
+     * @return the itemType
      */
-    public int getType() {
-        return type;
+    public int getItemType() {
+        return itemType;
+    }
+
+    /**
+     * @return the accountName
+     */
+    public String getAccountName() {
+        return accountName;
+    }
+
+    /**
+     * @return the numberOfItemsBorrowed
+     */
+    public int getNumberOfItemsBorrowed() {
+        return numberOfItemsBorrowed;
+    }
+
+    /**
+     * @return the fineAmount
+     */
+    public double getFineAmount() {
+        return fineAmount;
+    }
+
+    /**
+     * @return the userType
+     */
+    public int getUserType() {
+        return userType;
     }
 }
