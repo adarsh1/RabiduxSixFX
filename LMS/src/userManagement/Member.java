@@ -4,7 +4,7 @@
  */
 package userManagement;
 
-import catalogue.Book;
+import cataloguemanagement.Book;
 import java.util.ArrayList;
 
 /**

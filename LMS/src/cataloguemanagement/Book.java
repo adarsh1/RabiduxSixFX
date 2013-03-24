@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package catalogue;
+package cataloguemanagement;
 
 import userManagement.Member;
 
@@ -10,7 +10,7 @@ import userManagement.Member;
  *
  * @author mmin001
  */
-public class Book {
+public class Book extends CatalogueItem{
     private String bookID;
     private String ISBN;
     private String title;
