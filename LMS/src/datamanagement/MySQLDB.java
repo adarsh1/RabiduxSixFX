@@ -9,6 +9,7 @@ package datamanagement;
  * @author Allen
  */
 
+import cataloguemanagement.CatalogueItem;
 import java.sql.*;
 public class MySQLDB extends Database{
     
@@ -42,7 +43,7 @@ public class MySQLDB extends Database{
     
     //initialize the connection to the database
     @Override
-    public void initializeConnection () throws SQLException, ClassNotFoundException{
+    public void initializeConnection() throws SQLException, ClassNotFoundException{
         Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost/rabidusDB","root","password");
     }
@@ -101,6 +102,28 @@ public class MySQLDB extends Database{
         int numberOfRows = getNumberOfRows(resultSet);
         //if number of rows equals 0, return false
         return (numberOfRows != 0);
+    }
+    
+    //get all the info of a particular type of item
+    @Override
+    public ResultSet getItemInfo(String itemID) throws SQLException{
+        //form a query to determine the type of this item
+        String query = "SELECT type FROM  catalogue_item WHERE item_id=?";
+        PreparedStatement statement = connection.prepareStatement(query); 
+        statement.setString(1, itemID);
+        //execute the query
+        resultSet = statement.executeQuery(query);
+        
+        //if the item is of book type
+        if (resultSet.getInt("type") == CatalogueItem.BOOK){
+            //form a query to retrieve the info of this book
+            query = "SELECT * FROM catalogue_item INNER JOIN book ON item_id = book_id WHERE item_id=?";
+            statement = connection.prepareStatement(query); 
+            statement.setString(1, itemID);
+            //execute the query
+            resultSet = statement.executeQuery(query);
+        }
+        return resultSet;
     }
     
     public int getNumberOfRows(ResultSet resultSet) throws SQLException{

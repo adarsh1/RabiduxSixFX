@@ -1,6 +1,7 @@
 
 package datamanagement;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -31,4 +32,7 @@ public abstract class Database {
     
     //check if an itemID exists in DB
     public abstract boolean isValidItemID(String itemID) throws SQLException;
+    
+    //get all the info of a particular type of item
+    public abstract ResultSet getItemInfo(String itemID) throws SQLException;
 }

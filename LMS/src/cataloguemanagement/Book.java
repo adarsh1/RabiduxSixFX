@@ -11,55 +11,14 @@ import userManagement.Member;
  * @author mmin001
  */
 public class Book extends CatalogueItem{
-    private String bookID;
+    
     private String ISBN;
-    private String title;
-    private String author;
     private String genre;
-    private String location;
     
-    public Book(String bkID){
-        bookID=bkID;
-    }
-    
-    public boolean isValidBook(String bkID){
-        //need to require database here
-        return true;
-    }
-    
-    //all get and set methods
-    public String getBookID(){
-        return bookID;
-    }
-    
-    public String getTitle(){
-        return title;
-    }
-    public void setTitle(String tl){
-        title=tl;
-    }
-    
-    public String getAuthor(){
-        return author;
-    }
-    public void setAuthor(String atr){
-        author=atr;
-    }
-    
-    public String getLocation(){
-        return location;
-    }
-    public void setLocation(String lct){
-        location=lct;
-    }
-    
-    public String getGenre(){
-        return genre;
-    }
-    public void setGenre(String gne){
-        genre=gne;
-    }
-   //end
+    public Book(String itemID){
+        super(itemID);
+    }   
+
     //below method need to access database
     public boolean isAvailabe(){
         return true;
@@ -81,5 +40,33 @@ public class Book extends CatalogueItem{
     
     public void extend(Member member){
         
+    }
+
+    /**
+     * @return the ISBN
+     */
+    public String getISBN() {
+        return ISBN;
+    }
+
+    /**
+     * @param ISBN the ISBN to set
+     */
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    /**
+     * @return the genre
+     */
+    public String getGenre() {
+        return genre;
+    }
+
+    /**
+     * @param genre the genre to set
+     */
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }
