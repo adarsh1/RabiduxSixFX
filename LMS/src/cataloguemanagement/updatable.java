@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package searchbook;
+package cataloguemanagement;
 
 /**
  *
- * @author mmin001
+ * @author Richard
  */
-public class SearchMgr {
+public interface updatable {
+    public abstract void update();
     
 }

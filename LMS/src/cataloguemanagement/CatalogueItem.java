@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 package cataloguemanagement;
-import datamanagement.*;
+
+import datamanagement.DataStore;
 import java.sql.SQLException;
 
 /**
