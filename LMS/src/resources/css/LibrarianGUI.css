@@ -10,3 +10,7 @@ root {
     display: block;
 }
 
+.sidebar{
+    -fx-background-color:  #5e91c3;
+}
+

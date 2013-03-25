@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import lms.WelcomeLibrarianController;
+import resetfine.ResetFineController;
 import returnbook.ReturnController;
 import updatecatalogue.UpdateCatalogueController;
 
@@ -55,7 +56,20 @@ public class LibrarianFXController extends BaseGUIController implements Initiali
     }
    // Handler for Button[fx:id="resetfine"] onAction
     public void resetFine(ActionEvent event) {
-        // handle the event here
+        try{
+            Node node=(Node) event.getSource();
+            Stage stage=(Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/ResetFine.fxml"));     
+            Parent root = (Parent)fxmlLoader.load();          
+            ResetFineController controller = fxmlLoader.<ResetFineController>getController();
+            controller.setText(name.getText());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+       catch(IOException e){
+           System.out.println("ERROR:ResetFine.fxml not found!!");
+       }
     }
 
     // Handler for Button[fx:id="returnB"] onAction

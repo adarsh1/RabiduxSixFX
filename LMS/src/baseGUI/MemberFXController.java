@@ -119,7 +119,7 @@ public class MemberFXController extends BaseGUIController
         try{
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/MyMaterialGUI.fxml"));     
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/MyMaterial.fxml"));     
             Parent root = (Parent)fxmlLoader.load();          
             MyMaterialGUIController controller = fxmlLoader.<MyMaterialGUIController>getController();
             controller.setText(name.getText());

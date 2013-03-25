@@ -13,17 +13,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="searchbook.SearchController">
   <children>
-    <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+    <SplitPane dividerPositions="0.225752508361204" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar">
           <children>
-            <TilePane hgap="20.0" layoutY="57.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
+            <TilePane hgap="20.0" layoutX="1.0" layoutY="19.0" prefHeight="360.0" prefWidth="117.0" vgap="40.0">
               <children>
-                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="31.0" prefWidth="70.0" text="Home" />
-                <Button fx:id="borrow" mnemonicParsing="false" onAction="#borrow" prefHeight="31.0" prefWidth="70.0" text="Borrow" />
-                <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="31.0" prefWidth="70.0" text="Search" />
-                <Button fx:id="rentals" mnemonicParsing="false" onAction="#showRentals" prefHeight="31.0" prefWidth="70.0" text="Rentals" />
-                <Button fx:id="history" mnemonicParsing="false" onAction="#history" prefHeight="31.0" prefWidth="70.0" text="History" />
+                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="41.0" prefWidth="117.0" text="Home" />
+                <Button fx:id="borrow" mnemonicParsing="false" onAction="#borrow" prefHeight="41.0" prefWidth="117.0" text="Borrow" />
+                <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="117.0" text="Search" />
+                <Button fx:id="rentals" mnemonicParsing="false" onAction="#showRentals" prefHeight="41.0" prefWidth="117.0" text="Rentals" />
+                <Button fx:id="history" mnemonicParsing="false" onAction="#history" prefHeight="41.0" prefWidth="117.0" text="History" />
               </children>
               <padding>
                 <Insets left="8.0" />
@@ -43,23 +43,23 @@
                       </font>
                     </Text>
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="441.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="397.0" layoutY="4.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@images/logout.png" preserveRatio="false" smooth="false" />
+                        <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
                     </ImageView>
                   </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Label layoutX="55.0" layoutY="46.0" text="Search :">
+                    <Label layoutX="33.0" layoutY="46.0" text="Search :">
                       <font>
                         <Font size="14.0" />
                       </font>
                     </Label>
-                    <TextField id="bookID" fx:id="searchfield" layoutX="117.0" layoutY="47.0" prefWidth="229.0" />
-                    <Button layoutX="368.0" layoutY="48.0" mnemonicParsing="false" onAction="#searchbook" text="Search" />
-                    <RadioButton fx:id="skeyword" layoutX="117.0" layoutY="69.0" mnemonicParsing="false" selected="true" text="Keyword">
+                    <TextField id="bookID" fx:id="searchfield" layoutX="92.0" layoutY="47.0" prefWidth="229.0" />
+                    <Button layoutX="334.0" layoutY="42.0" mnemonicParsing="false" onAction="#searchbook" text="Search" />
+                    <RadioButton fx:id="skeyword" layoutX="99.0" layoutY="69.0" mnemonicParsing="false" selected="true" text="Keyword">
                       <font>
                         <Font size="10.0" fx:id="x2" />
                       </font>
@@ -67,11 +67,11 @@
                         <ToggleGroup fx:id="soptions" />
                       </toggleGroup>
                     </RadioButton>
-                    <RadioButton fx:id="stitle" font="$x2" layoutX="182.0" layoutY="70.0" mnemonicParsing="false" text="Title" toggleGroup="$soptions" />
-                    <RadioButton fx:id="sauthor" font="$x2" layoutX="234.0" layoutY="70.0" mnemonicParsing="false" text="Author" toggleGroup="$soptions" />
-                    <RadioButton fx:id="sisbn" font="$x2" layoutX="291.0" layoutY="70.0" mnemonicParsing="false" text="ISBN" toggleGroup="$soptions" />
-                    <VBox fx:id="vb" layoutX="265.0" layoutY="116.0" prefHeight="200.0" prefWidth="206.0" visible="false" />
-                    <ScrollPane fx:id="scrollpane" layoutX="55.0" layoutY="104.0" prefHeight="211.0" prefWidth="390.0" styleClass="scroll" visible="false">
+                    <RadioButton fx:id="stitle" font="$x2" layoutX="164.0" layoutY="70.0" mnemonicParsing="false" text="Title" toggleGroup="$soptions" />
+                    <RadioButton fx:id="sauthor" font="$x2" layoutX="216.0" layoutY="70.0" mnemonicParsing="false" text="Author" toggleGroup="$soptions" />
+                    <RadioButton fx:id="sisbn" font="$x2" layoutX="273.0" layoutY="70.0" mnemonicParsing="false" text="ISBN" toggleGroup="$soptions" />
+                    <VBox fx:id="vb" layoutX="70.0" layoutY="116.0" prefHeight="200.0" prefWidth="314.0" visible="false" />
+                    <ScrollPane fx:id="scrollpane" layoutX="40.0" layoutY="104.0" prefHeight="211.0" prefWidth="390.0" styleClass="scroll" visible="false">
                       <content>
                         <Pane prefHeight="98.0" prefWidth="295.0" styleClass="individual">
                           <children>
@@ -88,15 +88,18 @@
                             <Text layoutX="8.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text Description, take limited characters add ..." wrappingWidth="215.0" />
                           </children>
                           <stylesheets>
-                            <URL value="@css/Search.css" />
+                            <URL value="@../css/Search.css" />
                           </stylesheets>
                         </Pane>
                       </content>
                       <stylesheets>
-                        <URL value="@css/Search.css" />
+                        <URL value="@../css/Search.css" />
                       </stylesheets>
                     </ScrollPane>
                   </children>
+                  <stylesheets>
+                    <URL value="@../css/MainPane.css" />
+                  </stylesheets>
                 </AnchorPane>
               </items>
             </SplitPane>

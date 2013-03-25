@@ -13,17 +13,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="mymaterials.MyMaterialGUIController">
   <children>
-    <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+    <SplitPane dividerPositions="0.225752508361204" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar">
           <children>
-            <TilePane hgap="20.0" layoutY="57.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
+            <TilePane hgap="20.0" layoutX="1.0" layoutY="19.0" prefHeight="360.0" prefWidth="117.0" vgap="40.0">
               <children>
-                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="31.0" prefWidth="70.0" text="Home" />
-                <Button fx:id="borrow" mnemonicParsing="false" onAction="#borrow" prefHeight="31.0" prefWidth="70.0" text="Borrow" />
-                <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="31.0" prefWidth="70.0" text="Search" />
-                <Button fx:id="rentals" mnemonicParsing="false" onAction="#showRentals" prefHeight="31.0" prefWidth="70.0" text="Rentals" />
-                <Button fx:id="history" mnemonicParsing="false" onAction="#history" prefHeight="31.0" prefWidth="70.0" text="History" />
+                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="41.0" prefWidth="117.0" text="Home" />
+                <Button fx:id="borrow" mnemonicParsing="false" onAction="#borrow" prefHeight="41.0" prefWidth="117.0" text="Borrow" />
+                <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="117.0" text="Search" />
+                <Button fx:id="rentals" mnemonicParsing="false" onAction="#showRentals" prefHeight="41.0" prefWidth="117.0" text="Rentals" />
+                <Button fx:id="history" mnemonicParsing="false" onAction="#history" prefHeight="41.0" prefWidth="117.0" text="History" />
               </children>
               <padding>
                 <Insets left="8.0" />
@@ -43,7 +43,7 @@
                       </font>
                     </Text>
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="441.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="397.0" layoutY="4.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
                         <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
@@ -52,8 +52,11 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Label layoutX="239.0" layoutY="157.0" text="Here Is MyMaterials" />
+                    <Label layoutX="190.0" layoutY="157.0" text="Here Is MyMaterials" />
                   </children>
+                  <stylesheets>
+                    <URL value="@../css/MainPane.css" />
+                  </stylesheets>
                 </AnchorPane>
               </items>
             </SplitPane>

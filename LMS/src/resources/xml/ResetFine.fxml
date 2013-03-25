@@ -13,20 +13,21 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="resetfine.ResetFineController">
   <children>
-    <SplitPane dividerPositions="0.2525083612040134" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+   <SplitPane dividerPositions="0.28762541806020064" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="89.99990844726562" styleClass="sidebar">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="158.0" styleClass="sidebar">
           <children>
-            <TilePane hgap="20.0" layoutY="79.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
+            <TilePane hgap="20.0" layoutX="5.0" layoutY="77.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
               <children>
-                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="31.0" prefWidth="133.00009155273438" text="Home" />
-                <Button id="return" fx:id="returnB" mnemonicParsing="false" onAction="#returnBook" prefHeight="31.0" prefWidth="133.00009999999747" text="Return Book" />
-                <Button id="search" fx:id="resetfine" mnemonicParsing="false" onAction="#resetFine" prefHeight="31.0" prefWidth="133.0" text="Reset Fine" />
-                <Button id="search" fx:id="update" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="133.0" text="Update Catalogue" />
+                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="41.0" prefWidth="141.99990000000253" text="Home" />
+                <Button id="return" fx:id="returnB" mnemonicParsing="false" onAction="#returnBook" prefHeight="41.0" prefWidth="142.0" text="Return Book" />
+                <Button id="search" fx:id="resetfine" mnemonicParsing="false" onAction="#resetFine" prefHeight="41.0" prefWidth="142.0" text="Reset Fine" />
+                <Button id="search" fx:id="update" mnemonicParsing="false" onAction="#update" prefHeight="41.0" prefWidth="142.0" text="Update Catalogue" />
               </children>
               <padding>
                 <Insets left="8.0" />
               </padding>
+            </TilePane>
             </TilePane>
           </children>
         </AnchorPane>
@@ -53,6 +54,9 @@
                   <children>
                     <Label layoutX="168.0" layoutY="157.0" text="Here Is Reset Fine" />
                   </children>
+                  <stylesheets>
+                    <URL value="@../css/MainPane.css" />
+                  </stylesheets>
                 </AnchorPane>
               </items>
             </SplitPane>
