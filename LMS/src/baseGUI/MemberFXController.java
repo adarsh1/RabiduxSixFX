@@ -44,77 +44,92 @@ public class MemberFXController extends BaseGUIController
 
 // Handler for Button[fx:id="home"] onAction
     public void home(ActionEvent event) {
-       try{Node node=(Node) event.getSource();
-  Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));     
-Parent root = (Parent)fxmlLoader.load();          
-WelcomeController controller = fxmlLoader.<WelcomeController>getController();
-controller.setText(name.getText());
-  Scene scene = new Scene(root);
-  stage.setScene(scene);
-  stage.show();
+       try{
+            Node node=(Node) event.getSource();
+            Stage stage=(Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));     
+            Parent root = (Parent)fxmlLoader.load();          
+            WelcomeController controller = fxmlLoader.<WelcomeController>getController();
+            controller.setText(name.getText());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
-        catch(IOException e){System.out.println("ERROR:Welcome.fxml not found!!");}
+       catch(IOException e){
+           System.out.println("ERROR:Welcome.fxml not found!!");
+       }
     }
 
     // Handler for Button[fx:id="borrow"] onAction
     public void borrow(ActionEvent event) {
-       try{Node node=(Node) event.getSource();
-  Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Borrow.fxml"));     
-Parent root = (Parent)fxmlLoader.load();          
-BorrowController controller = fxmlLoader.<BorrowController>getController();
-controller.setText(name.getText());
-  Scene scene = new Scene(root);
-  stage.setScene(scene);
-  stage.show();
+       try{
+            Node node=(Node) event.getSource();
+            Stage stage=(Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Borrow.fxml"));     
+            Parent root = (Parent)fxmlLoader.load();          
+            BorrowController controller = fxmlLoader.<BorrowController>getController();
+            controller.setText(name.getText());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
-        catch(IOException e){System.out.println("ERROR:Borrow.fxml not found!!");}
+        catch(IOException e){
+            System.out.println("ERROR:Borrow.fxml not found!!");
+        }
     }
     // Handler for Button[fx:id="history"] onAction
     public void history(ActionEvent event) {
-        try{Node node=(Node) event.getSource();
-  Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/History.fxml"));     
-Parent root = (Parent)fxmlLoader.load();          
-HistoryController controller = fxmlLoader.<HistoryController>getController();
-controller.setText(name.getText());
-  Scene scene = new Scene(root);
-  stage.setScene(scene);
-  stage.show();
+        try{
+             Node node=(Node) event.getSource();
+             Stage stage=(Stage) node.getScene().getWindow();
+             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/History.fxml"));     
+             Parent root = (Parent)fxmlLoader.load();          
+             HistoryController controller = fxmlLoader.<HistoryController>getController();
+             controller.setText(name.getText());
+             Scene scene = new Scene(root);
+             stage.setScene(scene);
+             stage.show();
+         }
+        catch(IOException e){
+            System.out.println("ERROR:History.fxml not found!!");
         }
-        catch(IOException e){System.out.println("ERROR:History.fxml not found!!");}
     }
 
 
     // Handler for Button[fx:id="search"] onAction
     public void search(ActionEvent event) {
-        try{Node node=(Node) event.getSource();
-  Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Search.fxml"));     
-Parent root = (Parent)fxmlLoader.load();          
-SearchController controller = fxmlLoader.<SearchController>getController();
-controller.setText(name.getText());
-  Scene scene = new Scene(root);
-  stage.setScene(scene);
-  stage.show();
+        try{
+            Node node=(Node) event.getSource();
+            Stage stage=(Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Search.fxml"));     
+            Parent root = (Parent)fxmlLoader.load();          
+            SearchController controller = fxmlLoader.<SearchController>getController();
+            controller.setText(name.getText());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
-        catch(IOException e){System.out.println("ERROR:Search.fxml not found!!");}
+        catch(IOException e){
+            System.out.println("ERROR:Search.fxml not found!!");
+        }
     }
 
     // Handler for Button[fx:id="rentals"] onAction
     public void showRentals(ActionEvent event) {
-        try{Node node=(Node) event.getSource();
-  Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Rentals.fxml"));     
-Parent root = (Parent)fxmlLoader.load();          
-MyMaterialGUIController controller = fxmlLoader.<MyMaterialGUIController>getController();
-controller.setText(name.getText());
-  Scene scene = new Scene(root);
-  stage.setScene(scene);
-  stage.show();
+        try{
+            Node node=(Node) event.getSource();
+            Stage stage=(Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/MyMaterialGUI.fxml"));     
+            Parent root = (Parent)fxmlLoader.load();          
+            MyMaterialGUIController controller = fxmlLoader.<MyMaterialGUIController>getController();
+            controller.setText(name.getText());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
-        catch(IOException e){System.out.println("ERROR:Rentals.fxml not found!!");}
+        catch(IOException e){
+            System.out.println("ERROR:Rentals.fxml not found!!");
+        }
     }
 
     @Override // This method is called by the FXMLLoader when initialization is complete

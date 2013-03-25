@@ -78,7 +78,7 @@ public abstract class BaseGUIController
             public void handle(MouseEvent t){
                 confirmLogOut.hide();
   Stage stage=(Stage) confirmLogOut.getOwnerWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));  
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Login.fxml"));  
   try
   {Parent root = (Parent)fxmlLoader.load();     
   Scene scene = new Scene(root);

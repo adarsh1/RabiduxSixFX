@@ -69,15 +69,17 @@ public class LoginController
     private void goWelcome(Node node){
         Stage stage=(Stage) node.getScene().getWindow();
         try{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));
-        Parent root = (Parent)fxmlLoader.load();          
-      WelcomeController controller = fxmlLoader.<WelcomeController>getController();
-      controller.setText(usrname.getText());
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));
+            Parent root = (Parent)fxmlLoader.load();          
+            WelcomeController controller = fxmlLoader.<WelcomeController>getController();
+            controller.setText(usrname.getText());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
-        catch(IOException e){;}
+        catch(IOException e){
+          System.out.println("ERROR:Welcome.fxml not found!!");
+        }
       
     }
 
