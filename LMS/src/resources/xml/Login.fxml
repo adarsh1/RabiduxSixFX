@@ -27,11 +27,11 @@
     <Label labelFor="$password" layoutX="26.0" layoutY="126.0" text="Password" textFill="WHITE" />
     <ImageView fx:id="quit" fitHeight="25.1875" fitWidth="25.1875" layoutX="288.0" layoutY="6.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
       <image>
-        <Image url="@images/Button-Close-icon.png" preserveRatio="false" smooth="false" />
+        <Image url="@../images/Button-Close-icon.png" preserveRatio="false" smooth="false" />
       </image>
     </ImageView>
   </children>
   <stylesheets>
-    <URL value="@css/Login.css" />
+    <URL value="@../css/Login.css" />
   </stylesheets>
 </AnchorPane>

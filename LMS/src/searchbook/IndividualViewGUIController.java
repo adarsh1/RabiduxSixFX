@@ -61,6 +61,7 @@ public void setImage(String url){
     { cover.setImage(new Image(SearchController.class.getResourceAsStream(url)));
     }
     catch(Exception e){
+        cover.setImage(new Image(SearchController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
     }
     }
 }

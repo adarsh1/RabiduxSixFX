@@ -45,7 +45,7 @@
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                     <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="441.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@images/logout.png" preserveRatio="false" smooth="false" />
+                        <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
                     </ImageView>
                   </children>
@@ -77,8 +77,8 @@
     </SplitPane>
   </children>
   <stylesheets>
-    <URL value="@css/DefaultGUI.css" />
-    <URL value="@css/MemberGUI.css" />
-    <URL value="@css/Welcome.css" />
+    <URL value="@../css/DefaultGUI.css" />
+    <URL value="@../css/MemberGUI.css" />
+    <URL value="@../css/Welcome.css" />
   </stylesheets>
 </AnchorPane>

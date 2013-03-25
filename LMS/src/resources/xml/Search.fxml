@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.SearchController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="searchbook.SearchController">
   <children>
     <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
@@ -77,7 +77,7 @@
                           <children>
                             <ImageView fitHeight="84.0" fitWidth="70.0" layoutX="226.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                <Image url="@images/default_book_cover.jpg" preserveRatio="false" smooth="false" />
+                                <Image url="@../images/default_book_cover.jpg" preserveRatio="false" smooth="false" />
                               </image>
                             </ImageView>
                             <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="210.0">
@@ -106,8 +106,8 @@
     </SplitPane>
   </children>
   <stylesheets>
-    <URL value="@css/DefaultGUI.css" />
-    <URL value="@css/MemberGUI.css" />
-    <URL value="@css/Search.css" />
+    <URL value="@../css/DefaultGUI.css" />
+    <URL value="@../css/MemberGUI.css" />
+    <URL value="@../css/Search.css" />
   </stylesheets>
 </AnchorPane>

@@ -91,17 +91,14 @@ public class SearchController extends MemberFXController implements Initializabl
         Text t = new Text(14, 50, "Title Of Book 2nd Edition Champak Publishing");
         
         t.setWrappingWidth(210);
-       /*Text dis=new Text(9,48,"Text Description, take limited characters add ...");
-        dis.setFont(Font.font("System", FontWeight.THIN, 12));
-        dis.setWrappingWidth(215);*/
         t.setTextOrigin(VPos.CENTER);
         t.setTextAlignment(TextAlignment.CENTER);
-         p.getChildren().addAll(t,img);
-         tempT=t.getText();
-         tempISBN="1111111111";
-         tempAuthor="Charles Dickens";
-         tempC="images/default_book_cover.jpg";
-          p.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        p.getChildren().addAll(t,img);
+        tempT=t.getText();
+        tempISBN="1111111111";
+        tempAuthor="Charles Dickens";
+        tempC="images/default_book_cover.jpg";
+        p.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent e){
                 Node node=(Node) e.getSource();
@@ -110,7 +107,7 @@ public class SearchController extends MemberFXController implements Initializabl
                 Stage stage=(Stage) node.getScene().getWindow();
                 
                 try{
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IndividualViewGUI.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/IndividualViewGUI.fxml"));
                 Parent root = (Parent)fxmlLoader.load();          
                 IndividualViewGUIController controller = fxmlLoader.<IndividualViewGUIController>getController();
                 controller.setTitle(tempT);
@@ -121,7 +118,9 @@ public class SearchController extends MemberFXController implements Initializabl
                 stage.setScene(scene);
                 stage.show();
                 }
-        catch(IOException ei){;}
+        catch(IOException ei){
+            System.out.println("ERROR:IndividualViewGUI.fxml not found!!");
+        }
             }
         });
     }

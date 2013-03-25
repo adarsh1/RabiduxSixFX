@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.BorrowController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="borrowbook.BorrowController">
   <children>
     <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
@@ -45,7 +45,7 @@
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                     <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="441.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
-                        <Image url="@images/logout.png" preserveRatio="false" smooth="false" />
+                        <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
                     </ImageView>
                   </children>
@@ -83,8 +83,8 @@
     </SplitPane>
   </children>
   <stylesheets>
-    <URL value="@css/MemberGUI.css" />
-    <URL value="@css/DefaultGUI.css" />
-    <URL value="@css/Borrow.css" />
+    <URL value="@../css/MemberGUI.css" />
+    <URL value="@../css/DefaultGUI.css" />
+    <URL value="@../css/Borrow.css" />
   </stylesheets>
 </AnchorPane>
