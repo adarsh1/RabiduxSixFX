@@ -4,7 +4,9 @@
  */
 package userManagement;
 
-import cataloguemanagement.Book;
+import cataloguemanagement.CurrentHolding;
+import cataloguemanagement.ReservedItem;
+import cataloguemanagement.TransactionHistory;
 import java.util.ArrayList;
 
 /**
@@ -76,5 +78,16 @@ public class Member extends User implements BorrowRecordAccessible{
     public void setNumberOfItemsBorrowed(int numberOfItemsBorrowed) {
         this.numberOfItemsBorrowed = numberOfItemsBorrowed;
     }
-        
+    @Override
+     public  ArrayList<TransactionHistory> getTransactionHistoryItems(String memberID){
+     return new ArrayList<TransactionHistory>();
+     }
+    @Override
+    public ArrayList<ReservedItem> getReservedItems(String memberID){
+     return new ArrayList<ReservedItem>();
+     }
+    @Override
+    public ArrayList<CurrentHolding> getCurrentHoldingItems(String memberID){
+     return new ArrayList<CurrentHolding>();
+     }   
     }
