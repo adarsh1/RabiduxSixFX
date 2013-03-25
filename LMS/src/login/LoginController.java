@@ -23,7 +23,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import lms.WelcomeController;
+import lms.WelcomeLibrarianController;
+import lms.WelcomeMemberController;
 
 public class LoginController
     implements Initializable {
@@ -43,13 +44,18 @@ public class LoginController
     public void enter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
           Node node=(Node) event.getSource();
-          goWelcome(node);}
+          if(!usrname.getText().equals("")&&usrname.getText().charAt(0)=='1')
+            goWelcomeMember(node);     
+        else
+            goWelcomeLibrarian(node); }
     }
     // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void login(ActionEvent event){
         Node node=(Node) event.getSource();
-        goWelcome(node);     
-
+        if(!usrname.getText().equals("")&&usrname.getText().charAt(0)=='1')
+            goWelcomeMember(node);     
+        else
+            goWelcomeLibrarian(node); 
     }
     // Handler for ImageView[fx:id="quit"] onMouseClicked
     public void quit(MouseEvent event) {
@@ -66,19 +72,36 @@ public class LoginController
 
     }
 
-    private void goWelcome(Node node){
+    private void goWelcomeMember(Node node){
         Stage stage=(Stage) node.getScene().getWindow();
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/WelcomeMember.fxml"));
             Parent root = (Parent)fxmlLoader.load();          
-            WelcomeController controller = fxmlLoader.<WelcomeController>getController();
+            WelcomeMemberController controller = fxmlLoader.<WelcomeMemberController>getController();
             controller.setText(usrname.getText());
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
         catch(IOException e){
-          System.out.println("ERROR:Welcome.fxml not found!!");
+          System.out.println("ERROR:WelcomeMember.fxml not found!!");
+        }
+      
+    }
+    
+    private void goWelcomeLibrarian(Node node){
+        Stage stage=(Stage) node.getScene().getWindow();
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/WelcomeLibrarian.fxml"));
+            Parent root = (Parent)fxmlLoader.load();          
+            WelcomeLibrarianController controller = fxmlLoader.<WelcomeLibrarianController>getController();
+            controller.setText(usrname.getText());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch(IOException e){
+          System.out.println("ERROR:WelcomeLibrarian.fxml not found!!");
         }
       
     }

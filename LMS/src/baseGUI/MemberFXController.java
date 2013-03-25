@@ -21,7 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import lms.WelcomeController;
+import lms.WelcomeMemberController;
 
 
 public class MemberFXController extends BaseGUIController
@@ -47,16 +47,16 @@ public class MemberFXController extends BaseGUIController
        try{
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));     
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/WelcomeMember.fxml"));     
             Parent root = (Parent)fxmlLoader.load();          
-            WelcomeController controller = fxmlLoader.<WelcomeController>getController();
+            WelcomeMemberController controller = fxmlLoader.<WelcomeMemberController>getController();
             controller.setText(name.getText());
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
        catch(IOException e){
-           System.out.println("ERROR:Welcome.fxml not found!!");
+           System.out.println("ERROR:WelcomeMember.fxml not found!!");
        }
     }
 
