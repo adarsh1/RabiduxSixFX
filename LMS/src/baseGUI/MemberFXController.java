@@ -46,7 +46,7 @@ public class MemberFXController extends BaseGUIController
     public void home(ActionEvent event) {
        try{Node node=(Node) event.getSource();
   Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Welcome.fxml"));     
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));     
 Parent root = (Parent)fxmlLoader.load();          
 WelcomeController controller = fxmlLoader.<WelcomeController>getController();
 controller.setText(name.getText());
@@ -61,7 +61,7 @@ controller.setText(name.getText());
     public void borrow(ActionEvent event) {
        try{Node node=(Node) event.getSource();
   Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Borrow.fxml"));     
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Borrow.fxml"));     
 Parent root = (Parent)fxmlLoader.load();          
 BorrowController controller = fxmlLoader.<BorrowController>getController();
 controller.setText(name.getText());
@@ -75,7 +75,7 @@ controller.setText(name.getText());
     public void history(ActionEvent event) {
         try{Node node=(Node) event.getSource();
   Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("History.fxml"));     
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/History.fxml"));     
 Parent root = (Parent)fxmlLoader.load();          
 HistoryController controller = fxmlLoader.<HistoryController>getController();
 controller.setText(name.getText());
@@ -91,7 +91,7 @@ controller.setText(name.getText());
     public void search(ActionEvent event) {
         try{Node node=(Node) event.getSource();
   Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Search.fxml"));     
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Search.fxml"));     
 Parent root = (Parent)fxmlLoader.load();          
 SearchController controller = fxmlLoader.<SearchController>getController();
 controller.setText(name.getText());
@@ -106,7 +106,7 @@ controller.setText(name.getText());
     public void showRentals(ActionEvent event) {
         try{Node node=(Node) event.getSource();
   Stage stage=(Stage) node.getScene().getWindow();
-  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Rentals.fxml"));     
+  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Rentals.fxml"));     
 Parent root = (Parent)fxmlLoader.load();          
 MyMaterialGUIController controller = fxmlLoader.<MyMaterialGUIController>getController();
 controller.setText(name.getText());

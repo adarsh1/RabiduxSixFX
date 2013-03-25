@@ -11,7 +11,7 @@ root {
 }
 
 .sidebar{
-    -fx-background-image: url("loginwall.jpg");
+    -fx-background-image: url("/resources/images/loginwall.jpg");
     -fx-background-repeat:round;
     -fx-background-radius: 20px;
 }

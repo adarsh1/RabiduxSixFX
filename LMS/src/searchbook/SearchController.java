@@ -82,7 +82,7 @@ public class SearchController extends MemberFXController implements Initializabl
         p.setId(""+i);
         p.getStyleClass().add("individual");
         p.setMinSize(295, 98);
-        ImageView img=new ImageView(new Image(SearchController.class.getResourceAsStream("images/default_book_cover.jpg")));
+        ImageView img=new ImageView(new Image(SearchController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
         img.setFitHeight(80);
         img.setFitWidth(60);
         img.setLayoutX(228);

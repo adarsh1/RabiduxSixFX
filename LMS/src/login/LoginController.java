@@ -69,7 +69,7 @@ public class LoginController
     private void goWelcome(Node node){
         Stage stage=(Stage) node.getScene().getWindow();
         try{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Welcome.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Welcome.fxml"));
         Parent root = (Parent)fxmlLoader.load();          
       WelcomeController controller = fxmlLoader.<WelcomeController>getController();
       controller.setText(usrname.getText());
