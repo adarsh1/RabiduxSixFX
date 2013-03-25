@@ -11,19 +11,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.WelcomeMemberController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.WelcomeLibrarianController">
   <children>
-    <SplitPane dividerPositions="0.1454849498327759" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+    <SplitPane dividerPositions="0.2525083612040134" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="89.99990844726562" styleClass="sidebar">
           <children>
-            <TilePane hgap="20.0" layoutY="57.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
+            <TilePane hgap="20.0" layoutY="79.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
               <children>
-                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="31.0" prefWidth="70.0" text="Home" />
-                <Button fx:id="borrow" mnemonicParsing="false" onAction="#borrow" prefHeight="31.0" prefWidth="70.0" text="Borrow" />
-                <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="31.0" prefWidth="70.0" text="Search" />
-                <Button fx:id="rentals" mnemonicParsing="false" onAction="#showRentals" prefHeight="31.0" prefWidth="70.0" text="Rentals" />
-                <Button fx:id="history" mnemonicParsing="false" onAction="#history" prefHeight="31.0" prefWidth="70.0" text="History" />
+                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="31.0" prefWidth="133.00009155273438" text="Home" />
+                <Button id="return" fx:id="returnB" mnemonicParsing="false" onAction="#returnBook" prefHeight="31.0" prefWidth="133.00009999999747" text="Return Book" />
+                <Button id="search" fx:id="resetfine" mnemonicParsing="false" onAction="#resetFine" prefHeight="31.0" prefWidth="133.0" text="Reset Fine" />
+                <Button id="search" fx:id="update" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="133.0" text="Update Catalogue" />
               </children>
               <padding>
                 <Insets left="8.0" />
@@ -43,7 +42,7 @@
                       </font>
                     </Text>
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="441.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="375.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
                         <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
@@ -52,7 +51,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                    <Text fill="#008799" fontSmoothingType="LCD" layoutX="242.0" layoutY="170.0" scaleX="8.297533968590082" scaleY="8.768967205090552" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.5" strokeType="OUTSIDE" strokeWidth="0.3" text="LAMS">
+                    <Text fill="#008799" fontSmoothingType="LCD" layoutX="213.0" layoutY="170.0" scaleX="8.297533968590082" scaleY="8.768967205090552" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.5" strokeType="OUTSIDE" strokeWidth="0.3" text="LAMS">
                       <effect>
                         <Lighting diffuseConstant="1.3015873015873016" specularConstant="0.8238095238095238" surfaceScale="3.96031746031746">
                           <bumpInput>
@@ -78,7 +77,7 @@
   </children>
   <stylesheets>
     <URL value="@../css/DefaultGUI.css" />
-    <URL value="@../css/MemberGUI.css" />
-    <URL value="@../css/WelcomeMember.css" />
+    <URL value="@../css/LibrarianGUI.css" />
+    <URL value="@../css/WelcomeLibrarian.css" />
   </stylesheets>
 </AnchorPane>
