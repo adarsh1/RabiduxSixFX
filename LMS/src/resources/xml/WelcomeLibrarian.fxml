@@ -13,7 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="lms.WelcomeLibrarianController">
   <children>
-   <SplitPane dividerPositions="0.28762541806020064" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+    <SplitPane dividerPositions="0.28762541806020064" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="158.0" styleClass="sidebar">
           <children>
@@ -42,7 +42,7 @@
                       </font>
                     </Text>
                     <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="375.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="360.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                       <image>
                         <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
                       </image>
