@@ -4,10 +4,23 @@
  */
 package cataloguemanagement;
 
+import java.util.Date;
+
 /**
  *
  * @author Richard
  */
 public class CurrentHolding {
+    private Date dateBorrowed;
+    private Date dateReturned;
+    private Extendable item;
+    
+    public Extendable getItem(){
+       return item;
+    }
+   
+    public void setItem(Extendable item){
+       this.item=item;
+    }
     
 }

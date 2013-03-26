@@ -8,9 +8,9 @@ package cataloguemanagement;
  *
  * @author Richard
  */
-public interface Borrowable {
+public interface Borrowable extends Displayable {
    
-    public Boolean borrow (String memberID);
+    public abstract Boolean borrow (String memberID);
    
     
 }
