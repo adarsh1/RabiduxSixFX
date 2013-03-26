@@ -11,11 +11,11 @@ package datamanagement;
 
 import cataloguemanagement.CatalogueItem;
 import java.sql.*;
+import java.util.*;
+
 public class MySQLDB extends Database{
     
-    //resultSet used to store info retrieved from DB
     private ResultSet resultSet;
-    //connnection to the MySQL database
     private Connection connection;
     
     public static void main (String[] args) throws SQLException, ClassNotFoundException{
@@ -41,11 +41,17 @@ public class MySQLDB extends Database{
         }
     }
     
+    public MySQLDB () {
+        
+    }
+    
     //initialize the connection to the database
     @Override
-    public void initializeConnection() throws SQLException, ClassNotFoundException{
+    public void initializeConnection() throws SQLException, ClassNotFoundException {
+        
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/rabidusDB","root","password");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost/rabidusDB","root","root");
+        
     }
     
     //close the connection to the database
@@ -54,128 +60,101 @@ public class MySQLDB extends Database{
         connection.close();
     }
     
-    public void queryItemInfo(String itemID) throws SQLException{
+    @Override
+    public void insertRecord (Table table, ArrayList<String> value) throws SQLException {
         
-    }
-    
-    //fetch the title of an item
-    @Override
-    public String fechTitle() throws SQLException{
-        return resultSet.getString("title");
-    }
-    
-    //fetch the author of an item
-    @Override
-    public String fetchAuthor() throws SQLException{
-        return resultSet.getString("author");
+        String queryStr = new String();
+        PreparedStatement statement;
         
-    }
-    
-    //fetch the year published
-    @Override
-    public String fetchPublishYear() throws SQLException{
-        return resultSet.getString("publish_year");
-    }
-    
-    //fech the ISBN of a book
-    @Override
-    public String fetchISBN() throws SQLException{
-        return resultSet.getString("ISBN");
-    }
-    
-    //fetch the genre of a book
-    @Override
-    public String fetchGenre() throws SQLException{
-        return resultSet.getString("genre");
-    }
-    
-    //check if an itemID exists in DB
-    @Override
-    public boolean isValidItemID(String itemID) throws SQLException{
-        //form a query
-        String query = "SELECT * FROM  catalogue_item WHERE item_id=?";
-        PreparedStatement statement = connection.prepareStatement(query); 
-        statement.setString(1, itemID);
-        //execute the query
-        resultSet = statement.executeQuery(query);
-        //count the number of rows
-        int numberOfRows = getNumberOfRows(resultSet);
-        //if number of rows equals 0, return false
-        return (numberOfRows != 0);
-    }
-    
-    //get all the info of a particular type of item
-    @Override
-    public ResultSet getItemInfo(String itemID) throws SQLException{
-        //form a query to determine the type of this item
-        String query = "SELECT type FROM catalogue_item WHERE item_id=?";
-        PreparedStatement statement = connection.prepareStatement(query); 
-        statement.setString(1, itemID);
-        //execute the query
-        resultSet = statement.executeQuery(query);
-        
-        //if the item is of book type
-        if (resultSet.getInt("type") == CatalogueItem.BOOK){
-            //form a query to retrieve the info of this book
-            query = "SELECT * FROM catalogue_item INNER JOIN book ON item_id = book_id WHERE item_id=?";
-            statement = connection.prepareStatement(query); 
-            statement.setString(1, itemID);
-            //execute the query
-            resultSet = statement.executeQuery(query);
+        switch (table) {
+            
+            case USER : queryStr += "INSERT INTO user (user_id, user_type, account_name, password, fine, is_suspended) VALUES (?,?,?,?,?,?)";
+                        break;
+            case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, book_id, time_borrowed, time_returned, time_to_return, fine_amount) VALUES (?,?,?,?,?,?,?)";
+                         break;
+            case COPY: queryStr += "INSERT INTO individual_copy (copy_id, item_id, reserved_by, location) VALUES (?,?,?,?)";
+                       break;
+            case ITEM: queryStr += "INSERT INTO catalogue_item (item_id, title, author, isbn, genre, date, description) VALUES (?,?,?,?,?,?,?)";
+                       break;
         }
-        return resultSet;
-    }
-    
-    //get the info of a user of any type
-    @Override
-    public ResultSet getUserInfo(String userID) throws SQLException{
-        //form a query to determine the type of this item
-        String query = "SELECT * FROM user WHERE user_id=?";
-        PreparedStatement statement = connection.prepareStatement(query); 
-        statement.setString(1, userID);
-        //execute the query
-        resultSet = statement.executeQuery(query);
-        return resultSet;
-    }
-    
-    //get all the current holdings of a given member
-    @Override
-    public ResultSet getCurrentHoldingItem(String memberID) throws SQLException{
-        //form a query to determine the type of this item
-        String query = "SELECT type FROM loan_record WHERE user_id=? AND time_returned IS NULL";
-        PreparedStatement statement = connection.prepareStatement(query); 
-        statement.setString(1, memberID);
-        //execute the query
-        resultSet = statement.executeQuery(query);
-        return resultSet;
-    }
-    
-    //check if a combiantion of username and password exists in DB
-    @Override
-    public boolean isValidUser(String userID, String password) throws SQLException{
-        //form a query
-        String query = "SELECT * FROM  user WHERE account_name=? and password=?";
-        PreparedStatement statement = connection.prepareStatement(query); 
-        statement.setString(1, userID);
-        statement.setString(2, password);
-        //execute the query
-        resultSet = statement.executeQuery(query);
-        //count the number of rows
-        int numberOfRows = getNumberOfRows(resultSet);
-        //if number of rows equals 0, return false
-        return (numberOfRows != 0);
-    }
-    
-    //count the number of rows in a result set
-    @Override
-    public int getNumberOfRows(ResultSet resultSet) throws SQLException{
-        int counter = 0;
-        //iterate to see how many rows in the resultSet
-        while (resultSet.next()) {
-            ++counter;
+                
+        statement = connection.prepareStatement(queryStr);
+        
+        for (int i = 0; i < value.size(); i++) {
+            
+            statement.setString(i + 1, value.get(i));
+            
         }
-        return counter;
+        
     }
     
+    @Override
+    public void updateRecord (Table table, ArrayList<String> set, ArrayList<String> where) throws SQLException {
+        
+        String queryStr = new String();
+        PreparedStatement statement;
+        
+        switch (table) {
+            
+            case USER : queryStr += "UPDATE user SET user_type=?, account_name=?, password=?, fine=?, is_suspended=? WHERE user_id=?";
+                        break;
+            case RECORD: queryStr += "UPDATE loan_record SET time_borrowed=?, time_returned=?, time_to_return=?, fine_amount=? WHERE user_id=? AND book_id=?";
+                         break;
+            case COPY: queryStr += "UPDATE individual_copy SET reserved_by=?, location=? WHERE copy_id=?";
+                       break;
+            case ITEM: queryStr += "UPDATE catalogue_item SET title=?, author=?, isbn=?, genre=?, date=?, description=? WHERE item_id=?";
+                       break;
+        }
+        
+        statement = connection.prepareStatement(queryStr);
+        
+        for (int i = 0; i < set.size(); i++) {
+            
+            statement.setString(i + 1, set.get(i));
+            
+        }
+        
+        for (int i = 0; i < where.size(); i++) {
+            
+            statement.setString(i + 1 + set.size(), where.get(i));
+            
+        }
+        
+    }
+    
+    @Override
+    public void deleteRecord (Table table, ArrayList<String> where) throws SQLException{
+        
+        String queryStr = new String();
+        PreparedStatement statement;
+        
+        switch (table) {
+            
+            case USER : queryStr += "DELETE user WHERE user_id=?";
+                        break;
+            case RECORD: queryStr += "DELETE WHERE user_id=? AND book_id=?";
+                         break;
+            case COPY: queryStr += "DELETE WHERE copy_id=?";
+                       break;
+            case ITEM: queryStr += "DELETE WHERE item_id=?";
+                       break;
+        }
+        
+        statement = connection.prepareStatement(queryStr);
+        
+        for (int i = 0; i < where.size(); i++) {
+            
+            statement.setString(i + 1, where.get(i));
+            
+        }
+        
+    }
+    
+    @Override
+    public ResultSet selectRecord (Table table) throws SQLException {
+        
+        
+        return resultSet;
+    }
     
 }

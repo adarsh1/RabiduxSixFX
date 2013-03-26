@@ -3,48 +3,30 @@ package datamanagement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 
 /**
  *
  * @author Allen
  */
 public abstract class Database {
+    
+    public static enum Table {
+        USER, RECORD, COPY, ITEM
+    }
+    
     //initialize the connection to the database
     public abstract void initializeConnection () throws SQLException,ClassNotFoundException;
     
     //close the connection to the database
     public abstract void closeConnection() throws SQLException;
     
-    //fetch the title of an item
-    public abstract String fechTitle() throws SQLException;
+    public abstract void insertRecord(Table table, ArrayList<String> value) throws SQLException;
     
-    //fetch the author of an item
-    public abstract String fetchAuthor() throws SQLException;
+    public abstract void updateRecord (Table table, ArrayList<String> set, ArrayList<String> where) throws SQLException;
     
-    //fetch the year published
-    public abstract String fetchPublishYear() throws SQLException;
+    public abstract void deleteRecord (Table table, ArrayList<String> where) throws SQLException;
     
-    //fech the ISBN of a book
-    public abstract String fetchISBN() throws SQLException;
+    public abstract ResultSet selectRecord (Table table) throws SQLException;
     
-    //fetch the genre of a book
-    public abstract String fetchGenre() throws SQLException;
-    
-    //check if an itemID exists in DB
-    public abstract boolean isValidItemID(String itemID) throws SQLException;
-    
-    //get all the info of a particular type of item
-    public abstract ResultSet getItemInfo(String itemID) throws SQLException;
-    
-    //get the info of a user of any type
-    public abstract ResultSet getUserInfo(String userID) throws SQLException;
-    
-    //get all the current holdings of a given member
-    public abstract ResultSet getCurrentHoldingItem(String memberID) throws SQLException;
-    
-    //check if a combiantion of username and password exists in DB
-    public abstract boolean isValidUser(String userID, String password) throws SQLException;
-    
-    //count the number of rows in a result set
-    public abstract int getNumberOfRows(ResultSet resultSet) throws SQLException;
 }
