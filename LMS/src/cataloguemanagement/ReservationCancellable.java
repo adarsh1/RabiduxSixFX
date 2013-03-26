@@ -8,7 +8,7 @@ package cataloguemanagement;
  *
  * @author Richard
  */
-public interface ReservationCancellable {
+public interface ReservationCancellable extends Displayable {
     public Boolean cancelReservation(String memberID);
   
     

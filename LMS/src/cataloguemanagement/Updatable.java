@@ -8,7 +8,7 @@ package cataloguemanagement;
  *
  * @author Richard
  */
-public interface updatable {
+public interface Updatable {
     public abstract void update();
     
 }

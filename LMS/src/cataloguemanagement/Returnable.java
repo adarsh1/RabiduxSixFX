@@ -8,7 +8,7 @@ package cataloguemanagement;
  *
  * @author Richard
  */
-public interface Returnable {
+public interface Returnable extends Displayable {
     public abstract Boolean returnBook();
     
 }

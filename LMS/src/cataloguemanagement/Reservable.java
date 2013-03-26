@@ -8,7 +8,7 @@ package cataloguemanagement;
  *
  * @author Richard
  */
-public interface Reservable {
+public interface Reservable extends Displayable {
     public abstract Boolean reverse(String memberID);
     
 }
