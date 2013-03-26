@@ -17,13 +17,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import baseGUI.MemberFXController;
 
-public class BorrowController extends MemberFXController implements Initializable{
+public class BorrowGUIController extends MemberFXController implements Initializable{
    
     @FXML //  fx:id="confirmbutton"
     private Button confirmbutton; // Value injected by FXMLLoader
     
     @FXML //  fx:id="bID"
-    private TextField bID; // Value injected by FXMLLoader
+    private TextField itemID; // Value injected by FXMLLoader
     
     @FXML //  fx:id="title"
     private Text title; // Value injected by FXMLLoader

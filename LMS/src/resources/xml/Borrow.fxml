@@ -58,7 +58,7 @@
                       </font>
                     </Label>
                     <Label layoutX="47.0" layoutY="89.0" text="Book ID :" />
-                    <TextField id="bookID" fx:id="bID" layoutX="102.0" layoutY="86.0" prefWidth="200.0" />
+                    <TextField id="bookID" fx:id="itemID" layoutX="102.0" layoutY="86.0" prefWidth="200.0" />
                     <Button layoutX="326.0" layoutY="77.0" mnemonicParsing="false" onAction="#lend" text="Borrow" />
                     <Pane fx:id="result" layoutX="47.0" layoutY="151.0" prefHeight="154.0" prefWidth="412.0" visible="false">
                       <children>
