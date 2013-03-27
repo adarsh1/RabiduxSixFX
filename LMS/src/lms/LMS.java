@@ -5,9 +5,12 @@
 package lms;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,16 +19,36 @@ import javafx.stage.StageStyle;
  * @author Adarsh
  */
 public class LMS extends Application {
+    //set the inital axis of the window
+    private double xOffset = 0;
+    private double yOffset = 0;
     
     @Override
-    public void start(Stage stage) throws Exception {
-       stage.initStyle(StageStyle.TRANSPARENT);
+    public void start(final Stage primaryStage) throws Exception {
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         Parent root = FXMLLoader.load(getClass().getResource("/resources/xml/Login.fxml"));
+        root.setId("rootNode");
+        //enable the stage to be draggable via tow new handlers
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });        
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+            }
+        });
         
         Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
         
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     /**

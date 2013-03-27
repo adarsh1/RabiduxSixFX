@@ -9,11 +9,13 @@
 root { 
     display: block;
 }
+
 .lpanel{   
     -fx-background-image: url("../images/loginwall.jpg");
     -fx-background-repeat:round;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 30px;
 }
+
 .button{
     -fx-background-color: 
         linear-gradient(#f2f2f2, #d6d6d6),
