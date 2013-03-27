@@ -8,6 +8,6 @@ package cataloguemanagement;
  *
  * @author Richard
  */
-public class TransactionHistory {
+public class TransactionHistoryItem {
     
 }

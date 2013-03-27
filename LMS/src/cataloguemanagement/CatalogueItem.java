@@ -18,6 +18,7 @@ public class CatalogueItem {
     private String location;
     private String author;
     private String title;
+    private int type;
     
     //final constant to indicate the type of this item
     public static final int BOOK = 0;
@@ -114,6 +115,14 @@ public class CatalogueItem {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public int getType() {
+        return type;
+    }
+    
+    public void setType(int type) {
+        this.type = type;
     }
     
 }
