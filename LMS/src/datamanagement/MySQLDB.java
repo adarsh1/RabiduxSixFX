@@ -14,7 +14,6 @@ import java.util.*;
 
 public class MySQLDB extends Database{
     
-    private ResultSet resultSet;
     private Connection connection;
     
     public static void main (String[] args) throws SQLException, ClassNotFoundException{
@@ -152,8 +151,9 @@ public class MySQLDB extends Database{
     @Override
     public ResultSet selectRecord (Table table, ArrayList<String> where) throws SQLException {
         
-        String queryStr = new String();
+        ResultSet resultSet;
         PreparedStatement statement;
+        String queryStr = new String();
         
         switch (table) {
             
@@ -178,6 +178,66 @@ public class MySQLDB extends Database{
         resultSet = statement.executeQuery();
         
         return resultSet;
+    }
+    
+    @Override
+    public ResultSet selectRecord (Table table, int top) throws SQLException {
+        
+        ResultSet resultSet;
+        PreparedStatement statement;
+        String queryStr = "SELECT TOP " + Integer.toString(top);
+        
+        switch (table) {
+            
+            case USER : queryStr += " * FROM user ORDER BY user_id DESC";
+                        break;
+            case RECORD: queryStr += " * FROM loan_record ORDER BY loan_id DESC";
+                         break;
+            case COPY: queryStr += " * FROM individual_copy ORDER BY copy_id DESC";
+                       break;
+            case ITEM: queryStr += " * FROM catalogue_item ORDER BY item_id DESC";
+                       break;
+        }
+        
+        statement = connection.prepareStatement(queryStr);
+        
+        resultSet = statement.executeQuery();
+        
+        return resultSet;
+        
+    }
+    
+    @Override
+    public ResultSet selectRecord (Table table, ArrayList<String> where, int top) throws SQLException {
+        
+        ResultSet resultSet;
+        PreparedStatement statement;
+        String queryStr = "SELECT TOP " + Integer.toString(top);
+        
+        switch (table) {
+            
+            case USER : queryStr += " * FROM user WHERE user_id LIKE ? ORDER BY user_id DESC";
+                        break;
+            case RECORD: queryStr += " * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? ORDER BY loan_id DESC";
+                         break;
+            case COPY: queryStr += " * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ? ORDER BY copy_id DESC";
+                       break;
+            case ITEM: queryStr += " * FROM catalogue_item WHERE item_id LIKE ? ORDER BY item_id DESC";
+                       break;
+        }
+        
+        statement = connection.prepareStatement(queryStr);
+        
+        for (int i = 0; i < where.size(); i++ ) {
+            
+            statement.setString(i + 1, where.get(i));
+            
+        }
+        
+        resultSet = statement.executeQuery();
+        
+        return resultSet;
+        
     }
     
 }

@@ -1,8 +1,7 @@
 
 package datamanagement;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -13,6 +12,10 @@ public abstract class Database {
     
     public static enum Table {
         USER, RECORD, COPY, ITEM
+    }
+    
+    public static enum USERTYPE {
+        STUDENT, STUFF
     }
     
     //initialize the connection to the database
@@ -29,4 +32,29 @@ public abstract class Database {
     
     public abstract ResultSet selectRecord (Table table, ArrayList<String> where) throws SQLException;
     
+    public abstract ResultSet selectRecord (Table table, int top) throws SQLException;
+    
+    public abstract ResultSet selectRecord (Table table, ArrayList<String> where, int top) throws SQLException;
+    
+    public int getNumOfRows (ResultSet resultSet) throws SQLException {
+        
+        int numOfRows;
+        
+        resultSet.last();
+        numOfRows = resultSet.getRow();
+        resultSet.beforeFirst();
+        
+        return numOfRows;
+    }
+    
+    public String getNewID (Table table) throws SQLException {
+        
+        ResultSet resultSet = selectRecord(table, 1);
+        
+        resultSet.first();
+        String newID = resultSet.getString(1);
+        
+        return newID;
+        
+    }
 }
