@@ -5,9 +5,6 @@
 
 package borrowbook;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,14 +13,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import baseGUI.MemberFXController;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class BorrowGUIController extends MemberFXController implements Initializable{
+
+    // Handler for Button[Button[id=null, styleClass=button]] onAction
+public class BorrowFXController extends MemberFXController implements Initializable{
    
     @FXML //  fx:id="confirmbutton"
     private Button confirmbutton; // Value injected by FXMLLoader
     
     @FXML //  fx:id="bID"
-    private TextField itemID; // Value injected by FXMLLoader
+    private TextField itemIDInputField; // Value injected by FXMLLoader
     
     @FXML //  fx:id="title"
     private Text title; // Value injected by FXMLLoader
@@ -40,37 +41,49 @@ public class BorrowGUIController extends MemberFXController implements Initializ
     @FXML //  fx:id="bID"
     private Pane result; // Value injected by FXMLLoader
     
-     // Handler for Button[Button[id=null, styleClass=button]] onAction
-    public void lend(ActionEvent event)throws IOException{
-        boolean bookfoundandborrowable = true;
-        confirmbutton.setVisible(true);
-        success.setText("");
-        if(bookfoundandborrowable)
-        {title.setText("Software Engineering");
-         author.setText("Matthew Riley");
-         isbn.setText("SB3984TH");
-         confirmbutton.setVisible(true);
-         success.setText("");
-        }
-        else
-        {
-          title.setText("The book id is invalid or currently unavaiable for borrowing");
-          confirmbutton.setVisible(false);
-          author.setText("");
-          isbn.setText("");
-          success.setText("");
-        }
-           result.setVisible(true);
+    //constructor
+    public BorrowFXController(){
         
     }
     
     // Handler for Button[Button[id=null, styleClass=button]] onAction
-    public void confirm(ActionEvent event)throws IOException{
-        //call function to change sts of book
-        confirmbutton.setVisible(false);
-        success.setText("The book was borrowed successfully!");
+    public void handleBorrowButtonAction(ActionEvent event){
+        String itemID = getItemID();
+        try{
+            //Borrowable BorrowableItem = DataStore.getCatalogueItem(); 
+            confirmbutton.setVisible(true);
+            success.setText("");
+            if(true){
+                title.setText("Software Engineering");
+                author.setText("Matthew Riley");
+                isbn.setText("SB3984TH");
+                confirmbutton.setVisible(true);
+                success.setText("");
+            }                       
+            else{
+                title.setText("The book id is invalid or currently unavaiable for borrowing");
+                confirmbutton.setVisible(false);
+                author.setText("");
+                isbn.setText("");
+                success.setText("");
+            }
+            result.setVisible(true);
+        }
+        catch(Exception e){
+            
+        }
         
     }
+    public void confirm(ActionEvent event){
+        //call function to change sts of book
+        confirmbutton.setVisible(false);
+        success.setText("The book was borrowed successfully!");        
+    }
+    
+    public String getItemID(){
+        return this.itemIDInputField.getText();
+    }
+
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
