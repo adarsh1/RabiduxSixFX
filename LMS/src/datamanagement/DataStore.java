@@ -3,6 +3,7 @@ package datamanagement;
 
 import cataloguemanagement.*;
 import java.sql.*;
+import java.text.DateFormat;
 import java.util.*;
 import userManagement.User;
 
@@ -44,6 +45,49 @@ public class DataStore {
        
     }
     
+    public CatalogueItem getCopy(String copyID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        CatalogueItem catalogueItem = null;
+        
+        where.add(copyID);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Database.Table.COPY, where);
+        resultSet.next();
+        
+        // retrive itemID to determine the type of catalogue item
+        String itemID = resultSet.getString("item_id");
+        
+        if (isValidItemID(itemID)) {
+            
+            catalogueItem = new Book(copyID);
+            
+            catalogueItem.setType(CatalogueItem.BOOK);
+            catalogueItem.setItemID(itemID);
+            catalogueItem.setLocation(resultSet.getString("location"));
+            
+            where.clear();
+            where.add(itemID);
+            
+            resultSet = database.selectRecord(Database.Table.ITEM, where);
+            resultSet.next();
+            
+            catalogueItem.setTitle(resultSet.getString("title"));
+            catalogueItem.setAuthor(resultSet.getString("author"));
+            catalogueItem.setPublishDate(resultSet.getTimestamp("date"));
+            ((Book)catalogueItem).setISBN(resultSet.getString("isbn"));
+            ((Book)catalogueItem).setGenre(resultSet.getString("genre"));
+            
+        }
+        
+        database.closeConnection();
+        
+        return catalogueItem;
+        
+    }
     
     //check if the item id exists in the database
     public Boolean isValidItemID(String itemID) throws SQLException, ClassNotFoundException{

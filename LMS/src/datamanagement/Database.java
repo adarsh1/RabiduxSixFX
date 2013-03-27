@@ -51,8 +51,10 @@ public abstract class Database {
         
         ResultSet resultSet = selectRecord(table, 1);
         
-        resultSet.first();
+        resultSet.next();
         String newID = resultSet.getString(1);
+        
+        newID = Integer.toString(Integer.parseInt(newID) + 1);
         
         return newID;
         

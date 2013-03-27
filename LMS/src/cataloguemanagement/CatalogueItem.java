@@ -6,6 +6,7 @@ package cataloguemanagement;
 
 import datamanagement.DataStore;
 import java.sql.SQLException;
+import java.util.*;
 
 /**
  *
@@ -19,12 +20,24 @@ public class CatalogueItem {
     private String author;
     private String title;
     private int type;
+    private String individualCopyID;
+    private Date publishDate;
     
     //final constant to indicate the type of this item
     public static final int BOOK = 0;
     
-    public CatalogueItem(String itemID){
-        this.itemID = itemID;
+
+    public CatalogueItem(String copyID){
+        
+        this.individualCopyID = copyID;
+        
+    }
+    
+    public static CatalogueItem getCatalogueItem (String copyID) throws SQLException, ClassNotFoundException {
+        
+        DataStore datastore = new DataStore();
+        return datastore.getCopy(copyID);
+        
     }
     
     //check if the itemID is valid
@@ -124,6 +137,22 @@ public class CatalogueItem {
     
     public void setType(int type) {
         this.type = type;
+    }
+    
+    public Date getPublishDate() {
+        return this.publishDate;
+    }
+    
+    public void setPublishDate(Date date) {
+        this.publishDate = date;
+    }
+    
+    public String getIndividualCopyID() {
+        return this.individualCopyID;
+    }
+    
+    public void setIndividualCopyID(String copyID) {
+        this.individualCopyID = copyID;
     }
     
 }

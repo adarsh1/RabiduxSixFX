@@ -16,11 +16,9 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     private String ISBN;
     private String genre;
     
-    public Book(String itemID){
-        super(itemID);
-    }   
-
-
+    public Book (String copyID) {
+        super(copyID);        
+    }
 
     /**
      * @return the ISBN
