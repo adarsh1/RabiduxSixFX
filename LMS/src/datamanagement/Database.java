@@ -27,6 +27,6 @@ public abstract class Database {
     
     public abstract void deleteRecord (Table table, ArrayList<String> where) throws SQLException;
     
-    public abstract ResultSet selectRecord (Table table) throws SQLException;
+    public abstract ResultSet selectRecord (Table table, ArrayList<String> where) throws SQLException;
     
 }

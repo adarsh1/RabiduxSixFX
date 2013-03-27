@@ -2,8 +2,7 @@
 package datamanagement;
 
 import cataloguemanagement.CatalogueItem;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import userManagement.User;
 
 /**

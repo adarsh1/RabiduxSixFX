@@ -9,7 +9,6 @@ package datamanagement;
  * @author Allen
  */
 
-import cataloguemanagement.CatalogueItem;
 import java.sql.*;
 import java.util.*;
 
@@ -61,7 +60,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public void insertRecord (Table table, ArrayList<String> value) throws SQLException {
+    public void insertRecord (Table table, ArrayList<String> values) throws SQLException {
         
         String queryStr = new String();
         PreparedStatement statement;
@@ -70,7 +69,7 @@ public class MySQLDB extends Database{
             
             case USER : queryStr += "INSERT INTO user (user_id, user_type, account_name, password, fine, is_suspended) VALUES (?,?,?,?,?,?)";
                         break;
-            case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, book_id, time_borrowed, time_returned, time_to_return, fine_amount) VALUES (?,?,?,?,?,?,?)";
+            case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, copy_id, time_borrowed, time_returned, time_to_return, fine_amount) VALUES (?,?,?,?,?,?,?)";
                          break;
             case COPY: queryStr += "INSERT INTO individual_copy (copy_id, item_id, reserved_by, location) VALUES (?,?,?,?)";
                        break;
@@ -80,9 +79,9 @@ public class MySQLDB extends Database{
                 
         statement = connection.prepareStatement(queryStr);
         
-        for (int i = 0; i < value.size(); i++) {
+        for (int i = 0; i < values.size(); i++) {
             
-            statement.setString(i + 1, value.get(i));
+            statement.setString(i + 1, values.get(i));
             
         }
         
@@ -98,7 +97,7 @@ public class MySQLDB extends Database{
             
             case USER : queryStr += "UPDATE user SET user_type=?, account_name=?, password=?, fine=?, is_suspended=? WHERE user_id=?";
                         break;
-            case RECORD: queryStr += "UPDATE loan_record SET time_borrowed=?, time_returned=?, time_to_return=?, fine_amount=? WHERE user_id=? AND book_id=?";
+            case RECORD: queryStr += "UPDATE loan_record SET time_borrowed=?, time_returned=?, time_to_return=?, fine_amount=? WHERE loan_id=?";
                          break;
             case COPY: queryStr += "UPDATE individual_copy SET reserved_by=?, location=? WHERE copy_id=?";
                        break;
@@ -132,11 +131,11 @@ public class MySQLDB extends Database{
             
             case USER : queryStr += "DELETE user WHERE user_id=?";
                         break;
-            case RECORD: queryStr += "DELETE WHERE user_id=? AND book_id=?";
+            case RECORD: queryStr += "DELETE loan_record WHERE loan_id=?";
                          break;
-            case COPY: queryStr += "DELETE WHERE copy_id=?";
+            case COPY: queryStr += "DELETE individual_copy WHERE copy_id=?";
                        break;
-            case ITEM: queryStr += "DELETE WHERE item_id=?";
+            case ITEM: queryStr += "DELETE catalogue_item WHERE item_id=?";
                        break;
         }
         
@@ -151,8 +150,32 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public ResultSet selectRecord (Table table) throws SQLException {
+    public ResultSet selectRecord (Table table, ArrayList<String> where) throws SQLException {
         
+        String queryStr = new String();
+        PreparedStatement statement;
+        
+        switch (table) {
+            
+            case USER : queryStr += "SELECT * FROM user WHERE user_id LIKE ?";
+                        break;
+            case RECORD: queryStr += "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ?";
+                         break;
+            case COPY: queryStr += "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ?";
+                       break;
+            case ITEM: queryStr += "SELECT * FROM catalogue_item WHERE item_id LIKE ?";
+                       break;
+        }
+        
+        statement = connection.prepareStatement(queryStr);
+        
+        for (int i = 0; i < where.size(); i++ ) {
+            
+            statement.setString(i + 1, where.get(i));
+            
+        }
+        
+        resultSet = statement.executeQuery();
         
         return resultSet;
     }
