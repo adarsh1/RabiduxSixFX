@@ -56,6 +56,7 @@ public class SearchController extends MemberFXController implements Initializabl
  private String tempAuthor;
  // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void searchbook(ActionEvent event)throws IOException{
+      // Search manager searches for books here..... if found then display
       scrollpane.setVisible(true);
       vb.setVisible(true);
       scrollpane.setContent(vb);
