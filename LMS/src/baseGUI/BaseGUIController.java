@@ -1,6 +1,7 @@
 
 package baseGUI;
 
+import globalcontroller.MainController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,8 +26,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 
-public abstract class BaseGUIController
-    implements Initializable {
+public abstract class BaseGUIController implements Initializable {
 
     @FXML //  fx:id="logout"
     protected ImageView logout; // Value injected by FXMLLoader
@@ -34,6 +34,8 @@ public abstract class BaseGUIController
     @FXML //  fx:id="name"
     protected Text name; // Value injected by FXMLLoader
     
+    //main controller
+    private MainController MC;
     
     public void logout(MouseEvent event) {
         
@@ -98,8 +100,34 @@ public abstract class BaseGUIController
         // initialize your logic here: all @FXML variables will have been injected
 
     }
-    public void setText(String string) {
-        name.setText(string); //To change body of generated methods, choose Tools | Templates.
+    
+    public void transitScene(String resourceURL, Node node){
+        try{            
+            Stage stage=(Stage) node.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resourceURL)); 
+            Parent root = (Parent)fxmlLoader.load(); 
+            BaseGUIController FXController = fxmlLoader.<BaseGUIController>getController();
+            FXController.setMC(MC);            
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+       catch(IOException e){
+           System.out.println("ERROR: " + resourceURL + " not found!!");
+       }
+    }
+    
+    /**
+     * @return the MC
+     */
+    public MainController getMC() {
+        return MC;
     }
 
+    /**
+     * @param MC the MC to set
+     */
+    public void setMC(MainController MC) {
+        this.MC = MC;
+    }
 }

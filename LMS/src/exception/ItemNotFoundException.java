@@ -10,4 +10,12 @@ package exception;
  */
 public class ItemNotFoundException extends Exception{
     
+    public ItemNotFoundException(){
+        super("Item not found in the database");
+    }
+    
+    
+    public ItemNotFoundException(String message){
+        super(message);
+    }
 }

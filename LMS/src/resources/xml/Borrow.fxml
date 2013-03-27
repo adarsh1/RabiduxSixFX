@@ -19,11 +19,11 @@
           <children>
             <TilePane hgap="20.0" layoutX="1.0" layoutY="19.0" prefHeight="360.0" prefWidth="117.0" vgap="40.0">
               <children>
-                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="41.0" prefWidth="117.0" text="Home" />
-                <Button fx:id="borrow" mnemonicParsing="false" onAction="#borrow" prefHeight="41.0" prefWidth="117.0" text="Borrow" />
-                <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="40.0" prefWidth="117.0" text="Search" />
-                <Button fx:id="rentals" mnemonicParsing="false" onAction="#showRentals" prefHeight="41.0" prefWidth="117.0" text="Rentals" />
-                <Button fx:id="history" mnemonicParsing="false" onAction="#history" prefHeight="41.0" prefWidth="117.0" text="History" />
+                <Button fx:id="home" mnemonicParsing="false" onAction="#handleHomeTabAction" prefHeight="41.0" prefWidth="117.0" text="Home" />
+                <Button fx:id="borrow" mnemonicParsing="false" onAction="#handleBorrowTabAction" prefHeight="41.0" prefWidth="117.0" text="Borrow" />
+                <Button fx:id="search" mnemonicParsing="false" onAction="#handleSearchTabAction" prefHeight="40.0" prefWidth="117.0" text="Search" />
+                <Button id="rentals" fx:id="myMaterial" mnemonicParsing="false" onAction="#handleMyMaterialTabAction" prefHeight="41.0" prefWidth="117.0" text="My Material" />
+                <Button fx:id="history" mnemonicParsing="false" onAction="#handleHistoryTabAction" prefHeight="41.0" prefWidth="117.0" text="History" />
               </children>
               <padding>
                 <Insets left="8.0" />
