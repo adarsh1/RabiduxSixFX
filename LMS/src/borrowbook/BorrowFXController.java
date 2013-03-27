@@ -24,7 +24,7 @@ public class BorrowFXController extends MemberFXController implements Initializa
     private Button confirmbutton; // Value injected by FXMLLoader
     
     @FXML //  fx:id="bID"
-    private TextField itemIDInputField; // Value injected by FXMLLoader
+    private TextField itemIDField; // Value injected by FXMLLoader
     
     @FXML //  fx:id="title"
     private Text title; // Value injected by FXMLLoader
@@ -81,7 +81,7 @@ public class BorrowFXController extends MemberFXController implements Initializa
     }
     
     public String getItemID(){
-        return this.itemIDInputField.getText();
+        return this.itemIDField.getText();
     }
 
     

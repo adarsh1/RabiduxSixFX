@@ -33,6 +33,7 @@ public class CatalogueItem {
         return dataStore.isValidItemID(itemID);
     }
     
+    /*
     public static CatalogueItem createItemByID(String itemID) throws SQLException, ClassNotFoundException{
         DataStore dataStore = new DataStore();
         dataStore.updateItemInfo(itemID);

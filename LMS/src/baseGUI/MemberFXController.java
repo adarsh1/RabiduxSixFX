@@ -1,7 +1,4 @@
-/**
- * Sample Skeleton for "Welcome.fxml" Controller Class
- * You can copy and paste this code into your favorite IDE
- **/
+
 
 package baseGUI;
 
@@ -42,7 +39,7 @@ public class MemberFXController extends BaseGUIController
     private Button search; // Value injected by FXMLLoader
 
 
-// Handler for Button[fx:id="home"] onAction
+    // Handler for Button[fx:id="home"] onAction
     public void home(ActionEvent event) {
        try{
             Node node=(Node) event.getSource();
