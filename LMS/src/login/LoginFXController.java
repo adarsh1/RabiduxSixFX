@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for "Sample.fxml" Controller Class
- * You can copy and paste this code into your favorite IDE
- **/
 
 package login;
 
@@ -26,25 +22,26 @@ import javafx.stage.Stage;
 import lms.WelcomeLibrarianController;
 import lms.WelcomeMemberController;
 
-public class LoginController
+public class LoginFXController
     implements Initializable {
 
     @FXML //  fx:id="label"
     private Label label; // Value injected by FXMLLoader
 
     @FXML //  fx:id="password"
-    private PasswordField password; // Value injected by FXMLLoader
+    private PasswordField passwordField; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="usrname"
-    private TextField usrname; // Value injected by FXMLLoader
+    @FXML //  fx:id="userID"
+    private TextField userID; // Value injected by FXMLLoader
     
     @FXML //  fx:id="quit"
     private ImageView quit; // Value injected by FXMLLoader
-// Handler for Button[Button[id=null, styleClass=button]] onKeyPressed
+    
+    // Handler for Button[Button[id=null, styleClass=button]] onKeyPressed
     public void enter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
           Node node=(Node) event.getSource();
-          if(!usrname.getText().equals("")&&usrname.getText().charAt(0)=='1')
+          if(!userID.getText().equals("")&&userID.getText().charAt(0)=='1')
             goWelcomeMember(node);     
         else
             goWelcomeLibrarian(node); }
@@ -52,7 +49,7 @@ public class LoginController
     // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void login(ActionEvent event){
         Node node=(Node) event.getSource();
-        if(!usrname.getText().equals("")&&usrname.getText().charAt(0)=='1')
+        if(!userID.getText().equals("")&&userID.getText().charAt(0)=='1')
             goWelcomeMember(node);     
         else
             goWelcomeLibrarian(node); 
@@ -65,8 +62,8 @@ public class LoginController
    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert label != null : "fx:id=\"label\" was not injected: check your FXML file 'Login.fxml'.";
-        assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'Login.fxml'.";
-        assert usrname != null : "fx:id=\"usrname\" was not injected: check your FXML file 'Login.fxml'.";
+        assert passwordField != null : "fx:id=\"password\" was not injected: check your FXML file 'Login.fxml'.";
+        assert userID != null : "fx:id=\"userID\" was not injected: check your FXML file 'Login.fxml'.";
         assert quit != null : "fx:id=\"quit\" was not injected: check your FXML file 'Login.fxml'.";
         // initialize your logic here: all @FXML variables will have been injected
 
@@ -78,7 +75,7 @@ public class LoginController
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/WelcomeMember.fxml"));
             Parent root = (Parent)fxmlLoader.load();          
             WelcomeMemberController controller = fxmlLoader.<WelcomeMemberController>getController();
-            controller.setText(usrname.getText());
+            controller.setText(userID.getText());
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -95,7 +92,7 @@ public class LoginController
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/WelcomeLibrarian.fxml"));
             Parent root = (Parent)fxmlLoader.load();          
             WelcomeLibrarianController controller = fxmlLoader.<WelcomeLibrarianController>getController();
-            controller.setText(usrname.getText());
+            controller.setText(userID.getText());
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

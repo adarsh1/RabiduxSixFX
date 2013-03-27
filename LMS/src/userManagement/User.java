@@ -27,14 +27,14 @@ public class User {
     public User(String userID){
         this.userID = userID;
     }
-    
+    /*
     //validate the user
     public static boolean isValidUser(String userID, String password) throws SQLException, ClassNotFoundException{
         DataStore dataStore = new DataStore();
         return dataStore.isValidUser(userID,password);
     }
     
-    public static User createUserByName(String userID) throws SQLException, ClassNotFoundException{
+    public static User getUser(String userID) throws SQLException, ClassNotFoundException{
         DataStore dataStore = new DataStore();
         dataStore.updateUserInfo(userID);
         //if it'a student's ID

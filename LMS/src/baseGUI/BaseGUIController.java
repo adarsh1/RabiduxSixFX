@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for "Welcome.fxml" Controller Class
- * You can copy and paste this code into your favorite IDE
- **/
 
 package baseGUI;
 
