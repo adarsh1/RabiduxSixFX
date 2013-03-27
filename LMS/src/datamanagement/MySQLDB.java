@@ -16,29 +16,6 @@ public class MySQLDB extends Database{
     
     private Connection connection;
     
-    public static void main (String[] args) throws SQLException, ClassNotFoundException{
-        Class.forName("com.mysql.jdbc.Driver");
-        System.out.println("Driver Loaded");
-        
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/sbcc_2013","root","password")) {
-            System.out.println("Database Connected");
-                           
-            String query  = "select * from admin";
-            Statement statement = connection.createStatement();
-            //String query = "insert into admin (account, password) values (?,?)";
-            //PreparedStatement statement = connection.prepareStatement(query);
-            
-            //statement.setString(1, "Java");
-            //statement.setString(2, "Java");
-            
-            ResultSet resultSet = statement.executeQuery(query);
-            
-            while (resultSet.next()){
-                System.out.println(resultSet.getString("passwor"));
-            }
-        }
-    }
-    
     public MySQLDB () {
         
     }
@@ -72,7 +49,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "INSERT INTO individual_copy (copy_id, item_id, reserved_by, location) VALUES (?,?,?,?)";
                        break;
-            case ITEM: queryStr += "INSERT INTO catalogue_item (item_id, title, author, isbn, genre, date, description) VALUES (?,?,?,?,?,?,?)";
+            case ITEM: queryStr += "INSERT INTO book (book_id, title, author, isbn, genre, date, description) VALUES (?,?,?,?,?,?,?)";
                        break;
         }
                 
@@ -100,7 +77,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "UPDATE individual_copy SET reserved_by=?, location=? WHERE copy_id=?";
                        break;
-            case ITEM: queryStr += "UPDATE catalogue_item SET title=?, author=?, isbn=?, genre=?, date=?, description=? WHERE item_id=?";
+            case ITEM: queryStr += "UPDATE book SET title=?, author=?, isbn=?, genre=?, date=?, description=? WHERE book_id=?";
                        break;
         }
         
@@ -134,7 +111,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "DELETE individual_copy WHERE copy_id=?";
                        break;
-            case ITEM: queryStr += "DELETE catalogue_item WHERE item_id=?";
+            case ITEM: queryStr += "DELETE book WHERE book_id=?";
                        break;
         }
         
@@ -163,7 +140,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ?";
                        break;
-            case ITEM: queryStr += "SELECT * FROM catalogue_item WHERE item_id LIKE ?";
+            case ITEM: queryStr += "SELECT * FROM book WHERE book_id LIKE ?";
                        break;
         }
         
@@ -195,7 +172,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += " * FROM individual_copy ORDER BY copy_id DESC";
                        break;
-            case ITEM: queryStr += " * FROM catalogue_item ORDER BY item_id DESC";
+            case ITEM: queryStr += " * FROM book ORDER BY book_id DESC";
                        break;
         }
         
@@ -222,7 +199,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += " * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ? ORDER BY copy_id DESC";
                        break;
-            case ITEM: queryStr += " * FROM catalogue_item WHERE item_id LIKE ? ORDER BY item_id DESC";
+            case ITEM: queryStr += " * FROM book WHERE book_id LIKE ? ORDER BY book_id DESC";
                        break;
         }
         

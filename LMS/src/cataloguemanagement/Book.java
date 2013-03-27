@@ -4,6 +4,8 @@
  */
 package cataloguemanagement;
 
+import datamanagement.DataStore;
+import java.sql.SQLException;
 import userManagement.Member;
 
 /**
@@ -16,36 +18,41 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     private String ISBN;
     private String genre;
     
-    public Book (String copyID) {
-        super(copyID);        
+    public Book () {
+        
+        super();
+        
     }
-
-    /**
-     * @return the ISBN
-     */
+    
+    public static Boolean isValidBook(String itemID) throws SQLException, ClassNotFoundException {
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.isValidBookID(itemID);
+        
+    }
+    
     public String getISBN() {
+        
         return ISBN;
+        
     }
 
-    /**
-     * @param ISBN the ISBN to set
-     */
     public void setISBN(String ISBN) {
+        
         this.ISBN = ISBN;
+        
     }
 
-    /**
-     * @return the genre
-     */
     public String getGenre() {
+        
         return genre;
+        
     }
 
-    /**
-     * @param genre the genre to set
-     */
     public void setGenre(String genre) {
+        
         this.genre = genre;
+        
     }
 
     @Override

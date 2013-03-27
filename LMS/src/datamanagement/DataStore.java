@@ -61,10 +61,11 @@ public class DataStore {
         // retrive itemID to determine the type of catalogue item
         String itemID = resultSet.getString("item_id");
         
-        if (isValidItemID(itemID)) {
+        if (isValidBookID(itemID)) {
             
-            catalogueItem = new Book(copyID);
+            catalogueItem = new Book();
             
+            catalogueItem.setIndividualCopyID(copyID);
             catalogueItem.setType(CatalogueItem.BOOK);
             catalogueItem.setItemID(itemID);
             catalogueItem.setLocation(resultSet.getString("location"));
@@ -89,15 +90,102 @@ public class DataStore {
         
     }
     
-    //check if the item id exists in the database
-    public Boolean isValidItemID(String itemID) throws SQLException, ClassNotFoundException{
+    public Boolean isCopyAvailable(String copyID) throws SQLException, ClassNotFoundException {
         
         Boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
         
-        condition.add(itemID);
+        condition.add("%");
+        condition.add("%");
+        condition.add(copyID);
+        
+        ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition, 1);
+        resultSet.next();
+        
+        if (resultSet.getString("time_returned").compareTo("") == 0) {
+            
+            result = false;
+            
+        } else {
+            
+            result = true;
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
+    }
+    
+    public Boolean isCopyOverdue(String copyID) throws SQLException, ClassNotFoundException {
+        
+        Boolean result;
+        ArrayList<String> condition = new ArrayList<> ();
+        
+        database.initializeConnection();
+        
+        condition.add("%");
+        condition.add("%");
+        condition.add(copyID);
+        
+        ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition, 1);
+        resultSet.next();
+        
+        if (resultSet.getTimestamp("time_to_return").compareTo(new java.util.Date()) < 0) {
+            
+            result = true;
+            
+        } else {
+            
+            result = false;
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
+    }
+    
+    public Boolean isCopyReserved(String copyID) throws SQLException, ClassNotFoundException {
+        
+        Boolean result;
+        ArrayList<String> condition = new ArrayList<> ();
+        
+        database.initializeConnection();
+        
+        condition.add(copyID);
+        condition.add("%");
+        condition.add("%");
+        
+        ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition);
+        resultSet.next();
+        
+        if (resultSet.getString("reserved_by").compareTo("") == 0) {
+            
+            result = false;
+            
+        } else {
+            
+            result = true;
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
+    }
+    
+    //check if the item id exists in the database
+    public Boolean isValidBookID(String bookID) throws SQLException, ClassNotFoundException{
+        
+        Boolean result;
+        ArrayList<String> condition = new ArrayList<> ();
+        
+        database.initializeConnection();
+        
+        condition.add(bookID);
         ResultSet resultSet = database.selectRecord(Database.Table.ITEM, condition);
         
         if (database.getNumOfRows(resultSet) == 0) {
