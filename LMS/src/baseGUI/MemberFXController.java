@@ -7,7 +7,7 @@ package baseGUI;
 
 import mymaterials.MyMaterialGUIController;
 import history.HistoryController;
-import borrowbook.BorrowGUIController;
+import borrowbook.BorrowFXController;
 import searchbook.SearchController;
 import java.io.IOException;
 import java.net.URL;
@@ -67,7 +67,7 @@ public class MemberFXController extends BaseGUIController
             Stage stage=(Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Borrow.fxml"));     
             Parent root = (Parent)fxmlLoader.load();          
-            BorrowGUIController controller = fxmlLoader.<BorrowGUIController>getController();
+            BorrowFXController controller = fxmlLoader.<BorrowFXController>getController();
             controller.setText(name.getText());
             Scene scene = new Scene(root);
             stage.setScene(scene);

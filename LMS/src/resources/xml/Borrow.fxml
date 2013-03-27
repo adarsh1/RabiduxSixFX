@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="borrowbook.BorrowController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="borrowbook.BorrowFXController">
   <children>
     <SplitPane dividerPositions="0.225752508361204" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <items>
@@ -58,8 +58,8 @@
                       </font>
                     </Label>
                     <Label layoutX="47.0" layoutY="89.0" text="Book ID :" />
-                    <TextField id="bookID" fx:id="itemID" layoutX="102.0" layoutY="86.0" prefWidth="200.0" />
-                    <Button layoutX="326.0" layoutY="77.0" mnemonicParsing="false" onAction="#lend" text="Borrow" />
+                    <TextField id="bookID" fx:id="itemIDInputField" layoutX="102.0" layoutY="86.0" prefWidth="200.0" />
+                    <Button layoutX="326.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleBorrowButtonAction" text="Borrow" />
                     <Pane fx:id="result" layoutX="47.0" layoutY="151.0" prefHeight="154.0" prefWidth="412.0" visible="false">
                       <children>
                         <Text id="Author" fx:id="author" layoutX="36.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" />
