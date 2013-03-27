@@ -34,15 +34,13 @@ public class LibrarianFXController extends BaseGUIController implements Initiali
     @FXML //  fx:id="update"
     private Button update; // Value injected by FXMLLoader
     
-     // Handler for Button[fx:id="home"] onAction
+    // Handler for Button[fx:id="home"] onAction
     public void home(ActionEvent event) {
         try{
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/WelcomeLibrarian.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            WelcomeLibrarianController controller = fxmlLoader.<WelcomeLibrarianController>getController();
-            controller.setText(name.getText());
+            Parent root = (Parent)fxmlLoader.load();       
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -57,9 +55,7 @@ public class LibrarianFXController extends BaseGUIController implements Initiali
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/ResetFine.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            ResetFineController controller = fxmlLoader.<ResetFineController>getController();
-            controller.setText(name.getText());
+            Parent root = (Parent)fxmlLoader.load();   
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -75,9 +71,7 @@ public class LibrarianFXController extends BaseGUIController implements Initiali
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Return.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            ReturnController controller = fxmlLoader.<ReturnController>getController();
-            controller.setText(name.getText());
+            Parent root = (Parent)fxmlLoader.load();   
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -93,9 +87,7 @@ public class LibrarianFXController extends BaseGUIController implements Initiali
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/UpdateCatalogue.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            UpdateCatalogueController controller = fxmlLoader.<UpdateCatalogueController>getController();
-            controller.setText(name.getText());
+            Parent root = (Parent)fxmlLoader.load();   
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

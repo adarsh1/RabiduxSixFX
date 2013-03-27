@@ -2,10 +2,7 @@
 
 package baseGUI;
 
-import mymaterials.MyMaterialGUIController;
-import history.HistoryController;
-import borrowbook.BorrowFXController;
-import searchbook.SearchController;
+import globalcontroller.MainController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,11 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import lms.WelcomeMemberController;
 
 
-public class MemberFXController extends BaseGUIController
-    implements Initializable {
+public class MemberFXController extends BaseGUIController implements Initializable {
     @FXML //  fx:id="borrow"
     private Button borrow; // Value injected by FXMLLoader
 
@@ -32,101 +27,41 @@ public class MemberFXController extends BaseGUIController
     @FXML //  fx:id="home"
     private Button home; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="rentals"
-    private Button rentals; // Value injected by FXMLLoader
+    @FXML //  fx:id="myMaterial"
+    private Button myMaterial; // Value injected by FXMLLoader
 
     @FXML //  fx:id="search"
     private Button search; // Value injected by FXMLLoader
 
-
+    
     // Handler for Button[fx:id="home"] onAction
-    public void home(ActionEvent event) {
-       try{
-            Node node=(Node) event.getSource();
-            Stage stage=(Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/WelcomeMember.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            WelcomeMemberController controller = fxmlLoader.<WelcomeMemberController>getController();
-            controller.setText(name.getText());
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-       catch(IOException e){
-           System.out.println("ERROR:WelcomeMember.fxml not found!!");
-       }
+    public void handleHomeTabAction(ActionEvent event) {
+        Node node=(Node) event.getSource();
+        transitScene("/resources/xml/WelcomeMember.fxml",node);
     }
 
     // Handler for Button[fx:id="borrow"] onAction
-    public void borrow(ActionEvent event) {
-       try{
-            Node node=(Node) event.getSource();
-            Stage stage=(Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Borrow.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            BorrowFXController controller = fxmlLoader.<BorrowFXController>getController();
-            controller.setText(name.getText());
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch(IOException e){
-            System.out.println("ERROR:Borrow.fxml not found!!");
-        }
+    public void handleBorrowTabAction(ActionEvent event) {        
+        Node node=(Node) event.getSource();
+        transitScene("/resources/xml/Borrow.fxml",node);               
     }
     // Handler for Button[fx:id="history"] onAction
-    public void history(ActionEvent event) {
-        try{
-             Node node=(Node) event.getSource();
-             Stage stage=(Stage) node.getScene().getWindow();
-             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/History.fxml"));     
-             Parent root = (Parent)fxmlLoader.load();          
-             HistoryController controller = fxmlLoader.<HistoryController>getController();
-             controller.setText(name.getText());
-             Scene scene = new Scene(root);
-             stage.setScene(scene);
-             stage.show();
-         }
-        catch(IOException e){
-            System.out.println("ERROR:History.fxml not found!!");
-        }
+    public void handleHistoryTabAction(ActionEvent event) {
+        Node node=(Node) event.getSource();
+        transitScene("/resources/xml/History.fxml",node);        
     }
 
 
     // Handler for Button[fx:id="search"] onAction
-    public void search(ActionEvent event) {
-        try{
-            Node node=(Node) event.getSource();
-            Stage stage=(Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Search.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            SearchController controller = fxmlLoader.<SearchController>getController();
-            controller.setText(name.getText());
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch(IOException e){
-            System.out.println("ERROR:Search.fxml not found!!");
-        }
+    public void handleSearchTabAction(ActionEvent event) {
+        Node node=(Node) event.getSource();
+        transitScene("/resources/xml/Search.fxml",node);        
     }
 
     // Handler for Button[fx:id="rentals"] onAction
-    public void showRentals(ActionEvent event) {
-        try{
-            Node node=(Node) event.getSource();
-            Stage stage=(Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/MyMaterial.fxml"));     
-            Parent root = (Parent)fxmlLoader.load();          
-            MyMaterialGUIController controller = fxmlLoader.<MyMaterialGUIController>getController();
-            controller.setText(name.getText());
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch(IOException e){
-            System.out.println("ERROR:Rentals.fxml not found!!");
-        }
+    public void handleMyMaterialTabAction(ActionEvent event) {
+        Node node=(Node) event.getSource();
+        transitScene("/resources/xml/MyMaterial.fxml",node); 
     }
 
     @Override // This method is called by the FXMLLoader when initialization is complete
@@ -136,11 +71,10 @@ public class MemberFXController extends BaseGUIController
         assert home != null : "fx:id=\"home\" was not injected: check your FXML file 'Welcome.fxml'.";
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'Welcome.fxml'.";
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'Welcome.fxml'.";
-        assert rentals != null : "fx:id=\"rentals\" was not injected: check your FXML file 'Welcome.fxml'.";
+        assert myMaterial != null : "fx:id=\"rentals\" was not injected: check your FXML file 'Welcome.fxml'.";
         assert search != null : "fx:id=\"search\" was not injected: check your FXML file 'Welcome.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
 
     }
-
 }
