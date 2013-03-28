@@ -36,7 +36,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public void insertRecord (Database.Table table, ArrayList<String> values) throws SQLException {
+    public void insertRecord (Table table, ArrayList<String> values) throws SQLException {
         
         String queryStr = new String();
         PreparedStatement statement;
@@ -66,7 +66,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public void updateRecord (Database.Table table, ArrayList<String> set, ArrayList<String> where) throws SQLException {
+    public void updateRecord (Table table, ArrayList<String> set, ArrayList<String> where) throws SQLException {
         
         String queryStr = new String();
         PreparedStatement statement;
@@ -102,7 +102,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public void deleteRecord (Database.Table table, ArrayList<String> where) throws SQLException{
+    public void deleteRecord (Table table, ArrayList<String> where) throws SQLException{
         
         String queryStr = new String();
         PreparedStatement statement;
@@ -132,7 +132,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public ResultSet selectRecord (Database.Table table, ArrayList<String> where) throws SQLException {
+    public ResultSet selectRecord (Table table, ArrayList<String> where) throws SQLException {
         
         ResultSet resultSet;
         PreparedStatement statement;
@@ -164,7 +164,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public ResultSet selectRecord (Database.Table table, int top) throws SQLException {
+    public ResultSet selectRecord (Table table, int top) throws SQLException {
         
         ResultSet resultSet;
         PreparedStatement statement;
@@ -193,7 +193,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public ResultSet selectRecord (Database.Table table, ArrayList<String> where, int top) throws SQLException {
+    public ResultSet selectRecord (Table table, ArrayList<String> where, int top) throws SQLException {
         
         ResultSet resultSet;
         PreparedStatement statement;

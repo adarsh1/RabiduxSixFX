@@ -42,7 +42,7 @@ public class DataStore {
         
         database.initializeConnection();
         
-        resultSet = database.selectRecord(Database.Table.COPY, where);
+        resultSet = database.selectRecord(Table.COPY, where);
         resultSet.next();
         
         // retrive itemID to determine the type of catalogue item
@@ -60,7 +60,7 @@ public class DataStore {
             where.clear();
             where.add(itemID);
             
-            resultSet = database.selectRecord(Database.Table.ITEM, where);
+            resultSet = database.selectRecord(Table.ITEM, where);
             resultSet.next();
             
             catalogueItem.setTitle(resultSet.getString("title"));
@@ -88,7 +88,7 @@ public class DataStore {
         condition.add("%");
         condition.add(copyID);
         
-        ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition, 1);
+        ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
         
         if (resultSet.next() && resultSet.getString("time_returned") == null) {
             
@@ -116,7 +116,7 @@ public class DataStore {
         condition.add("%");
         condition.add(copyID);
         
-        ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition, 1);
+        ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
         
         
         if (resultSet.next() && resultSet.getTimestamp("time_to_return").compareTo(new java.util.Date()) < 0) {
@@ -145,7 +145,7 @@ public class DataStore {
         condition.add("%");
         condition.add("%");
         
-        ResultSet resultSet = database.selectRecord(Database.Table.COPY, condition);
+        ResultSet resultSet = database.selectRecord(Table.COPY, condition);
         resultSet.next();
         
         if (resultSet.getString("reserved_by").compareTo("1000000000") == 0) {
@@ -172,7 +172,7 @@ public class DataStore {
         database.initializeConnection();
         
         condition.add(bookID);
-        ResultSet resultSet = database.selectRecord(Database.Table.ITEM, condition);
+        ResultSet resultSet = database.selectRecord(Table.ITEM, condition);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -197,7 +197,7 @@ public class DataStore {
         database.initializeConnection();
         
         condition.add(userID);
-        ResultSet resultSet = database.selectRecord(Database.Table.USER, condition);
+        ResultSet resultSet = database.selectRecord(Table.USER, condition);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -223,7 +223,7 @@ public class DataStore {
         database.initializeConnection();
         
         condition.add(loanID);
-        ResultSet resultSet = database.selectRecord(Database.Table.USER, condition);
+        ResultSet resultSet = database.selectRecord(Table.USER, condition);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -249,7 +249,7 @@ public class DataStore {
         database.initializeConnection();
         
         condition.add(copyID);
-        ResultSet resultSet = database.selectRecord(Database.Table.USER, condition);
+        ResultSet resultSet = database.selectRecord(Table.USER, condition);
         
         if (database.getNumOfRows(resultSet) == 0) {
             

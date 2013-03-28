@@ -9,15 +9,7 @@ import java.util.*;
  * @author Allen
  */
 public abstract class Database {
-    
-    public static enum Table {
-        USER, RECORD, COPY, ITEM
-    }
-    
-    public static enum USERTYPE {
-        STUDENT, STUFF
-    }
-    
+       
     //initialize the connection to the database
     public abstract void initializeConnection () throws SQLException,ClassNotFoundException;
     
