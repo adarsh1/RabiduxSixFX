@@ -2,6 +2,7 @@
 package login;
 
 import baseGUI.BaseGUIController;
+import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -27,8 +28,8 @@ public class LoginFXController extends BaseGUIController implements Initializabl
     @FXML //  fx:id="password"
     private PasswordField passwordField; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="userIDField"
-    private TextField userIDField; // Value injected by FXMLLoader
+    @FXML //  fx:id="usernameField"
+    private TextField usernameField; // Value injected by FXMLLoader
     
     @FXML //  fx:id="quit"
     private ImageView quit; // Value injected by FXMLLoader
@@ -43,9 +44,9 @@ public class LoginFXController extends BaseGUIController implements Initializabl
     // Handler enter key pressed
     public void handleEnterKeyPressed(KeyEvent event) {
         //if enter key pressed and input field not null
-        if (event.getCode() == KeyCode.ENTER && !userIDField.getText().equals("")) {
+        if (event.getCode() == KeyCode.ENTER && !usernameField.getText().equals("")) {
             Node node=(Node) event.getSource();
-            String userID = userIDField.getText();
+            String userID = usernameField.getText();
             //call login function to process login
             login(node, userID);
         }
@@ -53,9 +54,9 @@ public class LoginFXController extends BaseGUIController implements Initializabl
     // Handler for Button login [Button[id=null, styleClass=button]] onAction
     public void handleLoginButtonAction(ActionEvent event){    
         //if button pressed and input field not null
-        if(!userIDField.getText().equals("")){
+        if(!usernameField.getText().equals("")){
             Node node=(Node) event.getSource();
-            String userID = userIDField.getText();
+            String userID = usernameField.getText();
             //call login function to process login
             login(node, userID);
         }
@@ -73,14 +74,8 @@ public class LoginFXController extends BaseGUIController implements Initializabl
                 goWelcomeMember(node);                 
             }                
         }
-        catch(UserNotFoundException e){
+        catch(UserNotFoundException | IncorrectPasswordException | SQLException | ClassNotFoundException e){
             //if user not found, raise this exception
-            warningMsgField.setText(e.getMessage());
-        }
-        catch(SQLException e) {
-            warningMsgField.setText(e.getMessage());
-        }
-        catch(ClassNotFoundException e) {
             warningMsgField.setText(e.getMessage());
         }
         
@@ -94,7 +89,7 @@ public class LoginFXController extends BaseGUIController implements Initializabl
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert warningMsgField != null : "fx:id=\"label\" was not injected: check your FXML file 'Login.fxml'.";
         assert passwordField != null : "fx:id=\"password\" was not injected: check your FXML file 'Login.fxml'.";
-        assert userIDField != null : "fx:id=\"userIDField\" was not injected: check your FXML file 'Login.fxml'.";
+        assert usernameField != null : "fx:id=\"usernameField\" was not injected: check your FXML file 'Login.fxml'.";
         assert quit != null : "fx:id=\"quit\" was not injected: check your FXML file 'Login.fxml'.";
         // initialize your logic here: all @FXML variables will have been injected
     }

@@ -4,6 +4,7 @@
  */
 package login;
 
+import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
 import globalcontroller.MainController;
 import java.sql.SQLException;
@@ -23,9 +24,9 @@ public class LoginMgr {
         MC = new MainController();
     }
     
-    //create a user based on accountName entered. If no such user exists, throw exception
-    public void createUser(String accountName) throws UserNotFoundException, SQLException, ClassNotFoundException{
-        setUser(User.getUser(accountName));
+    //create a user based on userName entered. If no such user exists, throw exception
+    public void createUser(String userName) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException{
+        setUser(User.getUser(userName));
         //if no exception was thrown, user can be set in main controller
         MC.setUser(user);
     }
