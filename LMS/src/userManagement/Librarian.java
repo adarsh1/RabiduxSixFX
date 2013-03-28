@@ -10,6 +10,6 @@ package usermanagement;
  */
 public class Librarian extends User{
     public Librarian(String userID){
-        super (userID);
+        super ();
     }
 }

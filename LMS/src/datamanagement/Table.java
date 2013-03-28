@@ -10,6 +10,6 @@ package datamanagement;
  */
 public enum Table {
     
-    USER, RECORD, COPY, ITEM
+    USER, RECORD, COPY, BOOK
     
 }

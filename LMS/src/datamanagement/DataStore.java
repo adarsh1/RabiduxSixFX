@@ -59,7 +59,7 @@ public class DataStore {
             where.clear();
             where.add(itemID);
             
-            resultSet = database.selectRecord(Table.ITEM, where);
+            resultSet = database.selectRecord(Table.BOOK, where);
             resultSet.next();
             
             catalogueItem.setTitle(resultSet.getString("title"));
@@ -76,9 +76,13 @@ public class DataStore {
         
     }
     
-    public Boolean isCopyAvailable(String copyID) throws SQLException, ClassNotFoundException {
+    public User getUser() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+    
+    public boolean isCopyAvailable(String copyID) throws SQLException, ClassNotFoundException {
         
-        Boolean result;
+        boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
@@ -104,9 +108,9 @@ public class DataStore {
         return result;
     }
     
-    public Boolean isCopyOverdue(String copyID) throws SQLException, ClassNotFoundException {
+    public boolean isCopyOverdue(String copyID) throws SQLException, ClassNotFoundException {
         
-        Boolean result;
+        boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
@@ -133,9 +137,9 @@ public class DataStore {
         return result;
     }
     
-    public Boolean isCopyReserved(String copyID) throws SQLException, ClassNotFoundException {
+    public boolean isCopyReserved(String copyID) throws SQLException, ClassNotFoundException {
         
-        Boolean result;
+        boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
@@ -162,16 +166,22 @@ public class DataStore {
         return result;
     }
     
-    //check if the item id exists in the database
-    public Boolean isValidBookID(String bookID) throws SQLException, ClassNotFoundException{
+    public boolean isUserSuspended() {
         
-        Boolean result;
+        throw new UnsupportedOperationException("Not yet implemented");
+        
+    }
+    
+    //check if the item id exists in the database
+    public boolean isValidBookID(String bookID) throws SQLException, ClassNotFoundException{
+        
+        boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
         
         condition.add(bookID);
-        ResultSet resultSet = database.selectRecord(Table.ITEM, condition);
+        ResultSet resultSet = database.selectRecord(Table.BOOK, condition);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -188,9 +198,9 @@ public class DataStore {
         return result;
     }
     
-    public Boolean isValidUserID(String userID) throws SQLException, ClassNotFoundException{
+    public boolean isValidUserID(String userID) throws SQLException, ClassNotFoundException{
         
-        Boolean result;
+        boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
@@ -214,9 +224,9 @@ public class DataStore {
         
     }
     
-    public Boolean isValidLoanID(String loanID) throws SQLException, ClassNotFoundException{
+    public boolean isValidLoanID(String loanID) throws SQLException, ClassNotFoundException{
         
-        Boolean result;
+        boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
@@ -240,9 +250,9 @@ public class DataStore {
         
     }
     
-    public Boolean isValidCopyID(String copyID) throws SQLException, ClassNotFoundException{
+    public boolean isValidCopyID(String copyID) throws SQLException, ClassNotFoundException{
         
-        Boolean result;
+        boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         database.initializeConnection();
@@ -265,5 +275,7 @@ public class DataStore {
         return result;
         
     }
+
+    
 
 }

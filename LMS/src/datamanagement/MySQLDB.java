@@ -18,6 +18,8 @@ public class MySQLDB extends Database{
     
     public MySQLDB () {
         
+        super();
+        
     }
     
     //initialize the connection to the database
@@ -49,7 +51,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "INSERT INTO individual_copy (copy_id, item_id, reserved_by, location) VALUES (?,?,?,?)";
                        break;
-            case ITEM: queryStr += "INSERT INTO book (book_id, title, author, isbn, genre, date, description) VALUES (?,?,?,?,?,?,?)";
+            case BOOK: queryStr += "INSERT INTO book (book_id, title, author, isbn, genre, date, description) VALUES (?,?,?,?,?,?,?)";
                        break;
         }
                 
@@ -79,7 +81,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "UPDATE individual_copy SET reserved_by=?, location=? WHERE copy_id=?";
                        break;
-            case ITEM: queryStr += "UPDATE book SET title=?, author=?, isbn=?, genre=?, date=?, description=? WHERE book_id=?";
+            case BOOK: queryStr += "UPDATE book SET title=?, author=?, isbn=?, genre=?, date=?, description=? WHERE book_id=?";
                        break;
         }
         
@@ -115,7 +117,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "DELETE FROM individual_copy WHERE copy_id=?";
                        break;
-            case ITEM: queryStr += "DELETE FROM book WHERE book_id=?";
+            case BOOK: queryStr += "DELETE FROM book WHERE book_id=?";
                        break;
         }
         
@@ -146,7 +148,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ?";
                        break;
-            case ITEM: queryStr += "SELECT * FROM book WHERE book_id LIKE ?";
+            case BOOK: queryStr += "SELECT * FROM book WHERE book_id LIKE ?";
                        break;
         }
         
@@ -178,7 +180,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr = "SELECT * FROM individual_copy ORDER BY copy_id DESC";
                        break;
-            case ITEM: queryStr = "SELECT * FROM book ORDER BY book_id DESC";
+            case BOOK: queryStr = "SELECT * FROM book ORDER BY book_id DESC";
                        break;
         }
         
@@ -207,7 +209,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr = "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ? ORDER BY copy_id DESC";
                        break;
-            case ITEM: queryStr = "SELECT * FROM book WHERE book_id LIKE ? ORDER BY book_id DESC";
+            case BOOK: queryStr = "SELECT * FROM book WHERE book_id LIKE ? ORDER BY book_id DESC";
                        break;
         }
         
