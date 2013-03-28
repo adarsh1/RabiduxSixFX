@@ -3,9 +3,8 @@ package datamanagement;
 
 import cataloguemanagement.*;
 import java.sql.*;
-import java.text.DateFormat;
 import java.util.*;
-import userManagement.User;
+import userManagement.*;
 
 /**
  *
@@ -49,7 +48,7 @@ public class DataStore {
         // retrive itemID to determine the type of catalogue item
         String itemID = resultSet.getString("item_id");
         
-        if (isValidBookID(itemID)) {
+        if (new DataStore().isValidBookID(itemID)) {
             
             catalogueItem = new Book();
             
@@ -90,9 +89,8 @@ public class DataStore {
         condition.add(copyID);
         
         ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition, 1);
-        resultSet.next();
         
-        if (resultSet.getString("time_returned").compareTo("") == 0) {
+        if (resultSet.next() && resultSet.getString("time_returned") == null) {
             
             result = false;
             
@@ -119,9 +117,9 @@ public class DataStore {
         condition.add(copyID);
         
         ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition, 1);
-        resultSet.next();
         
-        if (resultSet.getTimestamp("time_to_return").compareTo(new java.util.Date()) < 0) {
+        
+        if (resultSet.next() && resultSet.getTimestamp("time_to_return").compareTo(new java.util.Date()) < 0) {
             
             result = true;
             
@@ -147,10 +145,10 @@ public class DataStore {
         condition.add("%");
         condition.add("%");
         
-        ResultSet resultSet = database.selectRecord(Database.Table.RECORD, condition);
+        ResultSet resultSet = database.selectRecord(Database.Table.COPY, condition);
         resultSet.next();
         
-        if (resultSet.getString("reserved_by").compareTo("") == 0) {
+        if (resultSet.getString("reserved_by").compareTo("1000000000") == 0) {
             
             result = false;
             
