@@ -23,23 +23,9 @@ public class DataStore {
         
         ArrayList<String> itemValues = new ArrayList<> ();
         
-        itemValues.add(database.getNewID(Database.Table.ITEM)); // itemID
-        itemValues.add(catalogueItem.getTitle());               // book title
-        itemValues.add(catalogueItem.getAuthor());              // book author
-        
-        if (catalogueItem.getType() == catalogueItem.BOOK) {
-            
-            itemValues.add(((Book)catalogueItem).getISBN());    // ISBN
-            itemValues.add(((Book)catalogueItem).getGenre());   // Genre
-            
-        }
-        
-        itemValues.add(null);
-        
         
         database.initializeConnection();
         
-        database.insertRecord(Database.Table.ITEM, itemValues);
         
         database.closeConnection();
        
