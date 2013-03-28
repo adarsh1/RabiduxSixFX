@@ -45,6 +45,6 @@
     </Pane>
   </children>
   <stylesheets>
-    <URL value="@memberpage.css" />
+    <URL value="@../resources/JMetro/JMetroLightTheme.css" />
   </stylesheets>
 </AnchorPane>

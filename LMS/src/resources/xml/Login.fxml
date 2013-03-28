@@ -13,10 +13,10 @@
 
 <Pane id="AnchorPane" blendMode="SRC_OVER" cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleEnterKeyPressed" prefHeight="225.0" prefWidth="360.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="login.LoginFXController">
   <children>
-    <Pane layoutX="22.0" layoutY="13.0" prefHeight="200.0" prefWidth="320.0" styleClass="background">
+    <Pane layoutX="20.0" layoutY="13.0" prefHeight="200.0" prefWidth="320.0" styleClass="background">
       <children>
         <Rectangle fill="linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, 0xdfdfdfff 0.0%, 0xbfbfbfff 30.0%, 0xbfbfbfff 90.0%, 0xffffffff 100.0%)" height="40.000099999997474" opacity="0.9" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
-        <ImageView fx:id="quit" fitHeight="20.1875" fitWidth="20.1875" layoutX="293.0" layoutY="8.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
+        <ImageView fx:id="quit" fitHeight="20.1875" fitWidth="20.1875" layoutX="293.0" layoutY="11.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
           <image>
             <Image url="@../images/Button-Close-icon.png" preserveRatio="false" smooth="false" />
           </image>
@@ -32,13 +32,13 @@
             <TextField fx:id="usernameField" layoutX="92.0" layoutY="70.0" prefWidth="199.9998779296875" />
           </labelFor>
         </Label>
-        <Text fill="#202020" layoutX="26.0" layoutY="28.0" stroke="#996e00" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+        <Text fill="#202020" layoutX="8.0" layoutY="27.0" stroke="#996e00" strokeType="OUTSIDE" strokeWidth="0.0" text="Login to RabidusSIX">
           <font>
             <Font name="Gill Sans" size="22.0" />
           </font>
         </Text>
         <fx:reference source="usernameField" />
-        <Button layoutX="245.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="Login">
+        <Button layoutX="217.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" styleClass="loginButton" text="Login">
           <font>
             <Font name="Gill Sans" size="12.0" />
           </font>
@@ -57,6 +57,6 @@
     </Pane>
   </children>
   <stylesheets>
-    <URL value="@../css/Login.css" />
+    <URL value="@../JMetro/JMetroDarkTheme.css" />
   </stylesheets>
 </Pane>
