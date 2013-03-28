@@ -45,7 +45,7 @@ public class MySQLDB extends Database{
         
         switch (table) {
             
-            case USER : queryStr += "INSERT INTO user (user_id, user_type, account_name, password, fine, is_suspended) VALUES (?,?,?,?,?,?)";
+            case USER : queryStr += "INSERT INTO user (user_id, user_type, user_name, password, fine, is_suspended) VALUES (?,?,?,?,?,?)";
                         break;
             case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, copy_id, time_borrowed, time_returned, time_to_return, fine_amount, num_of_extend) VALUES (?,?,?,?,?,?,?,?)";
                          break;
@@ -75,7 +75,7 @@ public class MySQLDB extends Database{
         
         switch (table) {
             
-            case USER : queryStr += "UPDATE user SET user_type=?, account_name=?, password=?, fine=?, is_suspended=? WHERE user_id=?";
+            case USER : queryStr += "UPDATE user SET user_type=?, user_name=?, password=?, fine=?, is_suspended=? WHERE user_id=?";
                         break;
             case RECORD: queryStr += "UPDATE loan_record SET time_borrowed=?, time_returned=?, time_to_return=?, fine_amount=?, num_of_extend=? WHERE loan_id=?";
                          break;
@@ -142,7 +142,7 @@ public class MySQLDB extends Database{
         
         switch (table) {
             
-            case USER : queryStr += "SELECT * FROM user WHERE user_id LIKE ? AND account_name LIKE ?";
+            case USER : queryStr += "SELECT * FROM user WHERE user_id LIKE ? AND user_name LIKE ?";
                         break;
             case RECORD: queryStr += "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ?";
                          break;
@@ -203,7 +203,7 @@ public class MySQLDB extends Database{
         
         switch (table) {
             
-            case USER : queryStr = "SELECT * FROM user WHERE user_id LIKE ? AND account_name LIKE ? ORDER BY user_id DESC";
+            case USER : queryStr = "SELECT * FROM user WHERE user_id LIKE ? AND user_name LIKE ? ORDER BY user_id DESC";
                         break;
             case RECORD: queryStr = "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? ORDER BY loan_id DESC";
                          break;

@@ -77,14 +77,14 @@ public class DataStore {
         
     }
     
-    public User getUser(String accountName) throws SQLException, ClassNotFoundException {
+    public User getUser(String username) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         User user = null;
         
         where.add("%");
-        where.add(accountName);
+        where.add(username);
         
         database.initializeConnection();
         
@@ -99,7 +99,7 @@ public class DataStore {
             user = new Librarian();
             
             user.setUserID(resultSet.getString("user_id"));
-            user.setAccountName(accountName);
+            user.setUsername(username);
             
             return user;
             
@@ -114,7 +114,7 @@ public class DataStore {
         }
             
         user.setUserID(resultSet.getString("user_id"));
-        user.setAccountName(accountName);
+        user.setUsername(username);
         ((Member)user).setFineAmount(resultSet.getDouble("fine"));
         
         database.closeConnection();
@@ -298,7 +298,7 @@ public class DataStore {
         
     }
     
-    public boolean isValidUserName(String accountName) throws SQLException, ClassNotFoundException{
+    public boolean isValidUserName(String username) throws SQLException, ClassNotFoundException{
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
@@ -306,7 +306,7 @@ public class DataStore {
         database.initializeConnection();
         
         where.add("%");
-        where.add(accountName);
+        where.add(username);
         
         
         ResultSet resultSet = database.selectRecord(Table.USER, where);

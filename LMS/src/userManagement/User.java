@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class User {
     
     private String userID;
-    private String accountName;
+    private String username;
     private int usertype;
     
     //constant field to indicate the type of this user
@@ -27,17 +27,18 @@ public class User {
         
     }
     
-    public static User getUser(String accountName) throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public static User getUser(String username) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         
-        if (!dataStore.isValidUserName(accountName)) {
+        if (!dataStore.isValidUserName(username)) {
             
             throw new UserNotFoundException("User name does not exsit!");
             
         }
         
-        return dataStore.getUser(accountName);
+        
+        return dataStore.getUser(username);
         
     }
     
@@ -67,15 +68,15 @@ public class User {
         
     }
 
-    public String getAccountName() {
+    public String getUsername() {
         
-        return accountName;
+        return username;
         
     }
     
-    public void setAccountName(String accountName) {
+    public void setUsername(String username) {
         
-        this.accountName = accountName;
+        this.username = username;
         
     }
     
