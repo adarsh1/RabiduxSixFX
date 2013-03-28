@@ -123,7 +123,6 @@ public class DataStore {
         
     }
     
-    
     public boolean isCopyAvailable(String copyID) throws SQLException, ClassNotFoundException {
         
         boolean result;
@@ -216,7 +215,36 @@ public class DataStore {
         
     }
     
-    //check if the item id exists in the database
+    public boolean isValidUserPassword(String userID, String password) throws SQLException, ClassNotFoundException {
+        
+        boolean result;
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add(userID);
+        where.add("%");
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.USER, where);
+        resultSet.next();
+        
+        if (resultSet.getString("password").compareTo(password) == 0) {
+            
+            result = true;
+            
+        } else {
+            
+            result = false;
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
+        
+    }
+    
     public boolean isValidBookID(String bookID) throws SQLException, ClassNotFoundException{
         
         boolean result;
@@ -245,12 +273,43 @@ public class DataStore {
     public boolean isValidUserID(String userID) throws SQLException, ClassNotFoundException{
         
         boolean result;
-        ArrayList<String> condition = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
         
         database.initializeConnection();
         
-        condition.add(userID);
-        ResultSet resultSet = database.selectRecord(Table.USER, condition);
+        where.add(userID);
+        where.add("%");
+        
+        ResultSet resultSet = database.selectRecord(Table.USER, where);
+        
+        if (database.getNumOfRows(resultSet) == 0) {
+            
+            result = false;
+            
+        } else {
+            
+            result = true;
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
+        
+    }
+    
+    public boolean isValidUserName(String accountName) throws SQLException, ClassNotFoundException{
+        
+        boolean result;
+        ArrayList<String> where = new ArrayList<> ();
+        
+        database.initializeConnection();
+        
+        where.add("%");
+        where.add(accountName);
+        
+        
+        ResultSet resultSet = database.selectRecord(Table.USER, where);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -331,6 +390,5 @@ public class DataStore {
         throw new UnsupportedOperationException("Not yet implemented");
         
     }
-    
 
 }

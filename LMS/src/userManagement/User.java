@@ -26,18 +26,25 @@ public class User {
         
     }
     
-    public static User getUser(String userID) throws SQLException, ClassNotFoundException {
+    public static User getUser(String accountName) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        return dataStore.getUser(userID);
+        return dataStore.getUser(accountName);
         
     }
     
-    public static boolean isValidUser(String userID) throws SQLException, ClassNotFoundException {
+    public static boolean isValidUser(String accountName) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
         
-        return dataStore.isValidUserID(userID);
+        return dataStore.isValidUserName(accountName);
+        
+    }
+    
+    public boolean validate(String password) throws SQLException, ClassNotFoundException {
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.isValidUserPassword(userID, password);
         
     }
     
@@ -60,13 +67,11 @@ public class User {
         
     }
 
-
     public String getAccountName() {
         
         return accountName;
         
     }
-
     
     public void setAccountName(String accountName) {
         
