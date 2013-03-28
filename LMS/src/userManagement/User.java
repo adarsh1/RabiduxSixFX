@@ -5,6 +5,7 @@
 package usermanagement;
 
 import datamanagement.DataStore;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 
 /**
@@ -26,18 +27,17 @@ public class User {
         
     }
     
-    public static User getUser(String accountName) throws SQLException, ClassNotFoundException {
+    public static User getUser(String accountName) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
+        
+        if (!dataStore.isValidUserName(accountName)) {
+            
+            throw new UserNotFoundException("User name does not exsit!");
+            
+        }
+        
         return dataStore.getUser(accountName);
-        
-    }
-    
-    public static boolean isValidUser(String accountName) throws SQLException, ClassNotFoundException {
-        
-        DataStore dataStore = new DataStore();
-        
-        return dataStore.isValidUserName(accountName);
         
     }
     

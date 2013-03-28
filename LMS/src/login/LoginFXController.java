@@ -3,16 +3,13 @@ package login;
 
 import baseGUI.BaseGUIController;
 import exception.UserNotFoundException;
-import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import usermanagement.Librarian;
 
 public class LoginFXController extends BaseGUIController implements Initializable {
@@ -81,6 +77,13 @@ public class LoginFXController extends BaseGUIController implements Initializabl
             //if user not found, raise this exception
             warningMsgField.setText(e.getMessage());
         }
+        catch(SQLException e) {
+            warningMsgField.setText(e.getMessage());
+        }
+        catch(ClassNotFoundException e) {
+            warningMsgField.setText(e.getMessage());
+        }
+        
     }
     // Handler for ImageView[fx:id="quit"] onMouseClicked
     public void quit(MouseEvent event) {
