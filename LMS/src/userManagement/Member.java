@@ -7,6 +7,7 @@ package usermanagement;
 import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedItem;
 import cataloguemanagement.TransactionHistoryItem;
+import datamanagement.DataStore;
 import java.util.ArrayList;
 
 /**
@@ -14,70 +15,76 @@ import java.util.ArrayList;
  * @author mmin001
  */
 public class Member extends User implements BorrowRecordAccessible{
-    private int maxBorrowing;
-    private int numberOfItemsBorrowed;
-    private double fine;
+    
+    private int maxHolding;
+    private double fineAmount;
+    
+    private static final int STUDENT_MAX_HOLDING = 2;
+    private static final int FACULTY_MAX_HOLDING = 3;
     
     public Member(String userID){
-        super(userID);
+        
+        super();
+        
     }
     
    //all eligible methods may still require info about fine
     public boolean isEligibleToBorrowOrReserve(){
-        if(numberOfItemsBorrowed <maxBorrowing ){
-            return true;
+        
+        boolean result;
+        
+        if ( getNumOfBorrowedItem() + getNumOfReservedItem() < maxHolding ) {
+            
+            result = true;
+            
+        } else {
+            
+            result = false;
+            
         }
-        else {
-            return false;
-        }
+        
+        return result;
+        
     }
     
-    public boolean isEligibleToExtend(){
-        return true;        
+    private int getNumOfBorrowedItem() {
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.getNumOfBorrowing(super.getUserID());
+        
     }
     
-
-    /**
-     * @return the maxBorrowing
-     */
-    public int getMaxBorrowing() {
-        return maxBorrowing;
+    private int getNumOfReservedItem() {
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.getNumOfReserving(super.getUserID());
+        
     }
 
-    /**
-     * @param maxBorrowing the maxBorrowing to set
-     */
-    public void setMaxBorrowing(int maxBorrowing) {
-        this.maxBorrowing = maxBorrowing;
+    public int getMaxHolding() {
+        
+        return maxHolding;
+        
     }
 
-    /**
-     * @return the fine
-     */
-    public double getFine() {
-        return fine;
+    public void setMaxHolding(int maxHolding) {
+        
+        this.maxHolding = maxHolding;
+        
     }
 
-    /**
-     * @param fine the fine to set
-     */
-    public void setFine(double fine) {
-        this.fine = fine;
+    public double getFineAmount() {
+        
+        return this.fineAmount;
+        
+    }
+    
+    public void setFineAmount(double fineAmount) {
+        
+        this.fineAmount = fineAmount;
+        
     }
 
-    /**
-     * @return the numberOfItemsBorrowed
-     */
-    public int getNumberOfItemsBorrowed() {
-        return numberOfItemsBorrowed;
-    }
-
-    /**
-     * @param numberOfItemsBorrowed the numberOfItemsBorrowed to set
-     */
-    public void setNumberOfItemsBorrowed(int numberOfItemsBorrowed) {
-        this.numberOfItemsBorrowed = numberOfItemsBorrowed;
-    }
     @Override
      public  ArrayList<TransactionHistoryItem> getTransactionHistoryItems(String memberID){
      return new ArrayList<TransactionHistoryItem>();
@@ -90,4 +97,9 @@ public class Member extends User implements BorrowRecordAccessible{
     public ArrayList<CurrentHolding> getCurrentHoldingItems(String memberID){
      return new ArrayList<CurrentHolding>();
      }   
-    }
+
+    
+
+    
+    
+}

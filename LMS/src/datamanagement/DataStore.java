@@ -4,6 +4,7 @@ package datamanagement;
 import cataloguemanagement.*;
 import java.sql.*;
 import java.util.*;
+import usermanagement.*;
 
 /**
  *
@@ -79,6 +80,7 @@ public class DataStore {
     public User getUser() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
+    
     
     public boolean isCopyAvailable(String copyID) throws SQLException, ClassNotFoundException {
         
@@ -276,6 +278,17 @@ public class DataStore {
         
     }
 
+    public int getNumOfBorrowing(String userID) {
+        
+        throw new UnsupportedOperationException("Not yet implemented");
+        
+    }
+
+    public int getNumOfReserving(String userID) {
+        
+        throw new UnsupportedOperationException("Not yet implemented");
+        
+    }
     
 
 }

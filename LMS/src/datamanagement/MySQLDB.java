@@ -47,7 +47,7 @@ public class MySQLDB extends Database{
             
             case USER : queryStr += "INSERT INTO user (user_id, user_type, account_name, password, fine, is_suspended) VALUES (?,?,?,?,?,?)";
                         break;
-            case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, copy_id, time_borrowed, time_returned, time_to_return, fine_amount) VALUES (?,?,?,?,?,?,?)";
+            case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, copy_id, time_borrowed, time_returned, time_to_return, fine_amount, num_of_extend) VALUES (?,?,?,?,?,?,?,?)";
                          break;
             case COPY: queryStr += "INSERT INTO individual_copy (copy_id, item_id, reserved_by, location) VALUES (?,?,?,?)";
                        break;
@@ -77,7 +77,7 @@ public class MySQLDB extends Database{
             
             case USER : queryStr += "UPDATE user SET user_type=?, account_name=?, password=?, fine=?, is_suspended=? WHERE user_id=?";
                         break;
-            case RECORD: queryStr += "UPDATE loan_record SET time_borrowed=?, time_returned=?, time_to_return=?, fine_amount=? WHERE loan_id=?";
+            case RECORD: queryStr += "UPDATE loan_record SET time_borrowed=?, time_returned=?, time_to_return=?, fine_amount=?, num_of_extend=? WHERE loan_id=?";
                          break;
             case COPY: queryStr += "UPDATE individual_copy SET reserved_by=?, location=? WHERE copy_id=?";
                        break;
