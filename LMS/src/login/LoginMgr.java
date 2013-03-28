@@ -6,7 +6,7 @@ package login;
 
 import exception.UserNotFoundException;
 import globalcontroller.MainController;
-import userManagement.User;
+import usermanagement.User;
 
 /**
  *

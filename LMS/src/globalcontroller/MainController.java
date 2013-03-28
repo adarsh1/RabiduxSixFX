@@ -4,7 +4,7 @@
  */
 package globalcontroller;
 
-import userManagement.User;
+import usermanagement.User;
 
 /**
  *

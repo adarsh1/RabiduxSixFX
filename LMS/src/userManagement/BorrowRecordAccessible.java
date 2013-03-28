@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package userManagement;
+package usermanagement;
 
 import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedItem;

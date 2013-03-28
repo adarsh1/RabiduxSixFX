@@ -4,7 +4,6 @@ package datamanagement;
 import cataloguemanagement.*;
 import java.sql.*;
 import java.util.*;
-import userManagement.*;
 
 /**
  *

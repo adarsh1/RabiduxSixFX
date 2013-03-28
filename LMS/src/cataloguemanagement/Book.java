@@ -6,7 +6,7 @@ package cataloguemanagement;
 
 import datamanagement.DataStore;
 import java.sql.SQLException;
-import userManagement.Member;
+import usermanagement.Member;
 
 /**
  *
