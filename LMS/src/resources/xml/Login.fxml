@@ -11,48 +11,52 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" blendMode="SRC_OVER" cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleEnterKeyPressed" prefHeight="200.0" prefWidth="320.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="login.LoginFXController">
+<Pane id="AnchorPane" blendMode="SRC_OVER" cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleEnterKeyPressed" prefHeight="225.0" prefWidth="360.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="login.LoginFXController">
   <children>
-    <Rectangle fill="linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, 0xdfdfdfff 0.0%, 0xbfbfbfff 30.0%, 0xbfbfbfff 90.0%, 0xffffffff 100.0%)" height="42.0" layoutY="-1.0" opacity="0.9" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
-    <Label layoutX="23.0" layoutY="73.0" minHeight="16.0" minWidth="69.0" text="User ID" textFill="WHITE">
+    <Pane layoutX="22.0" layoutY="14.0" prefHeight="200.0" prefWidth="320.0" styleClass="background">
+      <children>
+        <Rectangle fill="linear-gradient(from 100.0% 0.0% to 100.0% 100.0%, 0xdfdfdfff 0.0%, 0xbfbfbfff 30.0%, 0xbfbfbfff 90.0%, 0xffffffff 100.0%)" height="40.000099999997474" opacity="0.9" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
+        <ImageView fx:id="quit" fitHeight="20.1875" fitWidth="20.1875" layoutX="293.0" layoutY="8.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
+          <image>
+            <Image url="@../images/Button-Close-icon.png" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <Label layoutX="23.0" layoutY="73.0" minHeight="16.0" minWidth="69.0" text="User ID" textFill="WHITE">
+          <effect>
+            <DropShadow />
+          </effect>
+          <font>
+            <Font name="Segoe UI Symbol" size="12.0" fx:id="x1" />
+          </font>
+          <labelFor>
+            <TextField fx:id="userIDField" layoutX="92.0" layoutY="70.0" prefWidth="199.9998779296875" />
+          </labelFor>
+        </Label>
+        <Text fill="#202020" layoutX="26.0" layoutY="28.0" stroke="#996e00" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+          <font>
+            <Font name="Gill Sans" size="22.0" />
+          </font>
+        </Text>
+        <fx:reference source="userIDField" />
+        <Button layoutX="245.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="Login">
+          <font>
+            <Font name="Gill Sans" size="12.0" />
+          </font>
+        </Button>
+        <PasswordField fx:id="passwordField" layoutX="92.0" layoutY="112.0" prefWidth="200.0" />
+        <Label font="$x1" labelFor="$passwordField" layoutX="23.0" layoutY="115.0" text="Password" textFill="WHITE">
+          <effect>
+            <DropShadow />
+          </effect>
+        </Label>
+        <Label fx:id="warningMsgField" layoutX="23.0" layoutY="153.0" textFill="#ff3d00" />
+      </children>
       <effect>
-        <DropShadow />
+        <DropShadow height="32.0" radius="15.5" width="32.0" />
       </effect>
-      <font>
-        <Font name="Segoe UI Symbol" size="12.0" fx:id="x1" />
-      </font>
-      <labelFor>
-        <TextField fx:id="userIDField" layoutX="92.0" layoutY="70.0" prefWidth="199.9998779296875" />
-      </labelFor>
-    </Label>
-    <Text fill="#202020" layoutX="26.0" layoutY="28.0" stroke="#996e00" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
-      <font>
-        <Font name="Gill Sans" size="22.0" />
-      </font>
-    </Text>
-    <fx:reference source="userIDField" />
-    <Button layoutX="245.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="Login">
-      <font>
-        <Font name="Gill Sans" size="12.0" />
-      </font>
-    </Button>
-    <PasswordField fx:id="passwordField" layoutX="92.0" layoutY="112.0" prefWidth="200.0" />
-    <Label font="$x1" labelFor="$passwordField" layoutX="23.0" layoutY="115.0" text="Password" textFill="WHITE">
-      <effect>
-        <DropShadow />
-      </effect>
-    </Label>
-    <ImageView fx:id="quit" fitHeight="20.1875" fitWidth="20.1875" layoutX="292.0" layoutY="12.0" onMouseClicked="#quit" onMousePressed="#quit" preserveRatio="true">
-      <image>
-        <Image url="@../images/Button-Close-icon.png" preserveRatio="false" smooth="false" />
-      </image>
-    </ImageView>
-    <Label fx:id="warningMsgField" layoutX="23.0" layoutY="153.0" textFill="#ff3d00" />
+    </Pane>
   </children>
-  <effect>
-    <DropShadow height="97.30394345238095" radius="48.30217633928571" spread="0.11904761904761904" width="97.9047619047619" />
-  </effect>
   <stylesheets>
     <URL value="@../css/Login.css" />
   </stylesheets>
-</AnchorPane>
+</Pane>
