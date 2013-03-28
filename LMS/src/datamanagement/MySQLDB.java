@@ -36,7 +36,7 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public void insertRecord (Table table, ArrayList<String> values) throws SQLException {
+    public void insertRecord (Database.Table table, ArrayList<String> values) throws SQLException {
         
         String queryStr = new String();
         PreparedStatement statement;
@@ -61,10 +61,12 @@ public class MySQLDB extends Database{
             
         }
         
+        statement.executeUpdate();
+        
     }
     
     @Override
-    public void updateRecord (Table table, ArrayList<String> set, ArrayList<String> where) throws SQLException {
+    public void updateRecord (Database.Table table, ArrayList<String> set, ArrayList<String> where) throws SQLException {
         
         String queryStr = new String();
         PreparedStatement statement;
@@ -95,23 +97,25 @@ public class MySQLDB extends Database{
             
         }
         
+        statement.executeUpdate();
+        
     }
     
     @Override
-    public void deleteRecord (Table table, ArrayList<String> where) throws SQLException{
+    public void deleteRecord (Database.Table table, ArrayList<String> where) throws SQLException{
         
         String queryStr = new String();
         PreparedStatement statement;
         
         switch (table) {
             
-            case USER : queryStr += "DELETE user WHERE user_id=?";
+            case USER : queryStr += "DELETE FROM user WHERE user_id=?";
                         break;
-            case RECORD: queryStr += "DELETE loan_record WHERE loan_id=?";
+            case RECORD: queryStr += "DELETE FROM loan_record WHERE loan_id=?";
                          break;
-            case COPY: queryStr += "DELETE individual_copy WHERE copy_id=?";
+            case COPY: queryStr += "DELETE FROM individual_copy WHERE copy_id=?";
                        break;
-            case ITEM: queryStr += "DELETE book WHERE book_id=?";
+            case ITEM: queryStr += "DELETE FROM book WHERE book_id=?";
                        break;
         }
         
@@ -123,10 +127,12 @@ public class MySQLDB extends Database{
             
         }
         
+        statement.executeUpdate();
+        
     }
     
     @Override
-    public ResultSet selectRecord (Table table, ArrayList<String> where) throws SQLException {
+    public ResultSet selectRecord (Database.Table table, ArrayList<String> where) throws SQLException {
         
         ResultSet resultSet;
         PreparedStatement statement;
@@ -158,23 +164,25 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public ResultSet selectRecord (Table table, int top) throws SQLException {
+    public ResultSet selectRecord (Database.Table table, int top) throws SQLException {
         
         ResultSet resultSet;
         PreparedStatement statement;
-        String queryStr = "SELECT TOP " + Integer.toString(top);
+        String queryStr = null;
         
         switch (table) {
             
-            case USER : queryStr += " * FROM user ORDER BY user_id DESC";
+            case USER : queryStr = "SELECT * FROM user ORDER BY user_id DESC";
                         break;
-            case RECORD: queryStr += " * FROM loan_record ORDER BY loan_id DESC";
+            case RECORD: queryStr = "SELECT * FROM loan_record ORDER BY loan_id DESC";
                          break;
-            case COPY: queryStr += " * FROM individual_copy ORDER BY copy_id DESC";
+            case COPY: queryStr = "SELECT * FROM individual_copy ORDER BY copy_id DESC";
                        break;
-            case ITEM: queryStr += " * FROM book ORDER BY book_id DESC";
+            case ITEM: queryStr = "SELECT * FROM book ORDER BY book_id DESC";
                        break;
         }
+        
+        queryStr += " LIMIT " + Integer.toString(top);
         
         statement = connection.prepareStatement(queryStr);
         
@@ -185,23 +193,25 @@ public class MySQLDB extends Database{
     }
     
     @Override
-    public ResultSet selectRecord (Table table, ArrayList<String> where, int top) throws SQLException {
+    public ResultSet selectRecord (Database.Table table, ArrayList<String> where, int top) throws SQLException {
         
         ResultSet resultSet;
         PreparedStatement statement;
-        String queryStr = "SELECT TOP " + Integer.toString(top);
+        String queryStr = null;
         
         switch (table) {
             
-            case USER : queryStr += " * FROM user WHERE user_id LIKE ? ORDER BY user_id DESC";
+            case USER : queryStr = "SELECT * FROM user WHERE user_id LIKE ? ORDER BY user_id DESC";
                         break;
-            case RECORD: queryStr += " * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? ORDER BY loan_id DESC";
+            case RECORD: queryStr = "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? ORDER BY loan_id DESC";
                          break;
-            case COPY: queryStr += " * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ? ORDER BY copy_id DESC";
+            case COPY: queryStr = "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ? ORDER BY copy_id DESC";
                        break;
-            case ITEM: queryStr += " * FROM book WHERE book_id LIKE ? ORDER BY book_id DESC";
+            case ITEM: queryStr = "SELECT * FROM book WHERE book_id LIKE ? ORDER BY book_id DESC";
                        break;
         }
+        
+        queryStr += " LIMIT " + Integer.toString(top);
         
         statement = connection.prepareStatement(queryStr);
         

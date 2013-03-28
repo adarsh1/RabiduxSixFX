@@ -38,6 +38,8 @@ public class DataStore {
         CatalogueItem catalogueItem = null;
         
         where.add(copyID);
+        where.add("%");
+        where.add("%");
         
         database.initializeConnection();
         
