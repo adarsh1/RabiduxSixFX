@@ -142,7 +142,7 @@ public class MySQLDB extends Database{
         
         switch (table) {
             
-            case USER : queryStr += "SELECT * FROM user WHERE user_id LIKE ?";
+            case USER : queryStr += "SELECT * FROM user WHERE user_id LIKE ? AND account_name LIKE ?";
                         break;
             case RECORD: queryStr += "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ?";
                          break;
@@ -203,7 +203,7 @@ public class MySQLDB extends Database{
         
         switch (table) {
             
-            case USER : queryStr = "SELECT * FROM user WHERE user_id LIKE ? ORDER BY user_id DESC";
+            case USER : queryStr = "SELECT * FROM user WHERE user_id LIKE ? AND account_name LIKE ? ORDER BY user_id DESC";
                         break;
             case RECORD: queryStr = "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? ORDER BY loan_id DESC";
                          break;

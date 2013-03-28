@@ -9,7 +9,12 @@ package usermanagement;
  * @author Allen
  */
 public class Librarian extends User{
-    public Librarian(String userID){
+    
+    public Librarian(){
+        
         super ();
+        setUsertype(User.LIBRARIAN);
+        
     }
+    
 }

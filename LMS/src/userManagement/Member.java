@@ -22,7 +22,7 @@ public class Member extends User implements BorrowRecordAccessible{
     public static final int STUDENT_MAX_HOLDING = 2;
     public static final int FACULTY_MAX_HOLDING = 3;
     
-    public Member(String userID){
+    public Member(){
         
         super();
         

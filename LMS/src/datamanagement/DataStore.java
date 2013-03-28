@@ -77,8 +77,50 @@ public class DataStore {
         
     }
     
-    public User getUser() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public User getUser(String accountName) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        User user = null;
+        
+        where.add("%");
+        where.add(accountName);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.USER, where);
+        resultSet.next();
+        
+        // retrive itemID to determine the type of catalogue item
+        String userType = resultSet.getString("user_type");
+        
+        if (Integer.parseInt(userType) == User.LIBRARIAN) {
+            
+            user = new Librarian();
+            
+            user.setUserID(resultSet.getString("user_id"));
+            user.setAccountName(accountName);
+            
+            return user;
+            
+        } else if (Integer.parseInt(userType) == User.FACULTY) {
+            
+            user = new Faculty();
+            
+        } else {
+            
+            user = new Student();
+            
+        }
+            
+        user.setUserID(resultSet.getString("user_id"));
+        user.setAccountName(accountName);
+        ((Member)user).setFineAmount(resultSet.getDouble("fine"));
+        
+        database.closeConnection();
+        
+        return user;
+        
     }
     
     

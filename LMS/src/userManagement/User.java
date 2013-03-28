@@ -26,10 +26,10 @@ public class User {
         
     }
     
-    public static User getUser(String userID) {
+    public static User getUser(String userID) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        return dataStore.getUser();
+        return dataStore.getUser(userID);
         
     }
     

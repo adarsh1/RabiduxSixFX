@@ -9,8 +9,13 @@ package usermanagement;
  * @author Allen
  */
 public class Student extends Member{
-    public Student(String userID){
-        super(userID);
-        super.setMaxHolding(Member.STUDENT_MAX_HOLDING);
+    
+    public Student(){
+        
+        super();
+        setUsertype(User.STUDENT);
+        setMaxHolding(Member.STUDENT_MAX_HOLDING);
+        
     }
+    
 }
