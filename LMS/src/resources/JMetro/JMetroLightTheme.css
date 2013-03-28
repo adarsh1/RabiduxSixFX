@@ -10,10 +10,21 @@
     -fx-background-color: white;
 }
 
-.header{
-    -fx-font-size: 42pt;
+.header-1, .header-2, .header-3, .header-4{    
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
+}
+.header-1{
+    -fx-font-size: 42pt;
+}
+.header-2{
+    -fx-font-size: 36pt;
+}
+.header-3{
+    -fx-font-size: 30pt;
+}
+.header-4{
+    -fx-font-size: 24pt;
 }
 
 .item-title{
@@ -625,6 +636,14 @@
 
 .list-spinner:disabled {
     -fx-opacity: .4;
+}
+
+.label{
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: black;
+}
+.header-2{
+    
 }
 
 

@@ -30,7 +30,7 @@ public class LMS extends Application {
     
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.DECORATED);
         root = FXMLLoader.load(getClass().getResource("/resources/xml/Login.fxml"));
         
         //enable the stage to be draggable via tow new handlers
