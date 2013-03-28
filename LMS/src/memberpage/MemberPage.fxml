@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="SplitPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="memberpage.MemberPageController">
+  <children>
+    <Pane prefHeight="400.0" prefWidth="128.0" styleClass="menuPane">
+      <children>
+        <Label layoutX="45.0" layoutY="100.0" prefHeight="20.0" prefWidth="80.0" styleClass="menuTab" text="Search" />
+        <Label layoutX="45.0" layoutY="150.0" styleClass="menuTab" text="Borrow" />
+        <Label layoutX="45.0" layoutY="250.0" styleClass="menuTab" text="History" />
+        <Label layoutX="45.0" layoutY="200.0" styleClass="menuTab" text="Holdings" />
+        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../resources/images/magnifier.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../resources/images/borrow.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../resources/images/holdings.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../resources/images/history.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="200.0" fitWidth="100.0" layoutX="20.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../resources/images/Rabidus.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@memberpage.css" />
+  </stylesheets>
+</AnchorPane>

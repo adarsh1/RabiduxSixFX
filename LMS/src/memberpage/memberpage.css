@@ -1,0 +1,11 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+}
+.menuTab{
+    -fx-font-family:Helvetica;
+    -fx-font-size:20;
+    -fx-text-fill: black;
+}
