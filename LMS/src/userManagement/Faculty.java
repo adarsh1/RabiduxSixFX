@@ -11,6 +11,6 @@ package usermanagement;
 public class Faculty extends Member{
     public Faculty(String userID){
         super(userID);
-        super.setMaxBorrowing(User.FACULTY_MAX_BORROWING);
+        super.setMaxHolding(Member.FACULTY_MAX_HOLDING);
     }
 }

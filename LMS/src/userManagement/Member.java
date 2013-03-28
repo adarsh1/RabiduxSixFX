@@ -19,8 +19,8 @@ public class Member extends User implements BorrowRecordAccessible{
     private int maxHolding;
     private double fineAmount;
     
-    private static final int STUDENT_MAX_HOLDING = 2;
-    private static final int FACULTY_MAX_HOLDING = 3;
+    public static final int STUDENT_MAX_HOLDING = 2;
+    public static final int FACULTY_MAX_HOLDING = 3;
     
     public Member(String userID){
         
