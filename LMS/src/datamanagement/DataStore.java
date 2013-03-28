@@ -215,14 +215,14 @@ public class DataStore {
         
     }
     
-    public boolean isValidUserPassword(String userID, String password) throws SQLException, ClassNotFoundException {
+    public boolean isValidUserPassword(String username, String password) throws SQLException, ClassNotFoundException {
         
         boolean result;
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         
-        where.add(userID);
         where.add("%");
+        where.add(username);
         
         database.initializeConnection();
         

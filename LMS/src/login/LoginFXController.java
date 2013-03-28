@@ -46,9 +46,9 @@ public class LoginFXController extends BaseGUIController implements Initializabl
         //if enter key pressed and input field not null
         if (event.getCode() == KeyCode.ENTER && !usernameField.getText().equals("")) {
             Node node=(Node) event.getSource();
-            String userID = usernameField.getText();
+            
             //call login function to process login
-            login(node, userID);
+            login(node);
         }
     }
     // Handler for Button login [Button[id=null, styleClass=button]] onAction
@@ -56,15 +56,16 @@ public class LoginFXController extends BaseGUIController implements Initializabl
         //if button pressed and input field not null
         if(!usernameField.getText().equals("")){
             Node node=(Node) event.getSource();
-            String userID = usernameField.getText();
             //call login function to process login
-            login(node, userID);
+            login(node);
         }
     }
     
-    public void login(Node node, String userID){
+    public void login(Node node){
+        String userID = usernameField.getText();
+        String password = passwordField.getText();
         try{
-            loginMgr.createUser(userID);
+            loginMgr.createUser(userID, password);
             if (loginMgr.getUser() instanceof Librarian){
                 //if the user is a member, go to librarian GUI
                 goWelcomeLibrarian(node); 

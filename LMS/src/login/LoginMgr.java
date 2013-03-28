@@ -25,8 +25,8 @@ public class LoginMgr {
     }
     
     //create a user based on userName entered. If no such user exists, throw exception
-    public void createUser(String userName) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException{
-        setUser(User.getUser(userName));
+    public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException{
+        setUser(User.getUser(username, password));
         //if no exception was thrown, user can be set in main controller
         MC.setUser(user);
     }

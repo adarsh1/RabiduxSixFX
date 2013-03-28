@@ -4,8 +4,8 @@
  */
 package usermanagement;
 
-import datamanagement.DataStore;
-import exception.UserNotFoundException;
+import datamanagement.*;
+import exception.*;
 import java.sql.SQLException;
 
 /**
@@ -27,7 +27,7 @@ public class User {
         
     }
     
-    public static User getUser(String username) throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public static User getUser(String username, String password) throws SQLException, ClassNotFoundException, UserNotFoundException, IncorrectPasswordException {
         
         DataStore dataStore = new DataStore();
         
@@ -37,6 +37,11 @@ public class User {
             
         }
         
+        if (!dataStore.isValidUserPassword(username, password)) {
+            
+            throw new IncorrectPasswordException("Password is not correct!");
+            
+        }
         
         return dataStore.getUser(username);
         
