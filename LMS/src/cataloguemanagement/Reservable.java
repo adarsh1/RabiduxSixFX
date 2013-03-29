@@ -9,6 +9,6 @@ package cataloguemanagement;
  * @author Richard
  */
 public interface Reservable extends Displayable {
-    public abstract Boolean reverse(String memberID);
+    public abstract Boolean reserve(String memberID);
     
 }

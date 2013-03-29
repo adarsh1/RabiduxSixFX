@@ -8,6 +8,15 @@ package cataloguemanagement;
  *
  * @author Richard
  */
-public class ReservedItemGroup {
+public class ReservableCopyGroup {
+    
+    private int copiesAvailable;
+    private String itemID;
+    
+    public ReservableCopyGroup(String itemID) {
+        
+        
+        
+    }
     
 }

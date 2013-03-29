@@ -91,7 +91,7 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public Boolean reverse(String memberID) {
+    public Boolean reserve(String memberID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
