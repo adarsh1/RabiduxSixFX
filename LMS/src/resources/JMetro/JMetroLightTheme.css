@@ -110,7 +110,8 @@
 }
 
 .menu-buton:hover{
-    -fx-background-color: royalblue;
+    -fx-background-color: dodgerblue;
+    -fx-text-fill: white;
 }
 
 .menu-buton:pressed{
@@ -680,6 +681,25 @@
     -fx-text-fill: black;
 }
 
+/*******************************************************************************
+ *                                                                             *
+ * help pane                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.help-pane{
+    -fx-background-color: #bababa;
+}
+.help-header, .help-text{
+    -fx-text-fill: white;
+    -fx-font-family:"Segoe UI";
+}
+.help-header{
+    -fx-font-size:32pt;
+}
+.help-text{
+    -fx-font-size:12pt;
+    -fx-fill: white;
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -689,6 +709,7 @@
 .book-info-background{
     -fx-fill: white;
 }
+
 
 
 
