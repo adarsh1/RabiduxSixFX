@@ -13,9 +13,9 @@ import java.util.*;
  */
 public class TransactionHistoryItem {
     
-    private Date dateBorrowed;
-    private Date dateReturned;
-    private Date dateToReturn;
+    private Calendar dateBorrowed;
+    private Calendar dateReturned;
+    private Calendar dateToReturn;
     private double fineAmount;
     private int numOfExtend;
     private Displayable item;
@@ -35,37 +35,37 @@ public class TransactionHistoryItem {
         
     }
     
-    public Date getDateBorrowed() {
+    public Calendar getDateBorrowed() {
         
         return this.dateBorrowed;
         
     }
     
-    public void setDateBorrowed(Date dateBorrowed) {
+    public void setDateBorrowed(Calendar dateBorrowed) {
         
         this.dateBorrowed = dateBorrowed;
         
     }
     
-    public Date getDateReturned() {
+    public Calendar getDateReturned() {
         
         return this.dateReturned;
         
     }
     
-    public void setDateReturned(Date dateReturned) {
+    public void setDateReturned(Calendar dateReturned) {
         
         this.dateReturned = dateReturned;
         
     }
     
-    public Date getDateToReturn() {
+    public Calendar getDateToReturn() {
         
         return this.dateToReturn;
         
     }
     
-    public void setDateToReturn(Date dateToReturn) {
+    public void setDateToReturn(Calendar dateToReturn) {
         
         this.dateToReturn = dateToReturn;
         

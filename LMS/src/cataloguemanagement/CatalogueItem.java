@@ -21,7 +21,8 @@ public class CatalogueItem {
     private String title;
     private int type;
     private String individualCopyID;
-    private Date publishDate;
+    private Calendar publishDate;
+    private String description;
     
     //final constant to indicate the type of this item
     public static final int BOOK = 0;
@@ -129,13 +130,13 @@ public class CatalogueItem {
         
     }
     
-    public Date getPublishDate() {
+    public Calendar getPublishDate() {
         
         return this.publishDate;
         
     }
     
-    public void setPublishDate(Date date) {
+    public void setPublishDate(Calendar date) {
         
         this.publishDate = date;
         
@@ -150,6 +151,18 @@ public class CatalogueItem {
     public void setIndividualCopyID(String copyID) {
         
         this.individualCopyID = copyID;
+        
+    }
+    
+    public String getDescription() {
+        
+        return this.description;
+        
+    }
+    
+    public void setDescription(String description) {
+        
+        this.description = description;
         
     }
     

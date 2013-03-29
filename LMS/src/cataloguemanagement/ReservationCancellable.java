@@ -9,7 +9,7 @@ package cataloguemanagement;
  * @author Richard
  */
 public interface ReservationCancellable extends Displayable {
-    public Boolean cancelReservation(String memberID);
+    public void cancelReservation(String userID);
   
     
 }

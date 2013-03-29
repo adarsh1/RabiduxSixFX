@@ -9,6 +9,7 @@ package cataloguemanagement;
  * @author Richard
  */
 public interface Returnable extends Displayable {
-    public abstract Boolean returnBook();
+    
+    public abstract void returnBook(String copyID, String userID);
     
 }

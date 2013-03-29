@@ -5,8 +5,8 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
-import java.sql.SQLException;
-import usermanagement.Member;
+import java.sql.*;
+import java.util.*;
 
 /**
  *
@@ -62,53 +62,77 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public Boolean borrow(String memberID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void borrow(String userID) {
+        
+        DataStore dataStore = new DataStore();
+        dataStore.borrow(super.getIndividualCopyID(), userID);
+        
     }
 
     @Override
     public String getTitleDisplay() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return super.getTitle();
+        
     }
 
     @Override
     public String getDescriptionDisplay() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return super.getDescription();
+        
     }
 
     @Override
     public String getAuthorDisplay() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return super.getAuthor();
+        
     }
 
     @Override
     public String getImageName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public String getPublishYearDisplay() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Calendar calendar = super.getPublishDate();
+        return Integer.toString(calendar.get(Calendar.YEAR)) + "-" + Integer.toString(calendar.get(Calendar.MONTH)) + "-" + Integer.toString(calendar.get(Calendar.DATE));
+        
     }
 
     @Override
-    public Boolean extend(String memberID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void extend(String loanID) {
+        
+        DataStore dataStore = new DataStore();
+        dataStore.extend(loanID);
+        
     }
 
     @Override
-    public Boolean reserve(String memberID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void reserve(String userID) {
+        
+        DataStore dataStore = new DataStore();
+        dataStore.reserve(userID);
+        
     }
 
     @Override
-    public Boolean cancelReservation(String memberID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cancelReservation(String userID) {
+        
+        DataStore dataStore = new DataStore();
+        dataStore.cancelReservation(userID);
+        
     }
 
     @Override
-    public Boolean returnBook() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void returnBook(String copyID, String userID) {
+        
+        DataStore dataStore = new DataStore();
+        dataStore.returnBook(copyID, userID);
+        
     }
 
     @Override

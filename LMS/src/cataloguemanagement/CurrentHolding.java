@@ -11,6 +11,8 @@ import java.util.Date;
  * @author Richard
  */
 public class CurrentHolding {
+    
+    private String loanID;
     private Date dateBorrowed;
     private Date dateReturned;
     private Extendable item;

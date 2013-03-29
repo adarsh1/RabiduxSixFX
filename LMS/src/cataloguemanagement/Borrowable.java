@@ -10,7 +10,7 @@ package cataloguemanagement;
  */
 public interface Borrowable extends Displayable {
    
-    public abstract Boolean borrow (String memberID);
+    public abstract void borrow (String userID);
    
     
 }

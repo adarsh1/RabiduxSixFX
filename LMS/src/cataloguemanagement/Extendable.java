@@ -9,6 +9,6 @@ package cataloguemanagement;
  * @author Richard
  */
 public interface Extendable extends Displayable {
-    public abstract Boolean extend(String memberID);
+    public abstract void extend(String loanID);
     
 }

@@ -4,6 +4,7 @@ package datamanagement;
 import usermanagement.*;
 import cataloguemanagement.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -13,6 +14,7 @@ import java.util.*;
 public class DataStore {
         
     private Database database;
+    public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     public DataStore(){
         database = new MySQLDB();
@@ -69,9 +71,15 @@ public class DataStore {
             
             catalogueItem.setTitle(resultSet.getString(Table.BOOK.getAttribute("TITLE")));
             catalogueItem.setAuthor(resultSet.getString(Table.BOOK.getAttribute("AUTHOR")));
-            catalogueItem.setPublishDate(resultSet.getTimestamp(Table.BOOK.getAttribute("DATE")));
+            
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(resultSet.getTimestamp(Table.BOOK.getAttribute("DATE")));
+            
+            catalogueItem.setPublishDate(calendar);
+            catalogueItem.setDescription(resultSet.getString(Table.BOOK.getAttribute("DESCRIPTION")));
             ((Book)catalogueItem).setISBN(resultSet.getString(Table.BOOK.getAttribute("ISBN")));
             ((Book)catalogueItem).setGenre(resultSet.getString(Table.BOOK.getAttribute("GENRE")));
+            
             
         }
         
@@ -548,6 +556,26 @@ public class DataStore {
     }
 
     public TransactionHistoryItem getRecord(String loanID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void borrow(String individualCopyID, String userID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void extend(String loanID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void reserve(String userID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void cancelReservation(String userID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void returnBook(String copyID, String userID) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
