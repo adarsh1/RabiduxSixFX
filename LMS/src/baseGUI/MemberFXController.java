@@ -87,6 +87,62 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
         // initialize your logic here: all @FXML variables will have been injected
     }
+
+    /**
+     * @return the basePane
+     */
+    public AnchorPane getBasePane() {
+        return basePane;
+    }
+
+    /**
+     * @param basePane the basePane to set
+     */
+    public void setBasePane(AnchorPane basePane) {
+        this.basePane = basePane;
+    }
+
+    /**
+     * @return the helpPane
+     */
+    public Pane getHelpPane() {
+        return helpPane;
+    }
+
+    /**
+     * @param helpPane the helpPane to set
+     */
+    public void setHelpPane(Pane helpPane) {
+        this.helpPane = helpPane;
+    }
+
+    /**
+     * @return the contentPane
+     */
+    public Pane getContentPane() {
+        return contentPane;
+    }
+
+    /**
+     * @param contentPane the contentPane to set
+     */
+    public void setContentPane(Pane contentPane) {
+        this.contentPane = contentPane;
+    }
+
+    /**
+     * @return the menuPane
+     */
+    public Pane getMenuPane() {
+        return menuPane;
+    }
+
+    /**
+     * @param menuPane the menuPane to set
+     */
+    public void setMenuPane(Pane menuPane) {
+        this.menuPane = menuPane;
+    }
     
     
 }

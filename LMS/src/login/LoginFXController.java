@@ -2,6 +2,7 @@
 package login;
 
 import baseGUI.BaseFXController;
+import baseGUI.MemberFXController;
 import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
 import globalcontroller.MainController;
@@ -158,13 +159,15 @@ public class LoginFXController extends BaseFXController implements Initializable
         try{      
             FXMLLoader fxmlLoader = generateFXMLLoader(resourceURL);
             Parent root = loadFXML(fxmlLoader);
-            passMC(fxmlLoader);
+            MemberFXController memberFXController = fxmlLoader.<MemberFXController>getController();
+            passMC(memberFXController);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
             
-            double offset = scene.getWidth()/8.0;
-            BaseFXController.handleOnShowAnimation(root, 500, offset);
+            BaseFXController.handleOnShowAnimation(memberFXController.getMenuPane(), 500, 50);
+            BaseFXController.handleOnShowAnimation(memberFXController.getContentPane(), 500, 50);
+            BaseFXController.handleOnShowAnimation(memberFXController.getHelpPane(), 500, 50);
         }
        catch(IOException e){
            System.out.println("ERROR: " + resourceURL + " not found!!");
@@ -181,8 +184,7 @@ public class LoginFXController extends BaseFXController implements Initializable
         return fxmlLoader;
     } 
     
-    protected void passMC (FXMLLoader fxmlLoader){
-        BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
+    protected void passMC (BaseFXController FXController){
         MainController MC = getMC();
         FXController.setMC(MC);            
     }

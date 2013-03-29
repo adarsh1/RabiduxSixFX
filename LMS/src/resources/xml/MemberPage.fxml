@@ -44,7 +44,7 @@
         <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
       </children>
     </Pane>
-    <Pane fx:id="borrowPane" layoutX="200.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0">
+    <Pane id="borrowPane" fx:id="contentPane" layoutX="200.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0">
       <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="350.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="book-info-background" width="436.0" />
         <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2" text="Enter your book ID" />
