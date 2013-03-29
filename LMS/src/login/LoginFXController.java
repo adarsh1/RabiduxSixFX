@@ -143,7 +143,7 @@ public class LoginFXController extends BaseFXController implements Initializable
     }
 
     private void goWelcomeMember(Node node){
-        transitScene("/resources/xml/WelcomeMember.fxml",node);      
+        transitScene("/resources/xml/MemberPage.fxml",node);      
     }
     
     private void goWelcomeLibrarian(Node node){

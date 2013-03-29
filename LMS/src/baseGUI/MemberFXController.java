@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package memberpage;
+package baseGUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Allen
  */
-public class MemberPageController implements Initializable {
+public class MemberFXController extends BaseFXController implements Initializable {
 
     /**
      * Initializes the controller class.
