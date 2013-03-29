@@ -138,7 +138,7 @@ public abstract class BaseFXController implements Initializable {
     }
     
     //show element with Metro style animation
-    //static funtion to be called without knowing the Pane
+    //static funtion to be called without creating a controller instance
     public static void handleOnShowAnimation(Node node, int millis, double offset){
         //fade in
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(millis), node);

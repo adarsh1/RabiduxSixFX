@@ -1,7 +1,8 @@
 /* 
     Document   : JMetroLightTheme
     Created on : Oct 16, 2012, 6:28:59 PM
-    Author     : Pedro Duque Vieira
+    Modified on : Mar 29, 2013
+    Author     : Pedro Duque Vieira, Allen Liu
     Description:
         Light Metro style sheet for use in JavaFX applications
 */
@@ -10,7 +11,7 @@
     -fx-background-color: white;
 }
 
-.header-1, .header-2, .header-3, .header-4{    
+.header-1, .header-2, .header-3, .header-4, .header-5{    
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
 }
@@ -25,6 +26,9 @@
 }
 .header-4{
     -fx-font-size: 24pt;
+}
+.header-5{
+    -fx-font-size: 18pt;
 }
 
 .item-title{
@@ -88,6 +92,38 @@
     -fx-background-color: #219297;
 }
 
+/*******************************************************************************
+ *                                                                             *
+ * Menu Button                                                               *
+ *                                                                             *
+ ******************************************************************************/
+.menu-buton{
+    -fx-padding: 0 5 0 5;   
+    -fx-border-style: null; 
+    -fx-background-radius: 0;;
+
+    -fx-background-color: white;
+    -fx-alignment:CENTER_LEFT;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 20pt;
+    -fx-text-fill: black;   
+}
+
+.menu-buton:hover{
+    -fx-background-color: royalblue;
+}
+
+.menu-buton:pressed{
+  -fx-background-color: black;
+  -fx-text-fill: white;
+}
+.menu-buton:focused
+{
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-style: segments(1, 1);
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;   
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -312,16 +348,17 @@
  *                                                                             *
  ******************************************************************************/
 
-/*.tooltip {
-    -fx-background-color: white;
+.tooltip {
+    -fx-background-color: dimgrey;
     -fx-background-insets: 0;
     -fx-background-radius: 0 0 0 0;
-    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;  4 8 4 8 
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
     -fx-effect: dropshadow( one-pass-box , #808080 , 5, 0.0 , 0 , 0 );
-    -fx-font-family: "Segoe UI Semilight", "Segoe UI Light", "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-text-fill: #949494;
+    -fx-font-family: "Segoe UI Light", "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-text-fill: white;
 }
 
+/*
 .page-corner {
     -fx-padding: 4.5 4.5 4.5 4.5;
     -fx-background-color: transparent;
