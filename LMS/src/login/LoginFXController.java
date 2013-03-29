@@ -91,7 +91,6 @@ public class LoginFXController extends BaseFXController implements Initializable
     
     // Handler for Button login [Button[id=null, styleClass=button]] onAction
     public void handleLoginButtonAction(ActionEvent event){    
-        handleNodeScaleTransition(rootPane, 300);
         //if button pressed and input field not null
         if(!usernameField.getText().equals("")){
             Node node=(Node) event.getSource();
@@ -104,8 +103,7 @@ public class LoginFXController extends BaseFXController implements Initializable
         String userID = usernameField.getText();
         String password = passwordField.getText();
         try{
-            loginMgr.createUser(userID, password);           
-            
+            loginMgr.createUser(userID, password);        
             if (loginMgr.getUser() instanceof Librarian){
                 //if the user is a member, go to librarian GUI
                 goWelcomeLibrarian(node); 
