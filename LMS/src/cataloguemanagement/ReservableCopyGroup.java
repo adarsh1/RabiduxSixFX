@@ -15,9 +15,9 @@ public class ReservableCopyGroup {
     
     private int copiesAvailable;
     private String itemID;
-    private ArrayList<Reservable> items;
+    private ArrayList<Reservable> copies;
     
-    public ReservableCopyGroup(String itemID) {
+    public ReservableCopyGroup() {
         
         
         
@@ -39,6 +39,30 @@ public class ReservableCopyGroup {
     public void setCopiesAvailable(int copiesAvailable) {
         
         this.copiesAvailable = copiesAvailable;
+        
+    }
+    
+    public String getItemID() {
+        
+        return this.itemID;
+        
+    }
+    
+    public void setItemID(String itemID) {
+        
+        this.itemID = itemID;
+        
+    }
+    
+    public ArrayList<Reservable> getCopies() {
+        
+        return this.copies;
+        
+    }
+    
+    public void addCopy(Reservable copy) {
+        
+        copies.add(copy);
         
     }
     
