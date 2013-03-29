@@ -1,10 +1,14 @@
 
 package datamanagement;
 
+import usermanagement.Member;
+import usermanagement.User;
+import usermanagement.Faculty;
+import usermanagement.Student;
+import usermanagement.Librarian;
 import cataloguemanagement.*;
 import java.sql.*;
 import java.util.*;
-import usermanagement.*;
 
 /**
  *
@@ -450,6 +454,10 @@ public class DataStore {
     }
 
     public TransactionHistoryItem getRecord(String loanID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public ReservableCopyGroup getCopyGroups(String searchCriteria, String keyword) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
