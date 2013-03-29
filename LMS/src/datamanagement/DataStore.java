@@ -46,7 +46,7 @@ public class DataStore {
         resultSet.next();
         
         // retrive itemID to determine the type of catalogue item
-        String itemID = resultSet.getString("item_id");
+        String itemID = resultSet.getString(Table.COPY.getAttribute("ITEM_ID"));
         
         if (new DataStore().isValidBookID(itemID)) {
             
@@ -55,7 +55,7 @@ public class DataStore {
             catalogueItem.setIndividualCopyID(copyID);
             catalogueItem.setType(CatalogueItem.BOOK);
             catalogueItem.setItemID(itemID);
-            catalogueItem.setLocation(resultSet.getString("location"));
+            catalogueItem.setLocation(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
             
             where.clear();
             where.add(itemID);
@@ -63,11 +63,11 @@ public class DataStore {
             resultSet = database.selectRecord(Table.BOOK, where);
             resultSet.next();
             
-            catalogueItem.setTitle(resultSet.getString("title"));
-            catalogueItem.setAuthor(resultSet.getString("author"));
-            catalogueItem.setPublishDate(resultSet.getTimestamp("date"));
-            ((Book)catalogueItem).setISBN(resultSet.getString("isbn"));
-            ((Book)catalogueItem).setGenre(resultSet.getString("genre"));
+            catalogueItem.setTitle(resultSet.getString(Table.BOOK.getAttribute("TITLE")));
+            catalogueItem.setAuthor(resultSet.getString(Table.BOOK.getAttribute("AUTHOR")));
+            catalogueItem.setPublishDate(resultSet.getTimestamp(Table.BOOK.getAttribute("DATE")));
+            ((Book)catalogueItem).setISBN(resultSet.getString(Table.BOOK.getAttribute("ISBN")));
+            ((Book)catalogueItem).setGenre(resultSet.getString(Table.BOOK.getAttribute("GENRE")));
             
         }
         
@@ -92,13 +92,13 @@ public class DataStore {
         resultSet.next();
         
         // retrive itemID to determine the type of catalogue item
-        String userType = resultSet.getString("user_type");
+        String userType = resultSet.getString(Table.USER.getAttribute("USER_TYPE"));
         
         if (Integer.parseInt(userType) == User.LIBRARIAN) {
             
             user = new Librarian();
             
-            user.setUserID(resultSet.getString("user_id"));
+            user.setUserID(resultSet.getString(Table.USER.getAttribute("USER_ID")));
             user.setUsername(username);
             
             return user;
@@ -113,9 +113,9 @@ public class DataStore {
             
         }
             
-        user.setUserID(resultSet.getString("user_id"));
+        user.setUserID(resultSet.getString(Table.USER.getAttribute("USER_ID")));
         user.setUsername(username);
-        ((Member)user).setFineAmount(resultSet.getDouble("fine"));
+        ((Member)user).setFineAmount(resultSet.getDouble(Table.USER.getAttribute("FINE")));
         
         database.closeConnection();
         
@@ -136,7 +136,7 @@ public class DataStore {
         
         ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
         
-        if (resultSet.next() && resultSet.getString("time_returned") == null) {
+        if (resultSet.next() && resultSet.getString(Table.RECORD.getAttribute("TIME_RETURNED")) == null) {
             
             result = false;
             
@@ -165,7 +165,7 @@ public class DataStore {
         ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
         
         
-        if (resultSet.next() && resultSet.getTimestamp("time_to_return").compareTo(new java.util.Date()) < 0) {
+        if (resultSet.next() && resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")).compareTo(new java.util.Date()) < 0) {
             
             result = true;
             
@@ -194,7 +194,7 @@ public class DataStore {
         ResultSet resultSet = database.selectRecord(Table.COPY, condition);
         resultSet.next();
         
-        if (resultSet.getString("reserved_by").compareTo("1000000000") == 0) {
+        if (resultSet.getString(Table.COPY.getAttribute("RESERVED_BY")).compareTo("1000000000") == 0) {
             
             result = false;
             
@@ -223,7 +223,7 @@ public class DataStore {
         resultSet = database.selectRecord(Table.USER, where);
         resultSet.next();
         
-        if (resultSet.getBoolean("is_suspended")) {
+        if (resultSet.getBoolean(Table.USER.getAttribute("IS_SUSPENDED"))) {
             
             result = true;
             
@@ -251,7 +251,7 @@ public class DataStore {
         resultSet = database.selectRecord(Table.USER, where);
         resultSet.next();
         
-        if (resultSet.getString("password").compareTo(password) == 0) {
+        if (resultSet.getString(Table.USER.getAttribute("PASSWORD")).compareTo(password) == 0) {
             
             result = true;
             
@@ -417,7 +417,7 @@ public class DataStore {
         
         while (resultSet.next()) {
             
-            if (resultSet.getString("time_returned").compareTo("null") == 0) {
+            if (resultSet.getString(Table.RECORD.getAttribute("TIME_RETURNED")).compareTo("null") == 0) {
                 
                 result ++;
                 
@@ -447,6 +447,10 @@ public class DataStore {
         
         return database.getNumOfRows(resultSet);
         
+    }
+
+    public TransactionHistoryItem getRecord(String loanID) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }
