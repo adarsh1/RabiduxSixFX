@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import login.LoginFXController;
 
 /**
  *
@@ -26,12 +27,14 @@ public class LMS extends Application {
     private double yOffset = 0;
     private Scene scene;
     private Parent root;
+    private FXMLLoader fxmlLoader;
     
     
     @Override
     public void start(final Stage primaryStage) throws Exception {
         primaryStage.initStyle(StageStyle.DECORATED);
-        root = FXMLLoader.load(getClass().getResource("/resources/xml/Login.fxml"));
+        fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Login.fxml")); 
+        root = (Parent) fxmlLoader.load();
         
         //enable the stage to be draggable via tow new handlers
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
