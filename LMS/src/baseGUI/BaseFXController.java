@@ -106,22 +106,7 @@ public abstract class BaseFXController implements Initializable {
         // initialize your logic here: all @FXML variables will have been injected
 
     }
-    
-    public void transitScene(String resourceURL, Node node){
-        try{            
-            Stage stage=(Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resourceURL)); 
-            Parent root = (Parent)fxmlLoader.load(); 
-            BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
-            FXController.setMC(MC);            
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-       catch(IOException e){
-           System.out.println("ERROR: " + resourceURL + " not found!!");
-       }
-    }
+       
     
     /**
      * @return the MC

@@ -4,16 +4,18 @@ package login;
 import baseGUI.BaseFXController;
 import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
+import globalcontroller.MainController;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
-import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,7 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
+import javafx.stage.Stage;
 import usermanagement.Librarian;
 
 public class LoginFXController extends BaseFXController implements Initializable {
@@ -110,7 +112,7 @@ public class LoginFXController extends BaseFXController implements Initializable
             }
             else{
                 //else go to member GUI
-                goWelcomeMember(node);                 
+                gotoMemberPage(node);                 
             }                
         }
         catch(UserNotFoundException | IncorrectPasswordException | SQLException | ClassNotFoundException e){
@@ -142,12 +144,47 @@ public class LoginFXController extends BaseFXController implements Initializable
         }
     }
 
-    private void goWelcomeMember(Node node){
+    private void gotoMemberPage(Node node){
         transitScene("/resources/xml/MemberPage.fxml",node);      
+        BaseFXController.handleOnShowAnimation(node, ENABLED, ENABLED);
     }
     
     private void goWelcomeLibrarian(Node node){
         transitScene("/resources/xml/WelcomeLibrarian.fxml",node);
+    }
+    
+    public void transitScene(String resourceURL, Node node){
+        Stage stage=(Stage) node.getScene().getWindow();
+        try{      
+            FXMLLoader fxmlLoader = generateFXMLLoader(resourceURL);
+            Parent root = loadFXML(fxmlLoader);
+            passMC(fxmlLoader);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+            double offset = scene.getWidth()/8.0;
+            BaseFXController.handleOnShowAnimation(root, 500, offset);
+        }
+       catch(IOException e){
+           System.out.println("ERROR: " + resourceURL + " not found!!");
+       }
+    }
+    
+    protected Parent loadFXML(FXMLLoader fxmlLoader) throws IOException{     
+        Parent root = (Parent)fxmlLoader.load(); 
+        return root;
+    }
+    
+    protected FXMLLoader generateFXMLLoader(String resourceURL){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resourceURL)); 
+        return fxmlLoader;
+    } 
+    
+    protected void passMC (FXMLLoader fxmlLoader){
+        BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
+        MainController MC = getMC();
+        FXController.setMC(MC);            
     }
 
 }

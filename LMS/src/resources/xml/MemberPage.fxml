@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="SplitPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="baseGUI.MemberFXController">
+<AnchorPane id="SplitPane" fx:id="basePane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="baseGUI.MemberFXController">
   <children>
     <Pane fx:id="menuPane" layoutY="50.0" prefHeight="400.0" prefWidth="180.0" styleClass="menuPane">
       <children>
@@ -39,9 +39,9 @@
             <Tooltip id="" style="" text="Empty Tooltip" />
           </tooltip>
         </Button>
-        <Button layoutX="55.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Borrow" />
-        <Button layoutX="55.0" layoutY="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Holdings" />
-        <Button layoutX="55.0" layoutY="200.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
+        <Button id="BorrowMenuButton" fx:id="borrowMenuButton" layoutX="55.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Borrow" />
+        <Button id="hoo" fx:id="holdingMenuButton" layoutX="55.0" layoutY="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Holdings" />
+        <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
       </children>
     </Pane>
     <Pane fx:id="borrowPane" layoutX="200.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0">
