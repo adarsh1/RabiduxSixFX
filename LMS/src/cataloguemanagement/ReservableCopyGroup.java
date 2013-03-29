@@ -5,6 +5,7 @@
 package cataloguemanagement;
 
 import datamanagement.*;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -23,7 +24,7 @@ public class ReservableCopyGroup {
         
     }
     
-    public static ReservableCopyGroup getReservableCopyGroup (String searchCriteria, String keyword) {
+    public static ArrayList<ReservableCopyGroup> getReservableCopyGroups (String searchCriteria, String keyword) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getCopyGroups(searchCriteria, keyword);

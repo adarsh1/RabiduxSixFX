@@ -148,7 +148,7 @@ public class MySQLDB extends Database{
                          break;
             case COPY: queryStr += "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ?";
                        break;
-            case BOOK: queryStr += "SELECT * FROM book WHERE book_id LIKE ?";
+            case BOOK: queryStr += "SELECT * FROM book WHERE book_id LIKE ? AND title LIKE ? AND author LIKE ? AND isbn LIKE ? AND genre LIKE ?";
                        break;
         }
         

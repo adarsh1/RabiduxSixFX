@@ -24,6 +24,12 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
         
     }
     
+    public static Book getBook(String copyID) throws SQLException, ClassNotFoundException {
+        
+        return (Book) CatalogueItem.getCatalogueItem(copyID);
+        
+    }
+    
     public static Boolean isValidBook(String itemID) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();

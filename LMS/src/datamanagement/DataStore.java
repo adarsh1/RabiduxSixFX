@@ -1,11 +1,7 @@
 
 package datamanagement;
 
-import usermanagement.Member;
-import usermanagement.User;
-import usermanagement.Faculty;
-import usermanagement.Student;
-import usermanagement.Librarian;
+import usermanagement.*;
 import cataloguemanagement.*;
 import java.sql.*;
 import java.util.*;
@@ -63,6 +59,10 @@ public class DataStore {
             
             where.clear();
             where.add(itemID);
+            where.add("%");
+            where.add("%");
+            where.add("%");
+            where.add("%");
             
             resultSet = database.selectRecord(Table.BOOK, where);
             resultSet.next();
@@ -124,6 +124,95 @@ public class DataStore {
         database.closeConnection();
         
         return user;
+        
+    }
+    
+    public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<ReservableCopyGroup> result = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add("%");
+        
+        if (searchCriteria.compareTo("TITLE") == 0) { 
+            
+            where.add(keyword); 
+            
+        } else {
+            
+            where.add("%");
+            
+        }
+        
+        if (searchCriteria.compareTo("AUTHOR") == 0) { 
+            
+            where.add(keyword); 
+            
+        } else {
+            
+            where.add("%");
+            
+        }
+        
+        if (searchCriteria.compareTo("ISBN") == 0) { 
+            
+            where.add(keyword); 
+            
+        } else {
+            
+            where.add("%");
+            
+        }
+        
+        if (searchCriteria.compareTo("GENRE") == 0) { 
+            
+            where.add(keyword); 
+            
+        } else {
+            
+            where.add("%");
+            
+        }
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.BOOK, where);
+        
+        while (resultSet.next()) {
+            
+            ReservableCopyGroup reservableCopyGroup = new ReservableCopyGroup();
+            
+            reservableCopyGroup.setItemID(resultSet.getString(Table.BOOK.getAttribute("ITEM_ID")));
+            
+            result.add(reservableCopyGroup);
+            
+        }
+        
+        for (int i = 0; i < result.size(); i++) {
+            
+            where.clear();
+            
+            where.add("%");
+            where.add(result.get(i).getItemID());
+            where.add("%");
+            
+            resultSet = database.selectRecord(Table.COPY, where);
+            
+            result.get(i).setCopiesAvailable(database.getNumOfRows(resultSet));
+            
+            while(resultSet.next()) {
+                
+                String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
+                result.get(i).addCopy(Book.getBook(copyID));
+                
+            }
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
         
     }
     
@@ -274,12 +363,17 @@ public class DataStore {
     public boolean isValidBookID(String bookID) throws SQLException, ClassNotFoundException{
         
         boolean result;
-        ArrayList<String> condition = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
         
         database.initializeConnection();
         
-        condition.add(bookID);
-        ResultSet resultSet = database.selectRecord(Table.BOOK, condition);
+        where.add(bookID);
+        where.add("%");
+        where.add("%");
+        where.add("%");
+        where.add("%");
+        
+        ResultSet resultSet = database.selectRecord(Table.BOOK, where);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -356,12 +450,12 @@ public class DataStore {
     public boolean isValidLoanID(String loanID) throws SQLException, ClassNotFoundException{
         
         boolean result;
-        ArrayList<String> condition = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
         
         database.initializeConnection();
         
-        condition.add(loanID);
-        ResultSet resultSet = database.selectRecord(Table.USER, condition);
+        where.add(loanID);
+        ResultSet resultSet = database.selectRecord(Table.USER, where);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -382,12 +476,12 @@ public class DataStore {
     public boolean isValidCopyID(String copyID) throws SQLException, ClassNotFoundException{
         
         boolean result;
-        ArrayList<String> condition = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
         
         database.initializeConnection();
         
-        condition.add(copyID);
-        ResultSet resultSet = database.selectRecord(Table.USER, condition);
+        where.add(copyID);
+        ResultSet resultSet = database.selectRecord(Table.USER, where);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -454,10 +548,6 @@ public class DataStore {
     }
 
     public TransactionHistoryItem getRecord(String loanID) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public ReservableCopyGroup getCopyGroups(String searchCriteria, String keyword) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
