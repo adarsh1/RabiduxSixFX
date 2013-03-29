@@ -31,7 +31,7 @@ public class User {
         
         DataStore dataStore = new DataStore();
         
-        if (!dataStore.isValidUserName(username)) {
+        if (!dataStore.isValidUsername(username)) {
             
             throw new UserNotFoundException("User name does not exsit!");
             
@@ -47,17 +47,10 @@ public class User {
         
     }
     
-    public boolean validate(String password) throws SQLException, ClassNotFoundException {
+    public boolean isSuspended() throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        return dataStore.isValidUserPassword(userID, password);
-        
-    }
-    
-    public boolean isSuspended() {
-        
-        DataStore dataStore = new DataStore();
-        return dataStore.isUserSuspended();
+        return dataStore.isUserSuspended(userID);
         
     }
     

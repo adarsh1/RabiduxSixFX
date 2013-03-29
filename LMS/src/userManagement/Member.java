@@ -8,6 +8,7 @@ import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedItem;
 import cataloguemanagement.TransactionHistoryItem;
 import datamanagement.DataStore;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ public class Member extends User implements BorrowRecordAccessible{
     }
     
    //all eligible methods may still require info about fine
-    public boolean isEligibleToBorrowOrReserve(){
+    public boolean isEligibleToBorrowOrReserve() throws SQLException, ClassNotFoundException{
         
         boolean result;
         
@@ -47,14 +48,14 @@ public class Member extends User implements BorrowRecordAccessible{
         
     }
     
-    private int getNumOfBorrowedItem() {
+    private int getNumOfBorrowedItem() throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getNumOfBorrowing(super.getUserID());
         
     }
     
-    private int getNumOfReservedItem() {
+    private int getNumOfReservedItem() throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getNumOfReserving(super.getUserID());
