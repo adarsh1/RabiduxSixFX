@@ -1,13 +1,15 @@
 
 package login;
 
-import baseGUI.BaseGUIController;
+import baseGUI.BaseFXController;
 import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,11 +21,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import usermanagement.Librarian;
 
-public class LoginFXController extends BaseGUIController implements Initializable {
+public class LoginFXController extends BaseFXController implements Initializable {
 
     @FXML //  fx:id="warningMsgField"
     private Label warningMsgField; // Value injected by FXMLLoader
@@ -39,6 +41,9 @@ public class LoginFXController extends BaseGUIController implements Initializabl
     
     @FXML //  fx:id="loginButton"
     private Button loginButton; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="rootPane"
+    private Pane rootPane; // Value injected by FXMLLoader
       
     private LoginMgr loginMgr;
     private int currentFieldState = DISABLED;
@@ -76,7 +81,7 @@ public class LoginFXController extends BaseGUIController implements Initializabl
         }
         else if(currentFieldState == ENABLED && previousFieldState == DISABLED){
             loginButton.setDisable(false);
-            handleNodeFade(loginButton, 500, 0, 0.5 ,1.0);
+            handleNodeFadeTransition(loginButton, 500, 0.5 ,1.0);
         }
     }
     
@@ -86,6 +91,7 @@ public class LoginFXController extends BaseGUIController implements Initializabl
     
     // Handler for Button login [Button[id=null, styleClass=button]] onAction
     public void handleLoginButtonAction(ActionEvent event){    
+        handleNodeScaleTransition(rootPane, 300);
         //if button pressed and input field not null
         if(!usernameField.getText().equals("")){
             Node node=(Node) event.getSource();
@@ -98,7 +104,8 @@ public class LoginFXController extends BaseGUIController implements Initializabl
         String userID = usernameField.getText();
         String password = passwordField.getText();
         try{
-            loginMgr.createUser(userID, password);
+            loginMgr.createUser(userID, password);           
+            
             if (loginMgr.getUser() instanceof Librarian){
                 //if the user is a member, go to librarian GUI
                 goWelcomeLibrarian(node); 
@@ -122,33 +129,7 @@ public class LoginFXController extends BaseGUIController implements Initializabl
         assert usernameField != null : "fx:id=\"usernameField\" was not injected: check your FXML file 'Login.fxml'.";
         assert quit != null : "fx:id=\"quit\" was not injected: check your FXML file 'Login.fxml'.";
         // initialize your logic here: all @FXML variables will have been injected
-    }
-   
-   public void handleNodeFade(Node node, int millis, int mode){
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(millis), node);
-        if (mode==0){   //fade in
-            fadeTransition.setFromValue(0.0);
-            fadeTransition.setToValue(1.0);
-        }
-        if (mode==1){   //fade out
-            fadeTransition.setFromValue(1.0);
-            fadeTransition.setToValue(2.0);
-        }        
-        fadeTransition.play();
-    }
-   //overloading handleNodeFade with from value and to value
-   public void handleNodeFade(Node node, int millis, int mode, double fromValue, double toValue){
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(millis), node);
-        if (mode==0){   //fade in
-            fadeTransition.setFromValue(fromValue);
-            fadeTransition.setToValue(toValue);
-        }
-        if (mode==1){   //fade out
-            fadeTransition.setFromValue(1.0);
-            fadeTransition.setToValue(2.0);
-        }        
-        fadeTransition.play();
-    }
+    }   
    
     private void updateFieldState(){
         previousFieldState = currentFieldState;

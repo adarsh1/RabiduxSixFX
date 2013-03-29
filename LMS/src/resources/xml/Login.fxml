@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane id="AnchorPane" blendMode="SRC_OVER" cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="login.LoginFXController">
+<Pane id="AnchorPane" fx:id="rootPane" blendMode="SRC_OVER" cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="320.0" styleClass="lpanel" xmlns:fx="http://javafx.com/fxml" fx:controller="login.LoginFXController">
   <children>
     <Label layoutX="23.0" layoutY="14.0" styleClass="header-4" text="Welcome to RabidusSIX" />
     <Label layoutX="23.0" layoutY="73.0" minHeight="16.0" minWidth="69.0" text="Username" textFill="WHITE" />
@@ -21,6 +22,9 @@
     <Label fx:id="warningMsgField" layoutX="23.0" layoutY="153.0" textFill="#ff3d00" />
     <Button fx:id="loginButton" defaultButton="true" disable="true" layoutX="221.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" styleClass="default" text="Login" />
   </children>
+  <rotationAxis>
+    <Point3D />
+  </rotationAxis>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />
   </stylesheets>

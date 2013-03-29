@@ -22,7 +22,7 @@ import updatecatalogue.UpdateCatalogueController;
  *
  * @author Adarsh
  */
-public class LibrarianFXController extends BaseGUIController implements Initializable{
+public class LibrarianFXController extends BaseFXController implements Initializable{
     @FXML //  fx:id="home"
     private Button home; // Value injected by FXMLLoader
      @FXML //  fx:id="resetfine"

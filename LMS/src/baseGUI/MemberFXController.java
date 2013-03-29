@@ -17,7 +17,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 
-public class MemberFXController extends BaseGUIController implements Initializable {
+public class MemberFXController extends BaseFXController implements Initializable {
     @FXML //  fx:id="borrow"
     private Button borrow; // Value injected by FXMLLoader
 

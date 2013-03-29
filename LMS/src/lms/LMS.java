@@ -4,7 +4,7 @@
  */
 package lms;
 
-import javafx.animation.FadeTransition;
+import baseGUI.BaseFXController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
-import login.LoginFXController;
 
 /**
  *
@@ -57,15 +55,13 @@ public class LMS extends Application {
         
         primaryStage.setScene(scene);
         primaryStage.show();
-        handleRootFadeIn();
-    }
+        
+        //calculate the offset and call 
+        double offset = scene.getWidth()/8.0;
+        BaseFXController.handleOnShowAnimation(root, 500, offset);
+    }    
     
-    public void handleRootFadeIn(){
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(1500), root);
-        fadeTransition.setFromValue(0.0);
-        fadeTransition.setToValue(1.0);
-        fadeTransition.play();
-    }
+    
     
     /*
     @Override
