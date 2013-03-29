@@ -81,7 +81,7 @@ public class DataStore {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
-        User user = null;
+        User user;
         
         where.add("%");
         where.add(username);
@@ -209,9 +209,31 @@ public class DataStore {
         return result;
     }
     
-    public boolean isUserSuspended() {
+    public boolean isUserSuspended(String userID) throws SQLException, ClassNotFoundException {
         
-        throw new UnsupportedOperationException("Not yet implemented");
+        boolean result;
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add(userID);
+        where.add("%");
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.USER, where);
+        resultSet.next();
+        
+        if (resultSet.getBoolean("is_suspended")) {
+            
+            result = true;
+            
+        } else {
+            
+            result = false;
+            
+        }
+        
+        return result;
         
     }
     
@@ -298,7 +320,7 @@ public class DataStore {
         
     }
     
-    public boolean isValidUserName(String username) throws SQLException, ClassNotFoundException{
+    public boolean isValidUsername(String username) throws SQLException, ClassNotFoundException{
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
@@ -379,15 +401,51 @@ public class DataStore {
         
     }
 
-    public int getNumOfBorrowing(String userID) {
+    public int getNumOfBorrowing(String userID) throws SQLException, ClassNotFoundException {
         
-        throw new UnsupportedOperationException("Not yet implemented");
+        int result = 0;
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
         
+        where.add("%");
+        where.add(userID);
+        where.add("%");
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.RECORD, where);
+        
+        while (resultSet.next()) {
+            
+            if (resultSet.getString("time_returned").compareTo("null") == 0) {
+                
+                result ++;
+                
+            } 
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
     }
 
-    public int getNumOfReserving(String userID) {
+    public int getNumOfReserving(String userID) throws SQLException, ClassNotFoundException {
         
-        throw new UnsupportedOperationException("Not yet implemented");
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add("%");
+        where.add("%");
+        where.add(userID);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.COPY, where);
+        
+        database.closeConnection();
+        
+        return database.getNumOfRows(resultSet);
         
     }
 
