@@ -29,7 +29,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import baseGUI.MemberFXController;
 
-public class SearchController extends MemberFXController implements Initializable{
+public class SearchFXController extends MemberFXController implements Initializable{
   
  
  @FXML //  fx:id="scrollpane"
@@ -83,7 +83,7 @@ public class SearchController extends MemberFXController implements Initializabl
         p.setId(""+i);
         p.getStyleClass().add("individual");
         p.setMinSize(295, 98);
-        ImageView img=new ImageView(new Image(SearchController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+        ImageView img=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
         img.setFitHeight(80);
         img.setFitWidth(60);
         img.setLayoutX(228);

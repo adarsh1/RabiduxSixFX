@@ -58,10 +58,10 @@ public void setTitle(String t){
 }
 public void setImage(String url){
     try
-    { cover.setImage(new Image(SearchController.class.getResourceAsStream(url)));
+    { cover.setImage(new Image(SearchFXController.class.getResourceAsStream(url)));
     }
     catch(Exception e){
-        cover.setImage(new Image(SearchController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+        cover.setImage(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
     }
     }
 }
