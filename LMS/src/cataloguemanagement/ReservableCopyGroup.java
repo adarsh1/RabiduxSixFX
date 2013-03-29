@@ -20,7 +20,7 @@ public class ReservableCopyGroup {
     
     public ReservableCopyGroup() {
         
-        
+        copies = new ArrayList<> ();
         
     }
     

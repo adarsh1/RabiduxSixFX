@@ -137,7 +137,7 @@ public class DataStore {
         
         if (searchCriteria.compareTo("TITLE") == 0) { 
             
-            where.add(keyword); 
+            where.add("%" + keyword + "%"); 
             
         } else {
             
@@ -147,7 +147,7 @@ public class DataStore {
         
         if (searchCriteria.compareTo("AUTHOR") == 0) { 
             
-            where.add(keyword); 
+            where.add("%" + keyword + "%"); 
             
         } else {
             
@@ -157,7 +157,7 @@ public class DataStore {
         
         if (searchCriteria.compareTo("ISBN") == 0) { 
             
-            where.add(keyword); 
+            where.add("%" + keyword + "%"); 
             
         } else {
             
@@ -167,7 +167,7 @@ public class DataStore {
         
         if (searchCriteria.compareTo("GENRE") == 0) { 
             
-            where.add(keyword); 
+            where.add("%" + keyword + "%"); 
             
         } else {
             
@@ -183,7 +183,7 @@ public class DataStore {
             
             ReservableCopyGroup reservableCopyGroup = new ReservableCopyGroup();
             
-            reservableCopyGroup.setItemID(resultSet.getString(Table.BOOK.getAttribute("ITEM_ID")));
+            reservableCopyGroup.setItemID(resultSet.getString(Table.BOOK.getAttribute("BOOK_ID")));
             
             result.add(reservableCopyGroup);
             
