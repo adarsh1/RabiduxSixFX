@@ -4,10 +4,29 @@
  */
 package mymaterials;
 
+//import lib and packages
+
+
 /**
  *
  * @author Richard
  */
+
+//relationship with other classes
 public class MyAccoutMgr {
+     
+    //parameters
     
-}
+    
+    
+    //constrcutor
+    public MyAccoutMgr(){
+       
+       
+    }
+}   
+    //methods
+    //getters, setters
+
+
+  
