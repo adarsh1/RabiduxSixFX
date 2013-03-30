@@ -43,14 +43,18 @@ public abstract class Database {
         return numOfRows;
     }
     
-    public String getNewID (Table table) throws SQLException {
+    public String getNewID (Table table) throws SQLException, ClassNotFoundException {
         
-        ResultSet resultSet = selectRecord(table, 1);
+        initializeConnection();
+        
+        ResultSet resultSet = selectRecord(Table.RECORD, 1);
         
         resultSet.next();
         String newID = resultSet.getString(1);
         
-        newID = Integer.toString(Integer.parseInt(newID) + 1);
+        newID = Long.toString(Long.parseLong(newID) + 1);
+        
+        closeConnection();
         
         return newID;
         

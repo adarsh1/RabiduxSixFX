@@ -560,8 +560,28 @@ public class DataStore {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    public void borrow(String individualCopyID, String userID) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void borrow(String individualCopyID, String userID) throws SQLException, ClassNotFoundException {
+        
+        ArrayList<String> values = new ArrayList<> ();
+        Calendar today = new GregorianCalendar();
+        Calendar due = new GregorianCalendar();
+        
+        due.add(Calendar.DAY_OF_YEAR, 30);
+        
+        values.add(database.getNewID(Table.RECORD));
+        values.add(userID);
+        values.add(individualCopyID);
+        values.add(new java.sql.Timestamp(today.getTimeInMillis()).toString());
+        values.add(new java.sql.Timestamp(due.getTimeInMillis()).toString());
+        values.add("0");
+        values.add("0");
+        
+        database.initializeConnection();
+        
+        database.insertRecord(Table.RECORD, values);
+        
+        database.closeConnection();
+        
     }
 
     public void extend(String loanID) {

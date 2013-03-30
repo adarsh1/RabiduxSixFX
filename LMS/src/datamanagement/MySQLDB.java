@@ -47,7 +47,7 @@ public class MySQLDB extends Database{
             
             case USER : queryStr += "INSERT INTO user (user_id, user_type, username, password, fine, is_suspended) VALUES (?,?,?,?,?,?)";
                         break;
-            case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, copy_id, time_borrowed, time_returned, time_to_return, fine_amount, num_of_extend) VALUES (?,?,?,?,?,?,?,?)";
+            case RECORD: queryStr += "INSERT INTO loan_record (loan_id, user_id, copy_id, time_borrowed, time_to_return, fine_amount, num_of_extend) VALUES (?,?,?,?,?,?,?)";
                          break;
             case COPY: queryStr += "INSERT INTO individual_copy (copy_id, item_id, reserved_by, location) VALUES (?,?,?,?)";
                        break;
