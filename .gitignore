@@ -122,6 +122,8 @@ UpgradeLog*.XML
 
 # Windows image file caches
 Thumbs.db
+LMS/nbproject/
+nbproject/
 
 # Folder config file
 Desktop.ini

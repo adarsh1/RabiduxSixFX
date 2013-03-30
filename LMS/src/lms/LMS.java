@@ -57,8 +57,7 @@ public class LMS extends Application {
         primaryStage.show();
         
         //calculate the offset and call 
-        double offset = scene.getWidth()/8.0;
-        BaseFXController.handleOnShowAnimation(root, 500, offset);
+        BaseFXController.handleOnShowAnimation(root, 500, 30.0);
     }    
     
    

@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -58,6 +59,12 @@ public class MemberFXController extends BaseFXController implements Initializabl
     private Button historyMenuButton; // Value injected by FXMLLoader
     
     /* Borrow Control buttons */
+    @FXML
+    private Pane bookInfoPane;
+    @FXML
+    private ScrollPane itemDescriptionScrollPane;
+    @FXML
+    private AnchorPane itemDescriptionAnchorPane;
     @FXML
     private TextField itemIDField;
     @FXML
@@ -121,23 +128,37 @@ public class MemberFXController extends BaseFXController implements Initializabl
             //display all the info about this copy
             itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
             itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
-            itemDescription.setText(borrowMgr.getItem().getDescriptionDisplay());
+            String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
+            itemDescription.setText(itemDescriptionText);
             //add the image to the bookcover field
             Image image = new Image(MainController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
             ImageView imageView = new ImageView();
             imageView.setImage(image);
+            imageView.setFitWidth(130.0);
+            imageView.setPreserveRatio(true);
             bookcoverField.getChildren().add(imageView);
             
             //make the book info field invisible
             borrowMsg.setVisible(false);
+            itemDescriptionScrollPane.setVisible(true);
+            //resize the content pane inside scroll pane accordign to the length of the text
+            double height = computeTextHeight(itemDescriptionText ,50, 18.0);
+            itemDescriptionAnchorPane.setPrefHeight(height);
+            
             
             //enable the confirm button
             confirmBorrow.setDisable(false);
+            
+            //generate animation
+            this.handleNodeFadeTransition(bookInfoPane, 1000);
         }
         catch (SQLException | ClassNotFoundException | TypeMismatchException e){
             borrowMsg.setText(e.getMessage());
-        }
-        
+        }        
+    }
+    
+    private double computeTextHeight(String text, int charsPerLine, double lineHeight){
+        return text.length() / charsPerLine * lineHeight;
     }
 
     @Override // This method is called by the FXMLLoader when initialization is complete

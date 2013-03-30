@@ -171,9 +171,9 @@ public class LoginFXController extends BaseFXController implements Initializable
             stage.show();
             
             //animation for GUI on shown
-            BaseFXController.handleOnShowAnimation(memberFXController.getMenuPane(), 500, 50);
-            BaseFXController.handleOnShowAnimation(memberFXController.getContentPane(), 500, 50);
-            BaseFXController.handleOnShowAnimation(memberFXController.getHelpPane(), 500, 50);
+            BaseFXController.handleOnShowAnimation(memberFXController.getMenuPane(), 500, 30.0);
+            BaseFXController.handleOnShowAnimation(memberFXController.getContentPane(), 500, 30.0);
+            BaseFXController.handleOnShowAnimation(memberFXController.getHelpPane(), 500, 30.0);
         }
        catch(IOException e){
            System.out.println("ERROR: " + resourceURL + " not found!!");
