@@ -109,18 +109,14 @@
     -fx-text-fill: black;   
 }
 
-.menu-buton:hover{
+.menu-buton:hover, .menu-buton:focused{
     -fx-background-color: dodgerblue;
     -fx-text-fill: white;
 }
 
-.menu-buton:pressed{
-  -fx-background-color: black;
-  -fx-text-fill: white;
-}
 .menu-buton:focused
 {
-    -fx-border-color: black;
+    -fx-border-color: dodgerblue;
     -fx-border-width: 1;
     -fx-border-style: segments(1, 1);
     -fx-background-insets: 0 0 0 0, 0, 1, 2;   

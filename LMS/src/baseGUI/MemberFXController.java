@@ -11,8 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -22,17 +24,15 @@ import javafx.scene.layout.Pane;
 public class MemberFXController extends BaseFXController implements Initializable {
     
     @FXML
-    private AnchorPane basePane;
-    
+    private AnchorPane basePane;    
     @FXML
-    private Pane helpPane;
-    
+    private Pane helpPane;    
     @FXML
-    private Pane contentPane;
-    
+    private Pane contentPane;    
     @FXML
     private Pane menuPane;
         
+    /* Menu control buttons */
     @FXML
     private Button searchMenuButton; // Value injected by FXMLLoader
 
@@ -44,6 +44,18 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     @FXML //  fx:id="myMaterial"
     private Button historyMenuButton; // Value injected by FXMLLoader
+    
+    /* Borrow Control buttons */
+    @FXML
+    private Button getBookDetails;
+    @FXML
+    private Label itemTitle;
+    @FXML
+    private Label itemAuthor;
+    @FXML
+    private Text itemDescription;
+    @FXML
+    private Button confirmBorrow;
 
     
     // Handler for Button[fx:id="home"] onAction
@@ -74,6 +86,10 @@ public class MemberFXController extends BaseFXController implements Initializabl
     public void handleMyMaterialTabAction(ActionEvent event) {
         Node node=(Node) event.getSource();
         //transitScene("/resources/xml/MyMaterial.fxml",node); 
+    }
+    
+    public void handleGetBookDetailsButtonAction (ActionEvent event){
+        
     }
 
     @Override // This method is called by the FXMLLoader when initialization is complete
