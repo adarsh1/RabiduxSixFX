@@ -12,6 +12,7 @@ import java.util.*;
  * @author Allen
  */
 public class DataStore {
+    public static final String WILDCARD_CHAR = "%";
         
     private Database database;
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -39,8 +40,8 @@ public class DataStore {
         CatalogueItem catalogueItem = null;
         
         where.add(copyID);
-        where.add("%");
-        where.add("%");
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         
@@ -61,10 +62,10 @@ public class DataStore {
             
             where.clear();
             where.add(itemID);
-            where.add("%");
-            where.add("%");
-            where.add("%");
-            where.add("%");
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
             
             resultSet = database.selectRecord(Table.BOOK, where);
             resultSet.next();
@@ -95,7 +96,7 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         User user;
         
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         where.add(username);
         
         database.initializeConnection();
@@ -141,45 +142,45 @@ public class DataStore {
         ArrayList<ReservableCopyGroup> result = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
         
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         
         if (searchCriteria.compareTo("TITLE") == 0) { 
             
-            where.add("%" + keyword + "%"); 
+            where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
         } else {
             
-            where.add("%");
+            where.add(WILDCARD_CHAR);
             
         }
         
         if (searchCriteria.compareTo("AUTHOR") == 0) { 
             
-            where.add("%" + keyword + "%"); 
+            where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
         } else {
             
-            where.add("%");
+            where.add(WILDCARD_CHAR);
             
         }
         
         if (searchCriteria.compareTo("ISBN") == 0) { 
             
-            where.add("%" + keyword + "%"); 
+            where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
         } else {
             
-            where.add("%");
+            where.add(WILDCARD_CHAR);
             
         }
         
         if (searchCriteria.compareTo("GENRE") == 0) { 
             
-            where.add("%" + keyword + "%"); 
+            where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
         } else {
             
-            where.add("%");
+            where.add(WILDCARD_CHAR);
             
         }
         
@@ -201,9 +202,9 @@ public class DataStore {
             
             where.clear();
             
-            where.add("%");
+            where.add(WILDCARD_CHAR);
             where.add(result.get(i).getItemID());
-            where.add("%");
+            where.add(WILDCARD_CHAR);
             
             resultSet = database.selectRecord(Table.COPY, where);
             
@@ -231,8 +232,8 @@ public class DataStore {
         
         database.initializeConnection();
         
-        condition.add("%");
-        condition.add("%");
+        condition.add(WILDCARD_CHAR);
+        condition.add(WILDCARD_CHAR);
         condition.add(copyID);
         
         ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
@@ -259,8 +260,8 @@ public class DataStore {
         
         database.initializeConnection();
         
-        condition.add("%");
-        condition.add("%");
+        condition.add(WILDCARD_CHAR);
+        condition.add(WILDCARD_CHAR);
         condition.add(copyID);
         
         ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
@@ -289,8 +290,8 @@ public class DataStore {
         database.initializeConnection();
         
         condition.add(copyID);
-        condition.add("%");
-        condition.add("%");
+        condition.add(WILDCARD_CHAR);
+        condition.add(WILDCARD_CHAR);
         
         ResultSet resultSet = database.selectRecord(Table.COPY, condition);
         resultSet.next();
@@ -317,7 +318,7 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         
         where.add(userID);
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         
@@ -344,7 +345,7 @@ public class DataStore {
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         where.add(username);
         
         database.initializeConnection();
@@ -376,10 +377,10 @@ public class DataStore {
         database.initializeConnection();
         
         where.add(bookID);
-        where.add("%");
-        where.add("%");
-        where.add("%");
-        where.add("%");
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
         
         ResultSet resultSet = database.selectRecord(Table.BOOK, where);
         
@@ -406,7 +407,7 @@ public class DataStore {
         database.initializeConnection();
         
         where.add(userID);
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         
         ResultSet resultSet = database.selectRecord(Table.USER, where);
         
@@ -433,7 +434,7 @@ public class DataStore {
         
         database.initializeConnection();
         
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         where.add(username);
         
         
@@ -513,9 +514,9 @@ public class DataStore {
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         where.add(userID);
-        where.add("%");
+        where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         
@@ -541,8 +542,8 @@ public class DataStore {
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         
-        where.add("%");
-        where.add("%");
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
         where.add(userID);
         
         database.initializeConnection();
