@@ -49,8 +49,8 @@ public class LoginFXController extends BaseFXController implements Initializable
     private Pane rootPane; // Value injected by FXMLLoader
       
     private LoginMgr loginMgr;
-    private int currentFieldState = DISABLED;
-    private int previousFieldState = DISABLED;
+    private int currentFieldState;
+    private int previousFieldState;
     
     public static final int DISABLED = 0;
     public static final int ENABLED = 1;
@@ -58,13 +58,15 @@ public class LoginFXController extends BaseFXController implements Initializable
     public LoginFXController(){
         loginMgr = new LoginMgr(); 
         setMC(loginMgr.getMC());
+        currentFieldState = DISABLED;
+        previousFieldState = DISABLED;
     }
     
     
     //enable the login once user has entered username and password
-    public void enableLogin(KeyEvent event){   
+    public void handleOnKeyTyped(KeyEvent event){   
         updateFieldState();
-        //handle enterkey pressed
+        //handle Enterkey pressed
         if (event.getCode() == KeyCode.ENTER) {
             if (currentFieldState == ENABLED){
                 Node node=(Node) event.getSource();            
@@ -73,14 +75,21 @@ public class LoginFXController extends BaseFXController implements Initializable
             }
         }
         else{
-            enableLoginButton(event);
+            updateLoginButton();
         }
     }
+    //handle on key released action
+    public void handleOnKeyReleased(KeyEvent event){
+        //update field state and login button
+        updateFieldState();
+        updateLoginButton();
+    }
     
-    public void enableLoginButton(KeyEvent event){
+    //update login button based on the state of the fields
+    public void updateLoginButton(){
         //if input field is empty, disable login button
         if (currentFieldState == DISABLED){
-            disableLoginButton();
+            loginButton.setDisable(true);
         }
         else if(currentFieldState == ENABLED && previousFieldState == DISABLED){
             loginButton.setDisable(false);
@@ -88,14 +97,10 @@ public class LoginFXController extends BaseFXController implements Initializable
         }
     }
     
-    public void disableLoginButton(){
-        loginButton.setDisable(true);
-    }
-    
     // Handler for Button login [Button[id=null, styleClass=button]] onAction
     public void handleLoginButtonAction(ActionEvent event){    
         //if button pressed and input field not null
-        if(!usernameField.getText().equals("")){
+        if(currentFieldState == ENABLED){
             Node node=(Node) event.getSource();
             //call login function to process login
             login(node);
@@ -165,6 +170,7 @@ public class LoginFXController extends BaseFXController implements Initializable
             stage.setScene(scene);
             stage.show();
             
+            //animation for GUI on shown
             BaseFXController.handleOnShowAnimation(memberFXController.getMenuPane(), 500, 50);
             BaseFXController.handleOnShowAnimation(memberFXController.getContentPane(), 500, 50);
             BaseFXController.handleOnShowAnimation(memberFXController.getHelpPane(), 500, 50);
