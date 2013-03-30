@@ -2,7 +2,7 @@
 package login;
 
 import baseGUI.BaseFXController;
-import baseGUI.MemberFXController;
+import memberpage.MemberFXController;
 import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
 import globalcontroller.MainController;

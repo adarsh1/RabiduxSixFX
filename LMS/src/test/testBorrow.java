@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import usermanagement.Member;
 import usermanagement.User;
 
 /**

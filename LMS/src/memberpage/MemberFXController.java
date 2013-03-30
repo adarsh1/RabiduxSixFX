@@ -2,9 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package baseGUI;
+package memberpage;
 
+import baseGUI.BaseFXController;
+import borrowbook.BorrowMgr;
+import exception.TypeMismatchException;
+import globalcontroller.MainController;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,9 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import usermanagement.Member;
 
 /**
  * FXML Controller class
@@ -22,6 +31,9 @@ import javafx.scene.text.Text;
  * @author Allen
  */
 public class MemberFXController extends BaseFXController implements Initializable {
+    
+    /* Manager classes  */
+    private BorrowMgr borrowMgr;
     
     @FXML
     private AnchorPane basePane;    
@@ -47,16 +59,29 @@ public class MemberFXController extends BaseFXController implements Initializabl
     
     /* Borrow Control buttons */
     @FXML
+    private TextField itemIDField;
+    @FXML
     private Button getBookDetails;
+    @FXML
+    private Label borrowMsg;
+    @FXML
+    private Pane bookcoverField;
     @FXML
     private Label itemTitle;
     @FXML
     private Label itemAuthor;
     @FXML
+    private Label itemID;
+    @FXML
     private Text itemDescription;
     @FXML
     private Button confirmBorrow;
 
+    
+    public MemberFXController(){
+        borrowMgr = new BorrowMgr();
+    }
+    
     
     // Handler for Button[fx:id="home"] onAction
     public void handleHomeTabAction(ActionEvent event) {
@@ -89,6 +114,29 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
     
     public void handleGetBookDetailsButtonAction (ActionEvent event){
+        try{            
+            //create a borrowable item
+            String copyID = itemIDField.getText();            
+            borrowMgr.createItem(copyID);
+            //display all the info about this copy
+            itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
+            itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
+            itemDescription.setText(borrowMgr.getItem().getDescriptionDisplay());
+            //add the image to the bookcover field
+            Image image = new Image(MainController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            bookcoverField.getChildren().add(imageView);
+            
+            //make the book info field invisible
+            borrowMsg.setVisible(false);
+            
+            //enable the confirm button
+            confirmBorrow.setDisable(false);
+        }
+        catch (SQLException | ClassNotFoundException | TypeMismatchException e){
+            borrowMsg.setText(e.getMessage());
+        }
         
     }
 
@@ -102,6 +150,13 @@ public class MemberFXController extends BaseFXController implements Initializabl
         assert searchMenuButton != null : "fx:id=\"search\" was not injected: check your FXML file 'Welcome.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
+    }
+    
+    @Override
+    public void setMC(MainController MC){
+        super.setMC(MC);
+        //downcast this user to member type
+        borrowMgr.setCurrentMember((Member)(this.getMC().getUser()));
     }
 
     /**

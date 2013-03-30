@@ -8,7 +8,7 @@ package mymaterials;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import baseGUI.MemberFXController;
+import memberpage.MemberFXController;
 
 
 public class MyMaterialGUIController extends MemberFXController implements Initializable{

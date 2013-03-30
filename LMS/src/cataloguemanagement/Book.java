@@ -91,16 +91,16 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public String getImageName() {
-         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public String getPublishYearDisplay() {
         
         Calendar calendar = super.getPublishDate();
         return Integer.toString(calendar.get(Calendar.YEAR)) + "-" + Integer.toString(calendar.get(Calendar.MONTH)) + "-" + Integer.toString(calendar.get(Calendar.DATE));
         
+    }
+    
+    @Override
+    public String getItemIDDisplay(){
+        return super.getItemID();
     }
 
     @Override

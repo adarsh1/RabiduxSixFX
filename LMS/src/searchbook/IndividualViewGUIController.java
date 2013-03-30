@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import baseGUI.MemberFXController;
+import memberpage.MemberFXController;
 
 /**
  * FXML Controller class

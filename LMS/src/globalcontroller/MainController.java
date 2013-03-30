@@ -17,6 +17,9 @@ public class MainController {
     //current user
     private User user;
     
+    //link to the bookcover images
+    public static final String BOOKCOVER_IMAGE_PATH = "/resources/images/bookcover/";
+    
     //constructor
     public MainController(){
     }

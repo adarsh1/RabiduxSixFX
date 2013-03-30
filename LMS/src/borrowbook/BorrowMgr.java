@@ -20,7 +20,9 @@ public class BorrowMgr {
     public BorrowMgr(Member currentMember){
         this.currentMember = currentMember;
     }
-    
+    public BorrowMgr(){
+        //empty constructor
+    }
     //borrow the book
     public void borrow() throws SQLException, ClassNotFoundException{
         //if this member is allowed to borrow or reserve
@@ -30,16 +32,16 @@ public class BorrowMgr {
     }
     
     //create a borrowable item based on item ID
-    public void createItem(String itemID) throws SQLException, ClassNotFoundException, TypeMismatchException{
+    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
         //get the catalogue item from catalogue management
-        CatalogueItem catalogueItem = CatalogueItem.getCatalogueItem(itemID);
+        CatalogueItem catalogueItem = CatalogueItem.getCatalogueItem(copyID);
         //if the item is of Borrowable instance
         if (catalogueItem instanceof Borrowable){
             //cast to borrowable type
             setItem( (Borrowable) catalogueItem );
         }
         else{
-            throw new TypeMismatchException(itemID,"Borrowable");
+            throw new TypeMismatchException(catalogueItem.getTitle(),"Borrowable");
         }
     }
 

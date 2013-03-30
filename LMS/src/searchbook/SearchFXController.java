@@ -27,7 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import baseGUI.MemberFXController;
+import memberpage.MemberFXController;
 
 public class SearchFXController extends MemberFXController implements Initializable{
   

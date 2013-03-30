@@ -5,7 +5,7 @@
 
 package lms;
 
-import baseGUI.MemberFXController;
+import memberpage.MemberFXController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;

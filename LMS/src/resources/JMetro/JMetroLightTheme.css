@@ -13,7 +13,7 @@
 
 .header-1, .header-2, .header-3, .header-4, .header-5{    
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: black;
+    -fx-text-fill: dimgrey;
 }
 .header-1{
     -fx-font-size: 42pt;
@@ -674,7 +674,7 @@
 
 .label{
     -fx-font-family: "Segoe UI";
-    -fx-text-fill: black;
+    -fx-text-fill: dimgrey;
 }
 
 /*******************************************************************************
@@ -683,7 +683,7 @@
  *                                                                             *
  ******************************************************************************/
 .help-pane{
-    -fx-background-color: #bababa;
+    -fx-background-color: #cccccc;
 }
 .help-header, .help-text{
     -fx-text-fill: white;
@@ -704,6 +704,9 @@
  ******************************************************************************/
 .book-info-background{
     -fx-fill: white;
+}
+.item-description{
+    -fx-fill:dimgrey;
 }
 
 
