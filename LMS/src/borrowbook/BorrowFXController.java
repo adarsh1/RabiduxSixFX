@@ -18,11 +18,17 @@ import memberpage.MemberFXController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import usermanagement.Member;
 
 
@@ -33,6 +39,8 @@ public class BorrowFXController extends MemberFXController implements Initializa
     private BorrowMgr borrowMgr;
    
     /* Borrow Control buttons */
+    @FXML
+    private AnchorPane contentPane;
     @FXML
     private Pane bookInfoPane;
     @FXML
@@ -122,5 +130,10 @@ public class BorrowFXController extends MemberFXController implements Initializa
         super.setMainController(mainController);
         //set the current member to borrow
         borrowMgr.setCurrentMember((Member)mainController.getUser());
+    }
+        
+    @Override   //play new animation when shown
+    public void playOnShowAnimation (){
+        this.handleOnShowAnimation(contentPane, 500, 30.0);
     }
 }

@@ -19,6 +19,7 @@ public class MainController {
     
     //link to the bookcover images
     public static final String BOOKCOVER_IMAGE_PATH = "/resources/images/bookcover/";
+    public static final String FXML_PATH = "/resources/xml/";
     
     //constructor
     public MainController(){

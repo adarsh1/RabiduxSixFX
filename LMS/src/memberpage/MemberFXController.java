@@ -5,26 +5,16 @@
 package memberpage;
 
 import baseGUI.BaseFXController;
-import borrowbook.BorrowMgr;
-import exception.TypeMismatchException;
 import globalcontroller.MainController;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import usermanagement.Member;
 
 /**
  * FXML Controller class
@@ -71,8 +61,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
 
     // Handler for Button[fx:id="borrow"] onAction
-    public void handleborrowMenuButtonAction(ActionEvent event) {       
-        transitPane("/resources/xml/Borrow.fxml", getContentPlaceHolderPane()); 
+    public void handleborrowMenuButtonAction(ActionEvent event) {            
+        transitPane("Borrow.fxml", getContentPlaceHolderPane());         
         //transitScene("/resources/xml/Borrow.fxml",node);               
     }
     // Handler for Button[fx:id="history"] onAction
