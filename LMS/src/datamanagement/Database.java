@@ -54,8 +54,6 @@ public abstract class Database {
         
         newID = Long.toString(Long.parseLong(newID) + 1);
         
-        closeConnection();
-        
         return newID;
         
     }
