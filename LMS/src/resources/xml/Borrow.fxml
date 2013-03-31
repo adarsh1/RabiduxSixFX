@@ -20,21 +20,23 @@
         <Label id="bookTitle" fx:id="itemTitle" layoutX="150.0" prefWidth="261.0" styleClass="header-5, font-black" />
         <Label fx:id="borrowMsg" styleClass="font-grey" text="Book information will appear here" />
         <Pane id="bookcover" fx:id="bookcoverField" layoutY="4.0" prefHeight="180.0" prefWidth="130.0" />
-        <ScrollPane id="itemDescriptionPane" fx:id="itemDescriptionScrollPane" hbarPolicy="NEVER" layoutX="150.0" layoutY="77.0" prefHeight="206.0" prefWidth="287.0" visible="false">
+        <ScrollPane id="itemDescriptionPane" fx:id="itemDescriptionScrollPane" hbarPolicy="NEVER" layoutX="150.0" layoutY="77.0" prefHeight="220.0" prefWidth="287.0" visible="false">
           <content>
-            <AnchorPane id="Content" fx:id="itemDescriptionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="280.0">
+            <AnchorPane id="Content" fx:id="itemDescriptionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="280.0">
               <children>
                 <Text fx:id="itemDescription" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text, item-description, font-grey" wrappingWidth="270.0" />
               </children>
             </AnchorPane>
           </content>
         </ScrollPane>
+        <Label fx:id="resultMsg" layoutY="303.0" styleClass="result-msg" />
+        <Label fx:id="warningMsg" layoutY="303.0" styleClass="warning-msg" />
       </children>
     </Pane>
     <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of your copy" />
     <TextField fx:id="itemIDField" layoutY="50.0" prefHeight="31.0" prefWidth="307.0" />
     <Button fx:id="getBookDetails" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetBookDetailsButtonAction" prefHeight="30.0" text="Get book details" />
-    <Button fx:id="confirmBorrow" disable="true" layoutX="353.0" layoutY="411.0" mnemonicParsing="false" text="Confirm" />
+    <Button fx:id="confirmBorrow" disable="true" layoutX="353.0" layoutY="423.0" mnemonicParsing="false" text="Confirm" />
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />

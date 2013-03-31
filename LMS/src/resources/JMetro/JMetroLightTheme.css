@@ -41,6 +41,9 @@
 .warning-msg{
     -fx-text-fill: #ff3d00;
 }
+.result-msg{
+    -fx-text-fill:royalblue;
+}
 /*******************************************************************************
  *                                                                             *
  * Push Button                                                                 *

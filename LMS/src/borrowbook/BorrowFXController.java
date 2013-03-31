@@ -5,6 +5,7 @@
 
 package borrowbook;
 
+import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import globalcontroller.MainController;
 import javafx.event.ActionEvent;
@@ -18,17 +19,11 @@ import memberpage.MemberFXController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import usermanagement.Member;
 
 
@@ -65,6 +60,10 @@ public class BorrowFXController extends MemberFXController implements Initializa
     private Text itemDescription;
     @FXML
     private Button confirmBorrow;
+    @FXML 
+    private Label warningMsg;
+    @FXML
+    private Label resultMsg;
     
     //constructor
     public BorrowFXController(){
@@ -72,8 +71,7 @@ public class BorrowFXController extends MemberFXController implements Initializa
         borrowMgr = new BorrowMgr();
     }
     
-    // Handler for Button[Button[id=null, styleClass=button]] onAction
-    
+    // Handler for Button[Button[id=null, styleClass=button]] onAction    
     public void handleGetBookDetailsButtonAction (ActionEvent event){
         try{            
             //create a borrowable item
@@ -111,8 +109,20 @@ public class BorrowFXController extends MemberFXController implements Initializa
         }        
     }
     
+    //compute the height needed for the scroll pane based on the text length
     private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
+    }
+    
+    //handle the borrow when the confirm button is pressed
+    public void handleConfirmButtonAction(ActionEvent event){
+        try{
+            borrowMgr.borrow();
+            resultMsg.setText("Borrow Sucessful");
+        }
+        catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException e){
+            warningMsg.setText(e.getMessage());
+        }
     }
 
     

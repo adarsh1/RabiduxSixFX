@@ -3,6 +3,7 @@ package borrowbook;
 
 import cataloguemanagement.Borrowable;
 import cataloguemanagement.CatalogueItem;
+import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import java.sql.SQLException;
 import usermanagement.Member;
@@ -24,10 +25,13 @@ public class BorrowMgr {
         //empty constructor
     }
     //borrow the book
-    public void borrow() throws SQLException, ClassNotFoundException{
+    public void borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
         //if this member is allowed to borrow or reserve
         if(currentMember.isEligibleToBorrowOrReserve()){
             item.borrow(currentMember.getUserID());
+        }
+        else {
+            throw new NotEligibleToBorrowOrReserveException("Sorry, you are not able to borrow");
         }
     }
     

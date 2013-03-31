@@ -181,9 +181,12 @@ public abstract class BaseFXController implements Initializable, Animatable {
             //load the FXML file
             FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);
             Node content = loadFXML(fxmlLoader);
+            //remove all existing children on the place holder
+            placeHolderPane.getChildren().clear();
             //add this pane into placeholder
             placeHolderPane.getChildren().add(content);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
+            FXController.setMainController(mainController);
             FXController.playOnShowAnimation();                        
         }
        catch(IOException e){
