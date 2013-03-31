@@ -23,6 +23,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import usermanagement.Member;
 
@@ -71,42 +73,57 @@ public class BorrowFXController extends MemberFXController implements Initializa
         borrowMgr = new BorrowMgr();
     }
     
+    public void handleIDFieldKeyPressed(KeyEvent event){
+        try{
+            if (event.getCode() == KeyCode.ENTER){
+                getBookDetails();
+            }
+        }
+        catch (SQLException | ClassNotFoundException | TypeMismatchException e){
+            borrowMsg.setText(e.getMessage());
+        }    
+    }
+    
     // Handler for Button[Button[id=null, styleClass=button]] onAction    
     public void handleGetBookDetailsButtonAction (ActionEvent event){
-        try{            
-            //create a borrowable item
-            String copyID = itemIDField.getText();            
-            borrowMgr.createItem(copyID);
-            //display all the info about this copy
-            itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
-            itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
-            String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
-            itemDescription.setText(itemDescriptionText);
-            //add the image to the bookcover field
-            Image image = new Image(MainController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(130.0);
-            imageView.setPreserveRatio(true);
-            bookcoverField.getChildren().add(imageView);
-            
-            //make the book info field invisible
-            borrowMsg.setVisible(false);
-            itemDescriptionScrollPane.setVisible(true);
-            //resize the content pane inside scroll pane accordign to the length of the text
-            double height = computeTextHeight(itemDescriptionText ,50, 18.0);
-            itemDescriptionAnchorPane.setPrefHeight(height);
-            
-            
-            //enable the confirm button
-            confirmBorrow.setDisable(false);
-            
-            //generate animation
-            this.handleNodeFadeTransition(bookInfoPane, 1000);
+        try{                        
+            getBookDetails();
         }
         catch (SQLException | ClassNotFoundException | TypeMismatchException e){
             borrowMsg.setText(e.getMessage());
         }        
+    }
+    
+    private void getBookDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
+        //create a borrowable item
+        String copyID = itemIDField.getText();            
+        borrowMgr.createItem(copyID);
+        //display all the info about this copy
+        itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
+        itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
+        String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
+        itemDescription.setText(itemDescriptionText);
+        //add the image to the bookcover field
+        Image image = new Image(MainController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
+        ImageView imageView = new ImageView();
+        imageView.setImage(image);
+        imageView.setFitWidth(130.0);
+        imageView.setPreserveRatio(true);
+        bookcoverField.getChildren().add(imageView);
+
+        //make the book info field invisible
+        borrowMsg.setVisible(false);
+        itemDescriptionScrollPane.setVisible(true);
+        //resize the content pane inside scroll pane accordign to the length of the text
+        double height = computeTextHeight(itemDescriptionText ,50, 18.0);
+        itemDescriptionAnchorPane.setPrefHeight(height);
+
+
+        //enable the confirm button
+        confirmBorrow.setDisable(false);
+
+        //generate animation
+        this.handleNodeFadeTransition(bookInfoPane, 1000);
     }
     
     //compute the height needed for the scroll pane based on the text length

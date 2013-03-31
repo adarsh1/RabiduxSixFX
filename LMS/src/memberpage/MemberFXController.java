@@ -5,7 +5,6 @@
 package memberpage;
 
 import baseGUI.BaseFXController;
-import globalcontroller.MainController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -62,8 +61,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     // Handler for Button[fx:id="borrow"] onAction
     public void handleborrowMenuButtonAction(ActionEvent event) {            
-        transitPane("Borrow.fxml", getContentPlaceHolderPane());         
-        //transitScene("/resources/xml/Borrow.fxml",node);               
+        transitPane("Borrow.fxml", getContentPlaceHolderPane());            
     }
     // Handler for Button[fx:id="history"] onAction
     public void handleHistoryTabAction(ActionEvent event) {
@@ -73,9 +71,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
 
     // Handler for Button[fx:id="search"] onAction
-    public void handleSearchTabAction(ActionEvent event) {
-        Node node=(Node) event.getSource();
-        //transitScene("/resources/xml/Search.fxml",node);        
+    public void handleSearchMenuButtonAction(ActionEvent event) {
+        transitPane("Search.fxml", getContentPlaceHolderPane());         
     }
 
     // Handler for Button[fx:id="rentals"] onAction
@@ -86,6 +83,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     
     @Override
     public void playOnShowAnimation(){
+        transitPane("Search.fxml", getContentPlaceHolderPane()); 
         //animation for GUI on shown
         handleOnShowAnimation(menuPane, 500, 30.0);
         handleOnShowAnimation(getContentPlaceHolderPane(), 500, 30.0);

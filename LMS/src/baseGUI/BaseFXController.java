@@ -203,9 +203,9 @@ public abstract class BaseFXController implements Initializable, Animatable {
             FXController.setMainController(mainController);
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.centerOnScreen();
             stage.show();
-            FXController.playOnShowAnimation();            
+            FXController.playOnShowAnimation();                   
+            stage.centerOnScreen();
             
         }
        catch(IOException e){

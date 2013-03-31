@@ -34,7 +34,7 @@
             <Image url="@../images/history.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <Button id="searchButton" fx:id="searchMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Search">
+        <Button id="searchButton" fx:id="searchMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleSearchMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Search">
           <tooltip>
             <Tooltip id="" style="" text="Empty Tooltip" />
           </tooltip>

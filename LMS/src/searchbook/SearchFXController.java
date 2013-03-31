@@ -21,40 +21,79 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import memberpage.MemberFXController;
 
 public class SearchFXController extends MemberFXController implements Initializable{
+    
+    private String tempT;
+    private String tempC;
+    private String tempISBN;
+    private String tempAuthor;
+    
+    private SearchMgr searchMgr;
   
  
- @FXML //  fx:id="scrollpane"
     private ScrollPane scrollpane; // Value injected by FXMLLoader   
  
- @FXML //  fx:id="skeyword"
-    private VBox vb; // Value injected by FXMLLoader  
- 
- @FXML //  fx:id="skeyword"
-    private RadioButton skeyword; // Value injected by FXMLLoader  
- 
- @FXML //  fx:id="stitle"
-    private RadioButton stitle; // Value injected by FXMLLoader   
- 
- @FXML //  fx:id="sauthor"
-    private RadioButton sauthor; // Value injected by FXMLLoader      
- 
- @FXML //  fx:id="sisbn"
-    private RadioButton sisbn; // Value injected by FXMLLoader      
+    @FXML //  fx:id="byAuthor"
+    private RadioButton byAuthor; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="byGenre"
+    private RadioButton byGenre; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="byISBN"
+    private RadioButton byISBN; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="byTitle"
+    private RadioButton byTitle; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="contentPane"
+    private AnchorPane contentPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="keywordField"
+    private TextField keywordField; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="scrollPane"
+    private ScrollPane scrollPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="searchButton"
+    private Button searchButton; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="vb"
+    private VBox vb; // Value injected by FXMLLoader
+
+
+    //constructor
+    public SearchFXController(){
+        super();
+        searchMgr = new SearchMgr();
+    }
     
- private String tempT;
- private String tempC;
- private String tempISBN;
- private String tempAuthor;
- // Handler for Button[Button[id=null, styleClass=button]] onAction
+    @Override // This method is called by the FXMLLoader when initialization is complete
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        assert byAuthor != null : "fx:id=\"byAuthor\" was not injected: check your FXML file 'Search.fxml'.";
+        assert byGenre != null : "fx:id=\"byGenre\" was not injected: check your FXML file 'Search.fxml'.";
+        assert byISBN != null : "fx:id=\"byISBN\" was not injected: check your FXML file 'Search.fxml'.";
+        assert byTitle != null : "fx:id=\"byTitle\" was not injected: check your FXML file 'Search.fxml'.";
+        assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'Search.fxml'.";
+        assert keywordField != null : "fx:id=\"keywordField\" was not injected: check your FXML file 'Search.fxml'.";
+        assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'Search.fxml'.";
+        assert searchButton != null : "fx:id=\"searchButton\" was not injected: check your FXML file 'Search.fxml'.";
+        assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'Search.fxml'.";
+
+        // initialize your logic here: all @FXML variables will have been injected
+    }
+    
+    // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void searchbook(ActionEvent event)throws IOException{
       // Search manager searches for books here..... if found then display
       scrollpane.setVisible(true);
@@ -71,14 +110,6 @@ public class SearchFXController extends MemberFXController implements Initializa
     }
  
  
-    @Override // This method is called by the FXMLLoader when initialization is complete
-    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-       assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'Welcome.fxml'.";
-         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'Welcome.fxml'.";
-        // initialize your logic here: all @FXML variables will have been injected
-
-    }
-
     private void createIndividual(Pane p,int i) {
         p.setId(""+i);
         p.getStyleClass().add("individual");
@@ -125,4 +156,9 @@ public class SearchFXController extends MemberFXController implements Initializa
             }
         });
     }
-   }
+    
+    @Override   //play new animation when shown
+    public void playOnShowAnimation (){
+        this.handleOnShowAnimation(contentPane, 500, 30.0);
+    }
+}

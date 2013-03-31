@@ -5,11 +5,13 @@
 package lms;
 
 import baseGUI.Animatable;
+import globalcontroller.MainController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -54,6 +56,8 @@ public class LMS extends Application {
         scene = new Scene(root, Color.TRANSPARENT);
         
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image(MainController.IMAGE_PATH + "icon.png"));
+        primaryStage.setTitle("RabidusSIX Library Management System");
         primaryStage.centerOnScreen();
         primaryStage.show();     
         //get the controller to play animation on show
