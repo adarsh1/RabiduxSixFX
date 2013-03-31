@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 
-public class WelcomeLibrarianController extends LibrarianFXController implements Initializable{
+public abstract class WelcomeLibrarianController extends LibrarianFXController implements Initializable{
    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
        assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'Welcome.fxml'.";

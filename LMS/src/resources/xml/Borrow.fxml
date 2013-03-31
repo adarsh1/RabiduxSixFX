@@ -11,83 +11,32 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="borrowbook.BorrowFXController">
+<AnchorPane id="borrowPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="borrowbook.BorrowFXController">
   <children>
-    <SplitPane dividerPositions="0.225752508361204" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
-      <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="sidebar">
-          <children>
-            <TilePane hgap="20.0" layoutX="1.0" layoutY="19.0" prefHeight="360.0" prefWidth="117.0" vgap="40.0">
+    <Pane fx:id="bookInfoPane" layoutY="117.0" prefHeight="333.0" prefWidth="437.0">
+      <children>
+        <Label fx:id="itemID" layoutX="150.0" layoutY="55.0" styleClass="font-grey" />
+        <Label id="author" fx:id="itemAuthor" layoutX="150.0" layoutY="35.0" prefWidth="100.0" styleClass="font-grey" />
+        <Label id="bookTitle" fx:id="itemTitle" layoutX="150.0" prefWidth="261.0" styleClass="header-5, font-black" />
+        <Label fx:id="borrowMsg" styleClass="font-grey" text="Book information will appear here" />
+        <Pane id="bookcover" fx:id="bookcoverField" layoutY="4.0" prefHeight="180.0" prefWidth="130.0" />
+        <ScrollPane id="itemDescriptionPane" fx:id="itemDescriptionScrollPane" hbarPolicy="NEVER" layoutX="150.0" layoutY="77.0" prefHeight="206.0" prefWidth="287.0" visible="false">
+          <content>
+            <AnchorPane id="Content" fx:id="itemDescriptionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="280.0">
               <children>
-                <Button fx:id="home" mnemonicParsing="false" onAction="#handleHomeTabAction" prefHeight="41.0" prefWidth="117.0" text="Home" />
-                <Button fx:id="borrow" mnemonicParsing="false" onAction="#handleBorrowTabAction" prefHeight="41.0" prefWidth="117.0" text="Borrow" />
-                <Button fx:id="search" mnemonicParsing="false" onAction="#handleSearchTabAction" prefHeight="40.0" prefWidth="117.0" text="Search" />
-                <Button id="rentals" fx:id="myMaterial" mnemonicParsing="false" onAction="#handleMyMaterialTabAction" prefHeight="41.0" prefWidth="117.0" text="My Material" />
-                <Button fx:id="history" mnemonicParsing="false" onAction="#handleHistoryTabAction" prefHeight="41.0" prefWidth="117.0" text="History" />
+                <Text fx:id="itemDescription" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text, item-description, font-grey" wrappingWidth="270.0" />
               </children>
-              <padding>
-                <Insets left="8.0" />
-              </padding>
-            </TilePane>
-          </children>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-          <children>
-            <SplitPane dividerPositions="0.1590909090909091" focusTraversable="true" orientation="VERTICAL" prefHeight="398.0" prefWidth="488.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="topbar">
-                  <children>
-                    <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
-                      <font>
-                        <Font name="Nyala" size="15.0" fx:id="x1" />
-                      </font>
-                    </Text>
-                    <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="397.0" layoutY="4.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
-                      </image>
-                    </ImageView>
-                  </children>
-                </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                  <children>
-                    <Label layoutX="20.0" layoutY="46.0" text="Borrow :">
-                      <font>
-                        <Font size="14.0" />
-                      </font>
-                    </Label>
-                    <Label layoutX="47.0" layoutY="89.0" text="Book ID :" />
-                    <TextField id="itemID" fx:id="itemIDField" layoutX="102.0" layoutY="86.0" prefWidth="200.0" />
-                    <Button layoutX="326.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleBorrowButtonAction" text="Borrow" />
-                    <Pane fx:id="result" layoutX="47.0" layoutY="151.0" prefHeight="154.0" prefWidth="412.0" visible="false">
-                      <children>
-                        <Text id="Author" fx:id="author" layoutX="36.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Button fx:id="confirmbutton" layoutX="177.0" layoutY="118.0" minHeight="16.0" mnemonicParsing="false" onAction="#confirm" prefHeight="22.000015258789062" prefWidth="57.999977929684974" text="Confirm">
-                          <font>
-                            <Font name="System Bold" size="10.0" />
-                          </font>
-                        </Button>
-                        <Text fx:id="success" fill="#0c9900" layoutX="112.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Text id="Author" fx:id="isbn" layoutX="36.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Text id="Author" fx:id="title" layoutX="36.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                      </children>
-                    </Pane>
-                  </children>
-                  <stylesheets>
-                    <URL value="@../css/MainPane.css" />
-                  </stylesheets>
-                </AnchorPane>
-              </items>
-            </SplitPane>
-          </children>
-        </AnchorPane>
-      </items>
-    </SplitPane>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+      </children>
+    </Pane>
+    <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of your copy" />
+    <TextField fx:id="itemIDField" layoutY="50.0" prefHeight="31.0" prefWidth="307.0" />
+    <Button fx:id="getBookDetails" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetBookDetailsButtonAction" prefHeight="30.0" text="Get book details" />
+    <Button fx:id="confirmBorrow" disable="true" layoutX="353.0" layoutY="411.0" mnemonicParsing="false" text="Confirm" />
   </children>
   <stylesheets>
-    <URL value="@../css/MemberGUI.css" />
-    <URL value="@../css/DefaultGUI.css" />
-    <URL value="@../css/Borrow.css" />
+    <URL value="@../JMetro/JMetroLightTheme.css" />
   </stylesheets>
 </AnchorPane>

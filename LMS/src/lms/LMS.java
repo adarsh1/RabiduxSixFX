@@ -34,7 +34,7 @@ public class LMS extends Application {
         fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Login.fxml")); 
         root = (Parent) fxmlLoader.load();
         
-        //enable the stage to be draggable via tow new handlers
+        //enable the stage to be draggable via two new handlers
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -54,10 +54,9 @@ public class LMS extends Application {
         scene = new Scene(root, Color.TRANSPARENT);
         
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.centerOnScreen();
+        primaryStage.show();        
         
-        //calculate the offset and call 
-        BaseFXController.handleOnShowAnimation(root, 500, 30.0);
     }    
     
    

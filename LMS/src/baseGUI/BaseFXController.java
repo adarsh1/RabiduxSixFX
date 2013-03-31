@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -39,7 +40,7 @@ public abstract class BaseFXController implements Initializable {
     protected Text name; // Value injected by FXMLLoader
     
     //main controller
-    private MainController MC;
+    private MainController mainController;
     
     
     public void logout(MouseEvent event) {
@@ -108,22 +109,21 @@ public abstract class BaseFXController implements Initializable {
        
     
     /**
-     * @return the MC
+     * @return the MainController
      */
-    public MainController getMC() {
-        return MC;
+    public MainController getMainController() {
+        return mainController;
     }
 
     /**
-     * @param MC the MC to set
+     * @param MainController the MainController to set
      */
-    public void setMC(MainController MC) {
-        this.MC = MC;
+    public void setMainController(MainController MainController) {
+        this.mainController = MainController;
     }
     
     //show element with Metro style animation
-    //static funtion to be called without creating a controller instance
-    public static void handleOnShowAnimation(Node node, int millis, double offset){
+    public void handleOnShowAnimation(Node node, int millis, double offset){
         //fade in
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(millis), node);
         fadeTransition.setFromValue(0.0);
@@ -171,4 +171,51 @@ public abstract class BaseFXController implements Initializable {
      public void handleNodeScaleTransition (Node node, int millis){
          handleNodeScaleTransition(node, millis, 0.0, 0.1);
      }
+     
+     public void transitPane(String resourceURL, Pane placeHolderPane){
+        try{      
+            //load the FXML file
+            FXMLLoader fxmlLoader = generateFXMLLoader(resourceURL);
+            Node content = loadFXML(fxmlLoader);
+            //add this pane into placeholder
+            placeHolderPane.getChildren().add(content);
+            BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
+            FXController.playOnShowAnimation();            
+            
+        }
+       catch(IOException e){
+           System.out.println("ERROR: " + resourceURL + " not found!!");
+       }
+    }
+     
+    public void transitScene(String resourceURL, Node node){
+        Stage stage=(Stage) node.getScene().getWindow();
+        try{      
+            FXMLLoader fxmlLoader = generateFXMLLoader(resourceURL);
+            Parent root = loadFXML(fxmlLoader);
+            BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
+            FXController.setMainController(mainController);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+            FXController.playOnShowAnimation();            
+            
+        }
+       catch(IOException e){
+           System.out.println("ERROR: " + resourceURL + " not found!!");
+       }
+    }
+    
+    protected Parent loadFXML(FXMLLoader fxmlLoader) throws IOException{     
+        Parent root = (Parent)fxmlLoader.load(); 
+        return root;
+    }
+    
+    protected FXMLLoader generateFXMLLoader(String resourceURL){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resourceURL)); 
+        return fxmlLoader;
+    } 
+    
+    public abstract void playOnShowAnimation(); 
 }

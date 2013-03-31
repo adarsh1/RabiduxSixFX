@@ -5,6 +5,8 @@
 
 package borrowbook;
 
+import exception.TypeMismatchException;
+import globalcontroller.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,74 +16,95 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import memberpage.MemberFXController;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import usermanagement.Member;
 
 
     // Handler for Button[Button[id=null, styleClass=button]] onAction
 public class BorrowFXController extends MemberFXController implements Initializable{
+    
+    /* Manager classes  */
+    private BorrowMgr borrowMgr;
    
-    @FXML //  fx:id="confirmbutton"
-    private Button confirmbutton; // Value injected by FXMLLoader
-    
-    @FXML //  fx:id="bID"
-    private TextField itemIDField; // Value injected by FXMLLoader
-    
-    @FXML //  fx:id="title"
-    private Text title; // Value injected by FXMLLoader
-    
-    @FXML //  fx:id="success"
-    private Text success; // Value injected by FXMLLoader
-    
-    @FXML //  fx:id="author"
-    private Text author; // Value injected by FXMLLoader
-    
-    @FXML //  fx:id="isbn"
-    private Text isbn; // Value injected by FXMLLoader
-    
-    @FXML //  fx:id="bID"
-    private Pane result; // Value injected by FXMLLoader
+    /* Borrow Control buttons */
+    @FXML
+    private Pane bookInfoPane;
+    @FXML
+    private ScrollPane itemDescriptionScrollPane;
+    @FXML
+    private AnchorPane itemDescriptionAnchorPane;
+    @FXML
+    private TextField itemIDField;
+    @FXML
+    private Button getBookDetails;
+    @FXML
+    private Label borrowMsg;
+    @FXML
+    private Pane bookcoverField;
+    @FXML
+    private Label itemTitle;
+    @FXML
+    private Label itemAuthor;
+    @FXML
+    private Label itemID;
+    @FXML
+    private Text itemDescription;
+    @FXML
+    private Button confirmBorrow;
     
     //constructor
     public BorrowFXController(){
-        
+        super();
+        borrowMgr = new BorrowMgr();
     }
     
     // Handler for Button[Button[id=null, styleClass=button]] onAction
-    public void handleBorrowButtonAction(ActionEvent event){
-        String itemID = getItemID();
-        try{
-            //Borrowable BorrowableItem = DataStore.getCatalogueItem(); 
-            confirmbutton.setVisible(true);
-            success.setText("");
-            if(true){
-                title.setText("Software Engineering");
-                author.setText("Matthew Riley");
-                isbn.setText("SB3984TH");
-                confirmbutton.setVisible(true);
-                success.setText("");
-            }                       
-            else{
-                title.setText("The book id is invalid or currently unavaiable for borrowing");
-                confirmbutton.setVisible(false);
-                author.setText("");
-                isbn.setText("");
-                success.setText("");
-            }
-            result.setVisible(true);
-        }
-        catch(Exception e){
+    
+    public void handleGetBookDetailsButtonAction (ActionEvent event){
+        try{            
+            //create a borrowable item
+            String copyID = itemIDField.getText();            
+            borrowMgr.createItem(copyID);
+            //display all the info about this copy
+            itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
+            itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
+            String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
+            itemDescription.setText(itemDescriptionText);
+            //add the image to the bookcover field
+            Image image = new Image(MainController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(130.0);
+            imageView.setPreserveRatio(true);
+            bookcoverField.getChildren().add(imageView);
             
+            //make the book info field invisible
+            borrowMsg.setVisible(false);
+            itemDescriptionScrollPane.setVisible(true);
+            //resize the content pane inside scroll pane accordign to the length of the text
+            double height = computeTextHeight(itemDescriptionText ,50, 18.0);
+            itemDescriptionAnchorPane.setPrefHeight(height);
+            
+            
+            //enable the confirm button
+            confirmBorrow.setDisable(false);
+            
+            //generate animation
+            this.handleNodeFadeTransition(bookInfoPane, 1000);
         }
-        
-    }
-    public void confirm(ActionEvent event){
-        //call function to change sts of book
-        confirmbutton.setVisible(false);
-        success.setText("The book was borrowed successfully!");        
+        catch (SQLException | ClassNotFoundException | TypeMismatchException e){
+            borrowMsg.setText(e.getMessage());
+        }        
     }
     
-    public String getItemID(){
-        return this.itemIDField.getText();
+    private double computeTextHeight(String text, int charsPerLine, double lineHeight){
+        return text.length() / charsPerLine * lineHeight;
     }
 
     
@@ -91,5 +114,13 @@ public class BorrowFXController extends MemberFXController implements Initializa
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file ";
         // initialize your logic here: all @FXML variables will have been injected
 
+    }
+    
+    
+    @Override   //call the inherited method to pass the maincontroller in, meanwhile update the current member
+    public void setMainController (MainController mainController){
+        super.setMainController(mainController);
+        //set the current member to borrow
+        borrowMgr.setCurrentMember((Member)mainController.getUser());
     }
 }

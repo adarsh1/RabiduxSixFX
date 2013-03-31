@@ -31,17 +31,15 @@ import usermanagement.Member;
  *
  * @author Allen
  */
-public class MemberFXController extends BaseFXController implements Initializable {
+public class MemberFXController extends BaseFXController implements Initializable {   
     
-    /* Manager classes  */
-    private BorrowMgr borrowMgr;
     
     @FXML
     private AnchorPane basePane;    
     @FXML
     private Pane helpPane;    
     @FXML
-    private Pane contentPane;    
+    private Pane contentPlaceHolderPane;    
     @FXML
     private Pane menuPane;
         
@@ -58,35 +56,11 @@ public class MemberFXController extends BaseFXController implements Initializabl
     @FXML //  fx:id="myMaterial"
     private Button historyMenuButton; // Value injected by FXMLLoader
     
-    /* Borrow Control buttons */
-    @FXML
-    private Pane bookInfoPane;
-    @FXML
-    private ScrollPane itemDescriptionScrollPane;
-    @FXML
-    private AnchorPane itemDescriptionAnchorPane;
-    @FXML
-    private TextField itemIDField;
-    @FXML
-    private Button getBookDetails;
-    @FXML
-    private Label borrowMsg;
-    @FXML
-    private Pane bookcoverField;
-    @FXML
-    private Label itemTitle;
-    @FXML
-    private Label itemAuthor;
-    @FXML
-    private Label itemID;
-    @FXML
-    private Text itemDescription;
-    @FXML
-    private Button confirmBorrow;
+    
 
     
     public MemberFXController(){
-        borrowMgr = new BorrowMgr();
+        
     }
     
     
@@ -97,8 +71,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
 
     // Handler for Button[fx:id="borrow"] onAction
-    public void handleBorrowTabAction(ActionEvent event) {        
-        Node node=(Node) event.getSource();
+    public void handleborrowMenuButtonAction(ActionEvent event) {       
+        transitPane("/resources/xml/Borrow.fxml", getContentPlaceHolderPane()); 
         //transitScene("/resources/xml/Borrow.fxml",node);               
     }
     // Handler for Button[fx:id="history"] onAction
@@ -120,46 +94,14 @@ public class MemberFXController extends BaseFXController implements Initializabl
         //transitScene("/resources/xml/MyMaterial.fxml",node); 
     }
     
-    public void handleGetBookDetailsButtonAction (ActionEvent event){
-        try{            
-            //create a borrowable item
-            String copyID = itemIDField.getText();            
-            borrowMgr.createItem(copyID);
-            //display all the info about this copy
-            itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
-            itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
-            String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
-            itemDescription.setText(itemDescriptionText);
-            //add the image to the bookcover field
-            Image image = new Image(MainController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(130.0);
-            imageView.setPreserveRatio(true);
-            bookcoverField.getChildren().add(imageView);
-            
-            //make the book info field invisible
-            borrowMsg.setVisible(false);
-            itemDescriptionScrollPane.setVisible(true);
-            //resize the content pane inside scroll pane accordign to the length of the text
-            double height = computeTextHeight(itemDescriptionText ,50, 18.0);
-            itemDescriptionAnchorPane.setPrefHeight(height);
-            
-            
-            //enable the confirm button
-            confirmBorrow.setDisable(false);
-            
-            //generate animation
-            this.handleNodeFadeTransition(bookInfoPane, 1000);
-        }
-        catch (SQLException | ClassNotFoundException | TypeMismatchException e){
-            borrowMsg.setText(e.getMessage());
-        }        
+    @Override
+    public void playOnShowAnimation(){
+        //animation for GUI on shown
+        handleOnShowAnimation(menuPane, 500, 30.0);
+        handleOnShowAnimation(getContentPlaceHolderPane(), 500, 30.0);
+        handleOnShowAnimation(helpPane, 500, 30.0);
     }
     
-    private double computeTextHeight(String text, int charsPerLine, double lineHeight){
-        return text.length() / charsPerLine * lineHeight;
-    }
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -173,12 +115,6 @@ public class MemberFXController extends BaseFXController implements Initializabl
         // initialize your logic here: all @FXML variables will have been injected
     }
     
-    @Override
-    public void setMC(MainController MC){
-        super.setMC(MC);
-        //downcast this user to member type
-        borrowMgr.setCurrentMember((Member)(this.getMC().getUser()));
-    }
 
     /**
      * @return the basePane
@@ -208,19 +144,6 @@ public class MemberFXController extends BaseFXController implements Initializabl
         this.helpPane = helpPane;
     }
 
-    /**
-     * @return the contentPane
-     */
-    public Pane getContentPane() {
-        return contentPane;
-    }
-
-    /**
-     * @param contentPane the contentPane to set
-     */
-    public void setContentPane(Pane contentPane) {
-        this.contentPane = contentPane;
-    }
 
     /**
      * @return the menuPane
@@ -234,6 +157,20 @@ public class MemberFXController extends BaseFXController implements Initializabl
      */
     public void setMenuPane(Pane menuPane) {
         this.menuPane = menuPane;
+    }
+
+    /**
+     * @return the contentPlaceHolderPane
+     */
+    public Pane getContentPlaceHolderPane() {
+        return contentPlaceHolderPane;
+    }
+
+    /**
+     * @param contentPlaceHolderPane the contentPlaceHolderPane to set
+     */
+    public void setContentPlaceHolderPane(Pane contentPlaceHolderPane) {
+        this.contentPlaceHolderPane = contentPlaceHolderPane;
     }
     
     
