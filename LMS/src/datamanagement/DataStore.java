@@ -524,7 +524,7 @@ public class DataStore {
         
         while (resultSet.next()) {
             
-            if (resultSet.getString(Table.RECORD.getAttribute("TIME_RETURNED")).compareTo("null") == 0) {
+            if (resultSet.getString(Table.RECORD.getAttribute("TIME_RETURNED")) == null) {
                 
                 result ++;
                 
@@ -539,6 +539,7 @@ public class DataStore {
 
     public int getNumOfReserving(String userID) throws SQLException, ClassNotFoundException {
         
+        int result;
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         
@@ -549,10 +550,11 @@ public class DataStore {
         database.initializeConnection();
         
         resultSet = database.selectRecord(Table.COPY, where);
+        result = database.getNumOfRows(resultSet);
         
         database.closeConnection();
         
-        return database.getNumOfRows(resultSet);
+        return result;
         
     }
 
