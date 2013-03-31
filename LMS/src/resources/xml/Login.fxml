@@ -19,7 +19,7 @@
     <TextField fx:id="usernameField" layoutX="92.0" layoutY="70.0" onKeyReleased="#handleOnKeyReleased" onKeyTyped="#handleOnKeyTyped" prefWidth="199.9998779296875" />
     <Label layoutX="23.0" layoutY="115.0" styleClass="font-black" text="Password" textFill="WHITE" />
     <PasswordField fx:id="passwordField" layoutX="92.0" layoutY="112.0" onKeyReleased="#handleOnKeyTyped" onKeyTyped="#handleOnKeyTyped" prefWidth="200.0" />
-    <Label fx:id="warningMsgField" layoutX="23.0" layoutY="153.0" textFill="#ff3d00" />
+    <Label fx:id="warningMsgField" layoutX="23.0" layoutY="153.0" styleClass="warning-msg" textFill="#ff3d00" />
     <Button fx:id="loginButton" defaultButton="true" disable="true" layoutX="221.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" styleClass="default" text="Login" />
   </children>
   <rotationAxis>

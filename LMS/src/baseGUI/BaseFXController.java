@@ -31,7 +31,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-public abstract class BaseFXController implements Initializable {
+public abstract class BaseFXController implements Initializable, Animatable {
 
     @FXML //  fx:id="logout"
     protected ImageView logout; // Value injected by FXMLLoader
@@ -123,6 +123,7 @@ public abstract class BaseFXController implements Initializable {
     }
     
     //show element with Metro style animation
+    @Override
     public void handleOnShowAnimation(Node node, int millis, double offset){
         //fade in
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(millis), node);
@@ -146,6 +147,7 @@ public abstract class BaseFXController implements Initializable {
     }
     
     //apply fade animation
+    @Override
     public void handleNodeFadeTransition(Node node, int millis, double fromValue, double toValue){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(millis), node);
         fadeTransition.setFromValue(fromValue);
@@ -154,11 +156,13 @@ public abstract class BaseFXController implements Initializable {
     }
    
     //overloading handleNodeFadeTransistion with default from value and to value
+    @Override
     public void handleNodeFadeTransition(Node node, int millis){
         handleNodeFadeTransition(node, millis, 0.0, 1.0);
     }
    
     //apply scale transition to a node element
+    @Override
     public void handleNodeScaleTransition (Node node, int millis, double fromValue, double toValue ){        
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(millis), node);
         scaleTransition.setFromX(fromValue);
@@ -175,13 +179,12 @@ public abstract class BaseFXController implements Initializable {
      public void transitPane(String resourceURL, Pane placeHolderPane){
         try{      
             //load the FXML file
-            FXMLLoader fxmlLoader = generateFXMLLoader(resourceURL);
+            FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);
             Node content = loadFXML(fxmlLoader);
             //add this pane into placeholder
             placeHolderPane.getChildren().add(content);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
-            FXController.playOnShowAnimation();            
-            
+            FXController.playOnShowAnimation();                        
         }
        catch(IOException e){
            System.out.println("ERROR: " + resourceURL + " not found!!");
@@ -191,7 +194,7 @@ public abstract class BaseFXController implements Initializable {
     public void transitScene(String resourceURL, Node node){
         Stage stage=(Stage) node.getScene().getWindow();
         try{      
-            FXMLLoader fxmlLoader = generateFXMLLoader(resourceURL);
+            FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);
             Parent root = loadFXML(fxmlLoader);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
             FXController.setMainController(mainController);
@@ -217,5 +220,6 @@ public abstract class BaseFXController implements Initializable {
         return fxmlLoader;
     } 
     
+    @Override
     public abstract void playOnShowAnimation(); 
 }

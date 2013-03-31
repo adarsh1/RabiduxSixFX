@@ -4,7 +4,7 @@
  */
 package lms;
 
-import baseGUI.BaseFXController;
+import baseGUI.Animatable;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -55,8 +55,10 @@ public class LMS extends Application {
         
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
-        primaryStage.show();        
-        
+        primaryStage.show();     
+        //get the controller to play animation on show
+        Animatable controller = fxmlLoader.getController();
+        controller.playOnShowAnimation();        
     }    
     
    
