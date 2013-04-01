@@ -45,14 +45,33 @@ public abstract class Database {
     
     public String getNewID (Table table) throws SQLException, ClassNotFoundException {
         
+        String newID = new String();
         initializeConnection();
         
         ResultSet resultSet = selectRecord(Table.RECORD, 1);
         
-        resultSet.next();
-        String newID = resultSet.getString(1);
+        if (resultSet.next()) {
+            
+            newID = resultSet.getString(1);
+            newID = Long.toString(Long.parseLong(newID) + 1);
+            
+        } else {
+            
+            switch(table) {
+                
+                case USER : newID = "1000000001";
+                            break;
+                case COPY : newID = "2000000001";
+                            break;
+                case BOOK : newID = "3000000001";
+                            break;
+                case RECORD: newID = "4000000001";
+                            break;
+                
+            }
+            
+        }
         
-        newID = Long.toString(Long.parseLong(newID) + 1);
         
         return newID;
         

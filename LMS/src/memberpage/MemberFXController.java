@@ -46,12 +46,6 @@ public class MemberFXController extends BaseFXController implements Initializabl
     private Button historyMenuButton; // Value injected by FXMLLoader
     
     
-
-    
-    public MemberFXController(){
-        
-    }
-    
     
     // Handler for Button[fx:id="home"] onAction
     public void handleHomeTabAction(ActionEvent event) {
@@ -83,7 +77,6 @@ public class MemberFXController extends BaseFXController implements Initializabl
     
     @Override
     public void playOnShowAnimation(){
-        transitPane("Search.fxml", getContentPlaceHolderPane()); 
         //animation for GUI on shown
         handleOnShowAnimation(menuPane, 500, 30.0);
         handleOnShowAnimation(getContentPlaceHolderPane(), 500, 30.0);
@@ -101,6 +94,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
         assert searchMenuButton != null : "fx:id=\"search\" was not injected: check your FXML file 'Welcome.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
+        //show search pane when first loaded
+        transitPane("Search.fxml", getContentPlaceHolderPane()); 
     }
     
 

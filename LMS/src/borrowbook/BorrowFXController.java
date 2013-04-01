@@ -36,42 +36,51 @@ public class BorrowFXController extends MemberFXController implements Initializa
     private BorrowMgr borrowMgr;
    
     /* Borrow Control buttons */
-    @FXML
-    private AnchorPane contentPane;
-    @FXML
-    private Pane bookInfoPane;
-    @FXML
-    private ScrollPane itemDescriptionScrollPane;
-    @FXML
-    private AnchorPane itemDescriptionAnchorPane;
-    @FXML
-    private TextField itemIDField;
-    @FXML
-    private Button getBookDetails;
-    @FXML
-    private Label borrowMsg;
-    @FXML
-    private Pane bookcoverField;
-    @FXML
-    private Label itemTitle;
-    @FXML
-    private Label itemAuthor;
-    @FXML
-    private Label itemID;
-    @FXML
-    private Text itemDescription;
-    @FXML
-    private Button confirmBorrow;
-    @FXML 
-    private Label warningMsg;
-    @FXML
-    private Label resultMsg;
-    
-    //constructor
-    public BorrowFXController(){
-        super();
-        borrowMgr = new BorrowMgr();
-    }
+    @FXML //  fx:id="bookInfoPane"
+    private Pane bookInfoPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="bookcoverField"
+    private Pane bookcoverField; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="borrowMsg"
+    private Label borrowMsg; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="confirmBorrow"
+    private Button confirmBorrow; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="contentPane"
+    private AnchorPane contentPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="getBookDetails"
+    private Button getBookDetails; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="itemAuthor"
+    private Label itemAuthor; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="itemDescription"
+    private Text itemDescription; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="itemDescriptionAnchorPane"
+    private AnchorPane itemDescriptionAnchorPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="itemDescriptionScrollPane"
+    private ScrollPane itemDescriptionScrollPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="itemID"
+    private Label itemID; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="itemIDField"
+    private TextField itemIDField; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="itemTitle"
+    private Label itemTitle; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="resultMsg"
+    private Label resultMsg; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="warningMsg"
+    private Label warningMsg; // Value injected by FXMLLoader
+
     
     public void handleIDFieldKeyPressed(KeyEvent event){
         try{
@@ -133,21 +142,40 @@ public class BorrowFXController extends MemberFXController implements Initializa
     
     //handle the borrow when the confirm button is pressed
     public void handleConfirmButtonAction(ActionEvent event){
+        resultMsg.setText("");
+        warningMsg.setText("");
         try{
             borrowMgr.borrow();
             resultMsg.setText("Borrow Sucessful");
+            this.handleOnShowAnimation(resultMsg, 500, 20.0);
         }
         catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException e){
             warningMsg.setText(e.getMessage());
+            this.handleOnShowAnimation(warningMsg, 500, 20.0);
         }
     }
 
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-       assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file ";
-        assert name != null : "fx:id=\"name\" was not injected: check your FXML file ";
+        assert bookInfoPane != null : "fx:id=\"bookInfoPane\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert bookcoverField != null : "fx:id=\"bookcoverField\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert borrowMsg != null : "fx:id=\"borrowMsg\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert confirmBorrow != null : "fx:id=\"confirmBorrow\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert getBookDetails != null : "fx:id=\"getBookDetails\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert itemAuthor != null : "fx:id=\"itemAuthor\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert itemDescription != null : "fx:id=\"itemDescription\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert itemDescriptionAnchorPane != null : "fx:id=\"itemDescriptionAnchorPane\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert itemDescriptionScrollPane != null : "fx:id=\"itemDescriptionScrollPane\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert itemID != null : "fx:id=\"itemID\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert itemIDField != null : "fx:id=\"itemIDField\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert itemTitle != null : "fx:id=\"itemTitle\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert resultMsg != null : "fx:id=\"resultMsg\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert warningMsg != null : "fx:id=\"warningMsg\" was not injected: check your FXML file 'Borrow.fxml'.";
+        
         // initialize your logic here: all @FXML variables will have been injected
+        borrowMgr = new BorrowMgr();
 
     }
     

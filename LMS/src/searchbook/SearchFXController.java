@@ -72,12 +72,6 @@ public class SearchFXController extends MemberFXController implements Initializa
     private VBox vb; // Value injected by FXMLLoader
 
 
-    //constructor
-    public SearchFXController(){
-        super();
-        searchMgr = new SearchMgr();
-    }
-    
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert byAuthor != null : "fx:id=\"byAuthor\" was not injected: check your FXML file 'Search.fxml'.";
@@ -91,6 +85,7 @@ public class SearchFXController extends MemberFXController implements Initializa
         assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'Search.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
+        searchMgr = new SearchMgr();
     }
     
     // Handler for Button[Button[id=null, styleClass=button]] onAction
