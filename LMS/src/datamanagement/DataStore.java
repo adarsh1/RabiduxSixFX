@@ -10,6 +10,7 @@ import java.util.*;
 /**
  *
  * @author Allen
+ * @edit Adarsh
  */
 public class DataStore {
     public static final String WILDCARD_CHAR = "%";
@@ -195,6 +196,8 @@ public class DataStore {
             ReservableCopyGroup reservableCopyGroup = new ReservableCopyGroup();
             
             reservableCopyGroup.setItemID(resultSet.getString(Table.BOOK.getAttribute("BOOK_ID")));
+            reservableCopyGroup.setItemAuthor(resultSet.getString(Table.BOOK.getAttribute("AUTHOR")));
+            reservableCopyGroup.setItemTitle(resultSet.getString(Table.BOOK.getAttribute("TITLE")));
             
             result.add(reservableCopyGroup);
             

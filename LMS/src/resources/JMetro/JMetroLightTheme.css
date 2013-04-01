@@ -722,10 +722,25 @@
     -fx-fill:dimgrey;
     -fx-font-family: "Segoe UI";
 }
+/*******************************************************************************
+ *                                                                             *
+ * Search part                                                                 *
+ *                                                                             *
+ ******************************************************************************/
 
-
-
-
+.searchPane{
+    -fx-background-color: #ffffff;
+    -fx-padding: 8 6 8 10;
+}
+.searchResult{
+    -fx-background-color: #dedede;
+    -fx-opacity: 0.5;
+    -fx-padding: 8 6 8 6;
+}
+.searchResult:hover{
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
 
 
 

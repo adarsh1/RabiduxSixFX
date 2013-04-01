@@ -58,4 +58,7 @@ public class SearchMgr {
     {
         this.itemGroup = group;
     }
+    public int getNoOfResults(){
+      return  itemGroup.size();
+    }
 }
