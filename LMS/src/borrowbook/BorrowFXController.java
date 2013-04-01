@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -74,6 +75,9 @@ public class BorrowFXController extends MemberFXController implements Initializa
 
     @FXML //  fx:id="itemTitle"
     private Label itemTitle; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="fullItemTitle"
+    private Tooltip fullItemTitle; // Value injected by FXMLLoader
 
     @FXML //  fx:id="resultMsg"
     private Label resultMsg; // Value injected by FXMLLoader
@@ -109,6 +113,7 @@ public class BorrowFXController extends MemberFXController implements Initializa
         borrowMgr.createItem(copyID);
         //display all the info about this copy
         itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
+        fullItemTitle.setText(borrowMgr.getItem().getTitleDisplay());
         itemAuthor.setText("Author: " + borrowMgr.getItem().getAuthorDisplay());
         itemID.setText("Item ID: " + borrowMgr.getItem().getItemIDDisplay());
         String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
@@ -125,7 +130,7 @@ public class BorrowFXController extends MemberFXController implements Initializa
         borrowMsg.setVisible(false);
         itemDescriptionScrollPane.setVisible(true);
         //resize the content pane inside scroll pane accordign to the length of the text
-        double height = computeTextHeight(itemDescriptionText ,50, 18.0);
+        double height = computeTextHeight(itemDescriptionText ,60, 18.0);
         itemDescriptionAnchorPane.setPrefHeight(height);
 
 
