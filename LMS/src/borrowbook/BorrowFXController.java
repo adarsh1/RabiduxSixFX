@@ -109,8 +109,8 @@ public class BorrowFXController extends MemberFXController implements Initializa
         borrowMgr.createItem(copyID);
         //display all the info about this copy
         itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
-        itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
-        itemID.setText(borrowMgr.getItem().getItemIDDisplay());
+        itemAuthor.setText("Author: " + borrowMgr.getItem().getAuthorDisplay());
+        itemID.setText("Item ID: " + borrowMgr.getItem().getItemIDDisplay());
         String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
         itemDescription.setText(itemDescriptionText);
         //add the image to the bookcover field
