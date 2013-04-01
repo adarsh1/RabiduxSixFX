@@ -69,8 +69,8 @@ public class BorrowFXController extends MemberFXController implements Initializa
     @FXML //  fx:id="itemID"
     private Label itemID; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="itemIDField"
-    private TextField itemIDField; // Value injected by FXMLLoader
+    @FXML //  fx:id="copyIDField"
+    private TextField copyIDField; // Value injected by FXMLLoader
 
     @FXML //  fx:id="itemTitle"
     private Label itemTitle; // Value injected by FXMLLoader
@@ -105,11 +105,12 @@ public class BorrowFXController extends MemberFXController implements Initializa
     
     private void getBookDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
         //create a borrowable item
-        String copyID = itemIDField.getText();            
+        String copyID = copyIDField.getText();            
         borrowMgr.createItem(copyID);
         //display all the info about this copy
         itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
         itemAuthor.setText(borrowMgr.getItem().getAuthorDisplay());
+        itemID.setText(borrowMgr.getItem().getItemIDDisplay());
         String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
         itemDescription.setText(itemDescriptionText);
         //add the image to the bookcover field
@@ -169,7 +170,7 @@ public class BorrowFXController extends MemberFXController implements Initializa
         assert itemDescriptionAnchorPane != null : "fx:id=\"itemDescriptionAnchorPane\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemDescriptionScrollPane != null : "fx:id=\"itemDescriptionScrollPane\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemID != null : "fx:id=\"itemID\" was not injected: check your FXML file 'Borrow.fxml'.";
-        assert itemIDField != null : "fx:id=\"itemIDField\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert copyIDField != null : "fx:id=\"copyIDField\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemTitle != null : "fx:id=\"itemTitle\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert resultMsg != null : "fx:id=\"resultMsg\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert warningMsg != null : "fx:id=\"warningMsg\" was not injected: check your FXML file 'Borrow.fxml'.";

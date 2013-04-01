@@ -16,10 +16,10 @@
     <Pane fx:id="bookInfoPane" layoutY="117.0" prefHeight="333.0" prefWidth="437.0">
       <children>
         <Label fx:id="itemID" layoutX="150.0" layoutY="55.0" styleClass="font-grey" />
-        <Label id="author" fx:id="itemAuthor" layoutX="150.0" layoutY="35.0" prefWidth="100.0" styleClass="font-grey" />
-        <Label id="bookTitle" fx:id="itemTitle" layoutX="150.0" prefWidth="261.0" styleClass="header-5, font-black" />
+        <Label id="author" fx:id="itemAuthor" layoutX="150.0" layoutY="32.0" prefWidth="100.0" styleClass="font-grey" />
+        <Label id="bookTitle" fx:id="itemTitle" layoutY="-6.0" prefWidth="435.0" styleClass="header-5, font-black" />
         <Label fx:id="borrowMsg" styleClass="font-grey" text="Book information will appear here" />
-        <Pane id="bookcover" fx:id="bookcoverField" layoutY="4.0" prefHeight="180.0" prefWidth="130.0" />
+        <Pane id="bookcover" fx:id="bookcoverField" layoutY="35.0" prefHeight="180.0" prefWidth="130.0" />
         <ScrollPane id="itemDescriptionPane" fx:id="itemDescriptionScrollPane" hbarPolicy="NEVER" layoutX="150.0" layoutY="77.0" prefHeight="220.0" prefWidth="287.0" visible="false">
           <content>
             <AnchorPane id="Content" fx:id="itemDescriptionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="280.0">
@@ -34,7 +34,7 @@
       </children>
     </Pane>
     <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of your copy" />
-    <TextField fx:id="itemIDField" layoutY="50.0" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="31.0" prefWidth="307.0" />
+    <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="31.0" prefWidth="307.0" />
     <Button fx:id="getBookDetails" layoutX="312.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetBookDetailsButtonAction" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="30.0" text="Get book details" />
     <Button fx:id="confirmBorrow" disable="true" layoutX="353.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
   </children>
