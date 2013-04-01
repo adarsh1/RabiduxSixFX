@@ -176,7 +176,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
          handleNodeScaleTransition(node, millis, 0.0, 0.1);
      }
      
-     public void transitPane(String resourceURL, Pane placeHolderPane){
+     public void transitPane(String resourceURL, Pane placeHolderPane, MainController mainController){
         try{      
             //load the FXML file
             FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);

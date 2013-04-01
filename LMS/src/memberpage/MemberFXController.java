@@ -55,7 +55,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     // Handler for Button[fx:id="borrow"] onAction
     public void handleborrowMenuButtonAction(ActionEvent event) {            
-        transitPane("Borrow.fxml", getContentPlaceHolderPane());            
+        transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getMainController());            
     }
     // Handler for Button[fx:id="history"] onAction
     public void handleHistoryTabAction(ActionEvent event) {
@@ -66,7 +66,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     // Handler for Button[fx:id="search"] onAction
     public void handleSearchMenuButtonAction(ActionEvent event) {
-        transitPane("Search.fxml", getContentPlaceHolderPane());         
+        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getMainController());         
     }
 
     // Handler for Button[fx:id="rentals"] onAction
@@ -77,6 +77,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
     
     @Override
     public void playOnShowAnimation(){
+        //show search pane when first loaded
+        transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getMainController()); 
         //animation for GUI on shown
         handleOnShowAnimation(menuPane, 500, 30.0);
         handleOnShowAnimation(getContentPlaceHolderPane(), 500, 30.0);
@@ -94,8 +96,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
         assert searchMenuButton != null : "fx:id=\"search\" was not injected: check your FXML file 'Welcome.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
-        //show search pane when first loaded
-        transitPane("Borrow.fxml", getContentPlaceHolderPane()); 
+        
     }
     
 
