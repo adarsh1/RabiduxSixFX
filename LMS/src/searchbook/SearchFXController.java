@@ -116,8 +116,18 @@ public class SearchFXController extends MemberFXController implements Initializa
                   createIndividual(p,i);
                 vb.getChildren().add(p);
             }
+
           /* CODE TO GET SEARCH RESULTS FROM DATABASE AND PUT IN PANES
+          try{
+          if(byTitle.isSelected())
           searchMgr.SearchByTitle(keywordField.getText());
+          else if(byAuthor.isSelected())
+          searchMgr.SearchByAuthor(keywordField.getText());
+          else if(byISBN.isSelected())
+          searchMgr.SearchByISBN(keywordField.getText());
+          else
+          searchMgr.SearchByGenre(keywordField.getText());
+          } catch those exceptions
           for(i=0;i<searchMgr.getItemGroup().size();i++)
           {Pane p=new Pane();
            createIndividual(p,i,searchMgr.getItemGroup().get(i));
