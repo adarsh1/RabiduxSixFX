@@ -93,14 +93,13 @@ public class SearchFXController extends MemberFXController implements Initializa
         searchMgr = new SearchMgr();
     }
     
-    /*
+    
     @Override
     public void setMainController (MainController mainController){
         super.setMainController(mainController);
         //set the current member to borrow
         searchMgr.setCurrentMember((Member)mainController.getUser());
     }
-    */
     
     
     // Handler for Button[Button[id=null, styleClass=button]] onAction
@@ -111,17 +110,12 @@ public class SearchFXController extends MemberFXController implements Initializa
       scrollPane.setContent(vb);
       vb.setSpacing(20);
       int i;
-        try {
-            
+
             for(i=0;i<50;i++)
             {  Pane p=new Pane();
                   createIndividual(p,i);
                 vb.getChildren().add(p);
             }
-                
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(SearchFXController.class.getName()).log(Level.SEVERE, null, ex);
-        }
           /* CODE TO GET SEARCH RESULTS FROM DATABASE AND PUT IN PANES
           searchMgr.SearchByTitle(keywordField.getText());
           for(i=0;i<searchMgr.getItemGroup().size();i++)
@@ -190,15 +184,15 @@ public class SearchFXController extends MemberFXController implements Initializa
         img.setLayoutX(228);
         img.setLayoutY(8);
         img.setPreserveRatio(true);
-        Text t = new Text(14, 50, item.getitemTitle());
+        Text t = new Text(14, 50, item.getItemTitle());
         
         t.setWrappingWidth(210);
         t.setTextOrigin(VPos.CENTER);
         t.setTextAlignment(TextAlignment.CENTER);
         p.getChildren().addAll(t,img);
         tempT=t.getText();
-        tempISBN=item.getitemISBN();
-        tempAuthor=item.getitemAuthor;
+        tempISBN=item.getISBN();
+        tempAuthor=item.getItemAuthor();
         tempC="images/default_book_cover.jpg";
         p.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
