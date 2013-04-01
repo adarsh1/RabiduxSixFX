@@ -5,13 +5,18 @@
 
 package searchbook;
 
+import cataloguemanagement.ReservableCopyGroup;
+import globalcontroller.MainController;
 import javafx.scene.text.Text;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,6 +36,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import memberpage.MemberFXController;
+import usermanagement.Member;
 
 public class SearchFXController extends MemberFXController implements Initializable{
     
@@ -42,9 +48,7 @@ public class SearchFXController extends MemberFXController implements Initializa
     private SearchMgr searchMgr;
   
  
-    private ScrollPane scrollpane; // Value injected by FXMLLoader   
- 
-    @FXML //  fx:id="byAuthor"
+     @FXML //  fx:id="byAuthor"
     private RadioButton byAuthor; // Value injected by FXMLLoader
 
     @FXML //  fx:id="byGenre"
@@ -72,6 +76,7 @@ public class SearchFXController extends MemberFXController implements Initializa
     private VBox vb; // Value injected by FXMLLoader
 
 
+
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert byAuthor != null : "fx:id=\"byAuthor\" was not injected: check your FXML file 'Search.fxml'.";
@@ -84,24 +89,47 @@ public class SearchFXController extends MemberFXController implements Initializa
         assert searchButton != null : "fx:id=\"searchButton\" was not injected: check your FXML file 'Search.fxml'.";
         assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'Search.fxml'.";
 
-        // initialize your logic here: all @FXML variables will have been injected
+        // initialize your logic here: all @FXML variables will have been injecte       
         searchMgr = new SearchMgr();
     }
     
+    /*
+    @Override
+    public void setMainController (MainController mainController){
+        super.setMainController(mainController);
+        //set the current member to borrow
+        searchMgr.setCurrentMember((Member)mainController.getUser());
+    }
+    */
+    
+    
     // Handler for Button[Button[id=null, styleClass=button]] onAction
-    public void searchbook(ActionEvent event)throws IOException{
+    public void handlesearchbutton(ActionEvent event)throws IOException{
       // Search manager searches for books here..... if found then display
-      scrollpane.setVisible(true);
+      scrollPane.setVisible(true);
       vb.setVisible(true);
-      scrollpane.setContent(vb);
+      scrollPane.setContent(vb);
       vb.setSpacing(20);
       int i;
-      for(i=0;i<50;i++)
-      {  Pane p=new Pane();
-            createIndividual(p,i);
-          vb.getChildren().add(p);
-      }
-      
+        try {
+            
+            for(i=0;i<50;i++)
+            {  Pane p=new Pane();
+                  createIndividual(p,i);
+                vb.getChildren().add(p);
+            }
+                
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(SearchFXController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          /* CODE TO GET SEARCH RESULTS FROM DATABASE AND PUT IN PANES
+          searchMgr.SearchByTitle(keywordField.getText());
+          for(i=0;i<searchMgr.getItemGroup().size();i++)
+          {Pane p=new Pane();
+           createIndividual(p,i,searchMgr.getItemGroup().get(i));
+           vb.getChildren().add(p);
+          }
+          */
     }
  
  
@@ -151,6 +179,59 @@ public class SearchFXController extends MemberFXController implements Initializa
             }
         });
     }
+    
+     private void createIndividual(Pane p,int i, ReservableCopyGroup item) {
+        p.setId(""+i);
+        p.getStyleClass().add("individual");
+        p.setMinSize(295, 98);
+        ImageView img=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+        img.setFitHeight(80);
+        img.setFitWidth(60);
+        img.setLayoutX(228);
+        img.setLayoutY(8);
+        img.setPreserveRatio(true);
+        Text t = new Text(14, 50, item.getitemTitle());
+        
+        t.setWrappingWidth(210);
+        t.setTextOrigin(VPos.CENTER);
+        t.setTextAlignment(TextAlignment.CENTER);
+        p.getChildren().addAll(t,img);
+        tempT=t.getText();
+        tempISBN=item.getitemISBN();
+        tempAuthor=item.getitemAuthor;
+        tempC="images/default_book_cover.jpg";
+        p.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                Node node=(Node) e.getSource();
+                
+                int i=Integer.parseInt(node.getId());
+                Stage stage=(Stage) node.getScene().getWindow();
+                
+                try{
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/IndividualViewGUI.fxml"));
+                Parent root = (Parent)fxmlLoader.load();          
+                IndividualViewGUIController controller = fxmlLoader.<IndividualViewGUIController>getController();
+                controller.setTitle(tempT);
+                controller.setImage(tempC);
+                controller.setAuthor(tempAuthor);
+                controller.setIsbn(tempISBN);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                }
+        catch(IOException ei){
+            System.out.println("ERROR:IndividualViewGUI.fxml not found!!");
+        }
+            }
+        });
+    }
+    
+    
+    
+    
+    
+    
     
     @Override   //play new animation when shown
     public void playOnShowAnimation (){

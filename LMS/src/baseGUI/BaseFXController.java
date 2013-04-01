@@ -116,10 +116,10 @@ public abstract class BaseFXController implements Initializable, Animatable {
     }
 
     /**
-     * @param MainController the MainController to set
+     * @param mainController the MainController to set
      */
-    public void setMainController(MainController MainController) {
-        this.mainController = MainController;
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
     
     //show element with Metro style animation

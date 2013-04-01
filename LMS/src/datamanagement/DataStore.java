@@ -114,6 +114,8 @@ public class DataStore {
             user.setUserID(resultSet.getString(Table.USER.getAttribute("USER_ID")));
             user.setUsername(username);
             
+            database.closeConnection();
+            
             return user;
             
         } else if (Integer.parseInt(userType) == User.FACULTY) {
