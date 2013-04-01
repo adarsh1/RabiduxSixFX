@@ -194,7 +194,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
        }
     }
      
-    public void transitScene(String resourceURL, Node node){
+    public void transitScene(String resourceURL, Node node, MainController mainController){
         Stage stage=(Stage) node.getScene().getWindow();
         try{      
             FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);

@@ -95,7 +95,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
         // initialize your logic here: all @FXML variables will have been injected
         //show search pane when first loaded
-        transitPane("Search.fxml", getContentPlaceHolderPane()); 
+        transitPane("Borrow.fxml", getContentPlaceHolderPane()); 
     }
     
 

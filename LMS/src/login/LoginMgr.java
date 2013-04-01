@@ -17,32 +17,32 @@ import usermanagement.User;
 public class LoginMgr {
     
     private User user;
-    private MainController MC;
+    private MainController mainController;
     
     public LoginMgr(){
         //default longinMgr constructor
-        MC = new MainController();
+        mainController = new MainController();
     }
     
     //create a user based on userName entered. If no such user exists, throw exception
     public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException{
         setUser(User.getUser(username, password));
         //if no exception was thrown, user can be set in main controller
-        MC.setUser(user);
+        mainController.setUser(user);
     }
 
     /**
-     * @return the MC
+     * @return the mainController
      */
-    public MainController getMC() {
-        return MC;
+    public MainController getMainController() {
+        return mainController;
     }
 
     /**
-     * @param MC the MC to set
+     * @param mainController the mainController to set
      */
-    public void setMC(MainController MC) {
-        this.MC = MC;
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 
     /**
