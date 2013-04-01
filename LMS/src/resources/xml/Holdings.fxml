@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="Holdings.HoldingsFXController">
+  <children>
+    <Label id="BorrowedItemLabel" layoutY="-13.0" styleClass="header-2, font-grey" text="Your Current Holding" />
+    <ScrollPane layoutY="50.0" prefHeight="400.0" prefWidth="500.0">
+      <content>
+        <AnchorPane id="Content" fx:id="holdingsPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="485.0">
+          <children>
+            <Label styleClass="header-4, font-grey" text="Borrowed Items" />
+            <Label layoutY="137.0" styleClass="header-4, font-grey" text="Reserved Items" />
+          </children>
+        </AnchorPane>
+      </content>
+    </ScrollPane>
+  </children>
+  <stylesheets>
+    <URL value="@../JMetro/JMetroLightTheme.css" />
+  </stylesheets>
+</AnchorPane>
