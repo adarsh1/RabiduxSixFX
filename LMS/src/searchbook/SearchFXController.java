@@ -13,10 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -201,7 +198,6 @@ public class SearchFXController extends MemberFXController implements Initializa
         t.setTextAlignment(TextAlignment.CENTER);
         p.getChildren().addAll(t,img);
         tempT=t.getText();
-        tempISBN=item.getISBN();
         tempAuthor=item.getItemAuthor();
         tempC="images/default_book_cover.jpg";
         p.setOnMouseClicked(new EventHandler<MouseEvent>(){
@@ -219,7 +215,7 @@ public class SearchFXController extends MemberFXController implements Initializa
                 controller.setTitle(tempT);
                 controller.setImage(tempC);
                 controller.setAuthor(tempAuthor);
-                controller.setIsbn(tempISBN);
+                //controller.setIsbn(tempISBN);
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
