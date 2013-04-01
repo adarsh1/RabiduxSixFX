@@ -1,32 +1,41 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package mymaterials;
+
+package Holdings;
 
 //import lib and packages
 
-
+import usermanagement.Member;
 /**
  *
  * @author Richard
  */
 
 //relationship with other classes
-public class MyAccoutMgr {
+public class HoldingsMgr {
      
     //parameters
-    
-    
+    private Member currentMember;    
     
     //constrcutor
-    public MyAccoutMgr(){
-       
+    public HoldingsMgr(){      
        
     }
+
+    /**
+     * @return the currentMember
+     */
+    public Member getCurrentMember() {
+        return currentMember;
+    }
+
+    /**
+     * @param currentMember the currentMember to set
+     */
+    public void setCurrentMember(Member currentMember) {
+        this.currentMember = currentMember;
+    }
+    
+    
 }   
-    //methods
-    //getters, setters
 
 
   

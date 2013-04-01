@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -23,35 +24,37 @@ import javafx.scene.layout.Pane;
 public class MemberFXController extends BaseFXController implements Initializable {   
     
     
-    @FXML
-    private AnchorPane basePane;    
-    @FXML
-    private Pane helpPane;    
-    @FXML
-    private Pane contentPlaceHolderPane;    
-    @FXML
-    private Pane menuPane;
-        
-    /* Menu control buttons */
-    @FXML
-    private Button searchMenuButton; // Value injected by FXMLLoader
+    @FXML //  fx:id="basePane"
+    private AnchorPane basePane; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="history"
-    private Button BorrowMenuButton; // Value injected by FXMLLoader
+    @FXML //  fx:id="borrowMenuButton"
+    private Button borrowMenuButton; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="home"
+    @FXML //  fx:id="contentPlaceHolderPane"
+    private Pane contentPlaceHolderPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="footerPane"
+    private Pane footerPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="helpPane"
+    private Pane helpPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="helpText"
+    private Text helpText; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="historyMenuButton"
+    private Button historyMenuButton; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="holdingMenuButton"
     private Button holdingMenuButton; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="myMaterial"
-    private Button historyMenuButton; // Value injected by FXMLLoader
+    @FXML //  fx:id="menuPane"
+    private Pane menuPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="searchMenuButton"
+    private Button searchMenuButton; // Value injected by FXMLLoader
     
     
-    
-    // Handler for Button[fx:id="home"] onAction
-    public void handleHomeTabAction(ActionEvent event) {
-        Node node=(Node) event.getSource();
-        //transitScene("/resources/xml/WelcomeMember.fxml",node);
-    }
 
     // Handler for Button[fx:id="borrow"] onAction
     public void handleborrowMenuButtonAction(ActionEvent event) {            
@@ -70,15 +73,15 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
 
     // Handler for Button[fx:id="rentals"] onAction
-    public void handleMyMaterialTabAction(ActionEvent event) {
-        Node node=(Node) event.getSource();
+    public void handleHoldingsMenuButtonAction(ActionEvent event) {
+        transitPane("Holdings.fxml", getContentPlaceHolderPane(), this.getMainController());  
         //transitScene("/resources/xml/MyMaterial.fxml",node); 
     }
     
     @Override
     public void playOnShowAnimation(){
         //show search pane when first loaded
-        transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getMainController()); 
+        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getMainController()); 
         //animation for GUI on shown
         handleOnShowAnimation(menuPane, 500, 30.0);
         handleOnShowAnimation(getContentPlaceHolderPane(), 500, 30.0);
@@ -88,17 +91,20 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-        assert BorrowMenuButton != null : "fx:id=\"borrow\" was not injected: check your FXML file 'Welcome.fxml'.";
-        assert historyMenuButton != null : "fx:id=\"history\" was not injected: check your FXML file 'Welcome.fxml'.";
-        assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'Welcome.fxml'.";
-        assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'Welcome.fxml'.";
-        assert holdingMenuButton != null : "fx:id=\"rentals\" was not injected: check your FXML file 'Welcome.fxml'.";
-        assert searchMenuButton != null : "fx:id=\"search\" was not injected: check your FXML file 'Welcome.fxml'.";
+        assert basePane != null : "fx:id=\"basePane\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert borrowMenuButton != null : "fx:id=\"borrowMenuButton\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert contentPlaceHolderPane != null : "fx:id=\"contentPlaceHolderPane\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert footerPane != null : "fx:id=\"footerPane\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert helpPane != null : "fx:id=\"helpPane\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert helpText != null : "fx:id=\"helpText\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert historyMenuButton != null : "fx:id=\"historyMenuButton\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert holdingMenuButton != null : "fx:id=\"holdingMenuButton\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert menuPane != null : "fx:id=\"menuPane\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert searchMenuButton != null : "fx:id=\"searchMenuButton\" was not injected: check your FXML file 'MemberPage.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
-        
-    }
-    
+
+    }    
 
     /**
      * @return the basePane
