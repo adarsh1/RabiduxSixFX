@@ -13,6 +13,7 @@ import java.util.*;
  */
 public class TransactionHistoryItem {
     
+    private String loanID;
     private Calendar dateBorrowed;
     private Calendar dateReturned;
     private Calendar dateToReturn;
@@ -104,6 +105,18 @@ public class TransactionHistoryItem {
     public void setItem(Displayable item) {
         
         this.item = item;
+        
+    }
+    
+    public String getLoanID() {
+        
+        return loanID;
+        
+    }
+    
+    public void setLoanID(String loanID) {
+        
+        this.loanID = loanID;
         
     }
     
