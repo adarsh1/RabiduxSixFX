@@ -12,7 +12,7 @@ import java.sql.*;
  */
 public interface Borrowable extends Displayable {
    
-    public abstract void borrow (String userID) throws SQLException, ClassNotFoundException;
+    public abstract PastTransaction borrow (String userID, int loanDuration) throws SQLException, ClassNotFoundException;
    
     
 }

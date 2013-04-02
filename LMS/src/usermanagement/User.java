@@ -21,7 +21,8 @@ public class User {
     //constant field to indicate the type of this user
     public static final int LIBRARIAN = 0;  
     public static final int STUDENT = 1;
-    public static final int FACULTY = 2;
+    public static final int FACULTY = 2;   
+
     
     public User(){
         

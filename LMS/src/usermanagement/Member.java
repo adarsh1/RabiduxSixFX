@@ -4,9 +4,9 @@
  */
 package usermanagement;
 
-import cataloguemanagement.CurrentHolding;
+import cataloguemanagement.CurrentHoldings;
 import cataloguemanagement.ReservedItem;
-import cataloguemanagement.TransactionHistoryItem;
+import cataloguemanagement.PastTransaction;
 import datamanagement.DataStore;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,13 +15,18 @@ import java.util.ArrayList;
  *
  * @author mmin001
  */
-public class Member extends User implements BorrowRecordAccessible{
+public abstract class Member extends User implements BorrowRecordAccessible{
     
     private int maxHolding;
     private double fineAmount;
     
+    //maximal number of holdings for student and staff
     public static final int STUDENT_MAX_HOLDING = 2;
     public static final int FACULTY_MAX_HOLDING = 3;
+    
+    //loan duration for student and faculty
+    public static final int STUDENT_LOAN_DURATION = 7;
+    public static final int FACULTY_LOAN_DURATION = 14;
     
     public Member(){
         
@@ -85,19 +90,23 @@ public class Member extends User implements BorrowRecordAccessible{
         this.fineAmount = fineAmount;
         
     }
+    
+    public abstract int getLoanDuration();
 
     @Override
-     public  ArrayList<TransactionHistoryItem> getTransactionHistoryItems(String memberID){
-     return new ArrayList<TransactionHistoryItem>();
+     public  ArrayList<PastTransaction> getTransactionHistoryItems(String memberID){
+     return new ArrayList<>();
      }
     @Override
     public ArrayList<ReservedItem> getReservedItems(String memberID){
-     return new ArrayList<ReservedItem>();
+     return new ArrayList<>();
      }
     @Override
-    public ArrayList<CurrentHolding> getCurrentHoldingItems(String memberID){
-     return new ArrayList<CurrentHolding>();
+    public ArrayList<CurrentHoldings> getCurrentHoldingItems(String memberID){
+     return new ArrayList<>();
      }   
+    
+    
 
     
 

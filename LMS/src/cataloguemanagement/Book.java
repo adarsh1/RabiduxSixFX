@@ -62,10 +62,10 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public void borrow(String userID) throws SQLException, ClassNotFoundException {
+    public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        dataStore.borrow(super.getIndividualCopyID(), userID);
+        return dataStore.borrow(super.getIndividualCopyID(), userID, loanDuration);
         
     }
 
@@ -106,10 +106,10 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public void extend(String loanID) throws SQLException, ClassNotFoundException{
+    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException{
         
         DataStore dataStore = new DataStore();
-        dataStore.extend(loanID, 30);
+        dataStore.extend(loanID, loanDuration);
         
     }
 

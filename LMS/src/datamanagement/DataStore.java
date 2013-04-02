@@ -563,19 +563,19 @@ public class DataStore {
         
     }
 
-    public TransactionHistoryItem getRecord(String loanID) {
+    public PastTransaction getRecord(String loanID) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    public TransactionHistoryItem borrow(String individualCopyID, String userID) throws SQLException, ClassNotFoundException {
+    public PastTransaction borrow(String individualCopyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> values = new ArrayList<> ();
         Calendar today = new GregorianCalendar();
         Calendar due = new GregorianCalendar();
         String loanID = database.getNewID(Table.RECORD);
-        TransactionHistoryItem transactionHistoryItem = new TransactionHistoryItem();
+        PastTransaction transactionHistoryItem = new PastTransaction();
         
-        due.add(Calendar.DAY_OF_YEAR, 30);
+        due.add(Calendar.DAY_OF_YEAR, loanDuration);
         
         values.add(loanID);
         values.add(userID);
@@ -601,12 +601,12 @@ public class DataStore {
         return transactionHistoryItem;
     }
 
-    public TransactionHistoryItem extend(String loanID, int extend_time) throws SQLException, ClassNotFoundException {
+    public PastTransaction extend(String loanID, int extend_time) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
-        TransactionHistoryItem transactionHistoryItem = new TransactionHistoryItem();
+        PastTransaction transactionHistoryItem = new PastTransaction();
         Calendar timeBorrowed = new GregorianCalendar();
         Calendar timeToReturn = new GregorianCalendar();
         int numOfExtend;

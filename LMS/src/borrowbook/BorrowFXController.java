@@ -5,6 +5,7 @@
 
 package borrowbook;
 
+import cataloguemanagement.PastTransaction;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import globalcontroller.MainController;
@@ -18,6 +19,8 @@ import javafx.scene.text.Text;
 import memberpage.MemberFXController;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -157,8 +160,9 @@ public class BorrowFXController extends MemberFXController implements Initializa
     public void handleConfirmButtonAction(ActionEvent event){
         cleanMessages();
         try{
-            borrowMgr.borrow();
-            resultMsg.setText("Borrow Sucessful");
+            PastTransaction transaction = borrowMgr.borrow();
+            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
+            resultMsg.setText("Borrow Sucessful, please return by:\n" + format.format(transaction.getDateToReturn().getTime()));
             this.handleOnShowAnimation(resultMsg, 500, 20.0);
         }
         catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException e){

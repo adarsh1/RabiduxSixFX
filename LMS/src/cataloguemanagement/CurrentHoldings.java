@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Richard
  */
-public class CurrentHolding {
+public class CurrentHoldings {
     
     private String loanID;
     private Date dateBorrowed;

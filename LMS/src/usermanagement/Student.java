@@ -17,5 +17,10 @@ public class Student extends Member{
         setMaxHolding(Member.STUDENT_MAX_HOLDING);
         
     }
+
+    @Override
+    public int getLoanDuration() {
+        return Member.STUDENT_LOAN_DURATION;
+    }
     
 }
