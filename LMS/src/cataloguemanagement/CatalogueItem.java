@@ -12,7 +12,7 @@ import java.util.*;
  *
  * @author Allen
  */
-public class CatalogueItem {
+public class CatalogueItem implements Displayable {
     
     //data field common to all catalogue items
     private String itemID;
@@ -163,6 +163,42 @@ public class CatalogueItem {
     public void setDescription(String description) {
         
         this.description = description;
+        
+    }
+
+    @Override
+    public String getTitleDisplay() {
+        
+        return getTitle();
+        
+    }
+
+    @Override
+    public String getDescriptionDisplay() {
+        
+        return getDescription();
+        
+    }
+
+    @Override
+    public String getAuthorDisplay() {
+        
+        return getAuthor();
+        
+    }
+
+    @Override
+    public String getPublishYearDisplay() {
+        
+        Calendar calendar = getPublishDate();
+        return Integer.toString(calendar.get(Calendar.YEAR)) + "-" + Integer.toString(calendar.get(Calendar.MONTH)) + "-" + Integer.toString(calendar.get(Calendar.DATE));
+        
+    }
+
+    @Override
+    public String getItemIDDisplay() {
+        
+        return getItemID();
         
     }
     

@@ -73,9 +73,6 @@ public class ReservableCopyGroup {
         
     }
 
-    /**
-     * @return the itemAuthor
-     */
     public String getItemAuthor() {
         
         return copies.get(0).getAuthorDisplay();

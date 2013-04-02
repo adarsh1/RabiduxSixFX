@@ -14,6 +14,8 @@ import java.util.*;
  */
 public class DataStore {
     public static final String WILDCARD_CHAR = "%";
+    public static final String NULL_VARCHAR = "NULLVARCHAR";
+    public static final String NULL_DATETIME = "NULLDATETIME";
         
     private Database database;
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -599,8 +601,49 @@ public class DataStore {
         return transactionHistoryItem;
     }
 
-    public void extend(String loanID) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public TransactionHistoryItem extend(String loanID, int extend_time) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        TransactionHistoryItem transactionHistoryItem = new TransactionHistoryItem();
+        Calendar timeBorrowed = new GregorianCalendar();
+        Calendar timeToReturn = new GregorianCalendar();
+        int numOfExtend;
+        
+        where.add(loanID);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.RECORD, where);
+        resultSet.next();
+        
+        timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+        
+        timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+        timeToReturn.add(Calendar.DAY_OF_YEAR, extend_time);
+        
+        numOfExtend = Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND")));
+        numOfExtend ++;
+        
+        set.add(new java.sql.Timestamp(timeBorrowed.getTimeInMillis()).toString());
+        set.add(NULL_DATETIME);
+        set.add(new java.sql.Timestamp(timeToReturn.getTimeInMillis()).toString());
+        set.add(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT")));
+        set.add(Integer.toString(numOfExtend));
+        
+        database.updateRecord(Table.RECORD, set, where);
+        
+        transactionHistoryItem.setLoanID(loanID);
+        transactionHistoryItem.setDateBorrowed(timeBorrowed);
+        transactionHistoryItem.setDateReturned(null);
+        transactionHistoryItem.setDateToReturn(timeToReturn);
+        transactionHistoryItem.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
+        transactionHistoryItem.setItem(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
+        
+        database.closeConnection();
+        
+        return transactionHistoryItem;
     }
 
     public void reserve(String userID) {

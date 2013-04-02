@@ -59,8 +59,19 @@ public class MySQLDB extends Database{
         
         for (int i = 0; i < values.size(); i++) {
             
-            statement.setString(i + 1, values.get(i));
+            if (values.get(i).compareTo(DataStore.NULL_VARCHAR) == 0) {
+                
+                statement.setNull(i + 1, Types.VARCHAR);
+                
+            } else if (values.get(i).compareTo(DataStore.NULL_DATETIME) == 0) {
+                
+                statement.setNull(i + 1, Types.TIMESTAMP);
+                
+            } else {
             
+                statement.setString(i + 1, values.get(i));
+                
+            }
         }
         
         statement.executeUpdate();
@@ -89,7 +100,19 @@ public class MySQLDB extends Database{
         
         for (int i = 0; i < set.size(); i++) {
             
-            statement.setString(i + 1, set.get(i));
+            if (set.get(i).compareTo(DataStore.NULL_VARCHAR) == 0) {
+                
+                statement.setNull(i + 1, Types.VARCHAR);
+                
+            } else if (set.get(i).compareTo(DataStore.NULL_DATETIME) == 0) {
+                
+                statement.setNull(i + 1, Types.TIMESTAMP);
+                
+            } else {
+            
+                statement.setString(i + 1, set.get(i));
+            
+            }
             
         }
         
@@ -156,7 +179,19 @@ public class MySQLDB extends Database{
         
         for (int i = 0; i < where.size(); i++ ) {
             
-            statement.setString(i + 1, where.get(i));
+            if (where.get(i).compareTo(DataStore.NULL_VARCHAR) == 0) {
+                
+                statement.setNull(i + 1, Types.VARCHAR);
+                
+            } else if (where.get(i).compareTo(DataStore.NULL_DATETIME) == 0) {
+                
+                statement.setNull(i + 1, Types.TIMESTAMP);
+                
+            } else {
+            
+                statement.setString(i + 1, where.get(i));
+            
+            }
             
         }
         
@@ -219,7 +254,19 @@ public class MySQLDB extends Database{
         
         for (int i = 0; i < where.size(); i++ ) {
             
-            statement.setString(i + 1, where.get(i));
+            if (where.get(i).compareTo(DataStore.NULL_VARCHAR) == 0) {
+                
+                statement.setNull(i + 1, Types.VARCHAR);
+                
+            } else if (where.get(i).compareTo(DataStore.NULL_DATETIME) == 0) {
+                
+                statement.setNull(i + 1, Types.TIMESTAMP);
+                
+            } else {
+            
+                statement.setString(i + 1, where.get(i));
+            
+            }
             
         }
         

@@ -100,14 +100,16 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     
     @Override
     public String getItemIDDisplay(){
+        
         return super.getItemID();
+        
     }
 
     @Override
-    public void extend(String loanID) {
+    public void extend(String loanID) throws SQLException, ClassNotFoundException{
         
         DataStore dataStore = new DataStore();
-        dataStore.extend(loanID);
+        dataStore.extend(loanID, 30);
         
     }
 

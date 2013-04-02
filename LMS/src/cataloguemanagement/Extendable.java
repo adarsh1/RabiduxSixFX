@@ -4,11 +4,14 @@
  */
 package cataloguemanagement;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Richard
  */
 public interface Extendable extends Displayable {
-    public abstract void extend(String loanID);
+    
+    public abstract void extend(String loanID) throws SQLException, ClassNotFoundException;
     
 }
