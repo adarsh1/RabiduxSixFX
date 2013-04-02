@@ -91,10 +91,10 @@ public class IndividualViewGUIController extends MemberFXController implements I
         assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
 
         // Initialize your logic here: all @FXML variables will have been injected
-        individualMgr=new IndividualViewGUIMgr();
 
     }
 public void setId(String id){
+    individualMgr=new IndividualViewGUIMgr();
     try{
         individualMgr.createItem(id);
     }
