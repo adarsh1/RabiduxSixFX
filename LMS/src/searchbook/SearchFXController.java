@@ -190,6 +190,7 @@ public class SearchFXController extends MemberFXController implements Initializa
 
     private void initializeScrollPane() {
         vb.setSpacing(20);
+        vb.getChildren().clear();
         int i;
         for(i=0;i<searchMgr.getNoOfResults();i++)
         {  Pane p=new Pane();

@@ -730,7 +730,7 @@
 
 .searchPane{
     -fx-background-color: #ffffff;
-    -fx-padding: 8 6 8 10;
+    -fx-padding: 8 6 8 1;
 }
 .searchResult{
     -fx-background-color: #dedede;
