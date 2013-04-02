@@ -13,7 +13,7 @@
 
 <AnchorPane id="borrowPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="borrowbook.BorrowFXController">
   <children>
-    <Pane fx:id="bookInfoPane" layoutY="117.0" prefHeight="333.0" prefWidth="500.0">
+    <Pane fx:id="bookInfoPane" layoutY="117.0" prefHeight="333.0" prefWidth="500.0" visible="false">
       <children>
         <Label fx:id="itemID" layoutX="150.0" layoutY="55.0" styleClass="font-grey" />
         <Label id="author" fx:id="itemAuthor" layoutX="150.0" layoutY="32.0" styleClass="font-grey" />
@@ -22,9 +22,8 @@
             <Tooltip fx:id="fullItemTitle" />
           </tooltip>
         </Label>
-        <Label fx:id="borrowMsg" styleClass="font-grey" text="Book information will appear here" />
         <Pane id="bookcover" fx:id="bookcoverField" layoutY="35.0" prefHeight="180.0" prefWidth="130.0" />
-        <ScrollPane id="itemDescriptionPane" fx:id="itemDescriptionScrollPane" hbarPolicy="NEVER" layoutX="150.0" layoutY="77.0" prefHeight="220.0" prefWidth="350.0" visible="false">
+        <ScrollPane id="itemDescriptionPane" fx:id="itemDescriptionScrollPane" hbarPolicy="NEVER" layoutX="150.0" layoutY="77.0" prefHeight="220.0" prefWidth="350.0">
           <content>
             <AnchorPane id="Content" fx:id="itemDescriptionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="350.0">
               <children>
@@ -35,12 +34,13 @@
         </ScrollPane>
         <Label fx:id="resultMsg" layoutY="303.0" styleClass="result-msg" />
         <Label fx:id="warningMsg" layoutY="303.0" styleClass="warning-msg" />
-        <Button fx:id="confirmBorrow" disable="true" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
+        <Button fx:id="confirmBorrow" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
       </children>
     </Pane>
     <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of your copy" />
-    <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="31.0" prefWidth="367.0" />
-    <Button fx:id="getBookDetails" layoutX="375.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetBookDetailsButtonAction" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="30.0" text="Get book details" />
+    <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="31.0" prefWidth="384.0" />
+    <Button fx:id="getDetails" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="30.0" text="Get details" />
+    <Label id="borrowMsg" fx:id="itemMsg" layoutY="120.0" styleClass="warning-msg" />
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />
