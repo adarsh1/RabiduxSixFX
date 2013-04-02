@@ -5,6 +5,7 @@
 package memberpage;
 
 import baseGUI.BaseFXController;
+import globalcontroller.MainController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -31,7 +33,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     private Button borrowMenuButton; // Value injected by FXMLLoader
 
     @FXML //  fx:id="contentPlaceHolderPane"
-    private Pane contentPlaceHolderPane; // Value injected by FXMLLoader
+    private AnchorPane contentPlaceHolderPane; // Value injected by FXMLLoader
 
     @FXML //  fx:id="footerPane"
     private Pane footerPane; // Value injected by FXMLLoader
@@ -53,6 +55,10 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     @FXML //  fx:id="searchMenuButton"
     private Button searchMenuButton; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="username"
+    private Label username; // Value injected by FXMLLoader
+
     
     
 
@@ -79,13 +85,14 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
     
     @Override
-    public void playOnShowAnimation(){
+    public void playOnShowAnimation(){         
         //show search pane when first loaded
         transitPane("Search.fxml", getContentPlaceHolderPane(), this.getMainController()); 
         //animation for GUI on shown
         handleOnShowAnimation(menuPane, 500, 30.0);
         handleOnShowAnimation(getContentPlaceHolderPane(), 500, 30.0);
         handleOnShowAnimation(helpPane, 500, 30.0);
+        handleOnShowAnimation(footerPane, 500, 30.0);
     }
     
 
@@ -101,10 +108,22 @@ public class MemberFXController extends BaseFXController implements Initializabl
         assert holdingMenuButton != null : "fx:id=\"holdingMenuButton\" was not injected: check your FXML file 'MemberPage.fxml'.";
         assert menuPane != null : "fx:id=\"menuPane\" was not injected: check your FXML file 'MemberPage.fxml'.";
         assert searchMenuButton != null : "fx:id=\"searchMenuButton\" was not injected: check your FXML file 'MemberPage.fxml'.";
+        assert username != null : "fx:id=\"username\" was not injected: check your FXML file 'MemberPage.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
 
     }    
+    
+    @Override
+    public void setMainController(MainController mainController){
+        super.setMainController(mainController);
+        setUpContent();
+    }
+    
+    //set up the content once the MainController is available
+    private void setUpContent(){
+        username.setText(this.getMainController().getUser().getUsername());
+    }
 
     /**
      * @return the basePane
@@ -159,7 +178,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     /**
      * @param contentPlaceHolderPane the contentPlaceHolderPane to set
      */
-    public void setContentPlaceHolderPane(Pane contentPlaceHolderPane) {
+    public void setContentPlaceHolderPane(AnchorPane contentPlaceHolderPane) {
         this.contentPlaceHolderPane = contentPlaceHolderPane;
     }
     

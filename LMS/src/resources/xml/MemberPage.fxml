@@ -45,8 +45,18 @@
       </children>
     </Pane>
     <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="200.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
-    <Pane id="annoucementPane" fx:id="footerPane" layoutX="200.0" layoutY="526.0" prefHeight="60.0" prefWidth="680.0" />
-    <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
+    <Pane id="annoucementPane" fx:id="footerPane" layoutX="720.0" layoutY="530.0" prefHeight="60.0" prefWidth="160.0">
+      <children>
+        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../images/user%20icon.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <Label fx:id="username" layoutX="50.0" prefWidth="110.0" textAlignment="RIGHT" />
+        <Label layoutX="50.0" layoutY="22.0" text="LOG OUT" textAlignment="RIGHT" />
+      </children>
+    </Pane>
+    <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../images/Rabidus.jpg" preserveRatio="false" smooth="false" />
       </image>

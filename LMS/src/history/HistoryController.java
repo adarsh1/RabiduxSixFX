@@ -5,13 +5,13 @@
 
 package history;
 
+import baseGUI.BaseFXController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import memberpage.MemberFXController;
 
 
-public class HistoryController extends MemberFXController implements Initializable{
+public abstract class HistoryController extends BaseFXController implements Initializable{
    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
        assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'Welcome.fxml'.";

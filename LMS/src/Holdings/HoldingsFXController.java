@@ -5,17 +5,17 @@
 
 package Holdings;
 
+import baseGUI.BaseFXController;
 import globalcontroller.MainController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import memberpage.MemberFXController;
 import usermanagement.Member;
 
 
-public class HoldingsFXController extends MemberFXController implements Initializable {
+public class HoldingsFXController extends BaseFXController implements Initializable {
 
     private HoldingsMgr holdingsMgr;
     

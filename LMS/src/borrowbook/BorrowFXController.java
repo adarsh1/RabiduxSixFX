@@ -5,6 +5,7 @@
 
 package borrowbook;
 
+import baseGUI.BaseFXController;
 import cataloguemanagement.PastTransaction;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
@@ -16,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import memberpage.MemberFXController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -34,7 +34,7 @@ import usermanagement.Member;
 
 
     // Handler for Button[Button[id=null, styleClass=button]] onAction
-public class BorrowFXController extends MemberFXController implements Initializable{
+public class BorrowFXController extends BaseFXController implements Initializable{
     
     /* Manager classes  */
     private BorrowMgr borrowMgr;
@@ -89,17 +89,7 @@ public class BorrowFXController extends MemberFXController implements Initializa
     @FXML //  fx:id="warningMsg"
     private Label warningMsg; // Value injected by FXMLLoader
 
-    
-    public void handleIDFieldKeyPressed(KeyEvent event){
-        try{
-            if (event.getCode() == KeyCode.ENTER){
-                getItemDetails();
-            }
-        }
-        catch (SQLException | ClassNotFoundException | TypeMismatchException e){
-            displayItemErrorMsg(e.getMessage());
-        }    
-    }
+   
     
     // Handler for Button Get details onAction    
     public void handleGetDetailsButtonAction (ActionEvent event){

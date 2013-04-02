@@ -38,8 +38,8 @@
       </children>
     </Pane>
     <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of your copy" />
-    <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="31.0" prefWidth="384.0" />
-    <Button fx:id="getDetails" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" onKeyPressed="#handleIDFieldKeyPressed" prefHeight="30.0" text="Get details" />
+    <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" prefHeight="31.0" prefWidth="390.0" />
+    <Button fx:id="getDetails" defaultButton="true" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" prefHeight="30.0" text="Get details" />
     <Label id="borrowMsg" fx:id="itemMsg" layoutY="120.0" styleClass="warning-msg" />
   </children>
   <stylesheets>
