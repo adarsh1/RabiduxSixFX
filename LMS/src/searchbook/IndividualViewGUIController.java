@@ -6,6 +6,7 @@
 package searchbook;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -96,9 +97,15 @@ public void setId(String id){
     try{
         individualMgr.createItem(id);
     }
-    catch(Exception e)
+    catch(SQLException e)
     {
         transitPane("Search.fxml", contentPane, super.getMainController());
     }
+    catch(ClassNotFoundException e){
+    ;
+    }
+    title.setText(individualMgr.getItem().getItemTitle());
+    
+    author.setText("Author: "+individualMgr.getItem().getItemAuthor());
 }
 }
