@@ -123,13 +123,13 @@ public class SearchFXController extends MemberFXController implements Initializa
         p.setId(""+item.getItemID());
         p.getStyleClass().add("searchResult");
         p.setMinSize(480, 124);
-        
+        ImageView bookCover;
        try
-       {ImageView bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/bookcover/"+item.getItemID()+".jpg")));
+       {bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/bookcover/"+item.getItemID()+".jpg")));
        }
        catch(Exception e)
        {
-        ImageView bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+        bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
        }
         bookCover.setFitWidth(80);
         bookCover.setLayoutX(7);

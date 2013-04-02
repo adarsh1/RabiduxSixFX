@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -107,5 +108,23 @@ public void setId(String id){
     title.setText(individualMgr.getItem().getItemTitle());
     
     author.setText("Author: "+individualMgr.getItem().getItemAuthor());
+    try
+       {cover.setImage(new Image(SearchFXController.class.getResourceAsStream("/resources/images/bookcover/"+id+".jpg")));
+       }
+       catch(Exception e)
+       {
+        cover.setImage(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+       }
+   //Need Genre
+    genre.setText("Genre: "+"Education");
+    
+    //Need item Description
+    String itemDescriptionText = "Introduction to Java Programming, Comprehensive, 9e, features comprehensive coverage ideal for a one-, two-, or three-semester CS1 course sequence.";
+    itemDescription.setText(itemDescriptionText);
+    double height = computeTextHeight(itemDescriptionText ,42, 12);
+    itemDescriptionAnchorPane.setPrefHeight(height);  
 }
+private double computeTextHeight(String text, int charsPerLine, double lineHeight){
+        return text.length() / charsPerLine * lineHeight;
+    }
 }
