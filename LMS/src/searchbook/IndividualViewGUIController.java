@@ -1,7 +1,7 @@
 /**
- * Sample Skeleton for "IndividualReservableGUI.fxml" Controller Class
- * You can copy and paste this code into your favorite IDE
- **/
+ *
+ * @author Adarsh
+ */
 
 package searchbook;
 
@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -106,6 +107,7 @@ public void setId(String id){
     ;
     }
     title.setText(individualMgr.getItem().getItemTitle());
+    title.setTooltip(new Tooltip(title.getText()));
     
     author.setText("Author: "+individualMgr.getItem().getItemAuthor());
     try

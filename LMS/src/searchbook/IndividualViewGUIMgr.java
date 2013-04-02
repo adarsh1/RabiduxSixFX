@@ -7,7 +7,7 @@ import usermanagement.Member;
 
 /**
  *
- * @author Allen
+ * @author Adarsh
  */
 public class IndividualViewGUIMgr {
     

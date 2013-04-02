@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -142,6 +143,7 @@ public class SearchFXController extends MemberFXController implements Initializa
         indTitle.setLayoutX(103);
         indTitle.setLayoutY(9);
         indTitle.setEllipsisString("...");
+        indTitle.setTooltip(new Tooltip(indTitle.getText()));
         
         Label indAuthor = new Label("Author: "+item.getItemAuthor());
         indAuthor.setPrefWidth(355);
