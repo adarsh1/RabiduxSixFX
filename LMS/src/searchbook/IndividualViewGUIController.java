@@ -122,7 +122,13 @@ public void setId(String id){
     String itemDescriptionText = "Introduction to Java Programming, Comprehensive, 9e, features comprehensive coverage ideal for a one-, two-, or three-semester CS1 course sequence.";
     itemDescription.setText(itemDescriptionText);
     double height = computeTextHeight(itemDescriptionText ,42, 12);
-    itemDescriptionAnchorPane.setPrefHeight(height);  
+    itemDescriptionAnchorPane.setPrefHeight(height); 
+    
+    //Need ISBN
+    isbn.setText("(ISBN: "+"978-0132995177"+")");
+    
+    borrowablecopies.setText("Borrowable Copies: "+individualMgr.getItem().getCopiesAvailable());
+    borrowablecopies.setText("Borrowable Copies: "+"0");
 }
 private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
