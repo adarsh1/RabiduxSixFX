@@ -16,19 +16,22 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import usermanagement.Member;
 
-public class SearchFXController extends BaseFXController implements Initializable{
+public class SearchFXController extends MemberFXController implements Initializable{
     
     private SearchMgr searchMgr;
   
@@ -151,36 +154,16 @@ public class SearchFXController extends BaseFXController implements Initializabl
         indCopies.setEllipsisString("");
         
         p.getChildren().addAll(bookCover,indTitle,indAuthor,indGenre,indCopies);
-        
-        /*tempT=t.getText();
-        tempISBN="1111111111";
-        tempAuthor="Charles Dickens";
-        tempC="images/default_book_cover.jpg";
+
         p.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent e){
                 Node node=(Node) e.getSource();
                 
-                int i=Integer.parseInt(node.getId());
-                Stage stage=(Stage) node.getScene().getWindow();
+                String id=node.getId();
                 
-                try{
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/IndividualViewGUI.fxml"));
-                Parent root = (Parent)fxmlLoader.load();          
-                IndividualViewGUIController controller = fxmlLoader.<IndividualViewGUIController>getController();
-                controller.setTitle(tempT);
-                controller.setImage(tempC);
-                controller.setAuthor(tempAuthor);
-                controller.setIsbn(tempISBN);
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-                }
-        catch(IOException ei){
-            System.out.println("ERROR:IndividualViewGUI.fxml not found!!");
-        }
             }
-        });*/
+        });
     }
     
     @Override   //play new animation when shown

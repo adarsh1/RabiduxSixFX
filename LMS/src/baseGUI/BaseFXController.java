@@ -176,7 +176,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
          handleNodeScaleTransition(node, millis, 0.0, 0.1);
      }
      
-     public void transitPane(String resourceURL, Pane placeHolderPane, MainController mainController){
+     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, MainController mainController){
         try{      
             //load the FXML file
             FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);
@@ -187,10 +187,12 @@ public abstract class BaseFXController implements Initializable, Animatable {
             placeHolderPane.getChildren().add(content);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
             FXController.setMainController(mainController);
-            FXController.playOnShowAnimation();                        
+            FXController.playOnShowAnimation();     
+            return fxmlLoader;
         }
        catch(IOException e){
            System.out.println("ERROR: " + resourceURL + " not found!!");
+           return null;
        }
     }
      
