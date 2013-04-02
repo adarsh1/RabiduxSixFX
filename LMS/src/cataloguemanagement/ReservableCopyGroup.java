@@ -16,8 +16,6 @@ public class ReservableCopyGroup {
     
     private int copiesAvailable;
     private String itemID;
-    private String itemTitle;
-    private String itemAuthor;
     private ArrayList<Reservable> copies;
     
     public ReservableCopyGroup() {
@@ -47,7 +45,7 @@ public class ReservableCopyGroup {
     
     public String getItemID() {
         
-        return this.itemID;
+        return itemID;
         
     }
     
@@ -69,31 +67,19 @@ public class ReservableCopyGroup {
         
     }
 
-    /**
-     * @return the itemTitle
-     */
     public String getItemTitle() {
-        return itemTitle;
-    }
-
-    /**
-     * @param itemTitle the itemTitle to set
-     */
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
+        
+        return copies.get(0).getTitleDisplay();
+        
     }
 
     /**
      * @return the itemAuthor
      */
     public String getItemAuthor() {
-        return itemAuthor;
+        
+        return copies.get(0).getAuthorDisplay();
+    
     }
 
-    /**
-     * @param itemAuthor the itemAuthor to set
-     */
-    public void setItemAuthor(String itemAuthor) {
-        this.itemAuthor = itemAuthor;
-    }
 }
