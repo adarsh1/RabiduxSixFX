@@ -189,15 +189,16 @@ public class SearchFXController extends MemberFXController implements Initializa
     }
 
     private void initializeScrollPane() {
-        vb.setSpacing(20);
+        scrollPane.setVisible(true);
+        scrollPane.setContent(vb);
         vb.getChildren().clear();
+        vb.setSpacing(20);
         int i;
         for(i=0;i<searchMgr.getNoOfResults();i++)
         {  Pane p=new Pane();
                   createIndividual(p,searchMgr.getItemGroup().get(i));
                 vb.getChildren().add(p);
+                handleNodeScaleTransition(p, 400,0,1);
          }
-        scrollPane.setVisible(true);
-        scrollPane.setContent(vb);
     }
 }
