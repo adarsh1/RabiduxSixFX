@@ -8,15 +8,17 @@ package searchbook;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import memberpage.MemberFXController;
 
 
-public class IndividualViewGUIController {
+public class IndividualViewGUIController extends MemberFXController implements Initializable{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -65,6 +67,8 @@ public class IndividualViewGUIController {
 
     @FXML // fx:id="vb"
     private VBox vb; // Value injected by FXMLLoader
+    
+    private IndividualViewGUIMgr individualMgr;
 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -85,7 +89,16 @@ public class IndividualViewGUIController {
         assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
 
         // Initialize your logic here: all @FXML variables will have been injected
+        individualMgr=new IndividualViewGUIMgr();
 
     }
-
+public void setId(String id){
+    try{
+        individualMgr.createItem(id);
+    }
+    catch(Exception e)
+    {
+        transitPane("Search.fxml", contentPane, super.getMainController());
+    }
+}
 }

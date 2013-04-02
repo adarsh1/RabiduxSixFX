@@ -5,7 +5,6 @@
 
 package searchbook;
 
-import baseGUI.BaseFXController;
 import cataloguemanagement.ReservableCopyGroup;
 import globalcontroller.MainController;
 import javafx.scene.control.RadioButton;
@@ -18,6 +17,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import memberpage.MemberFXController;
 import usermanagement.Member;
 
 public class SearchFXController extends MemberFXController implements Initializable{
@@ -71,6 +72,7 @@ public class SearchFXController extends MemberFXController implements Initializa
     @FXML
     private VBox vb;
 
+    private MainController mainController;
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -86,6 +88,7 @@ public class SearchFXController extends MemberFXController implements Initializa
 
         // initialize your logic here: all @FXML variables will have been injecte       
         searchMgr = new SearchMgr();
+        this.mainController=super.getMainController();
     }
     
     
@@ -161,7 +164,9 @@ public class SearchFXController extends MemberFXController implements Initializa
                 Node node=(Node) e.getSource();
                 
                 String id=node.getId();
-                
+                FXMLLoader fl=transitPane("IndividualReservableGUI.fxml", contentPane, mainController);
+                IndividualViewGUIController ic = fl.<IndividualViewGUIController>getController();
+                ic.setId(id);
             }
         });
     }
