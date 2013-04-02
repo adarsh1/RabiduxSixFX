@@ -45,15 +45,15 @@
       </children>
     </Pane>
     <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="200.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
-    <Pane id="annoucementPane" fx:id="footerPane" layoutX="720.0" layoutY="530.0" prefHeight="60.0" prefWidth="160.0">
+    <Pane id="annoucementPane" fx:id="footerPane" layoutX="600.0" layoutY="530.0" prefHeight="60.0" prefWidth="280.0">
       <children>
-        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="245.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@../images/user%20icon.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <Label fx:id="username" layoutX="45.0" layoutY="-3.0" prefWidth="115.0" styleClass="header-5" textAlignment="RIGHT" />
-        <Label layoutX="45.0" layoutY="25.0" text="LOG OUT" textAlignment="RIGHT" />
+        <Label layoutX="187.0" layoutY="20.0" text="LOG OUT" textAlignment="RIGHT" />
+        <Label fx:id="username" alignment="CENTER_RIGHT" layoutX="7.0" prefWidth="230.0" styleClass="font-bold" text="liux0047@e.ntu.edu.sg" textAlignment="RIGHT" />
       </children>
     </Pane>
     <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">

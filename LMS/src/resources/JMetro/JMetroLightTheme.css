@@ -30,6 +30,16 @@
     -fx-font-size: 18pt;
 }
 
+.font-black{
+    -fx-text-fill: black;
+}
+.font-grey{    
+    -fx-text-fill: dimgrey;
+}
+.font-bold{
+    -fx-font-weight: bold;
+}
+
 .item-title{
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -683,12 +693,7 @@
 .label{
     -fx-font-family: "Segoe UI";
 }
-.font-black{
-    -fx-text-fill: black;
-}
-.font-grey{    
-    -fx-text-fill: dimgrey;
-}
+
 
 /*******************************************************************************
  *                                                                             *
