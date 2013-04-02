@@ -100,7 +100,7 @@ public void setId(String id){
     }
     catch(SQLException e)
     {
-        transitPane("Search.fxml", contentPane, super.getMainController());
+        transitPane("Search.fxml", contentPane, getMainController());
     }
     catch(ClassNotFoundException e){
     ;
@@ -109,11 +109,11 @@ public void setId(String id){
     
     author.setText("Author: "+individualMgr.getItem().getItemAuthor());
     try
-       {cover.setImage(new Image(SearchFXController.class.getResourceAsStream("/resources/images/bookcover/"+id+".jpg")));
+       {cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream("/resources/images/bookcover/"+id+".jpg")));
        }
        catch(Exception e)
        {
-        cover.setImage(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+        cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
        }
    //Need Genre
     genre.setText("Genre: "+"Education");
@@ -132,5 +132,9 @@ public void setId(String id){
 }
 private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
+    }
+@Override   //play new animation when shown
+    public void playOnShowAnimation (){
+        this.handleOnShowAnimation(contentPane, 500, 30.0);
     }
 }

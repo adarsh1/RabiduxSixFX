@@ -1,9 +1,7 @@
 
 package searchbook;
 
-import cataloguemanagement.Borrowable;
 import cataloguemanagement.ReservableCopyGroup;
-import exception.TypeMismatchException;
 import java.sql.SQLException;
 import usermanagement.Member;
 

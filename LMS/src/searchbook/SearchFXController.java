@@ -88,7 +88,7 @@ public class SearchFXController extends MemberFXController implements Initializa
 
         // initialize your logic here: all @FXML variables will have been injecte       
         searchMgr = new SearchMgr();
-        this.mainController=super.getMainController();
+        this.mainController=getMainController();
     }
     
     
@@ -169,8 +169,8 @@ public class SearchFXController extends MemberFXController implements Initializa
                 Node node=(Node) e.getSource();
                 
                 String id=node.getId();
-                FXMLLoader fl=transitPane("IndividualReservableGUI.fxml", contentPane, mainController);
-                IndividualViewGUIController ic = fl.<IndividualViewGUIController>getController();
+                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, mainController);
+                IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
                 ic.setId(id);
             }
         });
