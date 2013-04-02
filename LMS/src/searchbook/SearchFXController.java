@@ -72,7 +72,7 @@ public class SearchFXController extends MemberFXController implements Initializa
     @FXML
     private VBox vb;
 
-    private MainController mainController;
+    private MainController mainController1;
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -88,7 +88,7 @@ public class SearchFXController extends MemberFXController implements Initializa
 
         // initialize your logic here: all @FXML variables will have been injecte       
         searchMgr = new SearchMgr();
-        this.mainController=getMainController();
+        mainController1=getMainController();
     }
     
     
@@ -169,7 +169,9 @@ public class SearchFXController extends MemberFXController implements Initializa
                 Node node=(Node) e.getSource();
                 
                 String id=node.getId();
-                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, mainController);
+                System.out.println("Hello");
+                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, mainController1);
+                System.out.println("Hello");
                 IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
                 ic.setId(id);
             }
