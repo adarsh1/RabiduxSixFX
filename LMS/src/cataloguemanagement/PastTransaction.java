@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author Richard
  */
-public class TransactionHistoryItem {
+public class PastTransaction {
     
     private String loanID;
     private Calendar dateBorrowed;
@@ -23,13 +23,13 @@ public class TransactionHistoryItem {
     
     public final static int MAX_EXTEND = 3;
     
-    public TransactionHistoryItem() {
+    public PastTransaction() {
         
         
         
     }
     
-    public static TransactionHistoryItem getTransactionHistoryItem (String loanID) {
+    public static PastTransaction getPastTransaction (String loanID) {
         
         DataStore dataStore = new DataStore();
         return dataStore.getRecord(loanID);
