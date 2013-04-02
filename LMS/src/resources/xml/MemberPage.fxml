@@ -52,8 +52,8 @@
             <Image url="@../images/user%20icon.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <Label fx:id="username" layoutX="50.0" prefWidth="110.0" textAlignment="RIGHT" />
-        <Label layoutX="50.0" layoutY="22.0" text="LOG OUT" textAlignment="RIGHT" />
+        <Label fx:id="username" layoutX="45.0" layoutY="-2.0" prefWidth="115.0" textAlignment="RIGHT" />
+        <Label layoutX="45.0" layoutY="22.0" text="LOG OUT" textAlignment="RIGHT" />
       </children>
     </Pane>
     <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
