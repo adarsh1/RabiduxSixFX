@@ -91,7 +91,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
     @Override
     public void setMainController (MainController mainController){
         super.setMainController(mainController);
-        //set the current member to borrow
+        //set the current member to search
         searchMgr.setCurrentMember((Member)mainController.getUser());
     }
     

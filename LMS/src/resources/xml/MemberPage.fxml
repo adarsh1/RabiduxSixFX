@@ -37,7 +37,7 @@
         <Button id="searchButton" fx:id="searchMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleSearchMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Search" />
         <Button id="BorrowMenuButton" fx:id="borrowMenuButton" layoutX="55.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleborrowMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Borrow" />
         <Button id="hoo" fx:id="holdingMenuButton" layoutX="55.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleHoldingsMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Holdings" />
-        <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
+        <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleHistoryMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
       </children>
     </Pane>
     <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="190.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
