@@ -5,6 +5,8 @@
 
 package searchbook;
 
+import baseGUI.BaseFXController;
+import globalcontroller.MainController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -18,10 +20,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import memberpage.MemberFXController;
+import usermanagement.Member;
 
 
-public class IndividualViewGUIController extends MemberFXController implements Initializable{
+public class IndividualViewGUIController extends BaseFXController implements Initializable{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -92,10 +94,12 @@ public class IndividualViewGUIController extends MemberFXController implements I
         assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
 
         // Initialize your logic here: all @FXML variables will have been injected
-
+      if(individualMgr==null)
+          individualMgr=new IndividualViewGUIMgr();
     }
 public void setId(String id){
-    individualMgr=new IndividualViewGUIMgr();
+    if(individualMgr==null)
+          individualMgr=new IndividualViewGUIMgr();
     try{
         individualMgr.createItem(id);
     }
@@ -138,5 +142,11 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
 @Override   //play new animation when shown
     public void playOnShowAnimation (){
         this.handleOnShowAnimation(contentPane, 500, 30.0);
+    }
+@Override   //call the inherited method to pass the maincontroller in, meanwhile update the current member
+    public void setMainController (MainController mainController){
+        super.setMainController(mainController);
+        //set the current member to borrow
+        individualMgr.setCurrentMember((Member)mainController.getUser());
     }
 }

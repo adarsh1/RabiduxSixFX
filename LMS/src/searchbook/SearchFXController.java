@@ -5,6 +5,7 @@
 
 package searchbook;
 
+import baseGUI.BaseFXController;
 import cataloguemanagement.ReservableCopyGroup;
 import globalcontroller.MainController;
 import javafx.scene.control.RadioButton;
@@ -30,10 +31,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import memberpage.MemberFXController;
 import usermanagement.Member;
 
-public class SearchFXController extends MemberFXController implements Initializable{
+public class SearchFXController extends BaseFXController implements Initializable{
     
     private SearchMgr searchMgr;
   
@@ -89,7 +89,7 @@ public class SearchFXController extends MemberFXController implements Initializa
 
         // initialize your logic here: all @FXML variables will have been injecte       
         searchMgr = new SearchMgr();
-        mainController1=getMainController();
+        mainController1=super.getMainController();
     }
     
     
