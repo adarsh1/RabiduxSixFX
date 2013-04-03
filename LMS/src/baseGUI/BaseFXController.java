@@ -42,7 +42,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
     //main controller
     private MainController mainController;
     
-    
+    /*
     public void logout(MouseEvent event) {
         
    final Popup confirmLogOut = new Popup();
@@ -98,7 +98,8 @@ public abstract class BaseFXController implements Initializable, Animatable {
             public void handle(MouseEvent t){
                 confirmLogOut.hide();
                   }});
-    }
+    }*/
+    
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file ";
