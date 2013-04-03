@@ -144,7 +144,7 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         bookInfoPane.setVisible(true);
 
         //generate animation
-        this.handleNodeFadeTransition(bookInfoPane, 1000);
+        this.handleOnShowAnimation(bookInfoPane);
     }
     
     //compute the height needed for the scroll pane based on the text length

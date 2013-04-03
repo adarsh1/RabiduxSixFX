@@ -781,12 +781,12 @@
 }
 .message-text{
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Segoe UI";
     -fx-text-fill: white;
 }
 
 .warning-button{
-    -fx-background-color: #cc3300;
+    -fx-background-color: #ff3300;
 }
 
 .warning-button:hover{

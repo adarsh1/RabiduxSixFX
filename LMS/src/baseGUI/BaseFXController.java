@@ -9,24 +9,15 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -130,24 +121,26 @@ public abstract class BaseFXController implements Initializable, Animatable {
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
         //Scale in
+        /*
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(millis / 2), node);
         scaleTransition.setFromX(0.9);
         scaleTransition.setToX(1.0);
         scaleTransition.setCycleCount(1);
         scaleTransition.setAutoReverse(false);
+        */ 
         //transition in
-        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(millis * 2), node);
-        translateTransition.setFromX( offset * (-1));
+        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(millis), node);
+        translateTransition.setFromX(offset);
         translateTransition.setToX(0.0);
         translateTransition.setCycleCount(1);
         translateTransition.setAutoReverse(false);
         //parallel animation
-        ParallelTransition parallelTransition = new ParallelTransition(node, fadeTransition, scaleTransition, translateTransition);
+        ParallelTransition parallelTransition = new ParallelTransition(node, fadeTransition, translateTransition);
         parallelTransition.play();
     }
     //overloading the above function. Provide a default animation
     public void handleOnShowAnimation(Node node){
-        handleOnShowAnimation(node, 500, 10.0);
+        handleOnShowAnimation(node, 1000, 10.0);
     }
     
     //apply fade animation
