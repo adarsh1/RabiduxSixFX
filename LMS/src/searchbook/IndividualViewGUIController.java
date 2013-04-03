@@ -94,11 +94,8 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
         assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
 
         // Initialize your logic here: all @FXML variables will have been injected
-       individualMgr=new IndividualViewGUIMgr();
     }
 public void setId(String id){
-    if(individualMgr==null)
-          individualMgr=new IndividualViewGUIMgr();
     try{
         individualMgr.createItem(id);
     }
@@ -145,7 +142,8 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
 @Override   //call the inherited method to pass the maincontroller in, meanwhile update the current member
     public void setMainController (MainController mainController){
         super.setMainController(mainController);
+        individualMgr=new IndividualViewGUIMgr();
         //set the current member to borrow
-        //individualMgr.setCurrentMember((Member)mainController.getUser());
+        individualMgr.setCurrentMember((Member)mainController.getUser());
     }
 }
