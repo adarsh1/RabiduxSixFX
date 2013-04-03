@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -96,6 +97,7 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
         // Initialize your logic here: all @FXML variables will have been injected
     }
 public void setId(String id){
+    individualMgr.setItem(null);
     try{
         individualMgr.createItem(id);
     }
@@ -108,6 +110,7 @@ public void setId(String id){
     }
     title.setText(individualMgr.getItem().getItemTitle());
     title.setTooltip(new Tooltip(title.getText()));
+    title.setTextOverrun( OverrunStyle.CENTER_WORD_ELLIPSIS);
     
     author.setText("Author: "+individualMgr.getItem().getItemAuthor());
     try
@@ -130,7 +133,7 @@ public void setId(String id){
     isbn.setText("(ISBN: "+"978-0132995177"+")");
     
     borrowablecopies.setText("Borrowable Copies: "+individualMgr.getItem().getCopiesAvailable());
-    borrowablecopies.setText("Borrowable Copies: "+"0");
+    reservablecopies.setText("Borrowable Copies: "+"0");
 }
 private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
