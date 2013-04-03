@@ -137,7 +137,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
     }
 @Override   //play new animation when shown
     public void playOnShowAnimation (){
-        this.handleOnShowAnimation(contentPane, 500, 30.0);
+        this.handleOnShowAnimation(contentPane);
     }
 @Override   //call the inherited method to pass the maincontroller in, meanwhile update the current member
     public void setMainController (MainController mainController){

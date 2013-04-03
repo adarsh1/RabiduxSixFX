@@ -154,7 +154,7 @@ public class LoginFXController extends BaseFXController implements Initializable
     @Override
     public void playOnShowAnimation() {
         //call animation to play
-        handleOnShowAnimation(rootPane, 500, 30.0);
+        handleOnShowAnimation(rootPane);
     }
     
 

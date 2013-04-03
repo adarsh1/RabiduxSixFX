@@ -202,6 +202,6 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         
     @Override   //play new animation when shown
     public void playOnShowAnimation (){
-        this.handleOnShowAnimation(contentPane, 500, 30.0);
+        this.handleOnShowAnimation(contentPane);
     }
 }

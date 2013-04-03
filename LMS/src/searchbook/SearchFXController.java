@@ -8,7 +8,6 @@ package searchbook;
 import baseGUI.BaseFXController;
 import cataloguemanagement.ReservableCopyGroup;
 import globalcontroller.MainController;
-import java.awt.event.ActionListener;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -70,9 +69,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
     private Button searchButton;
 
     @FXML
-    private VBox vb;
-    
-    private MainController mainController1;
+    private VBox vb;    
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -88,7 +85,6 @@ public class SearchFXController extends BaseFXController implements Initializabl
 
         // initialize your logic here: all @FXML variables will have been injecte       
         searchMgr = new SearchMgr();
-        mainController1=super.getMainController();
     }
     
     
@@ -184,7 +180,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
     
     @Override   //play new animation when shown
     public void playOnShowAnimation (){
-        this.handleOnShowAnimation(contentPane, 500, 30.0);
+        this.handleOnShowAnimation(contentPane);
     }
 
     private void initializeScrollPane() {

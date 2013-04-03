@@ -89,10 +89,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
         //show search pane when first loaded
         transitPane("Search.fxml", getContentPlaceHolderPane(), this.getMainController()); 
         //animation for GUI on shown
-        handleOnShowAnimation(menuPane, 500, 30.0);
-        handleOnShowAnimation(getContentPlaceHolderPane(), 500, 30.0);
-        handleOnShowAnimation(helpPane, 500, 30.0);
-        handleOnShowAnimation(footerPane, 500, 30.0);
+        handleOnShowAnimation(basePane);
     }
     
 

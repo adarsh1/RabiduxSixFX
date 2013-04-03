@@ -130,7 +130,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
         fadeTransition.setToValue(1.0);
         //Scale in
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(millis / 2), node);
-        scaleTransition.setFromX(0.0);
+        scaleTransition.setFromX(0.9);
         scaleTransition.setToX(1.0);
         scaleTransition.setCycleCount(1);
         scaleTransition.setAutoReverse(false);
@@ -143,6 +143,10 @@ public abstract class BaseFXController implements Initializable, Animatable {
         //parallel animation
         ParallelTransition parallelTransition = new ParallelTransition(node, fadeTransition, scaleTransition, translateTransition);
         parallelTransition.play();
+    }
+    //overloading the above function. Provide a default animation
+    public void handleOnShowAnimation(Node node){
+        handleOnShowAnimation(node, 500, 10.0);
     }
     
     //apply fade animation
