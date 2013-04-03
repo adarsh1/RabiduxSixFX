@@ -13,16 +13,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import lms.WelcomeLibrarianController;
-import resetfine.ResetFineController;
-import returnbook.ReturnController;
-import updatecatalogue.UpdateCatalogueController;
 
 /**
  *
  * @author Adarsh
  */
-public abstract class LibrarianFXController extends BaseFXController implements Initializable{
+public class LibrarianFXController extends BaseFXController implements Initializable{
     @FXML //  fx:id="home"
     private Button home; // Value injected by FXMLLoader
      @FXML //  fx:id="resetfine"
@@ -106,6 +102,11 @@ public abstract class LibrarianFXController extends BaseFXController implements 
 
         // initialize your logic here: all @FXML variables will have been injected
 
+    }
+
+    @Override
+    public void playOnShowAnimation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

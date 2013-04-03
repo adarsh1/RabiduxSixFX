@@ -19,4 +19,21 @@ public class HistoryMgr {
     public HistoryMgr(Member currentMember) {
         
     }
+    public HistoryMgr(){
+        //empty constructor
+    }
+
+    /**
+     * @return the currentMember
+     */
+    public Member getCurrentMember() {
+        return currentMember;
+    }
+
+    /**
+     * @param currentMember the currentMember to set
+     */
+    public void setCurrentMember(Member currentMember) {
+        this.currentMember = currentMember;
+    }
 }   

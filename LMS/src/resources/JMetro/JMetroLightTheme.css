@@ -756,3 +756,13 @@
 .individualCopyScroll{
     -fx-background-color:#ffffff;
 }
+
+/*******************************************************************************
+ *                                                                             *
+ * History part                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.history-pane{
+    -fx-background-color: #ffffff;
+    -fx-padding: 8 6 8 1;
+}

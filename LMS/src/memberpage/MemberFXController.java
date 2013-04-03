@@ -81,11 +81,9 @@ public class MemberFXController extends BaseFXController implements Initializabl
         transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getMainController());            
     }
     // Handler for Button[fx:id="history"] onAction
-    public void handleHistoryTabAction(ActionEvent event) {
-        Node node=(Node) event.getSource();
-        //transitScene("/resources/xml/History.fxml",node);        
+    public void handleHistoryMenuButtonAction(ActionEvent event) {
+        transitPane("History.fxml", getContentPlaceHolderPane(), this.getMainController()); 
     }
-
 
     // Handler for Button[fx:id="search"] onAction
     public void handleSearchMenuButtonAction(ActionEvent event) {
