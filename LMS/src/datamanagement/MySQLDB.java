@@ -27,7 +27,7 @@ public class MySQLDB extends Database{
     public void initializeConnection() throws SQLException, ClassNotFoundException {
         
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3308/rabidusDB","root","password");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost/rabidusDB","root","password");
         
     }
     
