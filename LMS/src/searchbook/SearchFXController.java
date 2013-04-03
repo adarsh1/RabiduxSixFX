@@ -121,11 +121,11 @@ public class SearchFXController extends BaseFXController implements Initializabl
         p.setMinSize(480, 124);
         ImageView bookCover;
        try
-       {bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/bookcover/"+item.getItemID()+".jpg")));
+       {bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream(MainController.BOOKCOVER_IMAGE_PATH + item.getItemID()+".jpg")));
        }
        catch(Exception e)
        {
-        bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+        bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream( MainController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
        }
         bookCover.setFitWidth(80);
         bookCover.setLayoutX(7);

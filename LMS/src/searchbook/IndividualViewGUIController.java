@@ -114,11 +114,11 @@ public void setId(String id){
     
     author.setText("Author: "+individualMgr.getItem().getItemAuthor());
     try
-       {cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream("/resources/images/bookcover/"+id+".jpg")));
+       {cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( MainController.BOOKCOVER_IMAGE_PATH + id + ".jpg")));
        }
        catch(Exception e)
        {
-        cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream("/resources/images/default_book_cover.jpg")));
+        cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( MainController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
        }
    //Need Genre
     genre.setText("Genre: "+"Education");

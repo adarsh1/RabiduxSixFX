@@ -4,7 +4,7 @@
  */
 package updatecatalogue;
 
-import baseGUI.LibrarianFXController;
+import baseGUI.BaseFXController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Adarsh
  */
-public abstract class UpdateCatalogueController extends LibrarianFXController implements Initializable {
+public class UpdateCatalogueController extends BaseFXController implements Initializable {
 
      @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -22,4 +22,9 @@ public abstract class UpdateCatalogueController extends LibrarianFXController im
         // initialize your logic here: all @FXML variables will have been injected
 
     }    
+
+    @Override
+    public void playOnShowAnimation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
