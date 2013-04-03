@@ -175,7 +175,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
          handleNodeScaleTransition(node, millis, 0.0, 0.1);
      }
      
-     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, MainController mainController){
+     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, MainController mainControllert){
         try{      
             //load the FXML file
             FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);
@@ -185,8 +185,8 @@ public abstract class BaseFXController implements Initializable, Animatable {
             //add this pane into placeholder
             placeHolderPane.getChildren().add(content);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
-            if(mainController!=null)
-            {FXController.setMainController(mainController);
+            if(mainControllert!=null)
+            {FXController.setMainController(mainControllert);
             }
             else
             {System.out.println("No MainController");

@@ -8,6 +8,7 @@ package searchbook;
 import baseGUI.BaseFXController;
 import cataloguemanagement.ReservableCopyGroup;
 import globalcontroller.MainController;
+import java.awt.event.ActionListener;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -36,8 +37,6 @@ import usermanagement.Member;
 public class SearchFXController extends BaseFXController implements Initializable{
     
     private SearchMgr searchMgr;
-  
-  @FXML
     private ResourceBundle resources;
 
     @FXML
@@ -72,7 +71,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
 
     @FXML
     private VBox vb;
-
+    
     private MainController mainController1;
     
     @Override // This method is called by the FXMLLoader when initialization is complete
@@ -166,16 +165,21 @@ public class SearchFXController extends BaseFXController implements Initializabl
         p.getChildren().addAll(bookCover,indTitle,indAuthor,indGenre,indCopies);
 
         p.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            private MainController mainControllertemp;
             @Override
             public void handle(MouseEvent e){
                 Node node=(Node) e.getSource();
                 
                 String id=node.getId();
-                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, mainController1);
+                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, mainControllertemp);
                 IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
                 ic.setId(id);
             }
-        });
+            private EventHandler<MouseEvent> init(MainController var){
+                mainControllertemp = var;
+                return this;
+            }
+        }.init(this.getMainController()));
     }
     
     @Override   //play new animation when shown
