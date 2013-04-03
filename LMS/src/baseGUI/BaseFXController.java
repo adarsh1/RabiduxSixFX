@@ -121,7 +121,6 @@ public abstract class BaseFXController implements Initializable, Animatable {
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
-    
     //show element with Metro style animation
     @Override
     public void handleOnShowAnimation(Node node, int millis, double offset){
@@ -186,7 +185,12 @@ public abstract class BaseFXController implements Initializable, Animatable {
             //add this pane into placeholder
             placeHolderPane.getChildren().add(content);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
-            //FXController.setMainController(mainController);
+            if(mainController!=null)
+            {FXController.setMainController(mainController);
+            }
+            else
+            {System.out.println("No MainController");
+            }
             FXController.playOnShowAnimation();     
             return fxmlLoader;
         }
