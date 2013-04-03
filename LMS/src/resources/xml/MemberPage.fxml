@@ -34,17 +34,13 @@
             <Image url="@../images/history.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <Button id="searchButton" fx:id="searchMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleSearchMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Search">
-          <tooltip>
-            <Tooltip id="" style="" text="Empty Tooltip" />
-          </tooltip>
-        </Button>
+        <Button id="searchButton" fx:id="searchMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleSearchMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Search" />
         <Button id="BorrowMenuButton" fx:id="borrowMenuButton" layoutX="55.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleborrowMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Borrow" />
         <Button id="hoo" fx:id="holdingMenuButton" layoutX="55.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleHoldingsMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Holdings" />
         <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
       </children>
     </Pane>
-    <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="200.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
+    <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="190.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
     <Pane id="annoucementPane" fx:id="footerPane" layoutX="600.0" layoutY="530.0" prefHeight="60.0" prefWidth="280.0">
       <children>
         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="245.0" pickOnBounds="true" preserveRatio="true">
