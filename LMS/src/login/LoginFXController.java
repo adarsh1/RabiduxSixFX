@@ -153,7 +153,10 @@ public class LoginFXController extends BaseFXController implements Initializable
     }    
     
     public void setMainController (MainController maincontroller)
-    {}
+    {
+      //No need of the old controller anymore. dont let anything reference it.
+      maincontroller = null;
+    }
     
     @Override
     public void playOnShowAnimation() {

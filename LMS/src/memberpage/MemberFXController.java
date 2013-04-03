@@ -6,18 +6,30 @@ package memberpage;
 
 import baseGUI.BaseFXController;
 import globalcontroller.MainController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -89,9 +101,63 @@ public class MemberFXController extends BaseFXController implements Initializabl
     
     // Handler for Label[fx:id="logoutbutton"] onMouseClicked
     public void logoutbuttonhandler(MouseEvent event) {
-        Node node=(Node) event.getSource();
-        transitScene("Login.fxml", node, this.getMainController());  
+        
+        final Node node=(Node) event.getSource();
+        final MainController mc = this.getMainController();
+        
+        final Popup confirmLogOut = new Popup();
+        confirmLogOut.centerOnScreen();
+        VBox popUpVBox = new VBox(10);
+        popUpVBox.setPadding(new Insets(10));
+    
+        Text logMes=new Text(" Are you sure you\nwant to log out?");
+        logMes.setFill(Color.WHITESMOKE);
+        logMes.setFont(Font.font("Segoe", 16));
+    
+        HBox popUpBoxButtons = new HBox(30);
+        popUpBoxButtons.setPadding(new Insets(10));
+    
+        popUpVBox.getChildren().add(logMes);
+    
+        Button yes=new Button("Yes");
+        Button no=new Button("No");
+        //Remove Blue Borders
+        yes.setStyle("-fx-background-insets:0, 0, 1, 2;");
+        no.setStyle("-fx-background-insets:0, 0, 1, 2;");
+
+        popUpBoxButtons.getChildren().addAll(yes,no);
+        popUpVBox.getChildren().add(popUpBoxButtons);
+        //Style the pop up box
+        popUpVBox.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.75) , 5, 1, 0 , 1 );-fx-background-color: radial-gradient(focus-angle 0deg , focus-distance 0% , center 50% 50% , radius 50% , #a9a9a9, #475871);");
+        confirmLogOut.getContent().add(popUpVBox);
+    
+        Stage stage=(Stage) node.getScene().getWindow();
+        //Set the pop up
+        confirmLogOut.show(stage);
+  
+        yes.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {            
+            @Override
+            public void handle(MouseEvent t){
+            confirmLogOut.hide();
+            gotologin(node,mc); 
+            }
+        }
+            );
+        no.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            
+            @Override
+            public void handle(MouseEvent t){
+                confirmLogOut.hide();}
+        }
+            );
+    }    
+    
+    private void gotologin(Node node,MainController mc)
+    {
+        transitScene("Login.fxml", node, mc);
     }
+     
     
     @Override
     public void playOnShowAnimation(){         
