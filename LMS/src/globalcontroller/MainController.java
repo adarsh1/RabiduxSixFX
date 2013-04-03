@@ -21,6 +21,7 @@ public class MainController {
     public static final String BOOKCOVER_IMAGE_PATH = "/resources/images/bookcover/";
     public static final String FXML_PATH = "/resources/xml/";
     public static final String IMAGE_PATH = "/resources/images/";
+    public static final String JMETRO_PATH = "/resources/JMetro/";
     
     //constructor
     public MainController(){
