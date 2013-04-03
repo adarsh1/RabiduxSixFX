@@ -171,9 +171,7 @@ public class SearchFXController extends MemberFXController implements Initializa
                 Node node=(Node) e.getSource();
                 
                 String id=node.getId();
-                System.out.println("Hello");
                 FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, mainController1);
-                System.out.println("Hello");
                 IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
                 ic.setId(id);
             }
