@@ -48,7 +48,7 @@
             <Image url="@../images/user%20icon.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <Label layoutX="187.0" layoutY="20.0" text="LOG OUT" textAlignment="RIGHT" />
+        <Label fx:id="logoutbutton" layoutX="187.0" layoutY="20.0" onMouseClicked="#logoutbuttonhandler" text="LOG OUT" textAlignment="RIGHT" />
         <Label fx:id="username" alignment="CENTER_RIGHT" layoutX="7.0" prefWidth="230.0" styleClass="font-bold" text="liux0047@e.ntu.edu.sg" textAlignment="RIGHT" />
       </children>
     </Pane>

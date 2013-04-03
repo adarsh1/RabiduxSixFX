@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -59,7 +60,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
     @FXML //  fx:id="username"
     private Label username; // Value injected by FXMLLoader
 
-    
+    @FXML //  fx:id="logoutbutton"
+    private Label logoutbutton; // Value injected by FXMLLoader
     
 
     // Handler for Button[fx:id="borrow"] onAction
@@ -82,6 +84,13 @@ public class MemberFXController extends BaseFXController implements Initializabl
     public void handleHoldingsMenuButtonAction(ActionEvent event) {
         transitPane("Holdings.fxml", getContentPlaceHolderPane(), this.getMainController());  
         //transitScene("/resources/xml/MyMaterial.fxml",node); 
+    }
+    
+    
+    // Handler for Label[fx:id="logoutbutton"] onMouseClicked
+    public void logoutbuttonhandler(MouseEvent event) {
+        Node node=(Node) event.getSource();
+        transitScene("Login.fxml", node, this.getMainController());  
     }
     
     @Override

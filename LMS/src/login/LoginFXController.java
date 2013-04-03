@@ -4,6 +4,7 @@ package login;
 import baseGUI.BaseFXController;
 import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
+import globalcontroller.MainController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -150,7 +151,10 @@ public class LoginFXController extends BaseFXController implements Initializable
     private void goWelcomeLibrarian(Node node){
         transitScene("WelcomeLibrarian.fxml",node, loginMgr.getMainController());
     }    
-
+    
+    public void setMainController (MainController maincontroller)
+    {}
+    
     @Override
     public void playOnShowAnimation() {
         //call animation to play
