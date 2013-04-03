@@ -105,7 +105,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
         popUpVBox.setPadding(new Insets(10));
     
         Text logMes=new Text(" Are you sure you\nwant to log out?");
-        logMes.setFill(Color.WHITESMOKE);
+        logMes.setFill(Color.BLACK);
         logMes.setFont(Font.font("Segoe", 16));
     
         HBox popUpBoxButtons = new HBox(30);
