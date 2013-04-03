@@ -32,8 +32,6 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <Label fx:id="resultMsg" layoutY="303.0" styleClass="result-msg" />
-        <Label fx:id="warningMsg" layoutY="303.0" styleClass="warning-msg" />
         <Button fx:id="confirmBorrow" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
       </children>
     </Pane>
@@ -41,6 +39,17 @@
     <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" prefHeight="31.0" prefWidth="390.0" />
     <Button fx:id="getDetails" defaultButton="true" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" prefHeight="30.0" text="Get details" />
     <Label id="borrowMsg" fx:id="itemMsg" layoutY="120.0" styleClass="warning-msg" />
+    <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+      <children>
+        <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
+          <children>
+            <Label id="warningMsg" fx:id="messageHeader" styleClass="message-header" text="title" />
+            <Label id="MessageText" fx:id="messageText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="message-text" text="Label" />
+            <Button fx:id="hideMessage" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleHideMessageButtonAction" styleClass="success-button" text="OK" />
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />

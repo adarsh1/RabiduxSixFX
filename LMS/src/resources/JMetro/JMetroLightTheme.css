@@ -48,12 +48,7 @@
      
 }
 
-.warning-msg{
-    -fx-text-fill: #ff3d00;
-}
-.result-msg{
-    -fx-text-fill:royalblue;
-}
+
 /*******************************************************************************
  *                                                                             *
  * Push Button                                                                 *
@@ -765,4 +760,68 @@
 .history-pane{
     -fx-background-color: #ffffff;
     -fx-padding: 8 6 8 1;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Warning part                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+
+.warning-pane{
+    -fx-background-color: #ff3d00;
+}
+.success-pane{
+    -fx-background-color: #0033cc;
+}
+.message-header{
+    -fx-font-size: 30pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
+.message-text{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
+
+.warning-button{
+    -fx-background-color: #cc3300;
+}
+
+.warning-button:hover{
+    -fx-background-color: #ff6633;
+}
+
+.success-button {
+    -fx-background-color: darkblue;
+}
+
+.success-button:hover{
+    -fx-background-color: #3366ff;
+}
+
+.warning-button, .success-button{
+    -fx-padding: 5 22 5 22;   
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;  
+     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+}
+
+.success-button:pressed ,.warning-button:pressed 
+{
+  -fx-background-color: #1d1d1d;
+  -fx-text-fill:white ;
+}
+
+.success-button:focused, .warning-button:focused
+{
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
 }

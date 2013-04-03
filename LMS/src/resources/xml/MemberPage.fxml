@@ -40,7 +40,6 @@
         <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleHistoryMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
       </children>
     </Pane>
-    <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="190.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
     <Pane id="annoucementPane" fx:id="footerPane" layoutX="600.0" layoutY="530.0" prefHeight="60.0" prefWidth="280.0">
       <children>
         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="245.0" pickOnBounds="true" preserveRatio="true">
@@ -63,6 +62,7 @@
         <Text id="helText" fx:id="helpText" layoutX="5.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="help-text" text="CSS styles are applied to nodes in the JavaFX scene graph in a way similar to the way CSS styles are applied to elements in the HTML DOM. Styles are first applied to the parent, then to its children. The code is written such that only those branches of the scene graph that might need CSS reapplied are visited. A node is styled after it is added to the scene graph. Styles are reapplied when there is a change to the node's pseudo-class state, style class, id, inline style, or parent." wrappingWidth="140.0" />
       </children>
     </Pane>
+    <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="190.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />
