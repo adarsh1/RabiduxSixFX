@@ -5,6 +5,7 @@
 package returnbook;
 
 import baseGUI.BaseFXController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -26,6 +27,11 @@ public class ReturnController extends BaseFXController implements Initializable 
 
     @Override
     public void playOnShowAnimation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setInitialData(ModelController modelController) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

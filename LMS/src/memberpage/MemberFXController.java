@@ -5,7 +5,7 @@
 package memberpage;
 
 import baseGUI.BaseFXController;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -74,21 +74,21 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     // Handler for Button[fx:id="borrow"] onAction
     public void handleborrowMenuButtonAction(ActionEvent event) {            
-        transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getMainController());            
+        transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getModelController());            
     }
     // Handler for Button[fx:id="history"] onAction
     public void handleHistoryMenuButtonAction(ActionEvent event) {
-        transitPane("History.fxml", getContentPlaceHolderPane(), this.getMainController()); 
+        transitPane("History.fxml", getContentPlaceHolderPane(), this.getModelController()); 
     }
 
     // Handler for Button[fx:id="search"] onAction
     public void handleSearchMenuButtonAction(ActionEvent event) {
-        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getMainController());         
+        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController());         
     }
 
     // Handler for Button[fx:id="rentals"] onAction
     public void handleHoldingsMenuButtonAction(ActionEvent event) {
-        transitPane("Holdings.fxml", getContentPlaceHolderPane(), this.getMainController());  
+        transitPane("Holdings.fxml", getContentPlaceHolderPane(), this.getModelController());  
         //transitScene("/resources/xml/MyMaterial.fxml",node); 
     }
     
@@ -97,7 +97,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     public void logoutbuttonhandler(MouseEvent event) {
         
         final Node node=(Node) event.getSource();
-        final MainController mc = this.getMainController();
+        final ModelController mc = this.getModelController();
         
         final Popup confirmLogOut = new Popup();
         confirmLogOut.centerOnScreen();
@@ -123,7 +123,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
         popUpVBox.getChildren().add(popUpBoxButtons);
         //Style the pop up box
         //popUpVBox.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.75) , 5, 1, 0 , 1 );-fx-background-color: radial-gradient(focus-angle 0deg , focus-distance 0% , center 50% 50% , radius 50% , #a9a9a9, #475871);");
-        popUpVBox.getStylesheets().add(BaseFXController.class.getResource(MainController.JMETRO_PATH+"JMetroLightTheme.css").toExternalForm());
+        popUpVBox.getStylesheets().add(BaseFXController.class.getResource(ModelController.JMETRO_PATH+"JMetroLightTheme.css").toExternalForm());
         confirmLogOut.getContent().add(popUpVBox);
         
         logoutbutton.setDisable(true);
@@ -156,7 +156,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
             );
     }    
     
-    private void gotologin(Node node,MainController mc)
+    private void gotologin(Node node,ModelController mc)
     {
         transitScene("Login.fxml", node, mc);
     }
@@ -165,7 +165,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     @Override
     public void playOnShowAnimation(){         
         //show search pane when first loaded
-        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getMainController()); 
+        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()); 
         //animation for GUI on shown
         handleOnShowAnimation(basePane);
     }
@@ -186,18 +186,12 @@ public class MemberFXController extends BaseFXController implements Initializabl
         assert username != null : "fx:id=\"username\" was not injected: check your FXML file 'MemberPage.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
-
     }    
+
     
-    @Override
-    public void setMainController(MainController mainController){
-        super.setMainController(mainController);
-        setUpContent();
-    }
-    
-    //set up the content once the MainController is available
-    private void setUpContent(){
-        username.setText(this.getMainController().getUser().getUsername());
+    @Override   //set up the content once the ModelController is available
+    public void setInitialData( ModelController modelController){
+        username.setText(modelController.getUser().getUsername());
     }
 
     /**

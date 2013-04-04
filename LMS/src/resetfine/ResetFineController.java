@@ -5,6 +5,7 @@
 package resetfine;
 
 import baseGUI.BaseFXController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -25,6 +26,11 @@ public class ResetFineController extends BaseFXController implements Initializab
 
     @Override
     public void playOnShowAnimation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setInitialData(ModelController modelController) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

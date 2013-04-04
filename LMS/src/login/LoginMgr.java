@@ -6,7 +6,7 @@ package login;
 
 import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.sql.SQLException;
 import usermanagement.User;
 
@@ -17,11 +17,11 @@ import usermanagement.User;
 public class LoginMgr {
     
     private User user;
-    private MainController mainController;
+    private ModelController mainController;
     
     public LoginMgr(){
         //default longinMgr constructor
-        mainController = new MainController();
+        mainController = new ModelController();
     }
     
     //create a user based on userName entered. If no such user exists, throw exception
@@ -34,14 +34,14 @@ public class LoginMgr {
     /**
      * @return the mainController
      */
-    public MainController getMainController() {
+    public ModelController getMainController() {
         return mainController;
     }
 
     /**
      * @param mainController the mainController to set
      */
-    public void setMainController(MainController mainController) {
+    public void setMainController(ModelController mainController) {
         this.mainController = mainController;
     }
 

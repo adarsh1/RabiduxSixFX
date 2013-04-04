@@ -4,7 +4,7 @@
  */
 package test;
 
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +28,7 @@ public class testBorrow extends Application{
     private Scene scene;
     private Parent root;
     private FXMLLoader fxmlLoader;
-    private MainController MC = new MainController();
+    private ModelController MC = new ModelController();
     
     
     @Override

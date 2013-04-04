@@ -6,7 +6,7 @@
 package searchbook;
 
 import baseGUI.BaseFXController;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -77,8 +77,8 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
     private IndividualViewGUIMgr individualMgr;
 
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    @Override // This method is called by the FXMLLoader when initialization is complete
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert author != null : "fx:id=\"author\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
         assert borrowablecopies != null : "fx:id=\"borrowablecopies\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
         assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
@@ -94,7 +94,8 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
         assert title != null : "fx:id=\"title\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
         assert vb != null : "fx:id=\"vb\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
 
-        // Initialize your logic here: all @FXML variables will have been injected
+        // Initialize your logic here: all @FXML variables will have been injected        
+        individualMgr = new IndividualViewGUIMgr();
     }
 public void setId(String id){
     individualMgr.setItem(null);
@@ -103,7 +104,7 @@ public void setId(String id){
     }
     catch(SQLException e)
     {
-        transitPane("Search.fxml", contentPane, getMainController());
+        transitPane("Search.fxml", contentPane, getModelController());
     }
     catch(ClassNotFoundException e){
     ;
@@ -114,11 +115,11 @@ public void setId(String id){
     
     author.setText("Author: "+individualMgr.getItem().getItemAuthor());
     try
-       {cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( MainController.BOOKCOVER_IMAGE_PATH + id + ".jpg")));
+       {cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + id + ".jpg")));
        }
        catch(Exception e)
        {
-        cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( MainController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
+        cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
        }
    //Need Genre
     genre.setText("Genre: "+"Education");
@@ -142,11 +143,11 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
     public void playOnShowAnimation (){
         this.handleOnShowAnimation(contentPane);
     }
-@Override   //call the inherited method to pass the maincontroller in, meanwhile update the current member
-    public void setMainController (MainController mainController){
-        super.setMainController(mainController);
-        individualMgr=new IndividualViewGUIMgr();
+
+    @Override   //call the inherited method to update the current member
+    public void setInitialData(ModelController modelController) {
+        this.setModelController(modelController);
         //set the current member to borrow
-        individualMgr.setCurrentMember((Member)mainController.getUser());
+        individualMgr.setCurrentMember((Member)modelController.getUser());
     }
 }

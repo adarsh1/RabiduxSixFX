@@ -7,7 +7,7 @@ package searchbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.ReservableCopyGroup;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -89,10 +89,10 @@ public class SearchFXController extends BaseFXController implements Initializabl
     
     
     @Override
-    public void setMainController (MainController mainController){
-        super.setMainController(mainController);
+    public void setInitialData(ModelController modelController){  
+        this.setModelController(modelController);
         //set the current member to search
-        searchMgr.setCurrentMember((Member)mainController.getUser());
+        searchMgr.setCurrentMember((Member)modelController.getUser());
     }
     
     
@@ -121,11 +121,11 @@ public class SearchFXController extends BaseFXController implements Initializabl
         p.setMinSize(480, 124);
         ImageView bookCover;
        try
-       {bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream(MainController.BOOKCOVER_IMAGE_PATH + item.getItemID()+".jpg")));
+       {bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream(ModelController.BOOKCOVER_IMAGE_PATH + item.getItemID()+".jpg")));
        }
        catch(Exception e)
        {
-        bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream( MainController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
+        bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
        }
         bookCover.setFitWidth(80);
         bookCover.setLayoutX(7);
@@ -159,23 +159,25 @@ public class SearchFXController extends BaseFXController implements Initializabl
         indCopies.setEllipsisString("");
         
         p.getChildren().addAll(bookCover,indTitle,indAuthor,indGenre,indCopies);
+        p.setOnMouseClicked(new MouseClickListener());
 
+        /*
         p.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            private MainController mainControllertemp;
             @Override
             public void handle(MouseEvent e){
                 Node node=(Node) e.getSource();
                 
                 String id=node.getId();
-                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, mainControllertemp);
+                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, modelControllertemp);
                 IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
                 ic.setId(id);
             }
-            private EventHandler<MouseEvent> init(MainController var){
-                mainControllertemp = var;
+            private EventHandler<MouseEvent> init(ModelController var){
+                modelControllertemp = var;
                 return this;
             }
-        }.init(this.getMainController()));
+        }.init(this.getModelController()));
+        */ 
     }
     
     @Override   //play new animation when shown
@@ -195,5 +197,18 @@ public class SearchFXController extends BaseFXController implements Initializabl
                 vb.getChildren().add(p);
                 handleNodeScaleTransition(p, 400,0,1);
          }
+    }
+    
+    private class MouseClickListener implements EventHandler<MouseEvent>{
+        @Override
+        public void handle(MouseEvent e) {
+            Node node=(Node) e.getSource();
+                
+            String id=node.getId();
+            FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, getModelController() );
+            IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
+            ic.setId(id);
+        }
+        
     }
 }

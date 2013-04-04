@@ -1,4 +1,4 @@
-
+//this approach to create singleton is ingenius!
 package factory;
 
 /**

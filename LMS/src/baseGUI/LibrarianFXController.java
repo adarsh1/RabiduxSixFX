@@ -1,6 +1,7 @@
 
 package baseGUI;
 
+import globalcontrol.ModelController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -106,6 +107,11 @@ public class LibrarianFXController extends BaseFXController implements Initializ
 
     @Override
     public void playOnShowAnimation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setInitialData(ModelController modelController) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
