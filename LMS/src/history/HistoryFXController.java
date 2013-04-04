@@ -3,6 +3,11 @@
  * You can copy and paste this code into your favorite IDE
  **/
 
+/**
+ *
+ * @author Ambarish
+ */
+
 package history;
 
 import baseGUI.BaseFXController;
@@ -48,7 +53,7 @@ public class HistoryFXController extends BaseFXController implements Initializab
         assert itemPane != null : "fx:id=\"itemPane\" was not injected: check your FXML file 'History.fxml'.";
         assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'History.fxml'.";
         // initialize your logic here: all @FXML variables will have been injected
-        historyMgr = new HistoryMgr();
+        historyMgr = new HistoryMgr((Member)this.getMainController().getUser());
         displayHistory();
         
     }
@@ -56,7 +61,7 @@ public class HistoryFXController extends BaseFXController implements Initializab
    
    private void displayHistory()
    {
-       //historyMgr.getHistoryTransactionItems(); 
+       //historyMgr.getHistory(); 
        initializeScrollPane();
    }
    

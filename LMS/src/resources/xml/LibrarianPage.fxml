@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="SplitPane" fx:id="basePane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="librarianpage.LibrarianFXController">
+  <children>
+    <Pane fx:id="menuPane" layoutY="50.0" prefHeight="400.0" prefWidth="180.0" styleClass="menuPane">
+      <children>
+        <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="19.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../images/borrow.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../images/money.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../images/holdings.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../images/history.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <Button id="searchButton" fx:id="returnMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleReturnMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Return" />
+        <Button id="BorrowMenuButton" fx:id="resetFineMenuButton" layoutX="55.0" layoutY="100.0" mnemonicParsing="false" onAction="#handlefineMenuButtonAction" prefHeight="30.0" prefWidth="111.0" styleClass="menu-buton" text="Reset Fine" />
+        <Button id="hoo" fx:id="updateMenuButton" layoutX="55.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleupdateMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="Update" />
+        <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleHistoryMenuButtonAction" prefHeight="30.0" prefWidth="100.0" styleClass="menu-buton" text="History" />
+      </children>
+    </Pane>
+    <Pane id="annoucementPane" fx:id="footerPane" layoutX="600.0" layoutY="530.0" prefHeight="60.0" prefWidth="280.0">
+      <children>
+        <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="245.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../images/user%20icon.jpg" preserveRatio="false" smooth="false" />
+          </image>
+        </ImageView>
+        <Label fx:id="logoutbutton" layoutX="187.0" layoutY="20.0" onMouseClicked="#logoutbuttonhandler" text="LOG OUT" textAlignment="RIGHT" />
+        <Label fx:id="username" alignment="CENTER_RIGHT" layoutX="7.0" prefWidth="230.0" styleClass="font-bold" text="liux0047@e.ntu.edu.sg" textAlignment="RIGHT" />
+      </children>
+    </Pane>
+    <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../images/Rabidus.jpg" preserveRatio="false" smooth="false" />
+      </image>
+    </ImageView>
+    <Pane fx:id="helpPane" layoutX="720.0" layoutY="50.0" prefHeight="450.0" prefWidth="160.0" styleClass="help-pane">
+      <children>
+        <Label layoutX="5.0" styleClass="help-header" text="Guide" />
+        <Text id="helText" fx:id="helpText" layoutX="5.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="help-text" text="CSS styles are applied to nodes in the JavaFX scene graph in a way similar to the way CSS styles are applied to elements in the HTML DOM. Styles are first applied to the parent, then to its children. The code is written such that only those branches of the scene graph that might need CSS reapplied are visited. A node is styled after it is added to the scene graph. Styles are reapplied when there is a change to the node's pseudo-class state, style class, id, inline style, or parent." wrappingWidth="140.0" />
+      </children>
+    </Pane>
+    <AnchorPane id="borrowPane" fx:id="contentPlaceHolderPane" layoutX="190.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
+  </children>
+  <stylesheets>
+    <URL value="@../JMetro/JMetroLightTheme.css" />
+  </stylesheets>
+</AnchorPane>

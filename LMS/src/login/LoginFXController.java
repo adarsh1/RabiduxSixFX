@@ -149,7 +149,7 @@ public class LoginFXController extends BaseFXController implements Initializable
     }
     
     private void goWelcomeLibrarian(Node node){
-        transitScene("WelcomeLibrarian.fxml",node, loginMgr.getMainController());
+        transitScene("LibrarianPage.fxml",node, loginMgr.getMainController());
     }    
     
     public void setMainController (MainController maincontroller)

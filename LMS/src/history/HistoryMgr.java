@@ -1,39 +1,46 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package history;
+import cataloguemanagement.PastTransaction;
+import java.util.ArrayList;
 import usermanagement.Member;
 /**
  *
- * @author Richard
+ * @author Ambarish
  */
 public class HistoryMgr {
     
     private Member currentMember;
     
-    /**
-     *
-     * @param currentMember
-     */
-    public HistoryMgr(Member currentMember) {
-        
+    private ArrayList<PastTransaction> itemGroup;
+
+    public HistoryMgr(Member member) {
+        currentMember = member;
     }
     public HistoryMgr(){
-        //empty constructor
     }
 
-    /**
-     * @return the currentMember
-     */
     public Member getCurrentMember() {
         return currentMember;
     }
 
-    /**
-     * @param currentMember the currentMember to set
-     */
     public void setCurrentMember(Member currentMember) {
         this.currentMember = currentMember;
     }
+    
+    public ArrayList<PastTransaction> getItemGroup ()
+    {
+        return this.itemGroup;
+    }
+    public void setItemGroup (ArrayList<PastTransaction> group)
+    {
+        this.itemGroup = group;
+    }
+    
+    public void getHistory()
+    {
+        //Call the datastore function of past transaction to get all the 
+        //loan details in an array and then assign it to the array list present
+        //Use "Member" class methods??
+    }
+    
 }   
