@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package globalcontroller;
+package globalcontrol;
 
 import usermanagement.User;
 
@@ -10,7 +10,7 @@ import usermanagement.User;
  *
  * @author Allen
  */
-public class MainController {
+public class ModelController {
     
     //indicate whether a barcode reader is used
     private boolean isUsingBarcodeReader;
@@ -24,7 +24,7 @@ public class MainController {
     public static final String JMETRO_PATH = "/resources/JMetro/";
     
     //constructor
-    public MainController(){
+    public ModelController(){
     }
 
     /**

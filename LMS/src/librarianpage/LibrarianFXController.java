@@ -6,7 +6,7 @@
 package librarianpage;
 
 import baseGUI.BaseFXController;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -107,21 +107,17 @@ public class LibrarianFXController extends BaseFXController implements Initializ
 
     }
 
-    @Override
-    public void setMainController(MainController mainController){
-        super.setMainController(mainController);
-        setUpContent();
-    }
     
-    private void setUpContent(){
-        username.setText(this.getMainController().getUser().getUsername());
+    @Override   //set up the content once the ModelController is available
+    public void setInitialData( ModelController modelController){
+        username.setText(modelController.getUser().getUsername());        
     }
     
     
     @Override
     public void playOnShowAnimation(){         
         //show search pane when first loaded
-        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getMainController()); 
+        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()); 
         //animation for GUI on shown
         handleOnShowAnimation(basePane);
     }
@@ -134,7 +130,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     public void logoutbuttonhandler(MouseEvent event) {
         
         final Node node=(Node) event.getSource();
-        final MainController mc = this.getMainController();
+        final ModelController mc = this.getModelController();
         
         final Popup confirmLogOut = new Popup();
         confirmLogOut.centerOnScreen();
@@ -160,7 +156,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
         popUpVBox.getChildren().add(popUpBoxButtons);
         //Style the pop up box
         //popUpVBox.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.75) , 5, 1, 0 , 1 );-fx-background-color: radial-gradient(focus-angle 0deg , focus-distance 0% , center 50% 50% , radius 50% , #a9a9a9, #475871);");
-        popUpVBox.getStylesheets().add(BaseFXController.class.getResource(MainController.JMETRO_PATH+"JMetroLightTheme.css").toExternalForm());
+        popUpVBox.getStylesheets().add(BaseFXController.class.getResource(ModelController.JMETRO_PATH+"JMetroLightTheme.css").toExternalForm());
         confirmLogOut.getContent().add(popUpVBox);
     
         Stage stage=(Stage) node.getScene().getWindow();
@@ -185,7 +181,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
             );
     }    
     
-    private void gotologin(Node node,MainController mc)
+    private void gotologin(Node node,ModelController mc)
     {
         transitScene("Login.fxml", node, mc);
     }

@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for "Welcome.fxml" Controller Class
- * You can copy and paste this code into your favorite IDE
- **/
 
 /**
  *
@@ -11,25 +7,19 @@
 package history;
 
 import baseGUI.BaseFXController;
-import cataloguemanagement.ReservableCopyGroup;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import searchbook.IndividualViewGUIController;
 import searchbook.SearchFXController;
 import usermanagement.Member;
 
@@ -53,8 +43,7 @@ public class HistoryFXController extends BaseFXController implements Initializab
         assert itemPane != null : "fx:id=\"itemPane\" was not injected: check your FXML file 'History.fxml'.";
         assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'History.fxml'.";
         // initialize your logic here: all @FXML variables will have been injected
-        historyMgr = new HistoryMgr((Member)this.getMainController().getUser());
-        displayHistory();
+        historyMgr = new HistoryMgr();
         
     }
    
@@ -88,11 +77,11 @@ public class HistoryFXController extends BaseFXController implements Initializab
         p.setMinSize(480, 125);
         ImageView bookCover;
        try
-       {bookCover=new ImageView(new Image(HistoryFXController.class.getResourceAsStream(MainController.BOOKCOVER_IMAGE_PATH + "2000000001" +".jpg")));
+       {bookCover=new ImageView(new Image(HistoryFXController.class.getResourceAsStream(ModelController.BOOKCOVER_IMAGE_PATH + "2000000001" +".jpg")));
        }
        catch(Exception e)
        {
-        bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream( MainController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
+        bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
        }
         bookCover.setFitWidth(80);
         bookCover.setFitHeight(111);
@@ -143,11 +132,13 @@ public class HistoryFXController extends BaseFXController implements Initializab
    
    
     @Override
-    public void setMainController(MainController mainController) {
-        super.setMainController(mainController); 
+    public void setInitialData( ModelController modelController){   
+        this.setModelController(modelController);
         //set the current member
-        historyMgr.setCurrentMember((Member)mainController.getUser());
+        historyMgr.setCurrentMember((Member)modelController.getUser());        
+        displayHistory();
     }
+    
 
     @Override
     public void playOnShowAnimation() {

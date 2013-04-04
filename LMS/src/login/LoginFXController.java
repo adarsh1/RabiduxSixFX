@@ -4,7 +4,7 @@ package login;
 import baseGUI.BaseFXController;
 import exception.IncorrectPasswordException;
 import exception.UserNotFoundException;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -51,7 +51,7 @@ public class LoginFXController extends BaseFXController implements Initializable
     
     public LoginFXController(){
         loginMgr = new LoginMgr(); 
-        setMainController(loginMgr.getMainController());
+        setModelController(loginMgr.getMainController());
         currentFieldState = DISABLED;
         previousFieldState = DISABLED;
     }
@@ -152,10 +152,8 @@ public class LoginFXController extends BaseFXController implements Initializable
         transitScene("LibrarianPage.fxml",node, loginMgr.getMainController());
     }    
     
-    public void setMainController (MainController maincontroller)
-    {
-      //No need of the old controller anymore. dont let anything reference it.
-      maincontroller = null;
+    @Override   //set up the content once the ModelController is available
+    public void setInitialData( ModelController modelController){
     }
     
     @Override
