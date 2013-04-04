@@ -1,7 +1,7 @@
 
 package baseGUI;
 
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +31,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
     protected Text name; // Value injected by FXMLLoader
     
     //main controller
-    private MainController mainController;
+    private ModelController modelController;
     
     /*
     public void logout(MouseEvent event) {
@@ -101,17 +101,17 @@ public abstract class BaseFXController implements Initializable, Animatable {
        
     
     /**
-     * @return the MainController
+     * @return the ModelController
      */
-    public MainController getMainController() {
-        return mainController;
+    public ModelController getModelController() {
+        return modelController;
     }
 
     /**
-     * @param mainController the MainController to set
+     * @param modelController the ModelController to set
      */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+    public void setModelController(ModelController modelController) {
+        this.modelController = modelController;
     }
     //show element with Metro style animation
     @Override
@@ -173,22 +173,25 @@ public abstract class BaseFXController implements Initializable, Animatable {
          handleNodeScaleTransition(node, millis, 0.0, 0.1);
      }
      
-     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, MainController mainControllert){
+     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
         try{      
             //load the FXML file
-            FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);
+            FXMLLoader fxmlLoader = generateFXMLLoader( ModelController.FXML_PATH + resourceURL);
             Node content = loadFXML(fxmlLoader);
             //remove all existing children on the place holder
             placeHolderPane.getChildren().clear();
             //add this pane into placeholder
             placeHolderPane.getChildren().add(content);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
-            if(mainControllert!=null)
-            {FXController.setMainController(mainControllert);
+            FXController.setInitialData(modelController);            
+            /*
+            if(modelController!=null)
+            {FXController.setModelController(modelController);
             }
             else
-            {System.out.println("No MainController");
+            {System.out.println("No modelController");
             }
+            */ 
             FXController.playOnShowAnimation();     
             return fxmlLoader;
         }
@@ -198,13 +201,13 @@ public abstract class BaseFXController implements Initializable, Animatable {
        }
     }
      
-    public void transitScene(String resourceURL, Node node, MainController mainController){
+    public void transitScene(String resourceURL, Node node, ModelController modelController){
         Stage stage=(Stage) node.getScene().getWindow();
         try{      
-            FXMLLoader fxmlLoader = generateFXMLLoader( MainController.FXML_PATH + resourceURL);
+            FXMLLoader fxmlLoader = generateFXMLLoader( ModelController.FXML_PATH + resourceURL);
             Parent root = loadFXML(fxmlLoader);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
-            FXController.setMainController(mainController);
+            FXController.setModelController(modelController);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -225,7 +228,9 @@ public abstract class BaseFXController implements Initializable, Animatable {
     protected FXMLLoader generateFXMLLoader(String resourceURL){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resourceURL)); 
         return fxmlLoader;
-    } 
+    }     
+    
+    public abstract void setInitialData( ModelController modelController);
     
     @Override
     public abstract void playOnShowAnimation(); 

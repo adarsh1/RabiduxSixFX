@@ -6,7 +6,7 @@
 package Holdings;
 
 import baseGUI.BaseFXController;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -39,10 +39,10 @@ public class HoldingsFXController extends BaseFXController implements Initializa
         this.handleOnShowAnimation(contentPane);
     }
     
-    @Override   //call the inherited method to pass the maincontroller in, meanwhile update the current member
-    public void setMainController (MainController mainController){
-        super.setMainController(mainController);
+    @Override   //call the inherited method to  update the current member
+    public void setInitialData( ModelController modelController){        
+        this.setModelController(modelController);
         //set the current member to Holdings
-        holdingsMgr.setCurrentMember((Member)mainController.getUser());
+        holdingsMgr.setCurrentMember((Member)modelController.getUser());        
     }
 }

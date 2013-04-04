@@ -9,7 +9,7 @@ import baseGUI.BaseFXController;
 import cataloguemanagement.PastTransaction;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
-import globalcontroller.MainController;
+import globalcontrol.ModelController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -126,7 +126,7 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
         itemDescription.setText(itemDescriptionText);
         //add the image to the bookcover field
-        Image image = new Image(MainController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
+        Image image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         imageView.setFitWidth(130.0);
@@ -237,11 +237,11 @@ public class BorrowFXController extends BaseFXController implements Initializabl
     }
     
     
-    @Override   //call the inherited method to pass the maincontroller in, meanwhile update the current member
-    public void setMainController (MainController mainController){
-        super.setMainController(mainController);
+    @Override   //call the inherited method to update the current member
+    public void setInitialData( ModelController modelController){      
+        this.setModelController(modelController);
         //set the current member to borrow
-        borrowMgr.setCurrentMember((Member)mainController.getUser());
+        borrowMgr.setCurrentMember((Member)modelController.getUser());
     }
         
     @Override   //play new animation when shown
