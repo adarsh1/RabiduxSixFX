@@ -125,11 +125,15 @@ public class MemberFXController extends BaseFXController implements Initializabl
         //popUpVBox.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.75) , 5, 1, 0 , 1 );-fx-background-color: radial-gradient(focus-angle 0deg , focus-distance 0% , center 50% 50% , radius 50% , #a9a9a9, #475871);");
         popUpVBox.getStylesheets().add(BaseFXController.class.getResource(MainController.JMETRO_PATH+"JMetroLightTheme.css").toExternalForm());
         confirmLogOut.getContent().add(popUpVBox);
+        
+        logoutbutton.setDisable(true);
+        menuPane.setDisable(true);
+        contentPlaceHolderPane.setDisable(true);
     
         Stage stage=(Stage) node.getScene().getWindow();
         //Set the pop up
         confirmLogOut.show(stage);
-  
+        handleOnShowAnimation(popUpVBox);
         yes.setOnMouseClicked(new EventHandler<MouseEvent>()
         {            
             @Override
@@ -143,7 +147,11 @@ public class MemberFXController extends BaseFXController implements Initializabl
             
             @Override
             public void handle(MouseEvent t){
-                confirmLogOut.hide();}
+                confirmLogOut.hide();
+                logoutbutton.setDisable(false);
+                menuPane.setDisable(false);
+                contentPlaceHolderPane.setDisable(false);
+            }
         }
             );
     }    
