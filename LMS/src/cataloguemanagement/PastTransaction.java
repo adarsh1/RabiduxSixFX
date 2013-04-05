@@ -25,14 +25,12 @@ public class PastTransaction {
     
     public PastTransaction() {
         
-        
-        
     }
     
-    public static PastTransaction getPastTransaction (String loanID) {
+    public static ArrayList<PastTransaction> getPastTransactions (String userID) {
         
         DataStore dataStore = new DataStore();
-        return dataStore.getRecord(loanID);
+        return dataStore.getRecords(userID);
         
     }
     

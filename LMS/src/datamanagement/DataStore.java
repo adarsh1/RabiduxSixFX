@@ -565,7 +565,7 @@ public class DataStore {
         
     }
 
-    public PastTransaction getRecord(String loanID) {
+    public ArrayList<PastTransaction> getRecords(String loanID) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
