@@ -13,10 +13,23 @@ import java.util.*;
 
 public class ReservedCopy {
     
+    private String copyID;
     private Calendar dateAvailable;
     private ReservationCancellable copy;
     
     public ReservedCopy() {
+        
+    }
+    
+    public String getCopyID () {
+        
+        return this.copyID;
+        
+    }
+    
+    public void setCopyID (String copyID) {
+        
+        this.copyID = copyID;
         
     }
     

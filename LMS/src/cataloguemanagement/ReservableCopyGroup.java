@@ -85,5 +85,29 @@ public class ReservableCopyGroup {
         return copies.get(0).getAuthor();
     
     }
+    
+    public String getDescription() {
+        
+        return copies.get(0).getDescription();
+        
+    }
+    
+    public Calendar getPublishDate() {
+        
+        return copies.get(0).getPublishDate();
+        
+    }
+    
+    public String getISBN() {
+        
+        return copies.get(0).getISBN();
+        
+    }
+    
+    public String getGenre() {
+        
+        return copies.get(0).getGenre();
+        
+    }
 
 }

@@ -146,6 +146,7 @@ public abstract class CatalogueItem implements Displayable {
         
     }
     
+    @Override
     public String getIndividualCopyID() {
         
         return this.individualCopyID;

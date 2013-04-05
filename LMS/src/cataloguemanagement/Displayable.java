@@ -15,6 +15,7 @@ public interface Displayable {
      * get Strings for various attributes that client class may use to display
      */
     public abstract String getItemID();
+    public abstract String getIndividualCopyID();
     public abstract String getTitle();
     public abstract String getDescription();
     public abstract String getAuthor();

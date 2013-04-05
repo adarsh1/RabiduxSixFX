@@ -802,9 +802,56 @@ public class DataStore {
         
     }
 
-    public ArrayList<ReservedCopy> getReservedCopies(String userID) {
+    public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException {
         
-        throw new UnsupportedOperationException("Not yet implemented");
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        ArrayList<ReservedCopy> result = new ArrayList<> ();
+        
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(userID);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.COPY, where);
+        
+        while(resultSet.next()) {
+            
+            ReservedCopy reservedCopy = new ReservedCopy();
+            String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
+            
+            reservedCopy.setCopyID(copyID);
+            reservedCopy.setCopy((ReservationCancellable)CatalogueItem.getCatalogueItem(copyID));
+            reservedCopy.setDateAvailable(null);
+            
+            result.add(reservedCopy);
+        }
+        
+        for (int i = 0; i < result.size(); i++) {
+            
+            Calendar dateAvailable = new GregorianCalendar();
+            
+            where.clear();
+            
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
+            where.add(result.get(i).getCopyID());
+            
+            resultSet = database.selectRecord(Table.RECORD, where, 1);
+            
+            while(resultSet.next()) {
+                
+                dateAvailable.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+                result.get(i).setDateAvailable(dateAvailable);
+                
+            }
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
         
     }
 

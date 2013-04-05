@@ -142,4 +142,11 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String getIndividualCopyID() {
+        
+        return super.getIndividualCopyID();
+        
+    }
 }
