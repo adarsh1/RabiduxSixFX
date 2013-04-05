@@ -15,6 +15,10 @@ import java.util.*;
 public class MySQLDB extends Database{
     
     private Connection connection;
+    private String host;
+    private String databaseName;
+    private String user;
+    private String password;
     
     public MySQLDB () {
         
@@ -27,14 +31,15 @@ public class MySQLDB extends Database{
     public void initializeConnection() throws SQLException, ClassNotFoundException {
         
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/rabidusDB","root","password");
+        //setConnection(DriverManager.getConnection("jdbc:mysql://localhost/rabidusDB","root","password"));
+        setConnection(DriverManager.getConnection( host + "/" + databaseName, user, password));
         
     }
     
     //close the connection to the database
     @Override
     public void closeConnection() throws SQLException{
-        connection.close();
+        getConnection().close();
     }
     
     @Override
@@ -55,7 +60,7 @@ public class MySQLDB extends Database{
                        break;
         }
                 
-        statement = connection.prepareStatement(queryStr);
+        statement = getConnection().prepareStatement(queryStr);
         
         for (int i = 0; i < values.size(); i++) {
             
@@ -96,7 +101,7 @@ public class MySQLDB extends Database{
                        break;
         }
         
-        statement = connection.prepareStatement(queryStr);
+        statement = getConnection().prepareStatement(queryStr);
         
         for (int i = 0; i < set.size(); i++) {
             
@@ -144,7 +149,7 @@ public class MySQLDB extends Database{
                        break;
         }
         
-        statement = connection.prepareStatement(queryStr);
+        statement = getConnection().prepareStatement(queryStr);
         
         for (int i = 0; i < where.size(); i++) {
             
@@ -175,7 +180,7 @@ public class MySQLDB extends Database{
                        break;
         }
         
-        statement = connection.prepareStatement(queryStr);
+        statement = getConnection().prepareStatement(queryStr);
         
         for (int i = 0; i < where.size(); i++ ) {
             
@@ -221,7 +226,7 @@ public class MySQLDB extends Database{
         
         queryStr += " LIMIT " + Integer.toString(top);
         
-        statement = connection.prepareStatement(queryStr);
+        statement = getConnection().prepareStatement(queryStr);
         
         resultSet = statement.executeQuery();
         
@@ -250,7 +255,7 @@ public class MySQLDB extends Database{
         
         queryStr += " LIMIT " + Integer.toString(top);
         
-        statement = connection.prepareStatement(queryStr);
+        statement = getConnection().prepareStatement(queryStr);
         
         for (int i = 0; i < where.size(); i++ ) {
             
@@ -274,6 +279,76 @@ public class MySQLDB extends Database{
         
         return resultSet;
         
+    }
+
+    /**
+     * @return the connection
+     */
+    public Connection getConnection() {
+        return connection;
+    }
+
+    /**
+     * @param connection the connection to set
+     */
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    /**
+     * @return the host
+     */
+    public String getHost() {
+        return host;
+    }
+
+    /**
+     * @param host the host to set
+     */
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    /**
+     * @return the databaseName
+     */
+    public String getDatabaseName() {
+        return databaseName;
+    }
+
+    /**
+     * @param databaseName the databaseName to set
+     */
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
+
+    /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }
