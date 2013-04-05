@@ -67,11 +67,38 @@ public class MemberFXController extends BaseFXController implements Initializabl
 
     @FXML //  fx:id="username"
     private Label username; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="logoutHeader"
+    private Label logoutHeader; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="logoutText"
+    private Label logoutText; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="yesLogout"
+    private Button yesLogout; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="noLogout"
+    private Button noLogout; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="logoutMessageHolderPane"
+    private AnchorPane logoutMessageHolderPane; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="logoutMessageHolderPane"
+    private AnchorPane logoutPane; // Value injected by FXMLLoader
 
     @FXML //  fx:id="logoutbutton"
     private Label logoutbutton; // Value injected by FXMLLoader
     
-
+    public void handleLogoutYesButtonAction(ActionEvent event){
+        Node node=(Node) event.getSource();
+        gotologin(node); 
+    }
+     public void handleLogoutNoButtonAction(ActionEvent event){
+        logoutbutton.setDisable(false);
+        menuPane.setDisable(false);
+        contentPlaceHolderPane.setDisable(false);
+        logoutPane.setVisible(false);
+    }
     // Handler for Button[fx:id="borrow"] onAction
     public void handleborrowMenuButtonAction(ActionEvent event) {            
         transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getModelController());            
@@ -96,7 +123,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     // Handler for Label[fx:id="logoutbutton"] onMouseClicked
     public void logoutbuttonhandler(MouseEvent event) {
         
-        final Node node=(Node) event.getSource();
+       /* final Node node=(Node) event.getSource();
         //final ModelController mc = this.getModelController();
         
         final Popup confirmLogOut = new Popup();
@@ -117,7 +144,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
         Button no=new Button("No");
         //Remove Blue Borders
         /*yes.setStyle("-fx-background-insets:0, 0, 1, 2;");
-        no.setStyle("-fx-background-insets:0, 0, 1, 2;");*/
+        no.setStyle("-fx-background-insets:0, 0, 1, 2;");
 
         popUpBoxButtons.getChildren().addAll(yes,no);
         popUpVBox.getChildren().add(popUpBoxButtons);
@@ -125,6 +152,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
         //popUpVBox.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.75) , 5, 1, 0 , 1 );-fx-background-color: radial-gradient(focus-angle 0deg , focus-distance 0% , center 50% 50% , radius 50% , #a9a9a9, #475871);");
         popUpVBox.getStylesheets().add(BaseFXController.class.getResource(ModelController.JMETRO_PATH+"JMetroLightTheme.css").toExternalForm());
         confirmLogOut.getContent().add(popUpVBox);
+       
         
         logoutbutton.setDisable(true);
         menuPane.setDisable(true);
@@ -154,6 +182,18 @@ public class MemberFXController extends BaseFXController implements Initializabl
             }
         }
             );
+        */
+        
+        logoutHeader.setText("Confirm Logout");
+            String text = username.getText()+" are you sure you want to logout?";
+        logoutText.setText(text);
+        
+        logoutbutton.setDisable(true);
+        menuPane.setDisable(true);
+        contentPlaceHolderPane.setDisable(true);
+        
+        logoutPane.setVisible(true);
+        this.handleOnShowAnimation(logoutMessageHolderPane);
     }    
     
     private void gotologin(Node node)
