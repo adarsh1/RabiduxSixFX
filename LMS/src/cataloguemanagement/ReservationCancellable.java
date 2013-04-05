@@ -4,12 +4,14 @@
  */
 package cataloguemanagement;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Richard
  */
 public interface ReservationCancellable extends Displayable {
-    public void cancelReservation(String userID);
-  
     
+    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException;
+  
 }

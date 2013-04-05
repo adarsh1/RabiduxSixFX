@@ -143,6 +143,37 @@ public class DataStore {
         
     }
     
+    public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ReservableCopyGroup result = new ReservableCopyGroup ();
+        ArrayList<String> where = new ArrayList<> ();
+        
+        result.setItemID(itemID);
+        
+        database.initializeConnection();
+            
+        where.add(WILDCARD_CHAR);
+        where.add(itemID);
+        where.add(WILDCARD_CHAR);
+            
+        resultSet = database.selectRecord(Table.COPY, where);
+            
+        result.setCopiesAvailable(database.getNumOfRows(resultSet));
+            
+        while(resultSet.next()) {
+                
+            String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
+            result.addCopy(Book.getBook(copyID));
+                
+        }
+        
+        database.closeConnection();
+        
+        return result;
+        
+    }
+    
     public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -303,7 +334,7 @@ public class DataStore {
         ResultSet resultSet = database.selectRecord(Table.COPY, condition);
         resultSet.next();
         
-        if (resultSet.getString(Table.COPY.getAttribute("RESERVED_BY")).compareTo("1000000000") == 0) {
+        if (resultSet.getString(Table.COPY.getAttribute("RESERVED_BY")) == null) {
             
             result = false;
             
@@ -565,8 +596,57 @@ public class DataStore {
         
     }
 
-    public ArrayList<PastTransaction> getRecords(String loanID) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public ArrayList<PastTransaction> getRecords(String userID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<PastTransaction> result = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        Calendar timeBorrowed = new GregorianCalendar();
+        Calendar timeReturned = new GregorianCalendar();
+        Calendar timeToReturn = new GregorianCalendar();
+        
+        where.add(WILDCARD_CHAR);
+        where.add(userID);
+        where.add(WILDCARD_CHAR);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.RECORD, where);
+        
+        while(resultSet.next()) {
+            
+            PastTransaction pastTransaction = new PastTransaction();
+            
+            pastTransaction.setLoanID(resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+            
+            timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+            pastTransaction.setDateBorrowed(timeBorrowed);
+            
+            if (resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")) != null) {
+                
+                timeReturned.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")));
+                pastTransaction.setDateReturned(timeReturned);
+                
+            } else {
+                
+                pastTransaction.setDateReturned(null);
+                
+            }
+            
+            timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            pastTransaction.setDateToReturn(timeToReturn);
+            
+            pastTransaction.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
+            pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
+            
+            pastTransaction.setItem(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("USER_ID"))));
+            
+        }
+        
+        database.closeConnection();
+        
+        return result;
+        
     }
 
     public PastTransaction borrow(String individualCopyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException {
@@ -648,46 +728,77 @@ public class DataStore {
         return transactionHistoryItem;
     }
 
-    public void reserve(String userID) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public void cancelReservation(String userID) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public void returnBook(String copyID, String userID) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException {
+    public void reserve(String copyID, String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
-        ReservableCopyGroup result = new ReservableCopyGroup ();
+        ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
         
-        result.setItemID(itemID);
+        where.add(copyID);
         
         database.initializeConnection();
-            
-        where.add(WILDCARD_CHAR);
-        where.add(itemID);
-        where.add(WILDCARD_CHAR);
-            
+        
         resultSet = database.selectRecord(Table.COPY, where);
-            
-        result.setCopiesAvailable(database.getNumOfRows(resultSet));
-            
-        while(resultSet.next()) {
-                
-            String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
-            result.addCopy(Book.getBook(copyID));
-                
-        }
+        resultSet.next();
+        
+        set.add(userID);
+        set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        
+        database.updateRecord(Table.COPY, set, where);
         
         database.closeConnection();
         
-        return result;
+    }
+
+    public void cancelReservation(String copyID, String userID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add(copyID);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.COPY, where);
+        resultSet.next();
+        
+        set.add(NULL_VARCHAR);
+        set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        
+        database.updateRecord(Table.COPY, set, where);
+        
+        database.closeConnection();
+        
+    }
+
+    public void returnBook(String copyID, String userID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        Calendar today = new GregorianCalendar();
+        
+        where.add(WILDCARD_CHAR);
+        where.add(userID);
+        where.add(copyID);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.RECORD, where, 1);
+        resultSet.next();
+        
+        where.set(0, resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+        
+        set.add(resultSet.getString(Table.RECORD.getAttribute("TIME_BORROWED")));
+        set.add(resultSet.getString(new java.sql.Timestamp(today.getTimeInMillis()).toString()));
+        set.add(resultSet.getString(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+        set.add(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT")));
+        set.add(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND")));
+        
+        database.updateRecord(Table.COPY, set, where);
+        
+        database.closeConnection();
         
     }
 

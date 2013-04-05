@@ -4,12 +4,14 @@
  */
 package cataloguemanagement;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Richard
  */
 public interface Returnable extends Displayable {
     
-    public abstract void returnCopy(String userID);
+    public abstract void returnCopy(String userID) throws SQLException, ClassNotFoundException ;
     
 }

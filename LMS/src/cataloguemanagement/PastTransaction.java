@@ -5,6 +5,7 @@
 package cataloguemanagement;
 
 import datamanagement.*;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -22,11 +23,12 @@ public class PastTransaction {
     private Displayable item;
     
     
+    
     public PastTransaction() {
         
     }
     
-    public static ArrayList<PastTransaction> getPastTransactions (String userID) {
+    public static ArrayList<PastTransaction> getPastTransactions (String userID) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getRecords(userID);
