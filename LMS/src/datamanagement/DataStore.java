@@ -1,12 +1,12 @@
 
 package datamanagement;
 
-import usermanagement.*;
 import cataloguemanagement.*;
 import factory.DatabaseFactory;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import usermanagement.*;
 
 /**
  *
@@ -855,9 +855,49 @@ public class DataStore {
         
     }
 
-    public ArrayList<CurrentHoldings> getCurrentHoldings(String userID) {
+    public ArrayList<CurrentHolding> getCurrentHoldings(String userID) throws SQLException, ClassNotFoundException {
         
-        throw new UnsupportedOperationException("Not yet implemented");
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        ArrayList<CurrentHolding> result = new ArrayList<> ();
+        
+        where.add(WILDCARD_CHAR);
+        where.add(userID);
+        where.add(WILDCARD_CHAR);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.RECORD, where);
+        
+        while(resultSet.next()) {
+            
+            if (resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")) != null) {
+                
+                continue;
+                
+            }
+            
+            Calendar dateBorrowed = new GregorianCalendar();
+            Calendar dateToReturn = new GregorianCalendar();
+            CurrentHolding currentHolding = new CurrentHolding();
+            
+            currentHolding.setLoanID(resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+            
+            dateBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+            currentHolding.setDateBorrowed(dateBorrowed);
+            
+            dateToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            currentHolding.setDateToReturn(dateToReturn);
+            
+            currentHolding.setFine(resultSet.getDouble(Table.RECORD.getAttribute("FINE_AMOUNT")));
+            currentHolding.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
+            
+            result.add(currentHolding);
+        }
+        
+        database.closeConnection();
+        
+        return result;
         
     }
 
