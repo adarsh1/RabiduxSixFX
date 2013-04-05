@@ -110,9 +110,10 @@ public class SearchFXController extends BaseFXController implements Initializabl
           } 
         catch(SQLException e){;}
         catch(ClassNotFoundException e){;}
-        
-        initializeScrollPane();
-        displaySuccess("Welcome", "How You Like Me Now? :)");
+        if(searchMgr.getNoOfResults()!=0)
+         initializeScrollPane();
+        else
+            displayWarning("No Results","Sorry your query '"+keywordField.getText()+"' returned no results...");
     }
  
  
