@@ -12,8 +12,6 @@ import usermanagement.User;
  */
 public class ModelController {
     
-    //indicate whether a barcode reader is used
-    private boolean isUsingBarcodeReader;
     //current user
     private User user;
     
@@ -25,20 +23,6 @@ public class ModelController {
     
     //constructor
     public ModelController(){
-    }
-
-    /**
-     * @return the isUsingBarcodeReader
-     */
-    public boolean isIsUsingBarcodeReader() {
-        return isUsingBarcodeReader;
-    }
-
-    /**
-     * @param isUsingBarcodeReader the isUsingBarcodeReader to set
-     */
-    public void setIsUsingBarcodeReader(boolean isUsingBarcodeReader) {
-        this.isUsingBarcodeReader = isUsingBarcodeReader;
     }
 
     /**

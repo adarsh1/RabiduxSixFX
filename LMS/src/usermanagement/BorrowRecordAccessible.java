@@ -5,7 +5,7 @@
 package usermanagement;
 
 import cataloguemanagement.CurrentHoldings;
-import cataloguemanagement.ReservedItem;
+import cataloguemanagement.ReservedCopy;
 import cataloguemanagement.PastTransaction;
 import java.util.ArrayList;
 
@@ -15,6 +15,6 @@ import java.util.ArrayList;
  */
 public interface BorrowRecordAccessible {
     public abstract ArrayList<PastTransaction> getTransactionHistoryItems(String memberID);
-    public abstract ArrayList<ReservedItem> getReservedItems(String memberID);
+    public abstract ArrayList<ReservedCopy> getReservedItems(String memberID);
     public abstract ArrayList<CurrentHoldings> getCurrentHoldingItems(String memberID);
 }

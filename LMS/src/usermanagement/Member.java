@@ -5,7 +5,7 @@
 package usermanagement;
 
 import cataloguemanagement.CurrentHoldings;
-import cataloguemanagement.ReservedItem;
+import cataloguemanagement.ReservedCopy;
 import cataloguemanagement.PastTransaction;
 import datamanagement.DataStore;
 import java.sql.SQLException;
@@ -98,7 +98,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      return new ArrayList<>();
      }
     @Override
-    public ArrayList<ReservedItem> getReservedItems(String memberID){
+    public ArrayList<ReservedCopy> getReservedItems(String memberID){
      return new ArrayList<>();
      }
     @Override

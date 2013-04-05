@@ -21,7 +21,6 @@ public class PastTransaction {
     private int numOfExtend;
     private Displayable item;
     
-    public final static int MAX_EXTEND = 3;
     
     public PastTransaction() {
         

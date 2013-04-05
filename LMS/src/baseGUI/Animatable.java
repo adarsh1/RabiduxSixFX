@@ -15,6 +15,6 @@ public interface Animatable {
     public abstract void handleNodeFadeTransition(Node node, int millis, double fromValue, double toValue);
     public abstract void handleNodeFadeTransition(Node node, int millis);
     public abstract void handleNodeScaleTransition (Node node, int millis, double fromValue, double toValue );
-    public abstract void  playOnShowAnimation();
+    public abstract void playOnShowAnimation();
     
 }

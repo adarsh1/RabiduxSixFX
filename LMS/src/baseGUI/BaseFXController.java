@@ -316,13 +316,13 @@ public abstract class BaseFXController extends Observable implements Initializab
     protected void enableAll()
     {
         setChanged();
-        notifyObservers(new Boolean(false));
+        notifyObservers(false);
         
     }
     protected void disableAll()
     {
         setChanged();
-        notifyObservers(new Boolean(true));
+        notifyObservers(true);
     }
     public abstract void setInitialData( ModelController modelController);
     
