@@ -16,7 +16,7 @@
       <children>
         <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="19.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="@../images/borrow.jpg" preserveRatio="false" smooth="false" />
+            <Image url="@../images/return.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
         <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
@@ -26,7 +26,7 @@
         </ImageView>
         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="@../images/holdings.jpg" preserveRatio="false" smooth="false" />
+            <Image url="@../images/update.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
