@@ -37,6 +37,7 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
         
     }
     
+    @Override
     public String getISBN() {
         
         return ISBN;
@@ -48,7 +49,8 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
         this.ISBN = ISBN;
         
     }
-
+    
+    @Override
     public String getGenre() {
         
         return genre;
@@ -70,36 +72,35 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public String getTitleDisplay() {
+    public String getTitle() {
         
         return super.getTitle();
         
     }
 
     @Override
-    public String getDescriptionDisplay() {
+    public String getDescription() {
         
         return super.getDescription();
         
     }
 
     @Override
-    public String getAuthorDisplay() {
+    public String getAuthor() {
         
         return super.getAuthor();
         
     }
 
     @Override
-    public String getPublishYearDisplay() {
+    public Calendar getPublishDate() {
         
-        Calendar calendar = super.getPublishDate();
-        return Integer.toString(calendar.get(Calendar.YEAR)) + "-" + Integer.toString(calendar.get(Calendar.MONTH)) + "-" + Integer.toString(calendar.get(Calendar.DATE));
+        return super.getPublishDate();
         
     }
     
     @Override
-    public String getItemIDDisplay(){
+    public String getItemID(){
         
         return super.getItemID();
         

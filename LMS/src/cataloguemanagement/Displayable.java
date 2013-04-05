@@ -4,6 +4,8 @@
  */
 package cataloguemanagement;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Richard
@@ -12,10 +14,12 @@ public interface Displayable {
     /**
      *
      */
-    public abstract String getTitleDisplay();
-    public abstract String getDescriptionDisplay();
-    public abstract String getAuthorDisplay();
-    public abstract String getPublishYearDisplay();
-    public abstract String getItemIDDisplay();
+    public abstract String getItemID();
+    public abstract String getTitle();
+    public abstract String getDescription();
+    public abstract String getAuthor();
+    public abstract Calendar getPublishDate();
+    public abstract String getISBN();
+    public abstract String getGenre();
     
 }

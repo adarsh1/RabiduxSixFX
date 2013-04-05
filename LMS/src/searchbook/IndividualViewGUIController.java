@@ -109,11 +109,11 @@ public void setId(String id){
     catch(ClassNotFoundException e){
     ;
     }
-    title.setText(individualMgr.getItem().getItemTitle());
+    title.setText(individualMgr.getItem().getTitle());
     title.setTooltip(new Tooltip(title.getText()));
     title.setTextOverrun( OverrunStyle.CENTER_WORD_ELLIPSIS);
     
-    author.setText("Author: "+individualMgr.getItem().getItemAuthor());
+    author.setText("Author: "+individualMgr.getItem().getAuthor());
     try
        {cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + id + ".jpg")));
        }

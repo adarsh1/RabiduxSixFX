@@ -136,7 +136,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
         bookCover.setLayoutY(7);
         bookCover.setPreserveRatio(true);
         
-        Label indTitle = new Label(item.getItemTitle());
+        Label indTitle = new Label(item.getTitle());
         indTitle.setPrefWidth(360);
         indTitle.getStyleClass().add("header-5");
         indTitle.setLayoutX(103);
@@ -144,7 +144,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
         indTitle.setEllipsisString("...");
         indTitle.setTooltip(new Tooltip(indTitle.getText()));
         
-        Label indAuthor = new Label("Author: "+item.getItemAuthor());
+        Label indAuthor = new Label("Author: "+item.getAuthor());
         indAuthor.setPrefWidth(355);
         indAuthor.setLayoutX(117);
         indAuthor.setLayoutY(44);

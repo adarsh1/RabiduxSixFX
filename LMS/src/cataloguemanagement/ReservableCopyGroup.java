@@ -67,15 +67,15 @@ public class ReservableCopyGroup {
         
     }
 
-    public String getItemTitle() {
+    public String getTitle() {
         
-        return copies.get(0).getTitleDisplay();
+        return copies.get(0).getTitle();
         
     }
 
-    public String getItemAuthor() {
+    public String getAuthor() {
         
-        return copies.get(0).getAuthorDisplay();
+        return copies.get(0).getAuthor();
     
     }
 

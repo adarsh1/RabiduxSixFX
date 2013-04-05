@@ -70,6 +70,7 @@ public class CatalogueItem implements Displayable {
         
     }
     
+    @Override
     public String getItemID() {
         
         return itemID;
@@ -93,7 +94,8 @@ public class CatalogueItem implements Displayable {
         this.location = location;
         
     }
-
+    
+    @Override
     public String getAuthor() {
         
         return author;
@@ -105,7 +107,8 @@ public class CatalogueItem implements Displayable {
         this.author = author;
         
     }
-
+    
+    @Override
     public String getTitle() {
         
         return title;
@@ -130,6 +133,7 @@ public class CatalogueItem implements Displayable {
         
     }
     
+    @Override
     public Calendar getPublishDate() {
         
         return this.publishDate;
@@ -154,6 +158,7 @@ public class CatalogueItem implements Displayable {
         
     }
     
+    @Override
     public String getDescription() {
         
         return this.description;
@@ -167,38 +172,16 @@ public class CatalogueItem implements Displayable {
     }
 
     @Override
-    public String getTitleDisplay() {
+    public String getISBN() {
         
-        return getTitle();
-        
-    }
-
-    @Override
-    public String getDescriptionDisplay() {
-        
-        return getDescription();
+        return null;
         
     }
 
     @Override
-    public String getAuthorDisplay() {
+    public String getGenre() {
         
-        return getAuthor();
-        
-    }
-
-    @Override
-    public String getPublishYearDisplay() {
-        
-        Calendar calendar = getPublishDate();
-        return Integer.toString(calendar.get(Calendar.YEAR)) + "-" + Integer.toString(calendar.get(Calendar.MONTH)) + "-" + Integer.toString(calendar.get(Calendar.DATE));
-        
-    }
-
-    @Override
-    public String getItemIDDisplay() {
-        
-        return getItemID();
+        return null;
         
     }
     

@@ -106,14 +106,14 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         String copyID = copyIDField.getText();            
         borrowMgr.createItem(copyID);
         //display all the info about this copy
-        itemTitle.setText(borrowMgr.getItem().getTitleDisplay());
-        fullItemTitle.setText(borrowMgr.getItem().getTitleDisplay());
-        itemAuthor.setText("Author: " + borrowMgr.getItem().getAuthorDisplay());
-        itemID.setText("Item ID: " + borrowMgr.getItem().getItemIDDisplay());
-        String itemDescriptionText = borrowMgr.getItem().getDescriptionDisplay();
+        itemTitle.setText(borrowMgr.getItem().getTitle());
+        fullItemTitle.setText(borrowMgr.getItem().getTitle());
+        itemAuthor.setText("Author: " + borrowMgr.getItem().getAuthor());
+        itemID.setText("Item ID: " + borrowMgr.getItem().getItemID());
+        String itemDescriptionText = borrowMgr.getItem().getDescription();
         itemDescription.setText(itemDescriptionText);
         //add the image to the bookcover field
-        Image image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemIDDisplay() + ".jpg"); 
+        Image image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemID() + ".jpg"); 
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         imageView.setFitWidth(130.0);
