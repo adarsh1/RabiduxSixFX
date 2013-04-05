@@ -75,6 +75,17 @@
         </AnchorPane>
       </children>
     </AnchorPane>
+    <AnchorPane id="messagePane" fx:id="messagePane" layoutX="0.0" layoutY="190.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+      <children>
+        <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
+          <children>
+            <Label id="warningMsg" fx:id="messageHeader" styleClass="message-header" text="title" />
+            <Label id="MessageText" fx:id="messageText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="message-text" text="Label" />
+            <Button fx:id="hideMessage" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleHideMessageButtonAction" styleClass="success-button" text="OK" />
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />

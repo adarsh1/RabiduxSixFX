@@ -112,6 +112,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
         catch(ClassNotFoundException e){;}
         
         initializeScrollPane();
+        displaySuccess("Welcome", "How You Like Me Now? :)");
     }
  
  

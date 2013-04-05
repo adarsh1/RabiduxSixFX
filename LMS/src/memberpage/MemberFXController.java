@@ -99,18 +99,20 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
     // Handler for Button[fx:id="history"] onAction
     public void handleHistoryMenuButtonAction(ActionEvent event) {
-        transitPane("History.fxml", getContentPlaceHolderPane(), this.getModelController()); 
-    }
+        BaseFXController bc=transitPane("History.fxml", getContentPlaceHolderPane(), this.getModelController()).getController(); 
+        bc.addObserver((Observer)(this));
+    }   
 
     // Handler for Button[fx:id="search"] onAction
     public void handleSearchMenuButtonAction(ActionEvent event) {
-        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController());         
+        BaseFXController bc=transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();         
+        bc.addObserver((Observer)(this));
     }
 
     // Handler for Button[fx:id="rentals"] onAction
     public void handleHoldingsMenuButtonAction(ActionEvent event) {
-        transitPane("Holdings.fxml", getContentPlaceHolderPane(), this.getModelController());  
-        //transitScene("/resources/xml/MyMaterial.fxml",node); 
+        BaseFXController bc=transitPane("Holdings.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();  
+        bc.addObserver((Observer)(this));
     }
     
     
@@ -213,7 +215,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
     @Override
     public void playOnShowAnimation(){         
         //show search pane when first loaded
-        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()); 
+        BaseFXController bc=transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();
+        bc.addObserver(this);
         //animation for GUI on shown
         handleOnShowAnimation(basePane);
     }
@@ -239,6 +242,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     
     @Override   //set up the content once the ModelController is available
     public void setInitialData( ModelController modelController){
+        this.addObserver(this);
         username.setText(modelController.getUser().getUsername());
     }
 
@@ -306,7 +310,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
         enableDisablePanes(idExcept ,false);
     }
         private void enableDisablePanes(String idExcept ,boolean flag){
-            logoutbutton.setDisable(flag);
+        logoutbutton.setDisable(flag);
         menuPane.setDisable(flag);
         Pane p=(Pane)contentPlaceHolderPane.getChildren().get(0);
         for(int i=0;i<p.getChildren().size(); i++){
