@@ -112,7 +112,6 @@ public void setId(String id){
     title.setText(individualMgr.getItem().getTitle());
     title.setTooltip(new Tooltip(title.getText()));
     title.setTextOverrun( OverrunStyle.CENTER_WORD_ELLIPSIS);
-    
     author.setText("Author: "+individualMgr.getItem().getAuthor());
     try
        {cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + id + ".jpg")));
@@ -121,20 +120,20 @@ public void setId(String id){
        {
         cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
        }
-   //Need Genre
-    genre.setText("Genre: "+"Education");
+   //Need Genre in Better way
+    genre.setText("Genre: "+individualMgr.getItem().getCopies().get(0).getGenre());
     
-    //Need item Description
-    String itemDescriptionText = "Introduction to Java Programming, Comprehensive, 9e, features comprehensive coverage ideal for a one-, two-, or three-semester CS1 course sequence.";
+    //Need item Description in Better way
+    String itemDescriptionText = individualMgr.getItem().getCopies().get(0).getDescription();
     itemDescription.setText(itemDescriptionText);
     double height = computeTextHeight(itemDescriptionText ,42, 12);
     itemDescriptionAnchorPane.setPrefHeight(height); 
     
-    //Need ISBN
-    isbn.setText("(ISBN: "+"978-0132995177"+")");
+    //Need ISBN in Better way
+    isbn.setText("(ISBN: "+individualMgr.getItem().getCopies().get(0).getISBN()+")");
     
     borrowablecopies.setText("Borrowable Copies: "+individualMgr.getItem().getCopiesAvailable());
-    reservablecopies.setText("Borrowable Copies: "+"0");
+    reservablecopies.setText("Reservable Copies: "+"0");
 }
 private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;

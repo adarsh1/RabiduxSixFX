@@ -25,7 +25,7 @@ public class IndividualViewGUIMgr {
     //create a borrowable item based on item ID
     public void createItem(String ID) throws SQLException, ClassNotFoundException{
         //get the catalogue item from catalogue management
-        ReservableCopyGroup rItem = ReservableCopyGroup.getReservableCopyGroups("BOOK_ID", ID).get(0);
+        ReservableCopyGroup rItem = ReservableCopyGroup.getReservableCopyGroup(ID);
         //if the item is of Borrowable instance
             setItem(rItem );
     }

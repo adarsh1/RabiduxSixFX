@@ -32,7 +32,7 @@
       <content>
         <AnchorPane id="Content" fx:id="itemDescriptionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="344.0">
           <children>
-            <Text fx:id="itemDescription" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text" wrappingWidth="344.0" />
+            <Text fx:id="itemDescription" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text" wrappingWidth="330.0" />
           </children>
         </AnchorPane>
       </content>
@@ -46,8 +46,8 @@
       </content>
     </ScrollPane>
     <Label fx:id="borrowablecopies" layoutX="11.0" layoutY="414.0" prefWidth="130.0" text="Borrowable Copies:" />
-    <Label fx:id="reservablecopies" layoutX="166.0" layoutY="414.0" prefWidth="130.0" text="Reservable Copies:" />
-    <AnchorPane id="messagePane" fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+    <Label fx:id="reservablecopies" layoutX="166.0" layoutY="414.0" prefWidth="137.0" text="Reservable Copies:" />
+    <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
       <children>
         <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
           <children>
