@@ -51,7 +51,7 @@ public class LoginFXController extends BaseFXController implements Initializable
     
     public LoginFXController(){
         loginMgr = new LoginMgr(); 
-        setModelController(loginMgr.getMainController());
+        setModelController(loginMgr.getModelController());
         currentFieldState = DISABLED;
         previousFieldState = DISABLED;
     }
@@ -145,11 +145,11 @@ public class LoginFXController extends BaseFXController implements Initializable
     }
 
     private void gotoMemberPage(Node node){
-        transitScene("MemberPage.fxml",node, loginMgr.getMainController());      
+        transitScene("MemberPage.fxml",node, loginMgr.getModelController());      
     }
     
     private void goWelcomeLibrarian(Node node){
-        transitScene("LibrarianPage.fxml",node, loginMgr.getMainController());
+        transitScene("LibrarianPage.fxml",node, loginMgr.getModelController());
     }    
     
     @Override   //set up the content once the ModelController is available

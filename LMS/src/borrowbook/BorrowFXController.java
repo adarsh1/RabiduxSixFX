@@ -169,7 +169,8 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException e){
             messageHeader.setText("Sorry");
             String text = "We regret to inform you that your loan request was not granted.\n";
-            text += "Reasons might be:...";
+            text += "Reasons might be: \n";
+            text += e.getMessage();
             messageText.setText(text);
             setStyleWarning();
         }

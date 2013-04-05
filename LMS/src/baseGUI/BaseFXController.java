@@ -21,7 +21,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
 public abstract class BaseFXController implements Initializable, Animatable {
 
     @FXML //  fx:id="logout"
@@ -201,6 +200,7 @@ public abstract class BaseFXController implements Initializable, Animatable {
        }
     }
      
+    //tansit to another scene where ModelController is needed
     public void transitScene(String resourceURL, Node node, ModelController modelController){
         Stage stage=(Stage) node.getScene().getWindow();
         try{      
@@ -208,12 +208,24 @@ public abstract class BaseFXController implements Initializable, Animatable {
             Parent root = loadFXML(fxmlLoader);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
             FXController.setModelController(modelController);
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            FXController.playOnShowAnimation();                   
-            stage.centerOnScreen();
-            
+            FXController.setInitialData(modelController);    
+            initialStage (stage, root);
+            FXController.playOnShowAnimation();   
+        }
+        catch(IOException e){
+           System.out.println("ERROR: " + resourceURL + " not found!!");
+        }
+    }
+    
+    //tansit to another scene where ModelController is NOT needed
+    public void transitScene(String resourceURL, Node node){
+        Stage stage=(Stage) node.getScene().getWindow();
+        try{      
+            FXMLLoader fxmlLoader = generateFXMLLoader( ModelController.FXML_PATH + resourceURL);
+            Parent root = loadFXML(fxmlLoader);
+            BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
+            initialStage (stage, root);
+            FXController.playOnShowAnimation();                 
         }
        catch(IOException e){
            System.out.println("ERROR: " + resourceURL + " not found!!");
@@ -229,6 +241,13 @@ public abstract class BaseFXController implements Initializable, Animatable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resourceURL)); 
         return fxmlLoader;
     }     
+    
+    protected void initialStage (Stage stage, Parent root){
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();        
+    }
     
     public abstract void setInitialData( ModelController modelController);
     

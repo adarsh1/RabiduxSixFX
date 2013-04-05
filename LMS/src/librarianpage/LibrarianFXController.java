@@ -117,7 +117,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     @Override
     public void playOnShowAnimation(){         
         //show search pane when first loaded
-        transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()); 
+        transitPane("Return.fxml", getContentPlaceHolderPane(), this.getModelController()); 
         //animation for GUI on shown
         handleOnShowAnimation(basePane);
     }

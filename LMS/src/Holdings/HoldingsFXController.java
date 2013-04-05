@@ -17,7 +17,7 @@ import usermanagement.Member;
 
 public class HoldingsFXController extends BaseFXController implements Initializable {
 
-    private HoldingsMgr holdingsMgr;
+    private HoldingsMgr holdingsMgr = new HoldingsMgr();
     
     @FXML //  fx:id="holdingsPane"
     private AnchorPane holdingsPane; // Value injected by FXMLLoader
@@ -31,7 +31,6 @@ public class HoldingsFXController extends BaseFXController implements Initializa
         assert holdingsPane != null : "fx:id=\"holdingsPane\" was not injected: check your FXML file 'Holdings.fxml'.";
 
         // initialize your logic here: all @FXML variables will have been injected
-        holdingsMgr = new HoldingsMgr();
     }
 
     @Override   //play new animation when shown

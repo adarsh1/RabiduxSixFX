@@ -761,6 +761,11 @@
     -fx-background-color: #ffffff;
     -fx-padding: 8 6 8 1;
 }
+.historyResult{
+    -fx-background-color: #ffffff;
+    -fx-opacity: 1;
+    -fx-padding: 8 6 8 6;
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -770,11 +775,11 @@
 .logOutButton{
     -fx-cursor:hand;
 }
-.historyResult{
-    -fx-background-color: #ffffff;
-    -fx-opacity: 1;
-    -fx-padding: 8 6 8 6;
+.logout-pane{
+    
 }
+
+
 /*******************************************************************************
  *                                                                             *
  * Warning part                                                                 *
@@ -799,7 +804,7 @@
 }
 
 .warning-button{
-    -fx-background-color: #ff3300;
+    -fx-background-color: #ff3d00;
 }
 
 .warning-button:hover{
@@ -807,7 +812,7 @@
 }
 
 .success-button {
-    -fx-background-color: darkblue;
+    -fx-background-color: #0033cc;
 }
 
 .success-button:hover{
