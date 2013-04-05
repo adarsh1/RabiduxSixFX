@@ -22,13 +22,12 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import usermanagement.Member;
 
@@ -38,9 +37,6 @@ public class BorrowFXController extends BaseFXController implements Initializabl
     
     /* Manager classes  */
     private BorrowMgr borrowMgr;
-   
-    @FXML //  fx:id="MessageText"
-    private Label messageText; // Value injected by FXMLLoader
 
     @FXML //  fx:id="bookInfoPane"
     private Pane bookInfoPane; // Value injected by FXMLLoader
@@ -63,9 +59,6 @@ public class BorrowFXController extends BaseFXController implements Initializabl
     @FXML //  fx:id="getDetails"
     private Button getDetails; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="hideMessage"
-    private Button hideMessage; // Value injected by FXMLLoader
-
     @FXML //  fx:id="itemAuthor"
     private Label itemAuthor; // Value injected by FXMLLoader
 
@@ -87,14 +80,6 @@ public class BorrowFXController extends BaseFXController implements Initializabl
     @FXML //  fx:id="itemTitle"
     private Label itemTitle; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="messageHeader"
-    private Label messageHeader; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messageHolderPane"
-    private AnchorPane messageHolderPane; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messagePane"
-    private AnchorPane messagePane; // Value injected by FXMLLoader
    
     
     // Handler for Button Get details onAction    
@@ -135,7 +120,6 @@ public class BorrowFXController extends BaseFXController implements Initializabl
 
         //make the book info field invisible
         itemMsg.setVisible(false);
-        cleanMessages();
         //resize the content pane inside scroll pane accordign to the length of the text
         double height = computeTextHeight(itemDescriptionText ,60, 18.0);
         itemDescriptionAnchorPane.setPrefHeight(height);        
@@ -154,64 +138,25 @@ public class BorrowFXController extends BaseFXController implements Initializabl
     
     //handle the borrow when the confirm button is pressed
     public void handleConfirmButtonAction(ActionEvent event){
-        cleanMessages();
         try{
             PastTransaction transaction = borrowMgr.borrow();
             //set the text to be shown
             SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
-            messageHeader.setText("Thank you");
             String text = "Your request for loan of this item has been sucessfully granted.\n";
             text += "Kindly return by "+ format.format(transaction.getDateToReturn().getTime());
-            messageText.setText(text);
-            //set the style to be success
-            setStyleSucess();
+            displaySuccess("Thank you",text);
         }
         catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException e){
-            messageHeader.setText("Sorry");
             String text = "We regret to inform you that your loan request was not granted.\n";
             text += "Reasons might be: \n";
             text += e.getMessage();
-            messageText.setText(text);
-            setStyleWarning();
-        }
-        finally{
-            messagePane.setVisible(true);
-            this.handleOnShowAnimation(messageHolderPane);
+            displayWarning("Sorry",text);
         }
     }
     
-    private void setStyleSucess(){
-        //message pane
-        messagePane.getStyleClass().clear();
-        messagePane.getStyleClass().add("success-pane");
-        //button
-        hideMessage.getStyleClass().clear();
-        hideMessage.getStyleClass().add("success-button");       
-    }
-    
-    private void setStyleWarning(){
-        //message pane
-        messagePane.getStyleClass().clear();
-        messagePane.getStyleClass().add("warning-pane");
-        //button
-        hideMessage.getStyleClass().clear();
-        hideMessage.getStyleClass().add("warning-button");
-    }
-    
-    //clean up the previous result and warning messages
-    private void cleanMessages(){        
-        messageText.setText("");
-        messageHeader.setText("");
-    }
-
-    //hide the message pane on action
-    public void handleHideMessageButtonAction(ActionEvent event){
-        messagePane.setVisible(false);
-    }
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-        assert messageText != null : "fx:id=\"MessageText\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert bookInfoPane != null : "fx:id=\"bookInfoPane\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert bookcoverField != null : "fx:id=\"bookcoverField\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert confirmBorrow != null : "fx:id=\"confirmBorrow\" was not injected: check your FXML file 'Borrow.fxml'.";
@@ -219,7 +164,6 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         assert copyIDField != null : "fx:id=\"copyIDField\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert fullItemTitle != null : "fx:id=\"fullItemTitle\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert getDetails != null : "fx:id=\"getDetails\" was not injected: check your FXML file 'Borrow.fxml'.";
-        assert hideMessage != null : "fx:id=\"hideMessage\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemAuthor != null : "fx:id=\"itemAuthor\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemDescription != null : "fx:id=\"itemDescription\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemDescriptionAnchorPane != null : "fx:id=\"itemDescriptionAnchorPane\" was not injected: check your FXML file 'Borrow.fxml'.";
@@ -227,9 +171,6 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         assert itemID != null : "fx:id=\"itemID\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemMsg != null : "fx:id=\"itemMsg\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert itemTitle != null : "fx:id=\"itemTitle\" was not injected: check your FXML file 'Borrow.fxml'.";
-        assert messageHeader != null : "fx:id=\"messageHeader\" was not injected: check your FXML file 'Borrow.fxml'.";
-        assert messageHolderPane != null : "fx:id=\"messageHolderPane\" was not injected: check your FXML file 'Borrow.fxml'.";
-        assert messagePane != null : "fx:id=\"messagePane\" was not injected: check your FXML file 'Borrow.fxml'.";
 
 
         // initialize your logic here: all @FXML variables will have been injected

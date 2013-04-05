@@ -4,25 +4,44 @@ package baseGUI;
 import globalcontrol.ModelController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public abstract class BaseFXController implements Initializable, Animatable {
+public abstract class BaseFXController extends Observable implements Initializable, Animatable {
+    @FXML //  fx:id="hideMessage"
+    protected Button hideMessage; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="MessageText"
+    protected Label messageText; // Value injected by FXMLLoader
+    
+    @FXML //  fx:id="messageHeader"
+    protected Label messageHeader; // Value injected by FXMLLoader
 
+    @FXML //  fx:id="messageHolderPane"
+    protected AnchorPane messageHolderPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="messagePane"
+    protected AnchorPane messagePane; // Value injected by FXMLLoader
+    
     @FXML //  fx:id="logout"
     protected ImageView logout; // Value injected by FXMLLoader
 
@@ -32,6 +51,52 @@ public abstract class BaseFXController implements Initializable, Animatable {
     //main controller
     private ModelController modelController;
     
+    private void setStyleSucess(){
+        //message pane
+        messagePane.getStyleClass().clear();
+        messagePane.getStyleClass().add("success-pane");
+        //button
+        hideMessage.getStyleClass().clear();
+        hideMessage.getStyleClass().add("success-button");       
+    }
+    private void setStyleWarning(){
+        //message pane
+        messagePane.getStyleClass().clear();
+        messagePane.getStyleClass().add("warning-pane");
+        //button
+        hideMessage.getStyleClass().clear();
+        hideMessage.getStyleClass().add("warning-button");
+    }
+    
+    //clean up the previous result and warning messages
+    private void cleanMessages(){        
+        messageText.setText("");
+        messageHeader.setText("");
+    }
+    //handle the borrow when the confirm button is pressed
+    public void displaySuccess(String header,String text)
+    {setStyleSucess();
+    messageHeader.setText(header);
+    messageText.setText(text);
+     messagePane.setVisible(true);
+     this.handleOnShowAnimation(messageHolderPane);
+     disableAll();
+    }
+    public void displayWarning(String header,String text)
+    {setStyleWarning();
+    messageHeader.setText(header);
+    messageText.setText(text);
+     messagePane.setVisible(true);
+     this.handleOnShowAnimation(messageHolderPane);
+     disableAll();
+    }
+    public String getMessagePaneID()
+    {return messagePane.getId();
+    }
+    public void handleHideMessageButtonAction(ActionEvent event){
+        messagePane.setVisible(false);
+        enableAll();
+    }
     /*
     public void logout(MouseEvent event) {
         
@@ -248,7 +313,17 @@ public abstract class BaseFXController implements Initializable, Animatable {
         stage.centerOnScreen();
         stage.show();        
     }
-    
+    protected void enableAll()
+    {
+        setChanged();
+        notifyObservers(new Boolean(false));
+        
+    }
+    protected void disableAll()
+    {
+        setChanged();
+        notifyObservers(new Boolean(true));
+    }
     public abstract void setInitialData( ModelController modelController);
     
     @Override

@@ -7,32 +7,26 @@ package memberpage;
 import baseGUI.BaseFXController;
 import globalcontrol.ModelController;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Allen
  */
-public class MemberFXController extends BaseFXController implements Initializable {   
+public class MemberFXController extends BaseFXController implements Initializable,Observer {   
     
     
     @FXML //  fx:id="basePane"
@@ -89,19 +83,19 @@ public class MemberFXController extends BaseFXController implements Initializabl
     @FXML //  fx:id="logoutbutton"
     private Label logoutbutton; // Value injected by FXMLLoader
     
+    
     public void handleLogoutYesButtonAction(ActionEvent event){
         Node node=(Node) event.getSource();
         gotologin(node); 
     }
      public void handleLogoutNoButtonAction(ActionEvent event){
-        logoutbutton.setDisable(false);
-        menuPane.setDisable(false);
-        contentPlaceHolderPane.setDisable(false);
+        enableAllPanes("");
         logoutPane.setVisible(false);
     }
     // Handler for Button[fx:id="borrow"] onAction
     public void handleborrowMenuButtonAction(ActionEvent event) {            
-        transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getModelController());            
+       BaseFXController bc=transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getModelController()).getController(); 
+       bc.addObserver((Observer)(this));
     }
     // Handler for Button[fx:id="history"] onAction
     public void handleHistoryMenuButtonAction(ActionEvent event) {
@@ -187,15 +181,29 @@ public class MemberFXController extends BaseFXController implements Initializabl
         logoutHeader.setText("Confirm Logout");
             String text = username.getText()+" are you sure you want to logout?";
         logoutText.setText(text);
-        
-        logoutbutton.setDisable(true);
-        menuPane.setDisable(true);
-        contentPlaceHolderPane.setDisable(true);
+        disableAllPanes("");
         
         logoutPane.setVisible(true);
         this.handleOnShowAnimation(logoutMessageHolderPane);
-    }    
-    
+    } 
+
+    @Override
+    public void update(Observable o, Object arg)
+    {if(o instanceof BaseFXController)
+        {BaseFXController bfc=(BaseFXController)o;
+        if(arg instanceof Boolean)
+         {Boolean disable=(Boolean)arg;
+            if(disable.booleanValue()==true)
+           {    System.out.println("disabled");
+               disableAllPanes(bfc.getMessagePaneID());
+           }
+           else
+           {    enableAllPanes(bfc.getMessagePaneID());
+            } 
+         }
+        }
+    } 
+
     private void gotologin(Node node)
     {
         transitScene("Login.fxml", node);
@@ -290,6 +298,23 @@ public class MemberFXController extends BaseFXController implements Initializabl
     public void setContentPlaceHolderPane(AnchorPane contentPlaceHolderPane) {
         this.contentPlaceHolderPane = contentPlaceHolderPane;
     }
+    private void disableAllPanes(String idExcept) {
+        enableDisablePanes(idExcept ,true);
+    }
+
+    private void enableAllPanes(String idExcept) {
+        enableDisablePanes(idExcept ,false);
+    }
+        private void enableDisablePanes(String idExcept ,boolean flag){
+            logoutbutton.setDisable(flag);
+        menuPane.setDisable(flag);
+        Pane p=(Pane)contentPlaceHolderPane.getChildren().get(0);
+        for(int i=0;i<p.getChildren().size(); i++){
+             Node n=p.getChildren().get(i);
+              String nid=n.getId();
+              if(nid==null||!nid.equals(idExcept))
+                  n.setDisable(flag);
+            }
+        }
+    }
     
-    
-}

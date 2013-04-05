@@ -775,7 +775,7 @@
  ******************************************************************************/
 
 .logout-pane{
-    -fx-background-color: #ff3d00;
+    -fx-background-color: #0033cc;
 }
 
 .logout-label{
@@ -794,7 +794,7 @@
 }
 
 .logout-button{
-    -fx-background-color: #ff3d00;
+    -fx-background-color: #0033cc;
     -fx-padding: 5 22 5 22;   
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
@@ -805,7 +805,7 @@
 }
 
 .logout-button:hover{
-    -fx-background-color: #ff6633;
+    -fx-background-color: #3366ff;
 }
 
 .logout-button:pressed 
