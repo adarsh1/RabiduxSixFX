@@ -4,6 +4,7 @@
  */
 package factory;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public class SystemConfig {
     private String MySQLUser = "root";
     private String MySQLPassword = "password";
     
-    private Map<String, String> databaseConfigs;
+    private Map<String, String> databaseConfigs = new HashMap();
     
     private SystemConfig() {
     }
@@ -48,7 +49,7 @@ public class SystemConfig {
     }
     
     public String getDatabaseType(){
-        return databaseConfigs.get(DATABASE);
+        return databaseConfigs.get(DATABASE_TYPE);
     }
     
     public String getMySQLPasswordHost(){
