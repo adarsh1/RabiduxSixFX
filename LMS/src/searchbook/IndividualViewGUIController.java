@@ -104,7 +104,7 @@ public void setId(String id){
     }
     catch(SQLException e)
     {
-        transitPane("Search.fxml", contentPane, getModelController());
+        notifyObservers("Search.fxml");
     }
     catch(ClassNotFoundException e){
     ;

@@ -211,6 +211,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
             String id=node.getId();
             FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, getModelController() );
             IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
+            notifyObservers(ic);
             ic.setId(id);
         }
         

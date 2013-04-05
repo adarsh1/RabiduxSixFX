@@ -12,6 +12,7 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -94,25 +95,21 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
     // Handler for Button[fx:id="borrow"] onAction
     public void handleborrowMenuButtonAction(ActionEvent event) {            
-       BaseFXController bc=transitPane("Borrow.fxml", getContentPlaceHolderPane(), this.getModelController()).getController(); 
-       bc.addObserver((Observer)(this));
+       transitPane("Borrow.fxml"); 
     }
     // Handler for Button[fx:id="history"] onAction
     public void handleHistoryMenuButtonAction(ActionEvent event) {
-        BaseFXController bc=transitPane("History.fxml", getContentPlaceHolderPane(), this.getModelController()).getController(); 
-        bc.addObserver((Observer)(this));
+        transitPane("History.fxml");
     }   
 
     // Handler for Button[fx:id="search"] onAction
     public void handleSearchMenuButtonAction(ActionEvent event) {
-        BaseFXController bc=transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();         
-        bc.addObserver((Observer)(this));
+        transitPane("Search.fxml");
     }
 
     // Handler for Button[fx:id="rentals"] onAction
     public void handleHoldingsMenuButtonAction(ActionEvent event) {
-        BaseFXController bc=transitPane("Holdings.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();  
-        bc.addObserver((Observer)(this));
+        transitPane("Holdings.fxml");
     }
     
     
@@ -203,8 +200,17 @@ public class MemberFXController extends BaseFXController implements Initializabl
            {    enableAllPanes(bfc.getMessagePaneID());
             } 
          }
-        }
-    } 
+        else if(arg instanceof Observable)
+            {Observable ob=(Observable)arg;
+             ob.addObserver(this);
+            }
+        else if(arg instanceof String)
+          {String s=(String) arg;
+           if(s.endsWith(".fxml"))
+               transitPane(s);
+          }
+           }
+    }
 
     private void gotologin(Node node)
     {
@@ -320,5 +326,16 @@ public class MemberFXController extends BaseFXController implements Initializabl
                   n.setDisable(flag);
             }
         }
+    @Override
+        public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
+        FXMLLoader fl=super.transitPane(resourceURL, placeHolderPane, modelController);
+        BaseFXController bc=fl.getController();         
+        bc.addObserver((Observer)(this));
+        return fl;
+        }
+    public FXMLLoader transitPane(String resourceURL)
+    {
+       return transitPane(resourceURL, getContentPlaceHolderPane(), this.getModelController());
+    }
     }
     

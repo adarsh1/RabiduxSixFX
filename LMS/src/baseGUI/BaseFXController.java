@@ -290,7 +290,7 @@ public abstract class BaseFXController extends Observable implements Initializab
             Parent root = loadFXML(fxmlLoader);
             BaseFXController FXController = fxmlLoader.<BaseFXController>getController();
             initialStage (stage, root);
-            FXController.playOnShowAnimation();                 
+            FXController.playOnShowAnimation();
         }
        catch(IOException e){
            System.out.println("ERROR: " + resourceURL + " not found!!");
