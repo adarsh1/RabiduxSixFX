@@ -639,7 +639,7 @@ public class DataStore {
             pastTransaction.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
             pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
             
-            pastTransaction.setItem(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("USER_ID"))));
+            pastTransaction.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("USER_ID"))));
             
         }
         
@@ -721,7 +721,7 @@ public class DataStore {
         transactionHistoryItem.setDateReturned(null);
         transactionHistoryItem.setDateToReturn(timeToReturn);
         transactionHistoryItem.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
-        transactionHistoryItem.setItem(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
+        transactionHistoryItem.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
         
         database.closeConnection();
         
@@ -799,6 +799,18 @@ public class DataStore {
         database.updateRecord(Table.COPY, set, where);
         
         database.closeConnection();
+        
+    }
+
+    public ArrayList<ReservedCopy> getReservedCopies(String userID) {
+        
+        throw new UnsupportedOperationException("Not yet implemented");
+        
+    }
+
+    public ArrayList<CurrentHoldings> getCurrentHoldings(String userID) {
+        
+        throw new UnsupportedOperationException("Not yet implemented");
         
     }
 

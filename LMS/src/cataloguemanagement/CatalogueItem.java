@@ -12,7 +12,7 @@ import java.util.*;
  *
  * @author Allen
  */
-public class CatalogueItem implements Displayable {
+public abstract class CatalogueItem implements Displayable {
     
     //data field common to all catalogue items
     private String itemID;

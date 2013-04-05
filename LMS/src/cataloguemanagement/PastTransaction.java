@@ -20,18 +20,11 @@ public class PastTransaction {
     private Calendar dateToReturn;
     private double fineAmount;
     private int numOfExtend;
-    private Displayable item;
+    private Displayable copy;
     
     
     
     public PastTransaction() {
-        
-    }
-    
-    public static ArrayList<PastTransaction> getPastTransactions (String userID) throws SQLException, ClassNotFoundException {
-        
-        DataStore dataStore = new DataStore();
-        return dataStore.getRecords(userID);
         
     }
     
@@ -95,15 +88,15 @@ public class PastTransaction {
         
     }
     
-    public Displayable getItem() {
+    public Displayable getCopy() {
         
-        return this.item;
+        return this.copy;
         
     }
     
-    public void setItem(Displayable item) {
+    public void setCopy(Displayable copy) {
         
-        this.item = item;
+        this.copy = copy;
         
     }
     
