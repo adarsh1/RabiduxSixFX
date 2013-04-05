@@ -113,7 +113,9 @@ public class SearchFXController extends BaseFXController implements Initializabl
         if(searchMgr.getNoOfResults()!=0)
          initializeScrollPane();
         else
+        { keywordField.clear();
             displayWarning("No Results","Sorry your query '"+keywordField.getText()+"' returned no results...");
+        }
     }
  
  

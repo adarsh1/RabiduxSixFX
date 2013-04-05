@@ -88,7 +88,9 @@ public class BorrowFXController extends BaseFXController implements Initializabl
             getItemDetails();
         }
         catch (SQLException | ClassNotFoundException | TypeMismatchException e){
-            displayItemErrorMsg(e.getMessage());
+           // displayItemErrorMsg(e.getMessage());
+            copyIDField.clear();
+            displayWarning("No Item Found", "Oops we could not find a Book with this Id\nPlease recheck your Book-ID or contact a Librarian for assistance.");
         }        
     }
     
