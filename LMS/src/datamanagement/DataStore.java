@@ -660,4 +660,35 @@ public class DataStore {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ReservableCopyGroup result = new ReservableCopyGroup ();
+        ArrayList<String> where = new ArrayList<> ();
+        
+        result.setItemID(itemID);
+        
+        database.initializeConnection();
+            
+        where.add(WILDCARD_CHAR);
+        where.add(itemID);
+        where.add(WILDCARD_CHAR);
+            
+        resultSet = database.selectRecord(Table.COPY, where);
+            
+        result.setCopiesAvailable(database.getNumOfRows(resultSet));
+            
+        while(resultSet.next()) {
+                
+            String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
+            result.addCopy(Book.getBook(copyID));
+                
+        }
+        
+        database.closeConnection();
+        
+        return result;
+        
+    }
+
 }

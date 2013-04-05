@@ -24,6 +24,13 @@ public class ReservableCopyGroup {
         
     }
     
+    public static ReservableCopyGroup getReservableCopyGroup (String itemID) throws SQLException, ClassNotFoundException {
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.getCopyGroup(itemID);
+        
+    }
+    
     public static ArrayList<ReservableCopyGroup> getReservableCopyGroups (String searchCriteria, String keyword) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
