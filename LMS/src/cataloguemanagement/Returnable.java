@@ -10,6 +10,6 @@ package cataloguemanagement;
  */
 public interface Returnable extends Displayable {
     
-    public abstract void returnBook(String copyID, String userID);
+    public abstract void returnCopy(String userID);
     
 }

@@ -17,9 +17,9 @@ public class DataStore {
     public static final String WILDCARD_CHAR = "%";
     public static final String NULL_VARCHAR = "NULLVARCHAR";
     public static final String NULL_DATETIME = "NULLDATETIME";
-        
+    public static SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    
     private Database database;
-    public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     public DataStore(){
         DatabaseFactory instance = DatabaseFactory.getInstance();

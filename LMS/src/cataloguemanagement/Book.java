@@ -130,10 +130,10 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public void returnBook(String copyID, String userID) {
+    public void returnCopy(String userID) {
         
         DataStore dataStore = new DataStore();
-        dataStore.returnBook(copyID, userID);
+        dataStore.returnBook(super.getIndividualCopyID(), userID);
         
     }
 
