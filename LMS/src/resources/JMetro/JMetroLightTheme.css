@@ -69,6 +69,7 @@
 
 .button:hover{
     -fx-background-color: #d8d8d8;
+    -fx-cursor: hand;
 }
 
 .button:pressed, .button:default:hover:pressed
@@ -620,7 +621,7 @@
     -fx-color: -fx-focused-base;
     -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: -1.4, 0, 1, 2;
-    -fx-background-radius: 6.4, 5, 4, 3;	
+    -fx-background-radius: 6.4, 5, 4, 3;    
 }*/
 
 .list-spinner .value-pane { 
@@ -769,14 +770,57 @@
 
 /*******************************************************************************
  *                                                                             *
- * Logout part                                                                 *
+ * Warning part                                                                 *
  *                                                                             *
  ******************************************************************************/
-.logOutButton{
-    -fx-cursor:hand;
-}
+
 .logout-pane{
-    
+    -fx-background-color: #ff3d00;
+}
+
+.logout-label{
+    -fx-cursor: hand;
+}
+
+.logout-header{
+    -fx-font-size: 30pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
+.logout-text{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: white;
+}
+
+.logout-button{
+    -fx-background-color: #ff3d00;
+    -fx-padding: 5 22 5 22;   
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;  
+     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+}
+
+.logout-button:hover{
+    -fx-background-color: #ff6633;
+}
+
+.logout-button:pressed 
+{
+  -fx-background-color: #1d1d1d;
+  -fx-text-fill:white ;
+}
+
+.logout-button:focused
+{
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
 }
 
 
