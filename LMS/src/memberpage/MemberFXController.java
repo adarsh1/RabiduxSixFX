@@ -97,7 +97,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     public void logoutbuttonhandler(MouseEvent event) {
         
         final Node node=(Node) event.getSource();
-        final ModelController mc = this.getModelController();
+        //final ModelController mc = this.getModelController();
         
         final Popup confirmLogOut = new Popup();
         confirmLogOut.centerOnScreen();
@@ -139,7 +139,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
             @Override
             public void handle(MouseEvent t){
             confirmLogOut.hide();
-            gotologin(node,mc); 
+            gotologin(node); 
             }
         }
             );
@@ -156,9 +156,9 @@ public class MemberFXController extends BaseFXController implements Initializabl
             );
     }    
     
-    private void gotologin(Node node,ModelController mc)
+    private void gotologin(Node node)
     {
-        transitScene("Login.fxml", node, mc);
+        transitScene("Login.fxml", node);
     }
      
     
