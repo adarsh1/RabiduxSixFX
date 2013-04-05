@@ -5,6 +5,7 @@
 package lms;
 
 import baseGUI.Animatable;
+import factory.SystemConfig;
 import globalcontrol.ModelController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -32,6 +33,9 @@ public class LMS extends Application {
     
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        SystemConfig instance = SystemConfig.getInstance();
+        instance.useMySQLDB();
+        
         primaryStage.initStyle(StageStyle.DECORATED);
         fxmlLoader = new FXMLLoader(getClass().getResource("/resources/xml/Login.fxml")); 
         root = (Parent) fxmlLoader.load();

@@ -24,12 +24,16 @@ public class DatabaseFactory {
     
     public Database createDatabase(){
         SystemConfig instance = SystemConfig.getInstance();
-        String databaseType = instance.getDatabase();
-        if (databaseType.equals( SystemConfig.MYSQL)){
-            return new MySQLDB();
+        String databaseType = instance.getDatabaseType();
+        if (databaseType.equals("MySQL")){
+            String host = instance.getMySQLPasswordHost();
+            String databaseName = instance.getMySQLPasswordDatabaseName();
+            String user = instance.getMySQLPasswordUser();
+            String password = instance.getMySQLPasswordPassword();
+            return new MySQLDB(host, databaseName, user, password);
         }
         else {
-            return new MySQLDB();
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
 }

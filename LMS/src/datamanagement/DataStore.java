@@ -3,6 +3,7 @@ package datamanagement;
 
 import usermanagement.*;
 import cataloguemanagement.*;
+import factory.DatabaseFactory;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,7 +22,8 @@ public class DataStore {
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     public DataStore(){
-        database = new MySQLDB();
+        DatabaseFactory instance = DatabaseFactory.getInstance();
+        database = instance.createDatabase();
     }
     
     public void insertItem(CatalogueItem catalogueItem) throws SQLException, ClassNotFoundException {

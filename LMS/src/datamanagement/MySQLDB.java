@@ -20,10 +20,13 @@ public class MySQLDB extends Database{
     private String user;
     private String password;
     
-    public MySQLDB () {
+    public MySQLDB (String host,String databaseName, String user, String password) {
         
         super();
-        
+        this.host = host;
+        this.databaseName = databaseName;
+        this.user = user;
+        this.password = password;        
     }
     
     //initialize the connection to the database
