@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author Richard
  */
-public class CurrentHoldings {
+public class CurrentHolding {
     
     private String loanID;
     private Calendar dateBorrowed;
@@ -19,7 +19,7 @@ public class CurrentHoldings {
     private int numOfExtend;
     private Extendable copy;
     
-    public CurrentHoldings() {
+    public CurrentHolding() {
         
     }
     

@@ -4,7 +4,7 @@
  */
 package usermanagement;
 
-import cataloguemanagement.CurrentHoldings;
+import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedCopy;
 import cataloguemanagement.PastTransaction;
 import java.sql.SQLException;
@@ -18,6 +18,6 @@ public interface BorrowRecordAccessible {
     
     public abstract ArrayList<PastTransaction> getPastTransactions (String userID) throws SQLException, ClassNotFoundException;
     public abstract ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException;
-    public abstract ArrayList<CurrentHoldings> getCurrentHoldingItems(String userID) throws SQLException, ClassNotFoundException;
+    public abstract ArrayList<CurrentHolding> getCurrentHoldingItems(String userID) throws SQLException, ClassNotFoundException;
     
 }

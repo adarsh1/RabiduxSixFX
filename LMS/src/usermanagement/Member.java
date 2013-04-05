@@ -4,7 +4,7 @@
  */
 package usermanagement;
 
-import cataloguemanagement.CurrentHoldings;
+import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedCopy;
 import cataloguemanagement.PastTransaction;
 import datamanagement.DataStore;
@@ -110,7 +110,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      }
     
     @Override
-    public ArrayList<CurrentHoldings> getCurrentHoldingItems(String userID){
+    public ArrayList<CurrentHolding> getCurrentHoldingItems(String userID){
         
         DataStore dataStore = new DataStore();
         return dataStore.getCurrentHoldings(userID);
