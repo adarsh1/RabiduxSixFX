@@ -7,9 +7,15 @@
 package history;
 
 import baseGUI.BaseFXController;
+import cataloguemanagement.PastTransaction;
 import globalcontrol.ModelController;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -37,6 +43,9 @@ public class HistoryFXController extends BaseFXController implements Initializab
     @FXML //  fx:id="scrollPane"
     private ScrollPane scrollPane; // Value injected by FXMLLoader
     
+     @FXML //  fx:id="nohistory"
+    private Label nohistory; // Value injected by FXMLLoader
+    
    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'History.fxml'.";
@@ -44,15 +53,7 @@ public class HistoryFXController extends BaseFXController implements Initializab
         assert scrollPane != null : "fx:id=\"scrollPane\" was not injected: check your FXML file 'History.fxml'.";
         // initialize your logic here: all @FXML variables will have been injected
         historyMgr = new HistoryMgr();
-        
     }
-   
-   
-   private void displayHistory()
-   {
-       //historyMgr.getHistory(); 
-       initializeScrollPane();
-   }
    
    private void initializeScrollPane() {
         scrollPane.setVisible(true);
@@ -60,24 +61,23 @@ public class HistoryFXController extends BaseFXController implements Initializab
         itemPane.getChildren().clear();
         itemPane.setSpacing(20);
         int i;
-        //for(i=0;i<searchMgr.getNoOfResults();i++)
-        for(i=0;i<5;i++)
+        for(i=0;i<historyMgr.getItemSize();i++)
         {       Pane p=new Pane();
-                  //createIndividual(p,searchMgr.getItemGroup().get(i));
-                createIndividual(p);
+                 createIndividual(p,historyMgr.getItemGroup().get(i));
+                //createIndividual(p);
                 itemPane.getChildren().add(p);
                 handleNodeScaleTransition(p, 400,0,1);
          }
     }
    
-   //private void createIndividual(Pane p,ReservableCopyGroup item) {
-   private void createIndividual(Pane p) {
-        p.setId("x");
+   private void createIndividual(Pane p,PastTransaction item) {
+   //private void createIndividual(Pane p) {
+        p.setId("x");  //IDK WHAT THIS IS!!!!
         p.getStyleClass().add("historyResult");
         p.setMinSize(480, 125);
         ImageView bookCover;
        try
-       {bookCover=new ImageView(new Image(HistoryFXController.class.getResourceAsStream(ModelController.BOOKCOVER_IMAGE_PATH + "2000000001" +".jpg")));
+       {bookCover=new ImageView(new Image(SearchFXController.class.getResourceAsStream(ModelController.BOOKCOVER_IMAGE_PATH + item.getCopy().getItemID()+".jpg")));
        }
        catch(Exception e)
        {
@@ -89,8 +89,9 @@ public class HistoryFXController extends BaseFXController implements Initializab
         bookCover.setLayoutY(7);
         //bookCover.setPreserveRatio(true);
         
+        
         //Label indTitle = new Label(item.getItemTitle());
-        Label indTitle = new Label("Test");
+        Label indTitle = new Label(item.getCopy().getTitle());
         indTitle.setPrefWidth(360);
         indTitle.getStyleClass().add("header-5");
         indTitle.setLayoutX(103);
@@ -99,7 +100,7 @@ public class HistoryFXController extends BaseFXController implements Initializab
         indTitle.setTooltip(new Tooltip(indTitle.getText()));
         
         //Label indAuthor = new Label("Author: "+item.getItemAuthor());
-        Label indAuthor = new Label("Author: Test");
+        Label indAuthor = new Label("Author:" + item.getCopy().getAuthor());
         indAuthor.setPrefWidth(355);
         indAuthor.setLayoutX(117);
         indAuthor.setLayoutY(39);
@@ -112,19 +113,35 @@ public class HistoryFXController extends BaseFXController implements Initializab
         indGenre.setLayoutY(57);
         indGenre.setEllipsisString("...");
         
+        Date d = item.getDateBorrowed().getTime();
+        SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
         //Label indBorrowDate = new Label("Copies: "+item.getCopiesAvailable());
-        Label indBorrowDate = new Label("Borrow Date: "+"xx-xx-xxxx");
+        Label indBorrowDate = new Label("Borrow Date: "+ ft.format(d));
         indBorrowDate.setPrefWidth(129);
         indBorrowDate.setLayoutX(117);
         indBorrowDate.setLayoutY(75);
         indBorrowDate.setEllipsisString("");
         
+        Label indReturnDate;
+        
+        if(!(item.getDateReturned()==null))
+        {d = item.getDateReturned().getTime();
         //Label indCopies = new Label("Copies: "+item.getCopiesAvailable());
-        Label indReturnDate = new Label("Return Date: "+"xx-xx-xxxx");
+        indReturnDate = new Label("Return Date: "+ft.format(d));
         indReturnDate.setPrefWidth(129);
         indReturnDate.setLayoutX(117);
         indReturnDate.setLayoutY(93);
         indReturnDate.setEllipsisString("");
+        }
+        else
+        {d = item.getDateToReturn().getTime();
+        //Label indCopies = new Label("Copies: "+item.getCopiesAvailable());
+        indReturnDate = new Label("Date to Return: "+ft.format(d));
+        indReturnDate.setPrefWidth(129);
+        indReturnDate.setLayoutX(117);
+        indReturnDate.setLayoutY(93);
+        indReturnDate.setEllipsisString("");
+        }
         
         p.getChildren().addAll(bookCover,indTitle,indAuthor,indGenre,indBorrowDate,indReturnDate);
         
@@ -139,7 +156,28 @@ public class HistoryFXController extends BaseFXController implements Initializab
         displayHistory();
     }
     
-
+    
+    private void displayHistory()
+    {
+        Member m = (Member)this.getModelController().getUser();
+        try {
+            historyMgr.setItemGroup(m.getPastTransactions());
+        } catch (SQLException | ClassNotFoundException ex ) {
+            Logger.getLogger(HistoryFXController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(historyMgr.getItemSize()==0)
+        {
+           nohistory.setVisible(true);
+        }
+        else
+        {
+           initializeScrollPane();   
+        }
+    }
+    
+    
+    
     @Override
     public void playOnShowAnimation() {
         this.handleOnShowAnimation(contentPane);

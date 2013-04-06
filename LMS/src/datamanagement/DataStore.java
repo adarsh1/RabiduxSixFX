@@ -613,6 +613,7 @@ public class DataStore {
         
         resultSet = database.selectRecord(Table.RECORD, where);
         
+        
         while(resultSet.next()) {
             
             PastTransaction pastTransaction = new PastTransaction();
@@ -639,12 +640,12 @@ public class DataStore {
             pastTransaction.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
             pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
             
-            pastTransaction.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("USER_ID"))));
+            pastTransaction.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
             
+            result.add(pastTransaction);
         }
         
         database.closeConnection();
-        
         return result;
         
     }

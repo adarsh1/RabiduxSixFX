@@ -19,7 +19,7 @@
         <VBox fx:id="itemPane" prefHeight="369.0" prefWidth="485.0" />
       </content>
     </ScrollPane>
-  <AnchorPane id="messagePane" fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+    <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
       <children>
         <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
           <children>
@@ -29,7 +29,8 @@
           </children>
         </AnchorPane>
       </children>
-    </AnchorPane>  
+    </AnchorPane>
+    <Label fx:id="nohistory" layoutY="55.0" styleClass="header-1, header-4, font-grey, header-5" text="You have not borrowed any books" visible="false" />
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />

@@ -36,6 +36,12 @@ public class HistoryMgr {
         this.itemGroup = group;
     }
     
+    public int getItemSize()
+    {
+        if(itemGroup == null) return 0;
+        return itemGroup.size();
+    }
+    
     public void getHistory()
     {
         //Call the datastore function of past transaction to get all the 

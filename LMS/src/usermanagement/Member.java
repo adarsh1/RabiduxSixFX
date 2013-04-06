@@ -97,8 +97,8 @@ public abstract class Member extends User implements BorrowRecordAccessible{
     public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        return dataStore.getRecords(super.getUserID());
-        
+        ArrayList<PastTransaction> A = dataStore.getRecords(super.getUserID());
+        return A;
     }
     
     @Override
