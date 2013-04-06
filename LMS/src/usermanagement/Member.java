@@ -94,26 +94,26 @@ public abstract class Member extends User implements BorrowRecordAccessible{
     public abstract int getLoanDuration();
 
     @Override
-    public ArrayList<PastTransaction> getPastTransactions (String userID) throws SQLException, ClassNotFoundException {
+    public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        return dataStore.getRecords(userID);
+        return dataStore.getRecords(super.getUserID());
         
     }
     
     @Override
-    public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException {
+    public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        return dataStore.getReservedCopies(userID);
+        return dataStore.getReservedCopies(super.getUserID());
      
      }
     
     @Override
-    public ArrayList<CurrentHolding> getCurrentHoldingItems(String userID) throws SQLException, ClassNotFoundException{
+    public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException{
         
         DataStore dataStore = new DataStore();
-        return dataStore.getCurrentHoldings(userID);
+        return dataStore.getCurrentHoldings(super.getUserID());
      
      }   
     

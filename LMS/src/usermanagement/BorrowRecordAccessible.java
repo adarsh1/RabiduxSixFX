@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public interface BorrowRecordAccessible {
     
-    public abstract ArrayList<PastTransaction> getPastTransactions (String userID) throws SQLException, ClassNotFoundException;
-    public abstract ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException;
-    public abstract ArrayList<CurrentHolding> getCurrentHoldingItems(String userID) throws SQLException, ClassNotFoundException;
+    public abstract ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException;
+    public abstract ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException;
+    public abstract ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException;
     
 }
