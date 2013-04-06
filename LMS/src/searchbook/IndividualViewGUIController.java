@@ -121,16 +121,22 @@ public void setId(String id){
         cover.setImage(new Image(IndividualViewGUIController.class.getResourceAsStream( ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg")));
        }
    //Need Genre in Better way
-    genre.setText("Genre: "+individualMgr.getItem().getCopies().get(0).getGenre());
+    String genreStr=individualMgr.getItem().getGenre();
+    if(genreStr==null)
+        genreStr="-";
+    genre.setText("Genre: "+genreStr);
     
     //Need item Description in Better way
-    String itemDescriptionText = individualMgr.getItem().getCopies().get(0).getDescription();
+    String itemDescriptionText = individualMgr.getItem().getDescription();
     itemDescription.setText(itemDescriptionText);
     double height = computeTextHeight(itemDescriptionText ,42, 12);
     itemDescriptionAnchorPane.setPrefHeight(height); 
     
     //Need ISBN in Better way
-    isbn.setText("(ISBN: "+individualMgr.getItem().getCopies().get(0).getISBN()+")");
+    String isbnStr=individualMgr.getItem().getISBN();
+    if(isbnStr==null)
+        isbnStr="-";
+    isbn.setText("(ISBN: "+isbnStr+")");
     
     borrowablecopies.setText("Borrowable Copies: "+individualMgr.getItem().getCopiesAvailable());
     reservablecopies.setText("Reservable Copies: "+"0");
