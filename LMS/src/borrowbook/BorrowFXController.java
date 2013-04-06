@@ -90,7 +90,10 @@ public class BorrowFXController extends BaseFXController implements Initializabl
         catch (SQLException | ClassNotFoundException | TypeMismatchException e){
            // displayItemErrorMsg(e.getMessage());
             copyIDField.clear();
-            displayWarning("No Item Found", "Oops we could not find a Book with this Id\nPlease recheck your Book-ID or contact a Librarian for assistance.");
+            String header = "No Item Found";
+            String text = "Oops we could not find a Book with this Id\nPlease recheck your Book-ID or contact a Librarian for assistance.\n";
+            text += "Error message:" + e.getMessage();
+            displayWarning(header,text);
         }        
     }
     

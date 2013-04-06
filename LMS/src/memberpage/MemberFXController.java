@@ -187,29 +187,29 @@ public class MemberFXController extends BaseFXController implements Initializabl
     } 
 
     @Override
-    public void update(Observable o, Object arg)
-    {if(o instanceof BaseFXController)
-        {BaseFXController bfc=(BaseFXController)o;
-        if(arg instanceof Boolean)
-         {Boolean disable=(Boolean)arg;
-            if(disable.booleanValue()==true)
-           {    System.out.println("disabled");
-               disableAllPanes(bfc.getMessagePaneID());
-           }
-           else
-           {    enableAllPanes(bfc.getMessagePaneID());
-            } 
-         }
-        else if(arg instanceof Observable)
-            {Observable ob=(Observable)arg;
-             ob.addObserver(this);
+    public void update(Observable o, Object arg){
+        if(o instanceof BaseFXController){
+            BaseFXController bfc=(BaseFXController)o;
+            if(arg instanceof Boolean){
+                Boolean disable=(Boolean)arg;
+                if(disable.booleanValue()==true){
+                    System.out.println("disabled");
+                    disableAllPanes(bfc.getMessagePaneID());
+                }
+                else{    
+                    enableAllPanes(bfc.getMessagePaneID());
+                } 
             }
-        else if(arg instanceof String)
-          {String s=(String) arg;
-           if(s.endsWith(".fxml"))
-               transitPane(s);
-          }
-           }
+            else if(arg instanceof Observable){
+                Observable ob=(Observable)arg;
+                ob.addObserver(this);
+            }
+            else if(arg instanceof String){
+                String s=(String) arg;
+                if(s.endsWith(".fxml"))
+                   transitPane(s);
+            }
+        }
     }
 
     private void gotologin(Node node)
@@ -308,6 +308,7 @@ public class MemberFXController extends BaseFXController implements Initializabl
     public void setContentPlaceHolderPane(AnchorPane contentPlaceHolderPane) {
         this.contentPlaceHolderPane = contentPlaceHolderPane;
     }
+    
     private void disableAllPanes(String idExcept) {
         enableDisablePanes(idExcept ,true);
     }
@@ -315,27 +316,30 @@ public class MemberFXController extends BaseFXController implements Initializabl
     private void enableAllPanes(String idExcept) {
         enableDisablePanes(idExcept ,false);
     }
-        private void enableDisablePanes(String idExcept ,boolean flag){
-        logoutbutton.setDisable(flag);
+    
+    private void enableDisablePanes(String idExcept ,boolean flag){
+        footerPane.setDisable(flag);
         menuPane.setDisable(flag);
         Pane p=(Pane)contentPlaceHolderPane.getChildren().get(0);
         for(int i=0;i<p.getChildren().size(); i++){
-             Node n=p.getChildren().get(i);
-              String nid=n.getId();
-              if(nid==null||!nid.equals(idExcept))
-                  n.setDisable(flag);
-            }
+            Node n=p.getChildren().get(i);
+            String nid=n.getId();
+            if(nid==null||!nid.equals(idExcept))
+            n.setDisable(flag);
         }
+    }
+    
     @Override
-        public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
-        FXMLLoader fl=super.transitPane(resourceURL, placeHolderPane, modelController);
-        BaseFXController bc=fl.getController();         
+    public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
+        FXMLLoader fl = super.transitPane(resourceURL, placeHolderPane, modelController);
+        BaseFXController bc = fl.getController();         
         bc.addObserver((Observer)(this));
         return fl;
-        }
-    public FXMLLoader transitPane(String resourceURL)
-    {
+    }
+    
+    //overloading transitPane function without placeholder or modelcontroller
+    public FXMLLoader transitPane(String resourceURL){
        return transitPane(resourceURL, getContentPlaceHolderPane(), this.getModelController());
     }
-    }
+}
     
