@@ -90,9 +90,11 @@ public class SearchFXController extends BaseFXController implements Initializabl
     
     @Override
     public void setInitialData(ModelController modelController){  
+        
         this.setModelController(modelController);
         //set the current member to search
         searchMgr.setCurrentMember((Member)modelController.getUser());
+        
     }
     
     
