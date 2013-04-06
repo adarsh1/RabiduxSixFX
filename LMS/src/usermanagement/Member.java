@@ -110,7 +110,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      }
     
     @Override
-    public ArrayList<CurrentHolding> getCurrentHoldingItems(String userID){
+    public ArrayList<CurrentHolding> getCurrentHoldingItems(String userID) throws SQLException, ClassNotFoundException{
         
         DataStore dataStore = new DataStore();
         return dataStore.getCurrentHoldings(userID);
