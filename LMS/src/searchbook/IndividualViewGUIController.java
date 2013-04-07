@@ -7,16 +7,17 @@ package searchbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.Reservable;
+import exception.NotEligibleToBorrowOrReserveException;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -112,7 +113,8 @@ public void setId(String id){
         individualMgr.createItem(id);
     }
     catch(SQLException e)
-    {
+    {   displayWarning("Error","Oops, something seems to be wrong. Try again or contact a Librarian for assistance");
+        setChanged();
         notifyObservers("Search.fxml");
     }
     catch(ClassNotFoundException e){
@@ -190,7 +192,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
         
         Text statusText;
         try{
-          if(!item.isBorrowed()){   
+          if(item.isBorrowed()){   
             statusText=new Text("Available");
             statusText.setLayoutX(205);
             statusText.setLayoutY(23);
@@ -222,7 +224,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             
             Text returnText=new Text("***");
             try
-            {Date d = item.getReservedCopy().getDateAvailable().getTime();
+            {Date d = item.getPastTransaction().getDateToReturn().getTime();
             SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
             returnText.setText(ft.format(d));
             }
@@ -265,13 +267,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             Button reserveButton=new Button("Reserve");
             reserveButton.setLayoutX(409);
             reserveButton.setLayoutY(7);
-            reserveButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent e){
-                Node node=(Node) e.getSource();
-                displaySuccess("Hi", "Hi");
-            }
-        });
+            reserveButton.setOnMouseClicked(new MouseClickListener());
             p.getChildren().addAll(copyID,copyText,status,statusText,returnDate,returnText,reserveButton); 
           }
         }
@@ -279,5 +275,32 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
         catch(ClassNotFoundException e){;}
         borrowablecopies.setText("Borrowable Copies: "+bc);
         reservablecopies.setText("Reservable Copies: "+rc);
+    }
+    private class MouseClickListener implements EventHandler<MouseEvent>{
+        @Override
+        public void handle(MouseEvent e) {
+            Node node=(Node)e.getSource();
+                
+            String id=node.getParent().getId();
+            try
+            {
+            individualMgr.reserve(Integer.parseInt(id));
+            Calendar cd=individualMgr.getItem().getCopies().get(Integer.parseInt(id)).getPastTransaction().getDateToReturn();
+            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
+            String availableDate=format.format(cd.getTime());
+            cd.add(Calendar.DAY_OF_MONTH,IndividualViewGUIMgr.STUDENT_RESERVE_DURATION );
+            String borrowByDate=format.format(cd.getTime());
+            String text = "Your request for reservation of this item has been sucessfully granted.\n";
+            text += "It will be tentatively be available to you by "+availableDate+". Kindly Borrow it by "+borrowByDate+". Following which this reservation shall expire";
+            displaySuccess("Thank you",text);
+            }
+            catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException except){
+            String text = "We regret to inform you that your request to reserve this copy was not granted.\n";
+            text += "Reasons might be: \n";
+            text += except.getMessage();
+            displayWarning("Sorry",text);
+        }
+        }
+        
     }
 }

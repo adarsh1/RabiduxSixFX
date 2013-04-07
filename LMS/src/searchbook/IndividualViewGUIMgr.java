@@ -2,6 +2,7 @@
 package searchbook;
 
 import cataloguemanagement.ReservableCopyGroup;
+import exception.NotEligibleToBorrowOrReserveException;
 import java.sql.SQLException;
 import usermanagement.Member;
 
@@ -13,7 +14,7 @@ public class IndividualViewGUIMgr {
     
     private Member currentMember;
     private ReservableCopyGroup item;   
-    
+    public static final int STUDENT_RESERVE_DURATION = 3;
     //a member object required to construct
     public IndividualViewGUIMgr(Member currentMember){
         this.currentMember = currentMember;
@@ -21,7 +22,16 @@ public class IndividualViewGUIMgr {
     public IndividualViewGUIMgr(){
         //empty constructor
     }
-    
+    //borrow the book
+    public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
+        //if this member is allowed to borrow or reserve
+        if(currentMember.isEligibleToBorrowOrReserve()){
+             item.getCopies().get(i).reserve(currentMember.getUserID());
+        }
+        else {
+            throw new NotEligibleToBorrowOrReserveException("You have exceeded your maximum loans, you are not elligible to reserve");
+        }
+    }
     //create a borrowable item based on item ID
     public void createItem(String ID) throws SQLException, ClassNotFoundException{
         //get the catalogue item from catalogue management
