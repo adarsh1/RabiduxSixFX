@@ -46,14 +46,6 @@ public abstract class CatalogueItem implements Displayable {
         
     }
     
-    public Boolean isAvailable() throws SQLException, ClassNotFoundException {
-        
-        DataStore dataStore = new DataStore();
-        
-        return dataStore.isCopyAvailable(individualCopyID);
-        
-    }
-    
     public Boolean isOverdue() throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();

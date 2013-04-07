@@ -263,7 +263,7 @@ public class DataStore {
         
     }
     
-    public boolean isCopyAvailable(String copyID) throws SQLException, ClassNotFoundException {
+    public boolean isCopyBorrowed(String copyID) throws SQLException, ClassNotFoundException {
         
         boolean result;
         ArrayList<String> condition = new ArrayList<> ();
@@ -894,6 +894,87 @@ public class DataStore {
             currentHolding.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
             
             result.add(currentHolding);
+        }
+        
+        database.closeConnection();
+        
+        return result;
+        
+    }
+
+    public ReservedCopy getReservedCopy(String copyID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        ReservedCopy result = new ReservedCopy ();
+        Calendar dateAvailable = new GregorianCalendar();
+        
+        result.setCopyID(copyID);
+        result.setCopy((ReservationCancellable)CatalogueItem.getCatalogueItem(copyID));
+        result.setDateAvailable(null);
+            
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(copyID);
+            
+        resultSet = database.selectRecord(Table.RECORD, where, 1);
+            
+        if(resultSet.next()) {
+                
+            dateAvailable.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            result.setDateAvailable(dateAvailable);
+                
+        }
+        
+        database.closeConnection();
+        
+        return result;
+        
+    }
+
+    public PastTransaction getRecord(String copyID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        PastTransaction result = new PastTransaction ();
+        ArrayList<String> where = new ArrayList<> ();
+        Calendar timeBorrowed = new GregorianCalendar();
+        Calendar timeReturned = new GregorianCalendar();
+        Calendar timeToReturn = new GregorianCalendar();
+        
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(copyID);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.RECORD, where);
+        
+        if(resultSet.next()) {
+            
+            result.setLoanID(resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+            
+            timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+            result.setDateBorrowed(timeBorrowed);
+            
+            if (resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")) != null) {
+                
+                timeReturned.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")));
+                result.setDateReturned(timeReturned);
+                
+            } else {
+                
+                result.setDateReturned(null);
+                
+            }
+            
+            timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            result.setDateToReturn(timeToReturn);
+            
+            result.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
+            result.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
+            
+            result.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
+            
         }
         
         database.closeConnection();

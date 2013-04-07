@@ -152,21 +152,33 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
 
     @Override
     public boolean isReserved() throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.isCopyReserved(super.getIndividualCopyID());
+        
     }
 
     @Override
     public boolean isBorrowed() throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.isCopyBorrowed(super.getIndividualCopyID());
+        
     }
 
     @Override
     public ReservedCopy getReservedCopy() throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.getReservedCopy(super.getIndividualCopyID());
+        
     }
 
     @Override
     public PastTransaction getPastTransaction() throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.getRecord(super.getIndividualCopyID());
+        
     }
 }
