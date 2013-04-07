@@ -62,14 +62,6 @@ public abstract class CatalogueItem implements Displayable {
         
     }
     
-    public Boolean isReserved() throws SQLException, ClassNotFoundException {
-        
-        DataStore dataStore = new DataStore();
-        
-        return dataStore.isCopyReserved(individualCopyID);
-        
-    }
-    
     @Override
     public String getItemID() {
         
