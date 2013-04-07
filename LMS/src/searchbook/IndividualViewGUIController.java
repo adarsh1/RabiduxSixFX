@@ -185,7 +185,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
         
         Text statusText;
         try{
-          if(!item.isBorrowed()){   
+          if(!item.isBorrowed()&&!item.isReserved()){   
             statusText=new Text("Available");
             statusText.setLayoutX(205);
             statusText.setLayoutY(23);
