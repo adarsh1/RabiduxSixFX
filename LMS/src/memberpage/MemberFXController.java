@@ -193,7 +193,6 @@ public class MemberFXController extends BaseFXController implements Initializabl
             if(arg instanceof Boolean){
                 Boolean disable=(Boolean)arg;
                 if(disable.booleanValue()==true){
-                    System.out.println("disabled");
                     disableAllPanes(bfc.getMessagePaneID());
                 }
                 else{    
