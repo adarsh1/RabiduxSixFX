@@ -227,9 +227,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             returnText.setText(ft.format(d));
             }
             catch(NullPointerException ne){
-             displayWarning("Database Error", "There appears to be a bug in our Database, Please contact a Librarian for assistance.");
-             setChanged();
-             notifyObservers("Search.fxml");
+             ;
             }
             returnText.setLayoutX(343);
             returnText.setLayoutY(23);
@@ -252,9 +250,15 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             returnDate.setLayoutX(272);
             returnDate.setLayoutY(10);
             
-            Date d = Calendar.getInstance().getTime();
+            Text returnText=new Text("***");
+            try
+            {Date d = item.getPastTransaction().getDateToReturn().getTime();
             SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
-            Text returnText=new Text(ft.format(d));
+            returnText.setText(ft.format(d));
+            }
+            catch(NullPointerException ne){
+             ;
+            }
             returnText.setLayoutX(343);
             returnText.setLayoutY(23);
             

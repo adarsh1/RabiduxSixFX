@@ -204,6 +204,9 @@ public class MemberFXController extends BaseFXController implements Initializabl
                 Observable ob=(Observable)arg;
                 ob.addObserver(this);
             }
+            else if(arg instanceof Pane){
+                arg=getContentPlaceHolderPane();
+            }
             else if(arg instanceof String){
                 String s=(String) arg;
                 if(s.endsWith(".fxml"))
