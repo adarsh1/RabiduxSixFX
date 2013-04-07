@@ -148,14 +148,7 @@ public void setId(String id){
     if(isbnStr==null)
         isbnStr="-";
     isbn.setText("(ISBN: "+isbnStr+")");
-    
-    for(int i=0;i<individualMgr.getItem().getCopiesAvailable();i++)
-        {  Pane p=new Pane();
-           p.setId(i+"");
-                  createIndividual(p,individualMgr.getItem().getCopies().get(i));
-                  copyVBox.getChildren().add(p);
-                handleNodeScaleTransition(p, 400,0,1);
-         }
+        initializeCopyScrollPane();
 }
 private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
@@ -192,7 +185,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
         
         Text statusText;
         try{
-          if(item.isBorrowed()){   
+          if(!item.isBorrowed()){   
             statusText=new Text("Available");
             statusText.setLayoutX(205);
             statusText.setLayoutY(23);
@@ -276,6 +269,17 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
         borrowablecopies.setText("Borrowable Copies: "+bc);
         reservablecopies.setText("Reservable Copies: "+rc);
     }
+
+    private void initializeCopyScrollPane() {
+        copyVBox.getChildren().clear();
+        for(int i=0;i<individualMgr.getItem().getCopiesAvailable();i++)
+            {  Pane p=new Pane();
+               p.setId(i+"");
+                      createIndividual(p,individualMgr.getItem().getCopies().get(i));
+                      copyVBox.getChildren().add(p);
+                    handleNodeScaleTransition(p, 400,0,1);
+             }
+    }
     private class MouseClickListener implements EventHandler<MouseEvent>{
         @Override
         public void handle(MouseEvent e) {
@@ -286,12 +290,13 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             {
             individualMgr.reserve(Integer.parseInt(id));
             Calendar cd=individualMgr.getItem().getCopies().get(Integer.parseInt(id)).getPastTransaction().getDateToReturn();
+            initializeCopyScrollPane();
             SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
             String availableDate=format.format(cd.getTime());
             cd.add(Calendar.DAY_OF_MONTH,IndividualViewGUIMgr.STUDENT_RESERVE_DURATION );
             String borrowByDate=format.format(cd.getTime());
             String text = "Your request for reservation of this item has been sucessfully granted.\n";
-            text += "It will be tentatively be available to you by "+availableDate+". Kindly Borrow it by "+borrowByDate+". Following which this reservation shall expire";
+            text += "It will be tentatively be available to you by "+availableDate+".\nKindly Borrow it by "+borrowByDate+". Following which this reservation shall expire";
             displaySuccess("Thank you",text);
             }
             catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException except){
