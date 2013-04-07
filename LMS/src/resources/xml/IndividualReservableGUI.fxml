@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="searchbook.IndividualViewGUIController">
+<AnchorPane id="individualPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="searchbook.IndividualViewGUIController">
   <children>
     <Label fx:id="title" layoutX="-1.0" layoutY="-15.0" prefHeight="85.0" prefWidth="345.0" styleClass="font-grey, header-4" text="Java Programming: An In Depth Guide For Dummies Who Cannot Code" wrapText="true" />
     <ImageView fx:id="cover" fitHeight="195.0875186311446" fitWidth="143.64842224121094" layoutX="356.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -48,7 +48,7 @@
           <children>
             <Label id="warningMsg" fx:id="messageHeader" styleClass="message-header" text="title" />
             <Label id="MessageText" fx:id="messageText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="message-text" text="Label" />
-            <Button fx:id="hideMessage" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleHideMessageButtonAction" styleClass="success-button" text="OK" />
+            <Button fx:id="hideMessage" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleHideMessageButtonAction" styleClass="warning-button" text="OK" />
           </children>
         </AnchorPane>
       </children>

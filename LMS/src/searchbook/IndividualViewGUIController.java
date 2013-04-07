@@ -14,8 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
@@ -23,6 +26,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -216,9 +220,17 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             returnDate.setLayoutX(272);
             returnDate.setLayoutY(10);
             
-            Date d = Calendar.getInstance().getTime();
+            Text returnText=new Text("***");
+            try
+            {Date d = item.getReservedCopy().getDateAvailable().getTime();
             SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
-            Text returnText=new Text(ft.format(d));
+            returnText.setText(ft.format(d));
+            }
+            catch(NullPointerException ne){
+             displayWarning("Database Error", "There appears to be a bug in our Database, Please contact a Librarian for assistance.");
+             setChanged();
+             notifyObservers("Search.fxml");
+            }
             returnText.setLayoutX(343);
             returnText.setLayoutY(23);
             
@@ -249,7 +261,13 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             Button reserveButton=new Button("Reserve");
             reserveButton.setLayoutX(409);
             reserveButton.setLayoutY(7);
-            
+            reserveButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                Node node=(Node) e.getSource();
+                displaySuccess("Hi", "Hi");
+            }
+        });
             p.getChildren().addAll(copyID,copyText,status,statusText,returnDate,returnText,reserveButton); 
           }
         }
