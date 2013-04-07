@@ -650,9 +650,12 @@ public class DataStore {
         
     }
 
-    public PastTransaction borrow(String individualCopyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException {
+    public PastTransaction borrow(String copyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException {
         
+        ResultSet resultSet;
         ArrayList<String> values = new ArrayList<> ();
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
         Calendar today = new GregorianCalendar();
         Calendar due = new GregorianCalendar();
         String loanID = database.getNewID(Table.RECORD);
@@ -662,13 +665,28 @@ public class DataStore {
         
         values.add(loanID);
         values.add(userID);
-        values.add(individualCopyID);
+        values.add(copyID);
         values.add(new java.sql.Timestamp(today.getTimeInMillis()).toString());
         values.add(new java.sql.Timestamp(due.getTimeInMillis()).toString());
         values.add("0");
         values.add("0");
         
+        where.add(copyID);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        
         database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.COPY, where);
+        resultSet.next();
+        
+        set.add("1000000000");
+        set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        
+        where.clear();
+        where.add(copyID);
+        
+        database.updateRecord(Table.COPY, set, where);
         
         database.insertRecord(Table.RECORD, values);
         
