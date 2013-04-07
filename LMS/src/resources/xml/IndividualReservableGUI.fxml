@@ -14,15 +14,6 @@
 <AnchorPane id="AnchorPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="searchbook.IndividualViewGUIController">
   <children>
     <Label fx:id="title" layoutX="-1.0" layoutY="-15.0" prefHeight="85.0" prefWidth="345.0" styleClass="font-grey, header-4" text="Java Programming: An In Depth Guide For Dummies Who Cannot Code" wrapText="true" />
-    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hmax="0.8" layoutX="0.0" layoutY="262.0" pannable="true" prefHeight="188.0" prefWidth="500.0" styleClass="searchPane" visible="false">
-      <content>
-        <VBox fx:id="vb" fillWidth="true" prefHeight="315.0" prefWidth="498.0" spacing="20.0" styleClass="searchPane">
-          <padding>
-            <Insets bottom="8.0" left="6.0" right="6.0" top="8.0" />
-          </padding>
-        </VBox>
-      </content>
-    </ScrollPane>
     <ImageView fx:id="cover" fitHeight="195.0875186311446" fitWidth="143.64842224121094" layoutX="356.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../images/bookcover/3000000002.jpg" />
@@ -40,13 +31,17 @@
     <Label fx:id="author" layoutX="0.0" layoutY="233.0" prefWidth="249.0" text="Author:" />
     <Label fx:id="genre" layoutX="256.0" layoutY="233.0" prefWidth="229.0" text="Genre:" />
     <Label fx:id="isbn" layoutX="14.0" layoutY="70.0" prefWidth="345.0" styleClass="header-5" text="(ISBN" />
-    <ScrollPane fx:id="individualPane" layoutX="-1.0" layoutY="262.0" prefHeight="136.0" prefWidth="499.0">
+    <ScrollPane fx:id="individualPane" depthTest="ENABLE" layoutX="-1.0" layoutY="262.0" pannable="true" prefHeight="149.0" prefWidth="499.0" styleClass="individual-copy-scroll" visible="true">
       <content>
-        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        <VBox id="CopyPane" fx:id="copyVBox" prefHeight="125.0" prefWidth="479.0" spacing="10.0">
+          <padding>
+            <Insets />
+          </padding>
+        </VBox>
       </content>
     </ScrollPane>
-    <Label fx:id="borrowablecopies" layoutX="11.0" layoutY="414.0" prefWidth="130.0" text="Borrowable Copies:" />
-    <Label fx:id="reservablecopies" layoutX="166.0" layoutY="414.0" prefWidth="137.0" text="Reservable Copies:" />
+    <Label fx:id="borrowablecopies" layoutX="11.0" layoutY="421.0" prefWidth="130.0" text="Borrowable Copies:" />
+    <Label fx:id="reservablecopies" layoutX="166.0" layoutY="421.0" prefWidth="137.0" text="Reservable Copies:" />
     <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
       <children>
         <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">

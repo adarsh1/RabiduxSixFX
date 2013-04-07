@@ -28,6 +28,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -100,26 +101,9 @@ public class SearchFXController extends BaseFXController implements Initializabl
     
     // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void handlesearchbutton(ActionEvent event)throws IOException{
-        try{
-        if(byTitle.isSelected())
-          searchMgr.SearchByTitle(keywordField.getText());
-        else if(byAuthor.isSelected())
-          searchMgr.SearchByAuthor(keywordField.getText());
-        else if(byISBN.isSelected())
-          searchMgr.SearchByISBN(keywordField.getText());
-        else
-          searchMgr.SearchByGenre(keywordField.getText());
-          } 
-        catch(SQLException e){;}
-        catch(ClassNotFoundException e){;}
-        if(searchMgr.getNoOfResults()!=0)
-         initializeScrollPane();
-        else
-        { keywordField.clear();
-            displayWarning("No Results","Sorry your query '"+keywordField.getText()+"' returned no results...");
-        }
+        getDetails();
     }
- 
+    
  
     private void createIndividual(Pane p,ReservableCopyGroup item) {
         p.setId(""+item.getItemID());
@@ -191,6 +175,16 @@ public class SearchFXController extends BaseFXController implements Initializabl
         this.handleOnShowAnimation(contentPane);
     }
 
+    @FXML
+    void updateSearchButton(KeyEvent event) {
+        updateSearchButton();
+    }
+    
+    @FXML
+    void searchButtonPress(ActionEvent event) {
+        getDetails();
+    }
+    
     private void initializeScrollPane() {
         scrollPane.setVisible(true);
         scrollPane.setContent(vb);
@@ -203,6 +197,35 @@ public class SearchFXController extends BaseFXController implements Initializabl
                 vb.getChildren().add(p);
                 handleNodeScaleTransition(p, 400,0,1);
          }
+    }
+
+    private void getDetails() {
+        try{
+        if(byTitle.isSelected())
+          searchMgr.SearchByTitle(keywordField.getText());
+        else if(byAuthor.isSelected())
+          searchMgr.SearchByAuthor(keywordField.getText());
+        else if(byISBN.isSelected())
+          searchMgr.SearchByISBN(keywordField.getText());
+        else
+          searchMgr.SearchByGenre(keywordField.getText());
+          } 
+        catch(SQLException e){;}
+        catch(ClassNotFoundException e){;}
+        if(searchMgr.getNoOfResults()!=0)
+         initializeScrollPane();
+        else
+        { keywordField.clear();
+          updateSearchButton();
+            displayWarning("No Results","Sorry your query '"+keywordField.getText()+"' returned no results...");
+        }
+    }
+
+    private void updateSearchButton() {
+        if(!keywordField.getText().trim().equals(""))
+            searchButton.setDisable(false);
+        else
+            searchButton.setDisable(true);
     }
     
     private class MouseClickListener implements EventHandler<MouseEvent>{
@@ -218,4 +241,5 @@ public class SearchFXController extends BaseFXController implements Initializabl
         }
         
     }
+    
 }

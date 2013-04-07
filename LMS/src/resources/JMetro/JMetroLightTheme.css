@@ -734,7 +734,8 @@
     -fx-padding: 8 6 8 1;
 }
 .searchResult{
-    -fx-background-color: #dedede;
+    -fx-background-color:#ccccff;
+   /* -fx-background-color: #dedede;*/
     -fx-opacity: 0.5;
     -fx-padding: 8 6 8 6;
 }
@@ -749,10 +750,48 @@
  *                                                                             *
  ******************************************************************************/
 
-.individualCopyScroll{
+.individual-copy-scroll{
     -fx-background-color:#ffffff;
+    -fx-padding:10 10 10 10;
 }
-
+.individual-copy-available-pane{
+    -fx-background-color: #77ff92;
+}
+.individual-copy-reservable-pane{
+    -fx-background-color: #9999ff;
+}
+.individual-copy-reserved-pane{
+    -fx-background-color: #ff6666;
+}
+.copy-label{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: white;
+}
+.copy-label-text{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: black;
+}
+.copy-label-text{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+}
+.copy-label-text-available{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-fill: #00cc33;
+}
+.copy-label-text-reservable{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-fill: #0033cc;
+}
+.copy-label-text-reserved{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-fill: #ff0033;
+}
 /*******************************************************************************
  *                                                                             *
  * History part                                                                 *
@@ -762,10 +801,17 @@
     -fx-background-color: #ffffff;
     -fx-padding: 8 6 8 1;
 }
+.history-vb{
+    -fx-padding: 3 0 0 0;
+}
 .historyResult{
-    -fx-background-color: #ffffff;
+    -fx-background-color: #ccccff;
     -fx-opacity: 1;
     -fx-padding: 8 6 8 6;
+    -fx-border-style: dashed;
+    -fx-border-width: 3 0 3 0;
+    -fx-border-color: #212121;
+    -fx-border-insets: -3 0 -3 0;
 }
 
 /*******************************************************************************
