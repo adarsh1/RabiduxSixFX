@@ -278,11 +278,11 @@ public class DataStore {
         
         if (resultSet.next() && resultSet.getString(Table.RECORD.getAttribute("TIME_RETURNED")) == null) {
             
-            result = false;
+            result = true;
             
         } else {
             
-            result = true;
+            result = false;
             
         }
         
@@ -736,6 +736,8 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         
         where.add(copyID);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         
@@ -744,6 +746,9 @@ public class DataStore {
         
         set.add(userID);
         set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        
+        where.clear();
+        where.add(copyID);
         
         database.updateRecord(Table.COPY, set, where);
         
