@@ -112,13 +112,10 @@ public void setId(String id){
     try{
         individualMgr.createItem(id);
     }
-    catch(SQLException e)
-    {   displayWarning("Error","Oops, something seems to be wrong. Try again or contact a Librarian for assistance");
+    catch(SQLException|ClassNotFoundException e)
+    {  
         setChanged();
-        notifyObservers("Search.fxml");
-    }
-    catch(ClassNotFoundException e){
-    ;
+        notifyObservers(e);
     }
     title.setText(individualMgr.getItem().getTitle());
     title.setTooltip(new Tooltip(title.getText()));
@@ -216,14 +213,9 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             returnDate.setLayoutY(10);
             
             Text returnText=new Text("***");
-            try
-            {Date d = item.getPastTransaction().getDateToReturn().getTime();
+            Date d = item.getPastTransaction().getDateToReturn().getTime();
             SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
             returnText.setText(ft.format(d));
-            }
-            catch(NullPointerException ne){
-             ;
-            }
             returnText.setLayoutX(343);
             returnText.setLayoutY(23);
             
@@ -246,14 +238,9 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             returnDate.setLayoutY(10);
             
             Text returnText=new Text("***");
-            try
-            {Date d = item.getPastTransaction().getDateToReturn().getTime();
+            Date d = item.getPastTransaction().getDateToReturn().getTime();
             SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
             returnText.setText(ft.format(d));
-            }
-            catch(NullPointerException ne){
-             ;
-            }
             returnText.setLayoutX(343);
             returnText.setLayoutY(23);
             
@@ -264,8 +251,10 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             p.getChildren().addAll(copyID,copyText,status,statusText,returnDate,returnText,reserveButton); 
           }
         }
-        catch(SQLException e){;}
-        catch(ClassNotFoundException e){;}
+        catch(SQLException|ClassNotFoundException e){
+            setChanged();
+            notifyObservers(e);
+        }
         borrowablecopies.setText("Borrowable Copies: "+bc);
         reservablecopies.setText("Reservable Copies: "+rc);
     }

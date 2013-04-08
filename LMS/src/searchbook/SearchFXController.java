@@ -150,24 +150,6 @@ public class SearchFXController extends BaseFXController implements Initializabl
         
         p.getChildren().addAll(bookCover,indTitle,indAuthor,indGenre,indCopies);
         p.setOnMouseClicked(new MouseClickListener());
-
-        /*
-        p.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent e){
-                Node node=(Node) e.getSource();
-                
-                String id=node.getId();
-                FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", contentPane, modelControllertemp);
-                IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
-                ic.setId(id);
-            }
-            private EventHandler<MouseEvent> init(ModelController var){
-                modelControllertemp = var;
-                return this;
-            }
-        }.init(this.getModelController()));
-        */ 
     }
     
     @Override   //play new animation when shown
@@ -210,8 +192,9 @@ public class SearchFXController extends BaseFXController implements Initializabl
         else
           searchMgr.SearchByGenre(keywordField.getText());
           } 
-        catch(SQLException e){;}
-        catch(ClassNotFoundException e){;}
+        catch(SQLException|ClassNotFoundException e)
+        {displayWarning("Oops","An Unexpected Error occured while processing your query.\nReason might be: \n"+e.getMessage());
+        }
         if(searchMgr.getNoOfResults()!=0)
          initializeScrollPane();
         else
