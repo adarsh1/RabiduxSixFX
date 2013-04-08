@@ -211,6 +211,10 @@ public class MemberFXController extends BaseFXController implements Initializabl
                 if(s.endsWith(".fxml"))
                    transitPane(s);
             }
+            else if(arg instanceof Exception){
+                transitPane("Search.fxml");
+                displayWarning("Serious Error","Oops something went wrong from our side.\n The reason might be:\n"+((Exception)arg).getMessage());
+            }
         }
     }
 

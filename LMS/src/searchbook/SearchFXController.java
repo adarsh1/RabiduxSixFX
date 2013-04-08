@@ -238,7 +238,14 @@ public class SearchFXController extends BaseFXController implements Initializabl
             IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
             setChanged();
             notifyObservers(ic);
+            try{
             ic.setId(id);
+            }
+            catch(Exception except)
+            {
+            setChanged();
+            notifyObservers(except);
+            } 
         }
         
     }

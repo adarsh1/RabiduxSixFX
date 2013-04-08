@@ -47,7 +47,7 @@ public class HoldingsMgr {
             throw new NotEligibleToBorrowOrReserveException("Sorry, you are not able to extend this book any further");
         }
     }
-    public void cancelReservation(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
+    public void cancelReservation(int i) throws SQLException, ClassNotFoundException{
         //if this member is allowed to borrow or reserve
              reservedCopies.get(i).getCopy().cancelReservation(currentMember.getUserID());
     }
