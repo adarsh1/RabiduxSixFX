@@ -13,5 +13,4 @@ import java.sql.SQLException;
 public interface Extendable extends Displayable {
     
     public abstract void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException;
-    
 }

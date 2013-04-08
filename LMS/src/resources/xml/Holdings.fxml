@@ -14,17 +14,51 @@
 <AnchorPane id="AnchorPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml" fx:controller="Holdings.HoldingsFXController">
   <children>
     <Label id="BorrowedItemLabel" layoutY="-13.0" styleClass="header-2, font-grey" text="Your Current Holding" />
-    <ScrollPane layoutY="50.0" prefHeight="400.0" prefWidth="500.0">
+    <Label layoutX="1.0" layoutY="44.0" styleClass="header-4, font-grey" text="Borrowed Items" />
+    <Label layoutX="5.0" layoutY="244.0" styleClass="header-4, font-grey" text="Reserved Items" />
+    <ScrollPane layoutX="1.0" layoutY="80.0" prefHeight="158.00009999999747" prefWidth="499.0">
       <content>
-        <AnchorPane id="Content" fx:id="holdingsPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="485.0">
+        <VBox fx:id="borrowVB" prefHeight="138.0" prefWidth="486.0" spacing="20.0">
           <children>
-            <Label styleClass="header-4, font-grey" text="Borrowed Items" />
-            <Label layoutY="137.0" styleClass="header-4, font-grey" text="Reserved Items" />
+            <Pane prefHeight="64.0" prefWidth="460.0">
+              <children>
+                <ImageView fitHeight="56.0" fitWidth="74.66666666666666" layoutX="5.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" x="0.0" y="4.0">
+                  <image>
+                    <Image url="@../images/bookcover/3000000001.jpg" />
+                  </image>
+                </ImageView>
+                <Label layoutX="51.0" layoutY="3.0" prefWidth="433.0" styleClass="header-5" text="Java Programming The comprehensive guide" />
+                <Label layoutX="51.0" layoutY="28.0" text="Borrowed On: 21.03.1334" />
+                <Label layoutX="70.0" layoutY="42.0" text="Return By: 21.45.4567" />
+                <Button fx:id="extendButton" layoutX="205.0" layoutY="30.0" mnemonicParsing="false" onAction="#extendButtonAction" text="Extend" />
+              </children>
+            </Pane>
           </children>
-        </AnchorPane>
+        </VBox>
       </content>
     </ScrollPane>
-    <AnchorPane id="messagePane" fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+    <ScrollPane layoutX="0.0" layoutY="283.0" prefHeight="167.0" prefWidth="500.0">
+      <content>
+        <VBox fx:id="reserveVB" prefHeight="159.0" prefWidth="486.0">
+          <children>
+            <Pane prefHeight="64.0" prefWidth="460.0">
+              <children>
+                <ImageView fitHeight="56.0" fitWidth="74.66666666666666" layoutX="5.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" x="0.0" y="4.0">
+                  <image>
+                    <Image url="@../images/bookcover/3000000001.jpg" />
+                  </image>
+                </ImageView>
+                <Label layoutX="51.0" layoutY="3.0" prefWidth="433.0" styleClass="header-5" text="Java Programming The comprehensive guide" />
+                <Label layoutX="51.0" layoutY="30.0" text="Available By: 21.45.4567" />
+                <Button fx:id="reserveCancelButton" layoutX="327.0" layoutY="29.0" mnemonicParsing="false" onAction="#reserveCancelButtonaction" text="Cancel" />
+                <Button fx:id="itemDetailsButton" layoutX="207.0" layoutY="29.0" mnemonicParsing="false" onAction="#itemDetailsButtonaction" text="Item Details" />
+              </children>
+            </Pane>
+          </children>
+        </VBox>
+      </content>
+    </ScrollPane>
+    <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
       <children>
         <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
           <children>
