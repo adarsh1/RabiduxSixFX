@@ -86,7 +86,7 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
     private VBox copyVBox;
     
     private IndividualViewGUIMgr individualMgr;
-
+    private int bc,rc;
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -163,7 +163,6 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
     }
     
     private void createIndividual(Pane p,Reservable item) {
-            int bc=0,rc=0;
         p.setMinSize(498, 40);
         
         Text copyText=new Text(item.getIndividualCopyID());
@@ -222,7 +221,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             Text reservedText=new Text("Reserved");
             reservedText.setLayoutX(409);
             reservedText.setLayoutY(23);
-            rc++;
+            
             
             p.getChildren().addAll(copyID,copyText,status,statusText,returnDate,returnText,reservedText);
           }
@@ -243,7 +242,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             returnText.setText(ft.format(d));
             returnText.setLayoutX(343);
             returnText.setLayoutY(23);
-            
+            rc++;
             Button reserveButton=new Button("Reserve");
             reserveButton.setLayoutX(409);
             reserveButton.setLayoutY(7);
@@ -255,12 +254,11 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             setChanged();
             notifyObservers(e);
         }
-        borrowablecopies.setText("Borrowable Copies: "+bc);
-        reservablecopies.setText("Reservable Copies: "+rc);
     }
 
     private void initializeCopyScrollPane() {
         copyVBox.getChildren().clear();
+        bc=0;rc=0;
         for(int i=0;i<individualMgr.getItem().getCopiesAvailable();i++)
             {  Pane p=new Pane();
                p.setId(i+"");
@@ -268,6 +266,8 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
                       copyVBox.getChildren().add(p);
                     handleNodeScaleTransition(p, 400,0,1);
              }
+       borrowablecopies.setText("Borrowable Copies: "+bc);
+        reservablecopies.setText("Reservable Copies: "+rc);
     }
     private class MouseClickListener implements EventHandler<MouseEvent>{
         @Override
