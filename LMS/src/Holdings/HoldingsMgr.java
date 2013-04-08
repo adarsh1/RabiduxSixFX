@@ -96,6 +96,13 @@ public class HoldingsMgr {
         currentHoldings = item;
     }
     
+    public int getNoOfCurrentHoldings(){
+      return  currentHoldings.size();
+    }
+    
+    public int getNoOfReservedCopies(){
+      return  reservedCopies.size();
+    }
     
 }   
 
