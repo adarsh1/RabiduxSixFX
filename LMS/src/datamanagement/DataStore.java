@@ -713,6 +713,8 @@ public class DataStore {
         int numOfExtend;
         
         where.add(loanID);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         
@@ -732,6 +734,9 @@ public class DataStore {
         set.add(new java.sql.Timestamp(timeToReturn.getTimeInMillis()).toString());
         set.add(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT")));
         set.add(Integer.toString(numOfExtend));
+        
+        where.clear();
+        where.add(loanID);
         
         database.updateRecord(Table.RECORD, set, where);
         
@@ -781,6 +786,8 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         
         where.add(copyID);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         
@@ -789,6 +796,9 @@ public class DataStore {
         
         set.add("1000000000");
         set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        
+        where.clear();
+        where.add(copyID);
         
         database.updateRecord(Table.COPY, set, where);
         
