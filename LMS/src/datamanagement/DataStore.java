@@ -916,6 +916,9 @@ public class DataStore {
             currentHolding.setFine(resultSet.getDouble(Table.RECORD.getAttribute("FINE_AMOUNT")));
             currentHolding.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
             
+            String copyID = resultSet.getString(Table.RECORD.getAttribute("COPY_ID"));
+            currentHolding.setCopy((Extendable)CatalogueItem.getCatalogueItem(copyID));
+            
             result.add(currentHolding);
         }
         
