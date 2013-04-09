@@ -241,9 +241,10 @@ private void initializeBorrowScrollPane() {
         {int id=Integer.parseInt(node.getId());
          holdingsMgr.cancelReservation(id);
          try{
+         String cancelledId=holdingsMgr.getReservedCopies().get(id).getCopy().getItemID();
          holdingsMgr.createItem();
          initializeReserveScrollPane();
-         displaySuccess("Reservation Cancelled", "Your reservation of item "+holdingsMgr.getReservedCopies().get(id).getCopy().getItemID()+" was successfully cancelled.");
+         displaySuccess("Reservation Cancelled", "Your reservation of item "+cancelledId+" was successfully cancelled.");
          }
          catch(ClassNotFoundException| SQLException| TypeMismatchException except){
              setChanged();
@@ -270,7 +271,8 @@ private void initializeBorrowScrollPane() {
          try{
          holdingsMgr.createItem();
          initializeBorrowScrollPane();
-         displaySuccess("Extended", "Your Extension of item "+holdingsMgr.getCurrentHoldings().get(id).getCopy().getItemID()+" was successful.\n Please return by");
+         SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
+         displaySuccess("Extended", "Your Extension of item "+holdingsMgr.getCurrentHoldings().get(id).getCopy().getItemID()+" was successful.\n Please return by\n"+format.format(holdingsMgr.getCurrentHoldings().get(id).getDateToReturn().getTime()));
          }
          catch(ClassNotFoundException| SQLException| TypeMismatchException except){
              setChanged();
