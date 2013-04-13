@@ -35,7 +35,7 @@ public class MySQLDB extends Database{
         
         Class.forName("com.mysql.jdbc.Driver");
         //setConnection(DriverManager.getConnection("jdbc:mysql://localhost/rabidusDB","root","password"));
-        setConnection(DriverManager.getConnection( host + ":3308/" + databaseName, user, password));
+        setConnection(DriverManager.getConnection( host + ":3306/" + databaseName, user, password));
         
     }
     
