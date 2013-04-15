@@ -9,24 +9,16 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
 
 public class LibrarianFXController extends BaseFXController implements Initializable,Observer {
@@ -106,7 +98,9 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     }
     
     
-    public void logoutbuttonhandler(MouseEvent event) {        
+   public void logoutbuttonhandler(MouseEvent event) {
+        
+        
         logoutHeader.setText("Confirm Logout");
             String text = username.getText()+" are you sure you want to logout?";
         logoutText.setText(text);
@@ -115,6 +109,35 @@ public class LibrarianFXController extends BaseFXController implements Initializ
         logoutPane.setVisible(true);
         this.handleOnShowAnimation(logoutMessageHolderPane);
     } 
+
+    @Override
+    public void update(Observable o, Object arg){
+        if(o instanceof BaseFXController){
+            BaseFXController bfc=(BaseFXController)o;
+            if(arg instanceof Boolean){
+                Boolean disable=(Boolean)arg;
+                if(disable.booleanValue()==true){
+                    disableAllPanes(bfc.getMessagePaneID());
+                }
+                else{    
+                    enableAllPanes(bfc.getMessagePaneID());
+                } 
+            }
+            else if(arg instanceof Observable){
+                Observable ob=(Observable)arg;
+                ob.addObserver(this);
+            }
+            else if(arg instanceof String){
+                String s=(String) arg;
+                if(s.endsWith(".fxml"))
+                   transitPane(s);
+            }
+            else if(arg instanceof Exception){
+                transitPane("Search.fxml");
+                displayWarning("Serious Error","Oops something went wrong from our side.\n The reason might be:\n"+((Exception)arg).getMessage());
+            }
+        }
+    }
     
      public void handleLogoutYesButtonAction(ActionEvent event){
         Node node=(Node) event.getSource();
@@ -126,7 +149,11 @@ public class LibrarianFXController extends BaseFXController implements Initializ
         logoutPane.setVisible(false);
     }
 
-    
+    private void gotologin(Node node)
+    {
+        transitScene("Login.fxml", node);
+    }
+     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert basePane != null : "fx:id=\"basePane\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
@@ -146,54 +173,12 @@ public class LibrarianFXController extends BaseFXController implements Initializ
 
     }
     
-        @Override
-    public void update(Observable o, Object arg)
-    {if(o instanceof BaseFXController)
-        {BaseFXController bfc=(BaseFXController)o;
-        if(arg instanceof Boolean)
-         {Boolean disable=(Boolean)arg;
-            if(disable.booleanValue()==true)
-           {    System.out.println("disabled");
-               disableAllPanes(bfc.getMessagePaneID());
-           }
-           else
-           {    enableAllPanes(bfc.getMessagePaneID());
-            } 
-         }
-        else if(arg instanceof Observable)
-            {Observable ob=(Observable)arg;
-             ob.addObserver(this);
-            }
-        else if(arg instanceof String)
-          {String s=(String) arg;
-           if(s.endsWith(".fxml"))
-               transitPane(s);
-          }
-           }
-    }
 
-    private void gotologin(Node node)
-    {
-        transitScene("Login.fxml", node);
-    }
-     
-    
-    @Override
-    public void playOnShowAnimation(){         
-        //show search pane when first loaded
-        BaseFXController bc=transitPane("Search.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();
-        bc.addObserver(this);
-        //animation for GUI on shown
-        handleOnShowAnimation(basePane);
-    }
-    
-    
-    
-    @Override   //set up the content once the ModelController is available
+
+     @Override   //set up the content once the ModelController is available
     public void setInitialData( ModelController modelController){
         this.addObserver(this);
         username.setText(modelController.getUser().getUsername());
-        
     }
 
     /**
@@ -252,6 +237,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     public void setContentPlaceHolderPane(AnchorPane contentPlaceHolderPane) {
         this.contentPlaceHolderPane = contentPlaceHolderPane;
     }
+    
     private void disableAllPanes(String idExcept) {
         enableDisablePanes(idExcept ,true);
     }
@@ -259,29 +245,38 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     private void enableAllPanes(String idExcept) {
         enableDisablePanes(idExcept ,false);
     }
-        private void enableDisablePanes(String idExcept ,boolean flag){
-        logoutbutton.setDisable(flag);
+    
+    private void enableDisablePanes(String idExcept ,boolean flag){
+        footerPane.setDisable(flag);
         menuPane.setDisable(flag);
         Pane p=(Pane)contentPlaceHolderPane.getChildren().get(0);
         for(int i=0;i<p.getChildren().size(); i++){
-             Node n=p.getChildren().get(i);
-              String nid=n.getId();
-              if(nid==null||!nid.equals(idExcept))
-                  n.setDisable(flag);
-            }
+            Node n=p.getChildren().get(i);
+            String nid=n.getId();
+            if(nid==null||!nid.equals(idExcept))
+            n.setDisable(flag);
         }
+    }
+    
     @Override
-        public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
-        FXMLLoader fl=super.transitPane(resourceURL, placeHolderPane, modelController);
-        BaseFXController bc=fl.getController();         
+    public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
+        FXMLLoader fl = super.transitPane(resourceURL, placeHolderPane, modelController);
+        BaseFXController bc = fl.getController();         
         bc.addObserver((Observer)(this));
-        
         return fl;
-        }
-    public FXMLLoader transitPane(String resourceURL)
-    {
+    }
+    
+    //overloading transitPane function without placeholder or modelcontroller
+    public FXMLLoader transitPane(String resourceURL){
        return transitPane(resourceURL, getContentPlaceHolderPane(), this.getModelController());
     }
-
-    
+    @Override
+    public void playOnShowAnimation(){         
+        //show search pane when first loaded
+        BaseFXController bc=transitPane("History.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();
+        bc.addObserver(this);
+        //animation for GUI on shown
+        handleOnShowAnimation(basePane);
+    }
 }
+    

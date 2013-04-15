@@ -34,6 +34,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import usermanagement.Member;
 
+/**
+ *
+ * @author Adarsh Kanodia
+ */
 public class SearchFXController extends BaseFXController implements Initializable{
     
     private SearchMgr searchMgr;
@@ -72,6 +76,11 @@ public class SearchFXController extends BaseFXController implements Initializabl
     @FXML
     private VBox vb;    
     
+    /**
+     * Initializes the Controller class from the FXML file
+     * @param fxmlFileLocation The URL of the FXML file linked to this Controller
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert byAuthor != null : "fx:id=\"byAuthor\" was not injected: check your FXML file 'Search.fxml'.";
@@ -89,6 +98,10 @@ public class SearchFXController extends BaseFXController implements Initializabl
     }
     
     
+    /**
+     * Sets the initial data for this class
+     * @param modelController Sets the {@link globalcontrol.ModelController} object for this Class
+     */
     @Override
     public void setInitialData(ModelController modelController){  
         
@@ -98,13 +111,22 @@ public class SearchFXController extends BaseFXController implements Initializabl
         
     }
     
-    
+    /**
+     * Event Handler for the {@link #searchButton}.
+     * It calls the {@link #getDetails() } function to retrieve items that match the search query entered by the User.
+     * @param event The Search Button Click Event
+     * @throws IOException 
+     */
     // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void handlesearchbutton(ActionEvent event)throws IOException{
         getDetails();
     }
     
- 
+ /**
+     * Creates the Individual Search Result Panes.
+     * @param p The Pane to be filled
+     * @param item the search results.
+     */
     private void createIndividual(Pane p,ReservableCopyGroup item) {
         p.setId(""+item.getItemID());
         p.getStyleClass().add("searchResult");
@@ -152,21 +174,29 @@ public class SearchFXController extends BaseFXController implements Initializabl
         p.setOnMouseClicked(new MouseClickListener());
     }
     
+    /**
+     * Handles the animation for pane transition.
+     */
     @Override   //play new animation when shown
     public void playOnShowAnimation (){
         this.handleOnShowAnimation(contentPane);
     }
-
+     /**
+     * Enables/Disables the Search Button when the {@link #keywordField} is changed.
+     * @param event Event generated when something is entered in the {@link #keywordField}.
+     */
     @FXML
     void updateSearchButton(KeyEvent event) {
         updateSearchButton();
     }
-    
+    /*
     @FXML
     void searchButtonPress(ActionEvent event) {
         getDetails();
-    }
-    
+    }*/
+    /**
+     * Initializes the Scroll Pane which displays all the search results.
+     */
     private void initializeScrollPane() {
         scrollPane.setVisible(true);
         scrollPane.setContent(vb);
@@ -180,7 +210,9 @@ public class SearchFXController extends BaseFXController implements Initializabl
                 handleNodeScaleTransition(p, 400,0,1);
          }
     }
-
+ /**
+  * Initiates the search using the {@link #searchMgr}, depending on User preferences. 
+  */
     private void getDetails() {
         try{
         if(byTitle.isSelected())
@@ -203,15 +235,24 @@ public class SearchFXController extends BaseFXController implements Initializabl
             displayWarning("No Results","Sorry your query '"+keywordField.getText()+"' returned no results...");
         }
     }
-
+/**
+ * If {@link #keywordField} is not empty it enables the search button otherwise it disables it.
+ */
     private void updateSearchButton() {
         if(!keywordField.getText().trim().equals(""))
             searchButton.setDisable(false);
         else
             searchButton.setDisable(true);
     }
-    
+  /**
+   * This anonymous class handles the Mouse Click events of the search results.
+   */  
     private class MouseClickListener implements EventHandler<MouseEvent>{
+        /**
+         * Handles the clicking of a search result.
+         * Transitions the scene to the result item's individual page.
+         * @param e The MouseEvent generated on clicking a search Result
+         */
         @Override
         public void handle(MouseEvent e) {
             Node node=(Node) e.getSource();

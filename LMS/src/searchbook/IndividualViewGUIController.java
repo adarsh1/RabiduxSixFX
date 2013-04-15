@@ -1,7 +1,4 @@
-/**
- *
- * @author Adarsh
- */
+
 
 package searchbook;
 
@@ -34,7 +31,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import usermanagement.Member;
 
-
+/**
+ *
+ * @author Adarsh
+ */
 public class IndividualViewGUIController extends BaseFXController implements Initializable{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -87,7 +87,12 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
     
     private IndividualViewGUIMgr individualMgr;
     private int bc,rc;
-
+ 
+    /**
+     * Initializes the Controller class from the FXML file
+     * @param fxmlFileLocation The URL of the FXML file linked to this Controller
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert author != null : "fx:id=\"author\" was not injected: check your FXML file 'IndividualReservableGUI.fxml'.";
@@ -107,7 +112,11 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
         // Initialize your logic here: all @FXML variables will have been injected        
         individualMgr = new IndividualViewGUIMgr();
     }
-public void setId(String id){
+    /**
+     *Initializes the entire Book View based on the Item with ID id.
+     * @param id The ID of the {@link Reservable} Item which is being detailed.
+     */
+    public void setId(String id){
     individualMgr.setItem(null);
     try{
         individualMgr.createItem(id);
@@ -147,21 +156,39 @@ public void setId(String id){
     isbn.setText("(ISBN: "+isbnStr+")");
         initializeCopyScrollPane();
 }
+    /**
+     * Resizes the height of the String contained in text, provided there are charsPerLine characters per line and the height of each line is lineHeight.
+     * @param text The text who's height is to be measured 
+     * @param charsPerLine The characters per line.
+     * @param lineHeight The height of each line.
+     * @return 
+     */
 private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
     }
+    /**
+     * Handles the animation for pane transition.
+     */
 @Override   //play new animation when shown
     public void playOnShowAnimation (){
         this.handleOnShowAnimation(contentPane);
     }
 
+    /**
+     * Sets the initial data for this class
+     * @param modelController Sets the {@link globalcontrol.ModelController} object for this Class
+     */
     @Override   //call the inherited method to update the current member
     public void setInitialData(ModelController modelController) {
         this.setModelController(modelController);
         //set the current member to borrow
         individualMgr.setCurrentMember((Member)modelController.getUser());
     }
-    
+    /**
+     * Creates the Individual Book Copy Panes.
+     * @param p The Pane to be filled
+     * @param item the item to be displayed.
+     */
     private void createIndividual(Pane p,Reservable item) {
         p.setMinSize(498, 40);
         
@@ -255,7 +282,9 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             notifyObservers(e);
         }
     }
-
+/**
+     * Initializes the Scroll Pane which displays all the item Copies.
+     */
     private void initializeCopyScrollPane() {
         copyVBox.getChildren().clear();
         bc=0;rc=0;
@@ -269,7 +298,14 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
        borrowablecopies.setText("Borrowable Copies: "+bc);
         reservablecopies.setText("Reservable Copies: "+rc);
     }
+    /**
+   * This anonymous class handles the Mouse Click events of the individual item copies.
+   */
     private class MouseClickListener implements EventHandler<MouseEvent>{
+        /**
+         * Reserves an item.
+         * @param e The MouseEvent generated on clicking a the reserveButton for a copy
+         */
         @Override
         public void handle(MouseEvent e) {
             Node node=(Node)e.getSource();

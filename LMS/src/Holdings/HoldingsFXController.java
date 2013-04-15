@@ -1,7 +1,4 @@
-/**
- *
- * @author Adarsh
- */
+
 
 package Holdings;
 
@@ -35,6 +32,10 @@ import searchbook.IndividualViewGUIMgr;
 import searchbook.SearchFXController;
 import usermanagement.Member;
 
+/**
+ *
+ * @author Adarsh
+ */
 
 public class HoldingsFXController extends BaseFXController implements Initializable {
 
@@ -56,26 +57,21 @@ public class HoldingsFXController extends BaseFXController implements Initializa
     
     private HoldingsMgr holdingsMgr;
 
-    @FXML
-    void extendButtonAction(ActionEvent event) {
-    }
-
-    @FXML
-    void itemDetailsButtonaction(ActionEvent event) {
-    }
-
-    @FXML
-    void reserveCancelButtonaction(ActionEvent event) {
-    }
-
-    @FXML
-    void initialize() {
+    /**
+     * Initializes the Controller class from the FXML file
+     * @param fxmlFileLocation The URL of the FXML file linked to this Controller
+     * @param resources
+     */
+    @Override
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert borrowVB != null : "fx:id=\"borrowVB\" was not injected: check your FXML file 'Holdings.fxml'.";
         assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'Holdings.fxml'.";
         assert reserveVB != null : "fx:id=\"reserveVB\" was not injected: check your FXML file 'Holdings.fxml'.";
 
-
     }
+     /**
+     * Initializes the Scroll Pane which displays all of the User's current Borrowings.
+     */
 private void initializeBorrowScrollPane() {
         borrowVB.getChildren().clear();
         borrowVB.setSpacing(11);
@@ -87,6 +83,11 @@ private void initializeBorrowScrollPane() {
                 handleNodeScaleTransition(p, 400,0,1);
          }
     }
+/**
+ * Creates the Individual Borrowed Copy Panes.
+ * @param p The Pane to be filled
+ * @param index the index of the particular {@link cataloguemanagement.CurrentHolding} object in the ArrayList in {@link #holdingsMgr}.
+ */
  private void createHoldingIndividual(Pane p,int index) {
         p.setId(""+index);
         p.getStyleClass().add("borrow-holding");
@@ -129,7 +130,9 @@ private void initializeBorrowScrollPane() {
         
         p.getChildren().addAll(bookCover,indTitle,indBorrowDate,indReturnDate,extendButton);
     }
- 
+ /**
+  * Initializes the Scroll Pane which displays all of the User's current Reservations.
+  */
  private void initializeReserveScrollPane() {
         reserveVB.getChildren().clear();
         reserveVB.setSpacing(12);
@@ -141,6 +144,11 @@ private void initializeBorrowScrollPane() {
                 handleNodeScaleTransition(p, 400,0,1);
          }
     }
+ /**
+ * Creates the Individual Reserved Copy Panes.
+ * @param p The Pane to be filled
+ * @param index the index of the particular {@link cataloguemanagement.ReservedCopy} object in the ArrayList in {@link #holdingsMgr}.
+ */
  private void createReservedIndividual(Pane p,int index) {
         p.setId(""+index);
         p.getStyleClass().add("reserve-holding");
@@ -191,12 +199,17 @@ private void initializeBorrowScrollPane() {
         
         p.getChildren().addAll(bookCover,indTitle,indAvailableDate,indBorrowByDate,detailsButton,cancelReservationButton);
     }
-
+    /**
+     * Handles the animation for pane transition.
+     */
     @Override   //play new animation when shown
     public void playOnShowAnimation (){
         this.handleOnShowAnimation(contentPane);
     }
-    
+     /**
+     * Sets the initial data for this class
+     * @param modelController Sets the {@link globalcontrol.ModelController} object for this Class
+     */
     @Override   //call the inherited method to  update the current member
     public void setInitialData( ModelController modelController){        
         this.setModelController(modelController);
@@ -213,7 +226,15 @@ private void initializeBorrowScrollPane() {
         initializeBorrowScrollPane();
         initializeReserveScrollPane();
     }
+  /**
+   * This anonymous class handles the Mouse Click events of the Get Details Button for each Reserved Copy.
+   */ 
     private class MouseClickDetailsListener implements EventHandler<MouseEvent>{
+        /**
+         * Handles the clicking of the Get Details button.
+         * Transitions the scene to the particular Reserved item's individual page.
+         * @param e The MouseEvent generated on clicking a Get Details button.
+         */
         @Override
         public void handle(MouseEvent e) {
             Node node=((Node) e.getSource()).getParent();
@@ -232,8 +253,15 @@ private void initializeBorrowScrollPane() {
         }    
             
         }
-}
+} /**
+   * This anonymous class handles the Mouse Click events of the Cancel Button for each Reserved Copy.
+   */ 
     private class MouseClickCancelReserveListener implements EventHandler<MouseEvent>{
+        /**
+         * Handles the clicking of the Cancel button.
+         * Cancels a particular Reservation.
+         * @param e The MouseEvent generated on clicking a Cancel button.
+         */
         @Override
         public void handle(MouseEvent e) {
             Node node=((Node) e.getSource()).getParent();
@@ -261,7 +289,15 @@ private void initializeBorrowScrollPane() {
             
         }
     }
+  /**
+   * This anonymous class handles the Mouse Click events of the Extend Button for each Borrowed Copy.
+   */ 
     private class MouseClickExtendListener implements EventHandler<MouseEvent>{
+        /**
+         * Handles the clicking of the Extend button.
+         * Extends a Borrowed item.
+         * @param e The MouseEvent generated on clicking a Extend button.
+         */
         @Override
         public void handle(MouseEvent e) {
            Node node=((Node) e.getSource()).getParent();

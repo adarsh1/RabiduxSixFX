@@ -15,14 +15,29 @@ public class IndividualViewGUIMgr {
     private Member currentMember;
     private ReservableCopyGroup item;   
     public static final int STUDENT_RESERVE_DURATION = 3;
+    
+    /**
+     * This Constructor sets the currentMember of the object to currentMember
+     * @param currentMember 
+     */
     //a member object required to construct
     public IndividualViewGUIMgr(Member currentMember){
         this.currentMember = currentMember;
     }
+    /**
+     * Default Constructor
+     */
     public IndividualViewGUIMgr(){
         //empty constructor
     }
-    //borrow the book
+    /**
+     * Reserves the ith {@link cataloguemanagement.Reservable} object in {@link #item}
+     * @param i the index of the {@link cataloguemanagement.Reservable} object in {@link #item}
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws NotEligibleToBorrowOrReserveException 
+     */
+    //reserve the book
     public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
         //if this member is allowed to borrow or reserve
         if(currentMember.isEligibleToBorrowOrReserve()){
@@ -33,6 +48,12 @@ public class IndividualViewGUIMgr {
         }
     }
     //create a borrowable item based on item ID
+    /**
+     * Initializes {@link #item} based on the itemID in ID.
+     * @param ID the itemID String to generate the {@link ReservableCopyGroup}.
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public void createItem(String ID) throws SQLException, ClassNotFoundException{
         //get the catalogue item from catalogue management
         ReservableCopyGroup rItem = ReservableCopyGroup.getReservableCopyGroup(ID);
@@ -47,7 +68,8 @@ public class IndividualViewGUIMgr {
         return currentMember;
     }
 
-    /**
+    /** 
+     * Sets the {@link #currentMember}
      * @param currentMember the currentMember to set
      */
     public void setCurrentMember(Member currentMember) {
@@ -55,13 +77,14 @@ public class IndividualViewGUIMgr {
     }
 
     /**
-     * @return the item
+     * @return the {@link #item}
      */
     public ReservableCopyGroup getItem() {
         return item;
     }
 
     /**
+     * Sets the {@link #item}
      * @param item the item to set
      */
     public void setItem(ReservableCopyGroup item) {
