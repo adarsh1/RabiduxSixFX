@@ -62,7 +62,7 @@ public class IndividualViewGUIMgr {
     }
 
     /**
-     * @return the currentMember
+     * @return the {@link #currentMember}
      */
     public Member getCurrentMember() {
         return currentMember;
