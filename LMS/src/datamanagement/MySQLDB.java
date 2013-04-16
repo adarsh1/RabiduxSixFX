@@ -183,6 +183,12 @@ public class MySQLDB extends Database{
                        break;
         }
         
+        if (table == Table.COPY && where.get(2).compareTo(DataStore.WILDCARD_CHAR) == 0) {
+            
+            queryStr = queryStr.replaceFirst(" AND reserved_by LIKE ? ", " ");
+            
+        }
+        
         statement = getConnection().prepareStatement(queryStr);
         
         for (int i = 0; i < where.size(); i++ ) {
@@ -257,6 +263,12 @@ public class MySQLDB extends Database{
         }
         
         queryStr += " LIMIT " + Integer.toString(top);
+        
+        if (table == Table.COPY && where.get(2).compareTo(DataStore.WILDCARD_CHAR) == 0) {
+            
+            queryStr = queryStr.replaceFirst(" AND reserved_by LIKE ? ", " ");
+            
+        }
         
         statement = getConnection().prepareStatement(queryStr);
         

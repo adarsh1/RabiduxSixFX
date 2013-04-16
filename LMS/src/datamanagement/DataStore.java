@@ -334,7 +334,7 @@ public class DataStore {
         ResultSet resultSet = database.selectRecord(Table.COPY, condition);
         resultSet.next();
         
-        if (resultSet.getString(Table.COPY.getAttribute("RESERVED_BY")).compareTo("1000000000") == 0) {
+        if (resultSet.getString(Table.COPY.getAttribute("RESERVED_BY")) == null) {
             
             result = false;
             
@@ -680,7 +680,7 @@ public class DataStore {
         resultSet = database.selectRecord(Table.COPY, where);
         resultSet.next();
         
-        set.add("1000000000");
+        set.add(NULL_VARCHAR);
         set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
         
         where.clear();
@@ -794,7 +794,7 @@ public class DataStore {
         resultSet = database.selectRecord(Table.COPY, where);
         resultSet.next();
         
-        set.add("1000000000");
+        set.add(NULL_VARCHAR);
         set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
         
         where.clear();
