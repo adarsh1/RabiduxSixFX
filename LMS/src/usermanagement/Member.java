@@ -91,6 +91,13 @@ public abstract class Member extends User implements BorrowRecordAccessible{
         
     }
     
+    public void resetFine() {
+        
+        DataStore dataStore = new DataStore();
+        dataStore.resetFine(super.getUserID());
+        
+    }
+    
     public abstract int getLoanDuration();
 
     @Override

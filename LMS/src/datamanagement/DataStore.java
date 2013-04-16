@@ -1121,4 +1121,33 @@ public class DataStore {
         
     }
 
+    public void resetFine(String userID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add(userID);
+        where.add(WILDCARD_CHAR);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.USER, where);
+        resultSet.next();
+        
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_TYPE)));
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USERNAME)));
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_PASSWORD)));
+        set.add("0");
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_IS_SUSPENDED)));
+        
+        where.clear();
+        where.add(userID);
+        
+        database.updateRecord(Table.USER, set, where);
+        
+        database.closeConnection();
+        
+    }
+
 }
