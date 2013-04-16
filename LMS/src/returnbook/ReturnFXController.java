@@ -144,25 +144,30 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
     }
-    /*
+    
     //handle the borrow when the confirm button is pressed
     public void handleConfirmButtonAction(ActionEvent event){
         try{
-            PastTransaction transaction = returnMgr.borrow();
-            //set the text to be shown
-            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
-            String text = "Your request for loan of this item has been sucessfully granted.\n";
-            text += "Kindly return by "+ format.format(transaction.getDateToReturn().getTime());
-            displaySuccess("Thank you",text);
+            if(returnMgr.returnbook())
+            {//set the text to be shown
+             String text = "The book has been successfully returned.\nNo fine has been set on the user.";
+             displaySuccess("Thank you",text);
+            }
+            else
+            {
+             String text = "The book has been successfully returned.\n";
+             text += "A fine of " + returnMgr.getfine() + "is to be paid by the member";
+             displaySuccess("Thank you",text);
+            }
         }
-        catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException e){
-            String text = "We regret to inform you that your loan request was not granted.\n";
+        catch(SQLException | ClassNotFoundException e){
+            String text = "We regret to inform you that the book could not be returned.\n";
             text += "Reasons might be: \n";
             text += e.getMessage();
             displayWarning("Sorry",text);
         }
     }
-    */
+    
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {

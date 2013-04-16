@@ -11,6 +11,8 @@ import cataloguemanagement.Returnable;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import usermanagement.Librarian;
 import usermanagement.Member;
 
@@ -23,6 +25,8 @@ public class ReturnMgr {
     private Librarian currentLibrarian;
     private Returnable item;   
     private Member returningMember;
+    private float fine;
+    private PastTransaction loandetails;
     
     //a member object required to construct
     public ReturnMgr(Librarian currentLibrarian){
@@ -34,8 +38,9 @@ public class ReturnMgr {
     //borrow the book
     public boolean returnbook() throws SQLException, ClassNotFoundException{
         
-        item.returnCopy(returningMember.getUserID());
-        return true;
+        boolean finepresent = calculatefine();
+        item.returnCopy(returningMember.getUserID(),fine);
+        return finepresent;
     }
     
     
@@ -47,6 +52,8 @@ public class ReturnMgr {
         if (catalogueItem instanceof Returnable){
             //cast to returnable type
             setItem( (Returnable) catalogueItem );
+            loandetails = item.getPastTransaction();
+            returningMember = loandetails.getMember();
         }
         else{
             throw new TypeMismatchException(catalogueItem.getTitle(),"Returnable");
@@ -82,6 +89,26 @@ public class ReturnMgr {
     }
     
     
+    public boolean calculatefine()
+    {
+        Calendar c = Calendar.getInstance();
+        Date currentdate = c.getTime();
+        if(currentdate.before(loandetails.getDateToReturn().getTime()))
+        {
+            fine = 0;
+            return false;
+        }
+        else
+        {
+            fine = 100;
+            return true;
+        }
+        
+    }
     
+    public float getfine()
+    {
+        return fine;
+    }
     
 }
