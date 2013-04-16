@@ -148,7 +148,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     //handle the borrow when the confirm button is pressed
     public void handleConfirmButtonAction(ActionEvent event){
         try{
-            if(returnMgr.returnbook())
+            if(!returnMgr.returnbook())
             {//set the text to be shown
              String text = "The book has been successfully returned.\nNo fine has been set on the user.";
              displaySuccess("Thank you",text);

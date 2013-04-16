@@ -11,8 +11,11 @@ import cataloguemanagement.Returnable;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import usermanagement.Librarian;
 import usermanagement.Member;
 
@@ -31,9 +34,11 @@ public class ReturnMgr {
     //a member object required to construct
     public ReturnMgr(Librarian currentLibrarian){
         this.currentLibrarian = currentLibrarian;
+        fine = 0;
     }
     public ReturnMgr(){
         //empty constructor
+        fine = 0;
     }
     //borrow the book
     public boolean returnbook() throws SQLException, ClassNotFoundException{
@@ -91,9 +96,13 @@ public class ReturnMgr {
     
     public boolean calculatefine()
     {
-        Calendar c = Calendar.getInstance();
-        Date currentdate = c.getTime();
-        if(currentdate.before(loandetails.getDateToReturn().getTime()))
+        Calendar now = Calendar.getInstance();
+        Calendar toreturn = loandetails.getDateToReturn();
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d 'at' h:m:s a z");
+        System.out.println("Date now:   " + dateFormatter.format(now.getTime()));
+        System.out.println("Date to return:   " + dateFormatter.format(toreturn.getTime()));
+        System.out.println(now.before(toreturn));
+        if(now.before(toreturn))
         {
             fine = 0;
             return false;
