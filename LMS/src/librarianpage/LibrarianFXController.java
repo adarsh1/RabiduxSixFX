@@ -79,7 +79,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     
     // Handler for Button[fx:id="historyMenuButton"] onAction
     public void handleHistoryMenuButtonAction(ActionEvent event) {
-        transitPane("updateCatalogue.fxml");
+        transitPane("UpdateCatalogue.fxml");
     }
 
     // Handler for Button[fx:id="returnMenuButton"] onAction
@@ -89,12 +89,12 @@ public class LibrarianFXController extends BaseFXController implements Initializ
 
     // Handler for Button[fx:id="resetFineMenuButton"] onAction
     public void handlefineMenuButtonAction(ActionEvent event) {
-        transitPane("updateCatalogue.fxml");
+        transitPane("UpdateCatalogue.fxml");
     }
 
     // Handler for Button[fx:id="updateMenuButton"] onAction
     public void handleupdateMenuButtonAction(ActionEvent event) {
-        transitPane("updateCatalogue.fxml");
+        transitPane("UpdateCatalogue.fxml");
     }
     
     
@@ -133,7 +133,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
                    transitPane(s);
             }
             else if(arg instanceof Exception){
-                transitPane("updateCatalogue.fxml");
+                transitPane("UpdateCatalogue.fxml");
                 displayWarning("Serious Error","Oops something went wrong from our side.\n The reason might be:\n"+((Exception)arg).getMessage());
             }
         }
@@ -273,7 +273,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     @Override
     public void playOnShowAnimation(){         
         //show search pane when first loaded
-        BaseFXController bc=transitPane("updateCatalogue.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();
+        BaseFXController bc=transitPane("UpdateCatalogue.fxml", getContentPlaceHolderPane(), this.getModelController()).getController();
         bc.addObserver(this);
         //animation for GUI on shown
         handleOnShowAnimation(basePane);

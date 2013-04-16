@@ -27,7 +27,7 @@
     -fx-font-size: 24pt;
 }
 .header-5{
-    -fx-font-size: 18pt;
+    -fx-font-size: 15pt;
 }
 
 .font-black{
@@ -957,7 +957,7 @@
  ******************************************************************************/
 
 .tab-pane .tab {
-    -fx-background-color: lightgrey;
+    -fx-background-color: white;
     -fx-background-radius: 0px;
     
     -fx-border-color: dodgerblue;
@@ -968,13 +968,16 @@
 .tab-pane .tab:selected {
     -fx-background-color: white;
 }
+.tab-pane .tab:selected .tab-label{
+    -fx-text-fill: black;
+}
 
 .tab-pane .tab-content-area {
     -fx-background-color: white;
 }
 
 .tab-pane .tab *.tab-label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-border-color: dodgerblue;
     -fx-border-radius: 0;
     -fx-border-width: 0px;
@@ -989,6 +992,7 @@
 }
 .tab-pane .headers-region{
     -fx-effect: null;
+    -fx-background-color: dodgerblue;
     
     -fx-border-color: dodgerblue;
     -fx-border-radius: 0;

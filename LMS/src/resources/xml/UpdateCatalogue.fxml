@@ -13,43 +13,30 @@
 
 <AnchorPane id="updateItemPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="updatecatalogue.UpdateCatalogueFXController">
   <children>
-    <TabPane prefHeight="450.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
-      <tabs>
-        <Tab text="Add New Item">
-          <content>
-            <AnchorPane id="Content" fx:id="newItemPane" minHeight="0.0" minWidth="0.0" prefHeight="420.0" prefWidth="500.0">
-              <children>
-                <Label id="ItemTitle" fx:id="newItemTitle" alignment="CENTER_RIGHT" layoutY="60.0" prefWidth="100.0" styleClass="header-5" text="Title" />
-                <TextField id="itemTitleField" fx:id="newItemTitleField" layoutX="120.0" layoutY="60.0" prefWidth="305.0" />
-                <Label id="ItemTitle" fx:id="newItemAuthor" alignment="CENTER_RIGHT" layoutY="100.0" prefWidth="100.0" styleClass="header-5" text="Author" />
-                <TextField id="itemTitleField" fx:id="newItemAuthorField" layoutX="120.0" layoutY="100.0" prefWidth="305.0" />
-                <Label id="ItemTitle" fx:id="newItemType" alignment="CENTER_RIGHT" layoutY="20.0" prefWidth="100.0" styleClass="header-5" text="Type" />
-                <RadioButton fx:id="bookType" layoutX="120.0" layoutY="20.0" mnemonicParsing="false" text="Book" />
-                <RadioButton fx:id="DVDType" layoutX="190.0" layoutY="20.0" mnemonicParsing="false" text="DVD" />
-                <Label id="ItemTitle" fx:id="newItemPublishDate" alignment="CENTER_RIGHT" layoutY="140.0" prefWidth="100.0" styleClass="header-5" text="Publish Date" />
-                <TextField id="itemTitleField" fx:id="newItemPublishDateField" layoutX="120.0" layoutY="140.0" prefWidth="305.0" />
-                <Label id="ItemTitle" fx:id="newItemDescription" alignment="CENTER_RIGHT" layoutY="180.0" prefWidth="100.0" styleClass="header-5" text="Description" />
-                <TextArea id="itemDescriptionField" fx:id="newItemDescriptionField" layoutX="120.0" layoutY="180.0" prefHeight="101.0" prefWidth="305.0" wrapText="true" />
-                <AnchorPane layoutY="300.0" prefHeight="87.0" prefWidth="500.0">
-                  <children>
-                    <TextField id="itemTitleField" fx:id="newItemISBNField" layoutX="120.0" prefWidth="305.0" />
-                    <Label id="ItemTitle" fx:id="newItemISBN" alignment="CENTER_RIGHT" prefWidth="100.0" styleClass="header-5" text="ISBN" />
-                    <TextField id="itemTitleField" fx:id="newItemGenreField" layoutX="120.0" layoutY="40.0" prefWidth="305.0" />
-                    <Label id="ItemTitle" fx:id="newItemGenre" alignment="CENTER_RIGHT" layoutY="40.0" prefWidth="100.0" styleClass="header-5" text="Genre" />
-                  </children>
-                </AnchorPane>
-                <Button id="confirmButton" fx:id="newItemConfirm" defaultButton="true" layoutX="417.0" layoutY="393.0" mnemonicParsing="false" text="Confirm" />
-              </children>
-            </AnchorPane>
-          </content>
-        </Tab>
-        <Tab text="Update Item">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-          </content>
-        </Tab>
-      </tabs>
-    </TabPane>
+    <AnchorPane id="Content" fx:id="newItemPane" layoutY="30.0" minHeight="0.0" minWidth="0.0" prefHeight="420.0" prefWidth="500.0">
+      <children>
+        <Label id="ItemTitle" fx:id="newItemTitle" alignment="CENTER_RIGHT" layoutY="60.0" prefWidth="100.0" styleClass="header-5" text="Title" />
+        <TextField id="itemTitleField" fx:id="newItemTitleField" layoutX="120.0" layoutY="60.0" prefWidth="305.0" />
+        <Label id="ItemTitle" fx:id="newItemAuthor" alignment="CENTER_RIGHT" layoutY="100.0" prefWidth="100.0" styleClass="header-5" text="Author" />
+        <TextField id="itemTitleField" fx:id="newItemAuthorField" layoutX="120.0" layoutY="100.0" prefWidth="305.0" />
+        <Label id="ItemTitle" fx:id="newItemType" alignment="CENTER_RIGHT" layoutY="20.0" prefWidth="100.0" styleClass="header-5" text="Type" />
+        <RadioButton fx:id="bookType" layoutX="120.0" layoutY="20.0" mnemonicParsing="false" text="Book" />
+        <RadioButton fx:id="DVDType" layoutX="190.0" layoutY="20.0" mnemonicParsing="false" text="DVD" />
+        <Label id="ItemTitle" fx:id="newItemPublishDate" alignment="CENTER_RIGHT" layoutY="140.0" prefWidth="100.0" styleClass="header-5" text="Publish Date" />
+        <TextField id="itemTitleField" fx:id="newItemPublishDateField" layoutX="120.0" layoutY="140.0" prefWidth="305.0" />
+        <Label id="ItemTitle" fx:id="newItemDescription" alignment="CENTER_RIGHT" layoutY="180.0" prefWidth="100.0" styleClass="header-5" text="Description" />
+        <TextArea id="itemDescriptionField" fx:id="newItemDescriptionField" layoutX="120.0" layoutY="180.0" prefHeight="101.0" prefWidth="305.0" wrapText="true" />
+        <AnchorPane layoutY="300.0" prefHeight="87.0" prefWidth="500.0">
+          <children>
+            <TextField id="itemTitleField" fx:id="newItemISBNField" layoutX="120.0" prefWidth="305.0" />
+            <Label id="ItemTitle" fx:id="newItemISBN" alignment="CENTER_RIGHT" prefWidth="100.0" styleClass="header-5" text="ISBN" />
+            <TextField id="itemTitleField" fx:id="newItemGenreField" layoutX="120.0" layoutY="40.0" prefWidth="305.0" />
+            <Label id="ItemTitle" fx:id="newItemGenre" alignment="CENTER_RIGHT" layoutY="40.0" prefWidth="100.0" styleClass="header-5" text="Genre" />
+          </children>
+        </AnchorPane>
+        <Button id="confirmButton" fx:id="newItemConfirm" defaultButton="true" layoutX="417.0" layoutY="393.0" mnemonicParsing="false" text="Confirm" />
+      </children>
+    </AnchorPane>
     <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
       <children>
         <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
@@ -61,6 +48,7 @@
         </AnchorPane>
       </children>
     </AnchorPane>
+    <Label layoutY="-9.0" styleClass="header-3, font-grey" text="Add a new item" />
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />
