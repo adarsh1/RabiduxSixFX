@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  *
- * @author Allen
+ * @author Derek
  */
 public class DatabaseConfig {
     
@@ -206,6 +206,120 @@ public class DatabaseConfig {
     public String getUserIsSuspended() {
         
         return databaseConfigs.get(USER_IS_SUSPENDED);
+        
+    }
+    
+    public String getCopyCopyID() {
+        
+        return databaseConfigs.get(COPY_COPY_ID);
+        
+    }
+    
+    public String getCopyItemID() {
+        
+        return databaseConfigs.get(COPY_ITEM_ID);
+        
+    }
+    
+    public String getCopyReservedBy() {
+        
+        return databaseConfigs.get(COPY_RESERVED_BY);
+        
+    }
+    
+    public String getCopyLocation() {
+        
+        return databaseConfigs.get(COPY_LOCATION);
+        
+    }
+    
+    public String getBookBookID() {
+        
+        return databaseConfigs.get(BOOK_BOOK_ID);
+        
+    }
+    
+    public String getBookTitle() {
+        
+        return databaseConfigs.get(BOOK_TITLE);
+        
+    }
+    
+    public String getBookAuthor() {
+        
+        return databaseConfigs.get(BOOK_AUTHOR);
+        
+    }
+    
+    public String getBookISBN() {
+        
+        return databaseConfigs.get(BOOK_ISBN);
+        
+    }
+    
+    public String getBookGenre() {
+        
+        return databaseConfigs.get(BOOK_GENRE);
+        
+    }
+    
+    public String getBookDate() {
+        
+        return databaseConfigs.get(BOOK_DATE);
+        
+    }
+    
+    public String getBookDescription() {
+        
+        return databaseConfigs.get(BOOK_DESCRIPTION);
+        
+    }
+    
+    public String getLoanLoanID() {
+        
+        return databaseConfigs.get(LOAN_LOAN_ID);
+        
+    }
+    
+    public String getLoanUserID() {
+        
+        return databaseConfigs.get(LOAN_USER_ID);
+        
+    }
+    
+    public String getLoanCopyID() {
+        
+        return databaseConfigs.get(LOAN_COPY_ID);
+        
+    }
+    
+    public String getLoanTimeBorrowed() {
+        
+        return databaseConfigs.get(LOAN_TIME_BORROWED);
+        
+    }
+    
+    public String getLoanTimeReturned() {
+        
+        return databaseConfigs.get(LOAN_TIME_RETURNED);
+        
+    }
+    
+    public String getLoanTimeTOReturn() {
+        
+        return databaseConfigs.get(LOAN_TIME_TO_RETURN);
+        
+    }
+    
+    public String getLoanFineAmount() {
+        
+        return databaseConfigs.get(LOAN_FINE_AMOUNT);
+        
+    }
+    
+    public String getLoanNumOfExtend() {
+        
+        return databaseConfigs.get(LOAN_NUM_OF_EXTEND);
         
     }
 
