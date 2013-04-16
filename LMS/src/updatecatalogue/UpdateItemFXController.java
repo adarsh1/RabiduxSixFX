@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Adarsh
  */
-public class UpdateCatalogueController extends BaseFXController implements Initializable {
+public class UpdateItemFXController extends BaseFXController implements Initializable {
 
      @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
