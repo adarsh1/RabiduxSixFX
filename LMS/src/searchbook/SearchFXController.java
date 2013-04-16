@@ -189,11 +189,11 @@ public class SearchFXController extends BaseFXController implements Initializabl
     void updateSearchButton(KeyEvent event) {
         updateSearchButton();
     }
-    /*
+
     @FXML
     void searchButtonPress(ActionEvent event) {
         getDetails();
-    }*/
+    }
     /**
      * Initializes the Scroll Pane which displays all the search results.
      */
