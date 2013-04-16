@@ -84,7 +84,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
 
     // Handler for Button[fx:id="returnMenuButton"] onAction
     public void handleReturnMenuButtonAction(ActionEvent event) {
-        transitPane("updateCatalogue.fxml");
+        transitPane("Return.fxml");
     }
 
     // Handler for Button[fx:id="resetFineMenuButton"] onAction

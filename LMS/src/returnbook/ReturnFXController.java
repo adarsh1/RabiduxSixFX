@@ -28,6 +28,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import usermanagement.Librarian;
 import usermanagement.Member;
 
 
@@ -143,7 +144,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
     }
-    
+    /*
     //handle the borrow when the confirm button is pressed
     public void handleConfirmButtonAction(ActionEvent event){
         try{
@@ -161,7 +162,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
             displayWarning("Sorry",text);
         }
     }
-    
+    */
     
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
