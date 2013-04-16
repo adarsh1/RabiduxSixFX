@@ -12,7 +12,7 @@ public class CopyNotFoundException extends DatabaseException {
     
     public CopyNotFoundException() {
         
-        super("The copy does not exsit.");
+        super("Copy not found in the database");
         
     }
 

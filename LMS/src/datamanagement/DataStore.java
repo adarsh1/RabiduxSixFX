@@ -39,17 +39,11 @@ public class DataStore {
        
     }
     
-    public CatalogueItem getCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
+    public CatalogueItem getCopy(String copyID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         CatalogueItem catalogueItem = null;
-        
-        if (!isValidCopyID(copyID)) {
-            
-            throw new CopyNotFoundException("Copy ID is not valid.");
-            
-        }
         
         where.add(copyID);
         where.add(WILDCARD_CHAR);

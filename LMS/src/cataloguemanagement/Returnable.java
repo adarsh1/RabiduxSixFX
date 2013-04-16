@@ -13,5 +13,6 @@ import java.sql.SQLException;
 public interface Returnable extends Displayable {
     
     public abstract void returnCopy(String userID) throws SQLException, ClassNotFoundException ;
+    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException;
     
 }
