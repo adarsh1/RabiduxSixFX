@@ -159,7 +159,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
              text += "A fine of " + returnMgr.getfine() + "is to be paid by the member";
              displaySuccess("Thank you",text);
             }
-        }
+           }
         catch(SQLException | ClassNotFoundException e){
             String text = "We regret to inform you that the book could not be returned.\n";
             text += "Reasons might be: \n";
