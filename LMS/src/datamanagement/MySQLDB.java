@@ -175,7 +175,7 @@ public class MySQLDB extends Database{
             
             case USER : queryStr += "SELECT * FROM user WHERE user_id LIKE ? AND username LIKE ?";
                         break;
-            case RECORD: queryStr += "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ?";
+            case RECORD: queryStr += "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? AND time_returned LIKE ?";
                          break;
             case COPY: queryStr += "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ?";
                        break;
@@ -183,9 +183,26 @@ public class MySQLDB extends Database{
                        break;
         }
         
+        if (table == Table.RECORD && where.get(3).compareTo(DataStore.WILDCARD_CHAR) == 0) {
+            
+            queryStr = queryStr.replace(" AND time_returned LIKE ?", " ");
+            where.remove(3);
+            
+        } else if (table == Table.RECORD && where.get(3).compareTo(DataStore.NULL_DATETIME) == 0) {
+            
+            queryStr = queryStr.replace(" AND time_returned LIKE ?", " AND time_returned IS NULL");
+            where.remove(3);
+            
+        }
+        
         if (table == Table.COPY && where.get(2).compareTo(DataStore.WILDCARD_CHAR) == 0) {
             
             queryStr = queryStr.replace(" AND reserved_by LIKE ?", " ");
+            where.remove(2);
+            
+        } else if (table == Table.COPY && where.get(2).compareTo(DataStore.NULL_VARCHAR) == 0) {
+            
+            queryStr = queryStr.replace(" AND reserved_by LIKE ?", " AND reserved_by IS NULL");
             where.remove(2);
             
         }
@@ -255,7 +272,7 @@ public class MySQLDB extends Database{
             
             case USER : queryStr = "SELECT * FROM user WHERE user_id LIKE ? AND username LIKE ? ORDER BY user_id DESC";
                         break;
-            case RECORD: queryStr = "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? ORDER BY loan_id DESC";
+            case RECORD: queryStr = "SELECT * FROM loan_record WHERE loan_id LIKE ? AND user_id LIKE ? AND copy_id LIKE ? AND time_returned LIKE ? ORDER BY loan_id DESC";
                          break;
             case COPY: queryStr = "SELECT * FROM individual_copy WHERE copy_id LIKE ? AND item_id LIKE ? AND reserved_by LIKE ? ORDER BY copy_id DESC";
                        break;
@@ -265,9 +282,26 @@ public class MySQLDB extends Database{
         
         queryStr += " LIMIT " + Integer.toString(top);
         
+        if (table == Table.RECORD && where.get(3).compareTo(DataStore.WILDCARD_CHAR) == 0) {
+            
+            queryStr = queryStr.replace(" AND time_returned LIKE ? ", " ");
+            where.remove(3);
+            
+        } else if (table == Table.RECORD && where.get(3).compareTo(DataStore.NULL_DATETIME) == 0) {
+            
+            queryStr = queryStr.replace(" AND time_returned LIKE ? ", " AND time_returned IS NULL ");
+            where.remove(3);
+            
+        }
+        
         if (table == Table.COPY && where.get(2).compareTo(DataStore.WILDCARD_CHAR) == 0) {
             
             queryStr = queryStr.replace(" AND reserved_by LIKE ? ", " ");
+            where.remove(2);
+            
+        } else if (table == Table.COPY && where.get(2).compareTo(DataStore.NULL_VARCHAR) == 0) {
+            
+            queryStr = queryStr.replace(" AND reserved_by LIKE ? ", " AND reserved_by IS NULL ");
             where.remove(2);
             
         }

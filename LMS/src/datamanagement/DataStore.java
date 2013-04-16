@@ -352,15 +352,16 @@ public class DataStore {
     public boolean isCopyBorrowed(String copyID) throws SQLException, ClassNotFoundException {
         
         boolean result;
-        ArrayList<String> condition = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
         
         database.initializeConnection();
         
-        condition.add(WILDCARD_CHAR);
-        condition.add(WILDCARD_CHAR);
-        condition.add(copyID);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(copyID);
+        where.add(NULL_DATETIME);
         
-        ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
+        ResultSet resultSet = database.selectRecord(Table.RECORD, where, 1);
         
         if (resultSet.next() && resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) == null) {
             
@@ -387,6 +388,7 @@ public class DataStore {
         condition.add(WILDCARD_CHAR);
         condition.add(WILDCARD_CHAR);
         condition.add(copyID);
+        condition.add(NULL_DATETIME);
         
         ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
         
@@ -644,6 +646,7 @@ public class DataStore {
         where.add(WILDCARD_CHAR);
         where.add(userID);
         where.add(WILDCARD_CHAR);
+        where.add(NULL_DATETIME);
         
         database.initializeConnection();
         
@@ -696,6 +699,7 @@ public class DataStore {
         
         where.add(WILDCARD_CHAR);
         where.add(userID);
+        where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
@@ -805,6 +809,7 @@ public class DataStore {
         where.add(loanID);
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
+        where.add(NULL_DATETIME);
         
         database.initializeConnection();
         
@@ -896,7 +901,7 @@ public class DataStore {
         
     }
 
-    public void returnBook(String copyID, String userID, double fine) throws SQLException, ClassNotFoundException {
+    public void returnBook(String copyID, double fine) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -904,12 +909,13 @@ public class DataStore {
         Calendar today = new GregorianCalendar();
         
         where.add(WILDCARD_CHAR);
-        where.add(userID);
+        where.add(WILDCARD_CHAR);
         where.add(copyID);
+        where.add(NULL_DATETIME);
         
         database.initializeConnection();
         
-        resultSet = database.selectRecord(Table.RECORD, where, 1);
+        resultSet = database.selectRecord(Table.RECORD, where);
         resultSet.next();
         
         where.clear();
@@ -962,6 +968,7 @@ public class DataStore {
             where.add(WILDCARD_CHAR);
             where.add(WILDCARD_CHAR);
             where.add(result.get(i).getCopyID());
+            where.add(NULL_DATETIME);
             
             resultSet = database.selectRecord(Table.RECORD, where, 1);
             
@@ -989,6 +996,7 @@ public class DataStore {
         where.add(WILDCARD_CHAR);
         where.add(userID);
         where.add(WILDCARD_CHAR);
+        where.add(NULL_DATETIME);
         
         database.initializeConnection();
         
@@ -1043,6 +1051,7 @@ public class DataStore {
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
         where.add(copyID);
+        where.add(NULL_DATETIME);
             
         resultSet = database.selectRecord(Table.RECORD, where, 1);
             
@@ -1071,6 +1080,7 @@ public class DataStore {
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
         where.add(copyID);
+        where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         

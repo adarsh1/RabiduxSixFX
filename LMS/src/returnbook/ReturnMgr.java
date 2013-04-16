@@ -39,7 +39,7 @@ public class ReturnMgr {
     public boolean returnbook() throws SQLException, ClassNotFoundException{
         
         boolean finepresent = calculatefine();
-        item.returnCopy(returningMember.getUserID(),fine);
+        item.returnCopy(fine);
         return finepresent;
     }
     
