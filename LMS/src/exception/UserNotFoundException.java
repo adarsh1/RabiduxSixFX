@@ -5,7 +5,7 @@ package exception;
  *
  * @author Allen
  */
-public class UserNotFoundException extends Exception{
+public class UserNotFoundException extends LoginException{
     
     /**
      * Creates a new instance of

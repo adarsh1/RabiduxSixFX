@@ -5,7 +5,7 @@ package exception;
  *
  * @author Allen
  */
-public class IncorrectPasswordException extends Exception {
+public class IncorrectPasswordException extends LoginException {
 
     /**
      * Creates a new instance of

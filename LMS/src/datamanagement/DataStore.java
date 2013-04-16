@@ -7,6 +7,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import usermanagement.*;
+import exception.*;
 
 /**
  *
@@ -38,11 +39,17 @@ public class DataStore {
        
     }
     
-    public CatalogueItem getCopy(String copyID) throws SQLException, ClassNotFoundException {
+    public CatalogueItem getCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         CatalogueItem catalogueItem = null;
+        
+        if (!isValidCopyID(copyID)) {
+            
+            throw new CopyNotFoundException("Copy ID is not valid.");
+            
+        }
         
         where.add(copyID);
         where.add(WILDCARD_CHAR);
