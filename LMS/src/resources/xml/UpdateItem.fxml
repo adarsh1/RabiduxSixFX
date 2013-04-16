@@ -13,9 +13,6 @@
 
 <AnchorPane id="updateItemPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="updatecatalogue.UpdateItemFXController">
   <children>
-    <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of the item" />
-    <TextField fx:id="itemIDField" layoutY="50.0" prefHeight="31.0" prefWidth="385.0" />
-    <Button fx:id="showFields" defaultButton="true" layoutX="400.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" prefHeight="30.0" text="Show fields" />
     <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
       <children>
         <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
@@ -27,8 +24,39 @@
         </AnchorPane>
       </children>
     </AnchorPane>
-    <CheckBox fx:id="newItem" layoutY="90.0" mnemonicParsing="false" text="This is a new item" />
-    <AnchorPane fx:id="itemFields" layoutY="125.0" prefHeight="325.0" prefWidth="500.0" />
+    <TabPane prefHeight="450.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="New Item">
+          <content>
+            <AnchorPane id="Content" fx:id="newItemPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <Label fx:id="ItemTitle" alignment="CENTER_RIGHT" layoutY="60.0" prefWidth="100.0" styleClass="header-5" text="Title" />
+                <TextField fx:id="itemTitleField" layoutX="120.0" layoutY="60.0" prefWidth="305.0" />
+                <Label id="ItemTitle" fx:id="itemAuthor" alignment="CENTER_RIGHT" layoutY="100.0" prefWidth="100.0" styleClass="header-5" text="Author" />
+                <TextField id="itemTitleField" fx:id="itemAuthorField" layoutX="120.0" layoutY="100.0" prefWidth="305.0" />
+                <Label id="ItemTitle" fx:id="itemType" alignment="CENTER_RIGHT" layoutY="20.0" prefWidth="100.0" styleClass="header-5" text="Type" />
+                <RadioButton fx:id="bookType" layoutX="120.0" layoutY="20.0" mnemonicParsing="false" text="Book" />
+                <RadioButton fx:id="DVDType" layoutX="190.0" layoutY="20.0" mnemonicParsing="false" text="DVD" />
+                <Label id="ItemTitle" fx:id="itemPublishDate" alignment="CENTER_RIGHT" layoutY="140.0" prefWidth="100.0" styleClass="header-5" text="Publish Date" />
+                <TextField id="itemTitleField" fx:id="itemPublishDateField" layoutX="120.0" layoutY="140.0" prefWidth="305.0" />
+                <Label id="ItemTitle" fx:id="itemDescription" alignment="CENTER_RIGHT" layoutY="180.0" prefWidth="100.0" styleClass="header-5" text="Description" />
+                <TextArea fx:id="itemDescriptionField" layoutX="120.0" layoutY="180.0" prefHeight="143.0" prefWidth="305.0" wrapText="true" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Update Item">
+          <content>
+            <AnchorPane id="Content" fx:id="updateItemPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </Tab>
+        <Tab fx:id="deleteItemPane" text="Delete Item">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />
