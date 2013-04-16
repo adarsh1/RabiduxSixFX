@@ -40,7 +40,16 @@
                 <Label id="ItemTitle" fx:id="itemPublishDate" alignment="CENTER_RIGHT" layoutY="140.0" prefWidth="100.0" styleClass="header-5" text="Publish Date" />
                 <TextField id="itemTitleField" fx:id="itemPublishDateField" layoutX="120.0" layoutY="140.0" prefWidth="305.0" />
                 <Label id="ItemTitle" fx:id="itemDescription" alignment="CENTER_RIGHT" layoutY="180.0" prefWidth="100.0" styleClass="header-5" text="Description" />
-                <TextArea fx:id="itemDescriptionField" layoutX="120.0" layoutY="180.0" prefHeight="143.0" prefWidth="305.0" wrapText="true" />
+                <TextArea fx:id="itemDescriptionField" layoutX="120.0" layoutY="180.0" prefHeight="101.0" prefWidth="305.0" wrapText="true" />
+                <AnchorPane layoutY="300.0" prefHeight="87.0" prefWidth="500.0">
+                  <children>
+                    <TextField id="itemTitleField" fx:id="itemISBNField" layoutX="120.0" prefWidth="305.0" />
+                    <Label id="ItemTitle" fx:id="itemISBN" alignment="CENTER_RIGHT" prefWidth="100.0" styleClass="header-5" text="ISBN" />
+                    <TextField id="itemTitleField" fx:id="itemGenreField" layoutX="120.0" layoutY="40.0" prefWidth="305.0" />
+                    <Label id="ItemTitle" fx:id="itemGenre" alignment="CENTER_RIGHT" layoutY="40.0" prefWidth="100.0" styleClass="header-5" text="Genre" />
+                  </children>
+                </AnchorPane>
+                <Button fx:id="confirmButton" defaultButton="true" layoutX="417.0" layoutY="393.0" mnemonicParsing="false" text="Confirm" />
               </children>
             </AnchorPane>
           </content>
