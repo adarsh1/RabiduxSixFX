@@ -45,6 +45,12 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         CatalogueItem catalogueItem = null;
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException("Copy ID does not exsit");
+            
+        }
+        
         where.add(copyID);
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -88,6 +94,10 @@ public class DataStore {
             ((Book)catalogueItem).setGenre(resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_GENRE)));
             
             
+        } else {
+            
+//            throw new ItemNotFoundException("Item ID is not valid");
+            
         }
         
         database.closeConnection();
@@ -100,7 +110,13 @@ public class DataStore {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
-        User user;
+        User user = null;
+        
+        if (!isValidUsername(username)) {
+            
+//            throw new UserNotFoundException("Username is not valid");
+            
+        }
         
         where.add(WILDCARD_CHAR);
         where.add(username);
@@ -128,9 +144,13 @@ public class DataStore {
             
             user = new Faculty();
             
-        } else {
+        } else if (Integer.parseInt(userType) == User.STUDENT) {
             
             user = new Student();
+            
+        } else {
+            
+//            throw new InvalidUserTypeException("The user type is invalid");
             
         }
             
@@ -148,7 +168,13 @@ public class DataStore {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
-        User user;
+        User user = null;
+        
+        if (!isValidUserID(userID)) {
+            
+//            throw new UserNotFoundException("User ID is not valid");
+            
+        }
         
         where.add(userID);
         where.add(WILDCARD_CHAR);
@@ -176,9 +202,13 @@ public class DataStore {
             
             user = new Faculty();
             
-        } else {
+        } else if (Integer.parseInt(userType) == User.STUDENT) {
             
             user = new Student();
+            
+        } else {
+            
+//            throw new InvalidUserTypeException("The user type is invalid");
             
         }
             
@@ -198,25 +228,32 @@ public class DataStore {
         ReservableCopyGroup result = new ReservableCopyGroup ();
         ArrayList<String> where = new ArrayList<> ();
         
-        result.setItemID(itemID);
-        
-        database.initializeConnection();
+        if (isValidBookID(itemID)) { 
+
+            result.setItemID(itemID);
+
+            database.initializeConnection();
+
+            where.add(WILDCARD_CHAR);
+            where.add(itemID);
+            where.add(WILDCARD_CHAR);
+
+            resultSet = database.selectRecord(Table.COPY, where);
+
+            result.setCopiesAvailable(database.getNumOfRows(resultSet));
+
+            while(resultSet.next()) {
+
+                String copyID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_COPY_ID));
+                result.addCopy(Book.getBook(copyID));
+
+            }
             
-        where.add(WILDCARD_CHAR);
-        where.add(itemID);
-        where.add(WILDCARD_CHAR);
+        } else {
             
-        resultSet = database.selectRecord(Table.COPY, where);
+//            throw new ItemNotFoundException("Item ID is invalid");
             
-        result.setCopiesAvailable(database.getNumOfRows(resultSet));
-            
-        while(resultSet.next()) {
-                
-            String copyID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_COPY_ID));
-            result.addCopy(Book.getBook(copyID));
-                
         }
-        
         database.closeConnection();
         
         return result;
