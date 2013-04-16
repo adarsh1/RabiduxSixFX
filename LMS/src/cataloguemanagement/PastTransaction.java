@@ -5,7 +5,8 @@
 package cataloguemanagement;
 
 import datamanagement.*;
-import java.sql.SQLException;
+import usermanagement.*;
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -21,6 +22,7 @@ public class PastTransaction {
     private double fineAmount;
     private int numOfExtend;
     private Displayable copy;
+    private Member member;
     
     
     
@@ -97,6 +99,18 @@ public class PastTransaction {
     public void setCopy(Displayable copy) {
         
         this.copy = copy;
+        
+    }
+    
+    public Member getMember() {
+        
+        return this.member;
+        
+    }
+    
+    public void setMember(Member member) {
+        
+        this.member = member;
         
     }
     

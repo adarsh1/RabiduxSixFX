@@ -95,7 +95,7 @@ public class DataStore {
         
     }
     
-    public User getUser(String username) throws SQLException, ClassNotFoundException {
+    public User getUser(String username, String password) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -135,6 +135,54 @@ public class DataStore {
             
         user.setUserID(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_ID)));
         user.setUsername(username);
+        ((Member)user).setFineAmount(resultSet.getDouble(Table.USER.getAttribute(Table.USER_FINE)));
+        
+        database.closeConnection();
+        
+        return user;
+        
+    }
+    
+    public User getUser(String userID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        User user;
+        
+        where.add(userID);
+        where.add(WILDCARD_CHAR);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.USER, where);
+        resultSet.next();
+        
+        // retrive itemID to determine the type of catalogue item
+        String userType = resultSet.getString(Table.USER.getAttribute(Table.USER_USER_TYPE));
+        
+        if (Integer.parseInt(userType) == User.LIBRARIAN) {
+            
+            user = new Librarian();
+            
+            user.setUserID(userID);
+            user.setUsername(resultSet.getString(Table.USER.getAttribute(Table.USER_USERNAME)));
+            
+            database.closeConnection();
+            
+            return user;
+            
+        } else if (Integer.parseInt(userType) == User.FACULTY) {
+            
+            user = new Faculty();
+            
+        } else {
+            
+            user = new Student();
+            
+        }
+            
+        user.setUserID(userID);
+        user.setUsername(resultSet.getString(Table.USER.getAttribute(Table.USER_USERNAME)));
         ((Member)user).setFineAmount(resultSet.getDouble(Table.USER.getAttribute(Table.USER_FINE)));
         
         database.closeConnection();
@@ -641,6 +689,7 @@ public class DataStore {
             pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
             pastTransaction.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
+            pastTransaction.setMember((Member)User.getUser(userID));
             
             result.add(pastTransaction);
         }
@@ -1009,7 +1058,8 @@ public class DataStore {
             result.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
             result.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            result.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
+            result.setCopy(CatalogueItem.getCatalogueItem(copyID));
+            result.setMember((Member)User.getUser(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_USER_ID))));
             
         }
         

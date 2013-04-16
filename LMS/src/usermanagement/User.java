@@ -44,7 +44,15 @@ public class User {
             
         }
         
-        return dataStore.getUser(username);
+        return dataStore.getUser(username, password);
+        
+    }
+    
+        public static User getUser(String userID) throws SQLException, ClassNotFoundException {
+        
+        DataStore dataStore = new DataStore();
+        
+        return dataStore.getUser(userID);
         
     }
     
