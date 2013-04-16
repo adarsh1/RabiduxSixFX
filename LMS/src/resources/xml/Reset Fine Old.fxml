@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="resetfine.ResetFineController">
+  <children>
+   <SplitPane dividerPositions="0.28762541806020064" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="158.0" styleClass="sidebar">
+          <children>
+            <TilePane hgap="20.0" layoutX="5.0" layoutY="77.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
+              <children>
+                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="41.0" prefWidth="141.99990000000253" text="Home" />
+                <Button id="return" fx:id="returnB" mnemonicParsing="false" onAction="#returnBook" prefHeight="41.0" prefWidth="142.0" text="Return Book" />
+                <Button id="search" fx:id="resetfine" mnemonicParsing="false" onAction="#resetFine" prefHeight="41.0" prefWidth="142.0" text="Reset Fine" />
+                <Button id="search" fx:id="update" mnemonicParsing="false" onAction="#update" prefHeight="41.0" prefWidth="142.0" text="Update Catalogue" />
+              </children>
+              <padding>
+                <Insets left="8.0" />
+              </padding>
+            </TilePane>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <SplitPane dividerPositions="0.1590909090909091" focusTraversable="true" orientation="VERTICAL" prefHeight="398.0" prefWidth="488.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="topbar">
+                  <children>
+                    <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
+                      <font>
+                        <Font name="Nyala" size="15.0" fx:id="x1" />
+                      </font>
+                    </Text>
+                    <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="375.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
+                      </image>
+                    </ImageView>
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <children>
+                    <Label layoutX="168.0" layoutY="157.0" text="Here Is Reset Fine" />
+                  </children>
+                  <stylesheets>
+                    <URL value="@../css/MainPane.css" />
+                  </stylesheets>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+    <AnchorPane id="messagePane" fx:id="messagePane" layoutX="0.0" layoutY="190.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+      <children>
+        <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
+          <children>
+            <Label id="warningMsg" fx:id="messageHeader" styleClass="message-header" text="title" />
+            <Label id="MessageText" fx:id="messageText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="message-text" text="Label" />
+            <Button fx:id="hideMessage" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleHideMessageButtonAction" styleClass="success-button" text="OK" />
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
+  </children>
+  <stylesheets>
+    <URL value="@../css/DefaultGUI.css" />
+    <URL value="@../css/LibrarianGUI.css" />
+    <URL value="@../css/ResetFine.css" />
+  </stylesheets>
+</AnchorPane>
