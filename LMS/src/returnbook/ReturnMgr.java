@@ -22,6 +22,7 @@ import usermanagement.Member;
 public class ReturnMgr {
     private Librarian currentLibrarian;
     private Returnable item;   
+    private Member returningMember;
     
     //a member object required to construct
     public ReturnMgr(Librarian currentLibrarian){
@@ -31,32 +32,29 @@ public class ReturnMgr {
         //empty constructor
     }
     //borrow the book
-  /*  public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
-        //if this member is allowed to borrow or reserve
-        if(currentMember.isEligibleToBorrowOrReserve()){
-          return item.borrow(currentMember.getUserID(), currentMember.getLoanDuration());
-        }
-        else {
-            throw new NotEligibleToBorrowOrReserveException("Sorry, you are not able to borrow");
-        }
+    public boolean returnbook() throws SQLException, ClassNotFoundException{
+        
+        item.returnCopy(returningMember.getUserID());
+        return true;
     }
-    */
+    
+    
     //create a borrowable item based on item ID
     public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
         //get the catalogue item from catalogue management
         CatalogueItem catalogueItem = CatalogueItem.getCatalogueItem(copyID);
         //if the item is of Borrowable instance
-        if (catalogueItem instanceof Borrowable){
-            //cast to borrowable type
+        if (catalogueItem instanceof Returnable){
+            //cast to returnable type
             setItem( (Returnable) catalogueItem );
         }
         else{
-            throw new TypeMismatchException(catalogueItem.getTitle(),"Borrowable");
+            throw new TypeMismatchException(catalogueItem.getTitle(),"Returnable");
         }
     }
 
     /**
-     * @return the currentMember
+     * @return the currentLibrarian
      */
     public Librarian getCurrentLibrarian() {
         return currentLibrarian;
