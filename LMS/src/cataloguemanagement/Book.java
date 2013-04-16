@@ -131,10 +131,10 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
     }
 
     @Override
-    public void returnCopy(String userID) throws SQLException, ClassNotFoundException {
+    public void returnCopy(String userID, double fine) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        dataStore.returnBook(super.getIndividualCopyID(), userID);
+        dataStore.returnBook(super.getIndividualCopyID(), userID, fine);
         
     }
 

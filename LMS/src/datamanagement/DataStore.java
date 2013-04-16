@@ -856,7 +856,7 @@ public class DataStore {
         
     }
 
-    public void returnBook(String copyID, String userID) throws SQLException, ClassNotFoundException {
+    public void returnBook(String copyID, String userID, double fine) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -877,7 +877,7 @@ public class DataStore {
         set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
         set.add(resultSet.getString(new java.sql.Timestamp(today.getTimeInMillis()).toString()));
         set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
-        set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT)));
+        set.add(Double.toString(fine));
         set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND)));
         
         database.updateRecord(Table.COPY, set, where);
