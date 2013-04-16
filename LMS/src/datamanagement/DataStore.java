@@ -614,7 +614,10 @@ public class DataStore {
         database.initializeConnection();
         
         where.add(copyID);
-        ResultSet resultSet = database.selectRecord(Table.USER, where);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        
+        ResultSet resultSet = database.selectRecord(Table.COPY, where);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -909,15 +912,16 @@ public class DataStore {
         resultSet = database.selectRecord(Table.RECORD, where, 1);
         resultSet.next();
         
-        where.set(0, resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_LOAN_ID)));
+        where.clear();
+        where.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_LOAN_ID)));
         
         set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
-        set.add(resultSet.getString(new java.sql.Timestamp(today.getTimeInMillis()).toString()));
+        set.add(new java.sql.Timestamp(today.getTimeInMillis()).toString());
         set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
         set.add(Double.toString(fine));
         set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND)));
         
-        database.updateRecord(Table.COPY, set, where);
+        database.updateRecord(Table.RECORD, set, where);
         
         database.closeConnection();
         
