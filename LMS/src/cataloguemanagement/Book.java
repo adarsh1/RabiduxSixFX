@@ -5,7 +5,6 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
-import exception.CopyNotFoundException;
 import java.sql.*;
 import java.util.*;
 
@@ -25,7 +24,7 @@ public class Book extends CatalogueItem implements Borrowable,Extendable,Reserva
         
     }
     
-    public static Book getBook(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
+    public static Book getBook(String copyID) throws SQLException, ClassNotFoundException {
         
         return (Book) CatalogueItem.getCatalogueItem(copyID);
         

@@ -8,7 +8,6 @@ import cataloguemanagement.Borrowable;
 import cataloguemanagement.CatalogueItem;
 import cataloguemanagement.PastTransaction;
 import cataloguemanagement.Returnable;
-import exception.CopyNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import java.sql.SQLException;
@@ -41,14 +40,13 @@ public class ReturnMgr {
     
     
     //create a borrowable item based on item ID
-    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException, CopyNotFoundException{
+    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
         //get the catalogue item from catalogue management
         CatalogueItem catalogueItem = CatalogueItem.getCatalogueItem(copyID);
-        //if the item is of Returnable instance
+        //if the item is of Borrowable instance
         if (catalogueItem instanceof Returnable){
             //cast to returnable type
             setItem( (Returnable) catalogueItem );
-        
         }
         else{
             throw new TypeMismatchException(catalogueItem.getTitle(),"Returnable");

@@ -144,13 +144,11 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
     }
-    
     /*
     //handle the borrow when the confirm button is pressed
     public void handleConfirmButtonAction(ActionEvent event){
         try{
-            
-            
+            PastTransaction transaction = returnMgr.borrow();
             //set the text to be shown
             SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
             String text = "Your request for loan of this item has been sucessfully granted.\n";
