@@ -5,6 +5,7 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
+import exception.CopyNotFoundException;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -32,7 +33,7 @@ public abstract class CatalogueItem implements Displayable {
         
     }
     
-    public static CatalogueItem getCatalogueItem (String copyID) throws SQLException, ClassNotFoundException {
+    public static CatalogueItem getCatalogueItem (String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         DataStore datastore = new DataStore();
         return datastore.getCopy(copyID);

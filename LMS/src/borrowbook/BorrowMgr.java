@@ -4,6 +4,7 @@ package borrowbook;
 import cataloguemanagement.Borrowable;
 import cataloguemanagement.CatalogueItem;
 import cataloguemanagement.PastTransaction;
+import exception.CopyNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import java.sql.SQLException;
@@ -37,7 +38,7 @@ public class BorrowMgr {
     }
     
     //create a borrowable item based on item ID
-    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
+    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException, CopyNotFoundException{
         //get the catalogue item from catalogue management
         CatalogueItem catalogueItem = CatalogueItem.getCatalogueItem(copyID);
         //if the item is of Borrowable instance
