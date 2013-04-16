@@ -11,62 +11,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="returnbook.ReturnController">
+<AnchorPane id="borrowPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="returnbook.r">
   <children>
-    <SplitPane dividerPositions="0.28762541806020064" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
-      <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="158.0" styleClass="sidebar">
-          <children>
-            <TilePane hgap="20.0" layoutX="5.0" layoutY="77.0" prefHeight="253.8221435546875" prefWidth="84.0" vgap="40.0">
+    <Pane fx:id="bookInfoPane" layoutY="117.0" prefHeight="333.0" prefWidth="500.0" visible="false">
+      <children>
+        <Label fx:id="itemID" layoutX="150.0" layoutY="55.0" styleClass="font-grey" />
+        <Label id="author" fx:id="itemAuthor" layoutX="150.0" layoutY="32.0" styleClass="font-grey" />
+        <Label id="bookTitle" fx:id="itemTitle" layoutY="-6.0" prefWidth="500.0" styleClass="header-5, font-black">
+          <tooltip>
+            <Tooltip fx:id="fullItemTitle" />
+          </tooltip>
+        </Label>
+        <Pane id="bookcover" fx:id="bookcoverField" layoutY="35.0" prefHeight="180.0" prefWidth="130.0" />
+        <ScrollPane id="itemDescriptionPane" fx:id="itemDescriptionScrollPane" hbarPolicy="NEVER" layoutX="150.0" layoutY="77.0" prefHeight="220.0" prefWidth="350.0">
+          <content>
+            <AnchorPane id="Content" fx:id="itemDescriptionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="350.0">
               <children>
-                <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="41.0" prefWidth="141.99990000000253" text="Home" />
-                <Button id="return" fx:id="returnB" mnemonicParsing="false" onAction="#returnBook" prefHeight="41.0" prefWidth="142.0" text="Return Book" />
-                <Button id="search" fx:id="resetfine" mnemonicParsing="false" onAction="#resetFine" prefHeight="41.0" prefWidth="142.0" text="Reset Fine" />
-                <Button id="search" fx:id="update" mnemonicParsing="false" onAction="#update" prefHeight="41.0" prefWidth="142.0" text="Update Catalogue" />
+                <Text fx:id="itemDescription" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text, item-description, font-grey" wrappingWidth="320.0" />
               </children>
-              <padding>
-                <Insets left="8.0" />
-              </padding>
-            </TilePane>
-          </children>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+        <Button fx:id="confirmBorrow" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleConfirmButtonAction" text="Confirm" />
+      </children>
+    </Pane>
+    <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of your copy" />
+    <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" prefHeight="31.0" prefWidth="390.0" />
+    <Button fx:id="getDetails" defaultButton="true" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" prefHeight="30.0" text="Get details" />
+    <Label id="borrowMsg" fx:id="itemMsg" layoutY="120.0" styleClass="warning-msg" />
+    <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+      <children>
+        <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
           <children>
-            <SplitPane dividerPositions="0.1590909090909091" focusTraversable="true" orientation="VERTICAL" prefHeight="398.0" prefWidth="488.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="topbar">
-                  <children>
-                    <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
-                      <font>
-                        <Font name="Nyala" size="15.0" fx:id="x1" />
-                      </font>
-                    </Text>
-                    <Text fx:id="name" font="$x1" layoutX="76.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    <ImageView fx:id="logout" fitHeight="52.79999923706055" fitWidth="77.64705548698001" layoutX="375.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                        <Image url="@../images/logout.png" preserveRatio="false" smooth="false" />
-                      </image>
-                    </ImageView>
-                  </children>
-                </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                  <children>
-                    <Label layoutX="168.0" layoutY="157.0" text="Here Is Return Book" />
-                  </children>
-                  <stylesheets>
-                    <URL value="@../css/MainPane.css" />
-                  </stylesheets>
-                </AnchorPane>
-              </items>
-            </SplitPane>
+            <Label id="warningMsg" fx:id="messageHeader" styleClass="message-header" text="title" />
+            <Label id="MessageText" fx:id="messageText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="message-text" text="Label" />
+            <Button fx:id="hideMessage" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleHideMessageButtonAction" styleClass="success-button" text="OK" />
           </children>
         </AnchorPane>
-      </items>
-    </SplitPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
-    <URL value="@../css/DefaultGUI.css" />
-    <URL value="@../css/LibrarianGUI.css" />
-    <URL value="@../css/return.css" />
+    <URL value="@../JMetro/JMetroLightTheme.css" />
   </stylesheets>
 </AnchorPane>
