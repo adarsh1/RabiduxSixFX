@@ -54,7 +54,7 @@ public class DataStore {
         resultSet.next();
         
         // retrive itemID to determine the type of catalogue item
-        String itemID = resultSet.getString(Table.COPY.getAttribute("ITEM_ID"));
+        String itemID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_ITEM_ID));
         
         if (new DataStore().isValidBookID(itemID)) {
             
@@ -63,7 +63,7 @@ public class DataStore {
             catalogueItem.setIndividualCopyID(copyID);
             catalogueItem.setType(CatalogueItem.BOOK);
             catalogueItem.setItemID(itemID);
-            catalogueItem.setLocation(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+            catalogueItem.setLocation(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
             
             where.clear();
             where.add(itemID);
@@ -75,16 +75,16 @@ public class DataStore {
             resultSet = database.selectRecord(Table.BOOK, where);
             resultSet.next();
             
-            catalogueItem.setTitle(resultSet.getString(Table.BOOK.getAttribute("TITLE")));
-            catalogueItem.setAuthor(resultSet.getString(Table.BOOK.getAttribute("AUTHOR")));
+            catalogueItem.setTitle(resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_TITLE)));
+            catalogueItem.setAuthor(resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_AUTHOR)));
             
             Calendar calendar = new GregorianCalendar();
-            calendar.setTime(resultSet.getTimestamp(Table.BOOK.getAttribute("DATE")));
+            calendar.setTime(resultSet.getTimestamp(Table.BOOK.getAttribute(Table.BOOK_DATE)));
             
             catalogueItem.setPublishDate(calendar);
-            catalogueItem.setDescription(resultSet.getString(Table.BOOK.getAttribute("DESCRIPTION")));
-            ((Book)catalogueItem).setISBN(resultSet.getString(Table.BOOK.getAttribute("ISBN")));
-            ((Book)catalogueItem).setGenre(resultSet.getString(Table.BOOK.getAttribute("GENRE")));
+            catalogueItem.setDescription(resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_DESCRIPTION)));
+            ((Book)catalogueItem).setISBN(resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_ISBN)));
+            ((Book)catalogueItem).setGenre(resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_GENRE)));
             
             
         }
@@ -110,13 +110,13 @@ public class DataStore {
         resultSet.next();
         
         // retrive itemID to determine the type of catalogue item
-        String userType = resultSet.getString(Table.USER.getAttribute("USER_TYPE"));
+        String userType = resultSet.getString(Table.USER.getAttribute(Table.USER_USER_TYPE));
         
         if (Integer.parseInt(userType) == User.LIBRARIAN) {
             
             user = new Librarian();
             
-            user.setUserID(resultSet.getString(Table.USER.getAttribute("USER_ID")));
+            user.setUserID(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_ID)));
             user.setUsername(username);
             
             database.closeConnection();
@@ -133,9 +133,9 @@ public class DataStore {
             
         }
             
-        user.setUserID(resultSet.getString(Table.USER.getAttribute("USER_ID")));
+        user.setUserID(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_ID)));
         user.setUsername(username);
-        ((Member)user).setFineAmount(resultSet.getDouble(Table.USER.getAttribute("FINE")));
+        ((Member)user).setFineAmount(resultSet.getDouble(Table.USER.getAttribute(Table.USER_FINE)));
         
         database.closeConnection();
         
@@ -163,7 +163,7 @@ public class DataStore {
             
         while(resultSet.next()) {
                 
-            String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
+            String copyID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_COPY_ID));
             result.addCopy(Book.getBook(copyID));
                 
         }
@@ -182,7 +182,7 @@ public class DataStore {
         
         where.add(WILDCARD_CHAR);
         
-        if (searchCriteria.compareTo("TITLE") == 0) { 
+        if (searchCriteria.compareTo(Table.BOOK_TITLE) == 0) { 
             
             where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
@@ -192,7 +192,7 @@ public class DataStore {
             
         }
         
-        if (searchCriteria.compareTo("AUTHOR") == 0) { 
+        if (searchCriteria.compareTo(Table.BOOK_AUTHOR) == 0) { 
             
             where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
@@ -202,7 +202,7 @@ public class DataStore {
             
         }
         
-        if (searchCriteria.compareTo("ISBN") == 0) { 
+        if (searchCriteria.compareTo(Table.BOOK_ISBN) == 0) { 
             
             where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
@@ -212,7 +212,7 @@ public class DataStore {
             
         }
         
-        if (searchCriteria.compareTo("GENRE") == 0) { 
+        if (searchCriteria.compareTo(Table.BOOK_GENRE) == 0) { 
             
             where.add(WILDCARD_CHAR + keyword + WILDCARD_CHAR); 
             
@@ -230,7 +230,7 @@ public class DataStore {
             
             ReservableCopyGroup reservableCopyGroup = new ReservableCopyGroup();
             
-            reservableCopyGroup.setItemID(resultSet.getString(Table.BOOK.getAttribute("BOOK_ID")));
+            reservableCopyGroup.setItemID(resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_BOOK_ID)));
             
             result.add(reservableCopyGroup);
             
@@ -250,7 +250,7 @@ public class DataStore {
             
             while(resultSet.next()) {
                 
-                String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
+                String copyID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_COPY_ID));
                 result.get(i).addCopy(Book.getBook(copyID));
                 
             }
@@ -276,7 +276,7 @@ public class DataStore {
         
         ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
         
-        if (resultSet.next() && resultSet.getString(Table.RECORD.getAttribute("TIME_RETURNED")) == null) {
+        if (resultSet.next() && resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) == null) {
             
             result = true;
             
@@ -305,7 +305,7 @@ public class DataStore {
         ResultSet resultSet = database.selectRecord(Table.RECORD, condition, 1);
         
         
-        if (resultSet.next() && resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")).compareTo(new java.util.Date()) < 0) {
+        if (resultSet.next() && resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)).compareTo(new java.util.Date()) < 0) {
             
             result = true;
             
@@ -334,7 +334,7 @@ public class DataStore {
         ResultSet resultSet = database.selectRecord(Table.COPY, condition);
         resultSet.next();
         
-        if (resultSet.getString(Table.COPY.getAttribute("RESERVED_BY")) == null) {
+        if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)) == null) {
             
             result = false;
             
@@ -363,7 +363,7 @@ public class DataStore {
         resultSet = database.selectRecord(Table.USER, where);
         resultSet.next();
         
-        if (resultSet.getBoolean(Table.USER.getAttribute("IS_SUSPENDED"))) {
+        if (resultSet.getBoolean(Table.USER.getAttribute(Table.USER_IS_SUSPENDED))) {
             
             result = true;
             
@@ -391,7 +391,7 @@ public class DataStore {
         resultSet = database.selectRecord(Table.USER, where);
         resultSet.next();
         
-        if (resultSet.getString(Table.USER.getAttribute("PASSWORD")).compareTo(password) == 0) {
+        if (resultSet.getString(Table.USER.getAttribute(Table.USER_PASSWORD)).compareTo(password) == 0) {
             
             result = true;
             
@@ -562,7 +562,7 @@ public class DataStore {
         
         while (resultSet.next()) {
             
-            if (resultSet.getString(Table.RECORD.getAttribute("TIME_RETURNED")) == null) {
+            if (resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) == null) {
                 
                 result ++;
                 
@@ -618,14 +618,14 @@ public class DataStore {
             
             PastTransaction pastTransaction = new PastTransaction();
             
-            pastTransaction.setLoanID(resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+            pastTransaction.setLoanID(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_LOAN_ID)));
             
-            timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+            timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
             pastTransaction.setDateBorrowed(timeBorrowed);
             
-            if (resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")) != null) {
+            if (resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) != null) {
                 
-                timeReturned.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")));
+                timeReturned.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)));
                 pastTransaction.setDateReturned(timeReturned);
                 
             } else {
@@ -634,13 +634,13 @@ public class DataStore {
                 
             }
             
-            timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
             pastTransaction.setDateToReturn(timeToReturn);
             
-            pastTransaction.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
-            pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
+            pastTransaction.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
+            pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            pastTransaction.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
+            pastTransaction.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
             
             result.add(pastTransaction);
         }
@@ -681,7 +681,7 @@ public class DataStore {
         resultSet.next();
         
         set.add(NULL_VARCHAR);
-        set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
         
         where.clear();
         where.add(copyID);
@@ -721,18 +721,18 @@ public class DataStore {
         resultSet = database.selectRecord(Table.RECORD, where);
         resultSet.next();
         
-        timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+        timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
         
-        timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+        timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
         timeToReturn.add(Calendar.DAY_OF_YEAR, extend_time);
         
-        numOfExtend = Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND")));
+        numOfExtend = Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND)));
         numOfExtend ++;
         
         set.add(new java.sql.Timestamp(timeBorrowed.getTimeInMillis()).toString());
         set.add(NULL_DATETIME);
         set.add(new java.sql.Timestamp(timeToReturn.getTimeInMillis()).toString());
-        set.add(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT")));
+        set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT)));
         set.add(Integer.toString(numOfExtend));
         
         where.clear();
@@ -744,8 +744,8 @@ public class DataStore {
         transactionHistoryItem.setDateBorrowed(timeBorrowed);
         transactionHistoryItem.setDateReturned(null);
         transactionHistoryItem.setDateToReturn(timeToReturn);
-        transactionHistoryItem.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
-        transactionHistoryItem.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
+        transactionHistoryItem.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
+        transactionHistoryItem.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
         
         database.closeConnection();
         
@@ -768,7 +768,7 @@ public class DataStore {
         resultSet.next();
         
         set.add(userID);
-        set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
         
         where.clear();
         where.add(copyID);
@@ -795,7 +795,7 @@ public class DataStore {
         resultSet.next();
         
         set.add(NULL_VARCHAR);
-        set.add(resultSet.getString(Table.COPY.getAttribute("LOCATION")));
+        set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
         
         where.clear();
         where.add(copyID);
@@ -822,13 +822,13 @@ public class DataStore {
         resultSet = database.selectRecord(Table.RECORD, where, 1);
         resultSet.next();
         
-        where.set(0, resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+        where.set(0, resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_LOAN_ID)));
         
-        set.add(resultSet.getString(Table.RECORD.getAttribute("TIME_BORROWED")));
+        set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
         set.add(resultSet.getString(new java.sql.Timestamp(today.getTimeInMillis()).toString()));
-        set.add(resultSet.getString(Table.RECORD.getAttribute("TIME_TO_RETURN")));
-        set.add(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT")));
-        set.add(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND")));
+        set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
+        set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT)));
+        set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND)));
         
         database.updateRecord(Table.COPY, set, where);
         
@@ -853,7 +853,7 @@ public class DataStore {
         while(resultSet.next()) {
             
             ReservedCopy reservedCopy = new ReservedCopy();
-            String copyID = resultSet.getString(Table.COPY.getAttribute("COPY_ID"));
+            String copyID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_COPY_ID));
             
             reservedCopy.setCopyID(copyID);
             reservedCopy.setCopy((ReservationCancellable)CatalogueItem.getCatalogueItem(copyID));
@@ -876,7 +876,7 @@ public class DataStore {
             
             while(resultSet.next()) {
                 
-                dateAvailable.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+                dateAvailable.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
                 result.get(i).setDateAvailable(dateAvailable);
                 
             }
@@ -905,7 +905,7 @@ public class DataStore {
         
         while(resultSet.next()) {
             
-            if (resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")) != null) {
+            if (resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) != null) {
                 
                 continue;
                 
@@ -915,18 +915,18 @@ public class DataStore {
             Calendar dateToReturn = new GregorianCalendar();
             CurrentHolding currentHolding = new CurrentHolding();
             
-            currentHolding.setLoanID(resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+            currentHolding.setLoanID(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_LOAN_ID)));
             
-            dateBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+            dateBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
             currentHolding.setDateBorrowed(dateBorrowed);
             
-            dateToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            dateToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
             currentHolding.setDateToReturn(dateToReturn);
             
-            currentHolding.setFine(resultSet.getDouble(Table.RECORD.getAttribute("FINE_AMOUNT")));
-            currentHolding.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
+            currentHolding.setFine(resultSet.getDouble(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT)));
+            currentHolding.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            String copyID = resultSet.getString(Table.RECORD.getAttribute("COPY_ID"));
+            String copyID = resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID));
             currentHolding.setCopy((Extendable)CatalogueItem.getCatalogueItem(copyID));
             
             result.add(currentHolding);
@@ -957,7 +957,7 @@ public class DataStore {
             
         if(resultSet.next()) {
                 
-            dateAvailable.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            dateAvailable.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
             result.setDateAvailable(dateAvailable);
                 
         }
@@ -987,14 +987,14 @@ public class DataStore {
         
         if(resultSet.next()) {
             
-            result.setLoanID(resultSet.getString(Table.RECORD.getAttribute("LOAN_ID")));
+            result.setLoanID(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_LOAN_ID)));
             
-            timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_BORROWED")));
+            timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
             result.setDateBorrowed(timeBorrowed);
             
-            if (resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")) != null) {
+            if (resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) != null) {
                 
-                timeReturned.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_RETURNED")));
+                timeReturned.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)));
                 result.setDateReturned(timeReturned);
                 
             } else {
@@ -1003,13 +1003,13 @@ public class DataStore {
                 
             }
             
-            timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute("TIME_TO_RETURN")));
+            timeToReturn.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_TO_RETURN)));
             result.setDateToReturn(timeToReturn);
             
-            result.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute("FINE_AMOUNT"))));
-            result.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute("NUM_OF_EXTEND"))));
+            result.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
+            result.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            result.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute("COPY_ID"))));
+            result.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
             
         }
         

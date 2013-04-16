@@ -37,14 +37,14 @@ public enum Table {
     public static final String BOOK_DATE = "DATE";
     public static final String BOOK_DESCRIPTION = "DESCRIPTION";
     
-    public static final String LOAN_LOAN_ID = "LOAN_ID";
-    public static final String LOAN_USER_ID = "USER_ID";
-    public static final String LOAN_COPY_ID = "COPY_ID";
-    public static final String LOAN_TIME_BORROWED = "TIME_BORROWED";
-    public static final String LOAN_TIME_RETURNED = "TIME_RETURNED";
-    public static final String LOAN_TIME_TO_RETURN = "TIME_TO_RETURN";
-    public static final String LOAN_FINE_AMOUNT = "FINE_AMOUNT";
-    public static final String LOAN_NUM_OF_EXTEND = "NUM_OF_EXTEND";
+    public static final String RECORD_LOAN_ID = "LOAN_ID";
+    public static final String RECORD_USER_ID = "USER_ID";
+    public static final String RECORD_COPY_ID = "COPY_ID";
+    public static final String RECORD_TIME_BORROWED = "TIME_BORROWED";
+    public static final String RECORD_TIME_RETURNED = "TIME_RETURNED";
+    public static final String RECORD_TIME_TO_RETURN = "TIME_TO_RETURN";
+    public static final String RECORD_FINE_AMOUNT = "FINE_AMOUNT";
+    public static final String RECORD_NUM_OF_EXTEND = "NUM_OF_EXTEND";
     
     private String tableName;
     private HashMap<String, String> attributeMap;
@@ -82,14 +82,14 @@ public enum Table {
             
         } else if (tableName.compareTo("loan_record") == 0) {
             
-            attributeMap.put(LOAN_LOAN_ID, attributeName[0]);
-            attributeMap.put(LOAN_USER_ID, attributeName[1]);
-            attributeMap.put(LOAN_COPY_ID, attributeName[2]);
-            attributeMap.put(LOAN_TIME_BORROWED, attributeName[3]);
-            attributeMap.put(LOAN_TIME_RETURNED, attributeName[4]);
-            attributeMap.put(LOAN_TIME_TO_RETURN, attributeName[5]);
-            attributeMap.put(LOAN_FINE_AMOUNT, attributeName[6]);
-            attributeMap.put(LOAN_NUM_OF_EXTEND, attributeName[7]);
+            attributeMap.put(RECORD_LOAN_ID, attributeName[0]);
+            attributeMap.put(RECORD_USER_ID, attributeName[1]);
+            attributeMap.put(RECORD_COPY_ID, attributeName[2]);
+            attributeMap.put(RECORD_TIME_BORROWED, attributeName[3]);
+            attributeMap.put(RECORD_TIME_RETURNED, attributeName[4]);
+            attributeMap.put(RECORD_TIME_TO_RETURN, attributeName[5]);
+            attributeMap.put(RECORD_FINE_AMOUNT, attributeName[6]);
+            attributeMap.put(RECORD_NUM_OF_EXTEND, attributeName[7]);
             
         }
         

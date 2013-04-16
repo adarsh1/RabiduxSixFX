@@ -185,7 +185,8 @@ public class MySQLDB extends Database{
         
         if (table == Table.COPY && where.get(2).compareTo(DataStore.WILDCARD_CHAR) == 0) {
             
-            queryStr = queryStr.replaceFirst(" AND reserved_by LIKE ? ", " ");
+            queryStr = queryStr.replace(" AND reserved_by LIKE ?", " ");
+            where.remove(2);
             
         }
         
@@ -266,7 +267,8 @@ public class MySQLDB extends Database{
         
         if (table == Table.COPY && where.get(2).compareTo(DataStore.WILDCARD_CHAR) == 0) {
             
-            queryStr = queryStr.replaceFirst(" AND reserved_by LIKE ? ", " ");
+            queryStr = queryStr.replace(" AND reserved_by LIKE ? ", " ");
+            where.remove(2);
             
         }
         
