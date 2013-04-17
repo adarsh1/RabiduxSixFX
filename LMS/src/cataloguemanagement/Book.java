@@ -70,6 +70,13 @@ public class Book extends CatalogueCopy
     public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
+        
+        if (dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
+            
+//            throw new BookBorrowedException();
+            
+        }
+        
         return dataStore.borrow(super.getIndividualCopyID(), userID, loanDuration);
         
     }
@@ -113,7 +120,14 @@ public class Book extends CatalogueCopy
     public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException{
         
         DataStore dataStore = new DataStore();
-        dataStore.extend(loanID, loanDuration);
+        
+        if (dataStore.isCopyOverdue(super.getIndividualCopyID())) {
+            
+//            throw new CopyOverdueException();
+            
+        }
+        
+        dataStore.extend(super.getIndividualCopyID(), loanID, loanDuration);
         
     }
 
@@ -121,6 +135,19 @@ public class Book extends CatalogueCopy
     public void reserve(String userID) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
+        
+        if (!dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
+            
+//            throw new CopyNotBorrowedException();
+            
+        }
+        
+        if (dataStore.isCopyReserved(super.getIndividualCopyID())) {
+            
+//            throw new CopyReservedException();
+            
+        }
+        
         dataStore.reserve(super.getIndividualCopyID(), userID);
         
     }
@@ -129,6 +156,13 @@ public class Book extends CatalogueCopy
     public void cancelReservation(String userID) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
+        
+        if (!dataStore.isCopyReserved(super.getIndividualCopyID())) {
+            
+//            throw new CopyNotReservedException();
+            
+        }
+        
         dataStore.cancelReservation(super.getIndividualCopyID(), userID);
         
     }
@@ -137,6 +171,13 @@ public class Book extends CatalogueCopy
     public void returnCopy(double fine) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
+        
+        if (!dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
+            
+//            throw new CopyNotBorrowedException();
+            
+        }
+        
         dataStore.returnBook(super.getIndividualCopyID(), fine);
         
     }

@@ -380,23 +380,27 @@ public class DataStore {
         where.add(copyID);
         where.add(NULL_DATETIME);
         
-        ResultSet resultSet = database.selectRecord(Table.RECORD, where, 1);
+        ResultSet resultSet = database.selectRecord(Table.RECORD, where);
         
-        if (!resultSet.next()) {
-            
-//            throw new NullResultException();
-            
-        }
-        
-        if (resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) == null) {
-            
-            result = true;
-            
-        } else {
+        if (database.getNumOfRows(resultSet) == 0) {
             
             result = false;
             
+        } else {
+            
+            result = true;
+            
         }
+        
+//        if (resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) == null) {
+//            
+//            result = true;
+//            
+//        } else {
+//            
+//            result = false;
+//            
+//        }
         
         database.closeConnection();
         
@@ -659,7 +663,11 @@ public class DataStore {
         database.initializeConnection();
         
         where.add(loanID);
-        ResultSet resultSet = database.selectRecord(Table.USER, where);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        
+        ResultSet resultSet = database.selectRecord(Table.RECORD, where);
         
         if (database.getNumOfRows(resultSet) == 0) {
             
@@ -795,7 +803,6 @@ public class DataStore {
         
         resultSet = database.selectRecord(Table.RECORD, where);
         
-        
         while(resultSet.next()) {
             
             PastTransaction pastTransaction = new PastTransaction();
@@ -844,6 +851,18 @@ public class DataStore {
         String loanID = database.getNewID(Table.RECORD);
         PastTransaction transactionHistoryItem = new PastTransaction();
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException("Copy ID does not exsit");
+            
+        }
+        
+        if (!isValidUserID(userID)) {
+            
+//            throw new UserNotFoundException("User ID is not valid");
+            
+        }
+        
         due.add(Calendar.DAY_OF_YEAR, loanDuration);
         
         values.add(loanID);
@@ -861,7 +880,18 @@ public class DataStore {
         database.initializeConnection();
         
         resultSet = database.selectRecord(Table.COPY, where);
-        resultSet.next();
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
+        
+        if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)) != null && resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)).compareTo(userID) != 0) {
+            
+//            throw new BookReservedException();
+            
+        }
         
         set.add(NULL_VARCHAR);
         set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
@@ -885,7 +915,7 @@ public class DataStore {
         return transactionHistoryItem;
     }
 
-    public PastTransaction extend(String loanID, int extend_time) throws SQLException, ClassNotFoundException {
+    public PastTransaction extend(String copyID, String loanID, int extend_time) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -895,6 +925,18 @@ public class DataStore {
         Calendar timeToReturn = new GregorianCalendar();
         int numOfExtend;
         
+        if (!isValidLoanID(loanID)) {
+            
+//            throw new RecordNotFoundException();
+            
+        }
+        
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException();
+            
+        }
+        
         where.add(loanID);
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -903,7 +945,12 @@ public class DataStore {
         database.initializeConnection();
         
         resultSet = database.selectRecord(Table.RECORD, where);
-        resultSet.next();
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
         
         timeBorrowed.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_BORROWED)));
         
@@ -942,6 +989,18 @@ public class DataStore {
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException("Copy ID does not exsit");
+            
+        }
+        
+        if (!isValidUserID(userID)) {
+            
+//            throw new UserNotFoundException("User ID is not valid");
+            
+        }
+        
         where.add(copyID);
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -949,7 +1008,12 @@ public class DataStore {
         database.initializeConnection();
         
         resultSet = database.selectRecord(Table.COPY, where);
-        resultSet.next();
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
         
         set.add(userID);
         set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
@@ -969,6 +1033,18 @@ public class DataStore {
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException("Copy ID does not exsit");
+            
+        }
+        
+        if (!isValidUserID(userID)) {
+            
+//            throw new UserNotFoundException("User ID is not valid");
+            
+        }
+        
         where.add(copyID);
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -976,7 +1052,12 @@ public class DataStore {
         database.initializeConnection();
         
         resultSet = database.selectRecord(Table.COPY, where);
-        resultSet.next();
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
         
         set.add(NULL_VARCHAR);
         set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
@@ -997,6 +1078,12 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         Calendar today = new GregorianCalendar();
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException("Copy ID does not exsit");
+            
+        }
+        
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
         where.add(copyID);
@@ -1005,7 +1092,12 @@ public class DataStore {
         database.initializeConnection();
         
         resultSet = database.selectRecord(Table.RECORD, where);
-        resultSet.next();
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
         
         where.clear();
         where.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_LOAN_ID)));
@@ -1027,6 +1119,12 @@ public class DataStore {
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         ArrayList<ReservedCopy> result = new ArrayList<> ();
+        
+        if (!isValidUserID(userID)) {
+            
+//            throw new UserNotFoundException("User ID is not valid");
+            
+        }
         
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -1082,6 +1180,12 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         ArrayList<CurrentHolding> result = new ArrayList<> ();
         
+        if (!isValidUserID(userID)) {
+            
+//            throw new UserNotFoundException("User ID is not valid");
+            
+        }
+        
         where.add(WILDCARD_CHAR);
         where.add(userID);
         where.add(WILDCARD_CHAR);
@@ -1133,6 +1237,12 @@ public class DataStore {
         ReservedCopy result = new ReservedCopy ();
         Calendar dateAvailable = new GregorianCalendar();
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException("Copy ID does not exsit");
+            
+        }
+        
         result.setCopyID(copyID);
         result.setCopy((ReservationCancellable)CatalogueCopy.getCatalogueCopy(copyID));
         result.setDateAvailable(null);
@@ -1165,6 +1275,12 @@ public class DataStore {
         Calendar timeBorrowed = new GregorianCalendar();
         Calendar timeReturned = new GregorianCalendar();
         Calendar timeToReturn = new GregorianCalendar();
+        
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException("Copy ID does not exsit");
+            
+        }
         
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -1216,13 +1332,24 @@ public class DataStore {
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
         
+        if (!isValidUserID(userID)) {
+            
+//            throw new UserNotFoundException("User ID is not valid");
+            
+        }
+        
         where.add(userID);
         where.add(WILDCARD_CHAR);
         
         database.initializeConnection();
         
         resultSet = database.selectRecord(Table.USER, where);
-        resultSet.next();
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
         
         set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_TYPE)));
         set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USERNAME)));
