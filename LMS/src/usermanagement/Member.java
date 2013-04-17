@@ -91,7 +91,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
         
     }
     
-    public void resetFine() {
+    public void resetFine() throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
         dataStore.resetFine(super.getUserID());
