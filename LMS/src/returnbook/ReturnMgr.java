@@ -52,7 +52,7 @@ public class ReturnMgr {
     //create a borrowable item based on item ID
     public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
         //get the catalogue item from catalogue management
-        CatalogueCopy catalogueItem = CatalogueCopy.getCatalogueItem(copyID);
+        CatalogueCopy catalogueItem = CatalogueCopy.getCatalogueCopy(copyID);
         //if the item is of Borrowable instance
         if (catalogueItem instanceof Returnable){
             //cast to returnable type

@@ -13,7 +13,7 @@ import java.util.*;
  * @author mmin001
  */
 
-public class Book extends CatalogueCopy implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,Updatable {
+public class Book extends CatalogueCopy implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,UpdatableItem {
     
     private String ISBN;
     private String genre;
@@ -26,7 +26,7 @@ public class Book extends CatalogueCopy implements Borrowable,Extendable,Reserva
     
     public static Book getBook(String copyID) throws SQLException, ClassNotFoundException {
         
-        return (Book) CatalogueCopy.getCatalogueItem(copyID);
+        return (Book) CatalogueCopy.getCatalogueCopy(copyID);
         
     }
     

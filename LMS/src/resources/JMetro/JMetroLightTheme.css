@@ -133,6 +133,12 @@
     -fx-border-style: segments(1, 1);
     -fx-background-insets: 0 0 0 0, 0, 1, 2;   
 }
+.menu-buton:disabled
+{
+    -fx-opacity: 0.4;
+    -fx-background-color: white;
+    -fx-text-fill: #212121;  
+}
 
 
 /*******************************************************************************

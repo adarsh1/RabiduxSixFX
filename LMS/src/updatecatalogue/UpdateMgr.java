@@ -1,7 +1,8 @@
 
 package updatecatalogue;
 
-import cataloguemanagement.Updatable;
+import cataloguemanagement.UpdatableCopy;
+import cataloguemanagement.UpdatableItem;
 import exception.ItemExistException;
 import usermanagement.Librarian;
 
@@ -12,7 +13,8 @@ import usermanagement.Librarian;
 public class UpdateMgr {
     
     private Librarian currentLibrarian;
-    private Updatable copy;
+    private UpdatableItem updatableItem;
+    private UpdatableCopy updatableCopy;    
     
     public UpdateMgr(Librarian currentLibrarian){
         this.currentLibrarian = currentLibrarian;

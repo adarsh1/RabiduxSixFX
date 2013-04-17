@@ -733,7 +733,7 @@ public class DataStore {
             pastTransaction.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
             pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            pastTransaction.setCopy(CatalogueCopy.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
+            pastTransaction.setCopy(CatalogueCopy.getCatalogueCopy(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
             pastTransaction.setMember((Member)User.getUser(userID));
             
             result.add(pastTransaction);
@@ -840,7 +840,7 @@ public class DataStore {
         transactionHistoryItem.setDateReturned(null);
         transactionHistoryItem.setDateToReturn(timeToReturn);
         transactionHistoryItem.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
-        transactionHistoryItem.setCopy(CatalogueCopy.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
+        transactionHistoryItem.setCopy(CatalogueCopy.getCatalogueCopy(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
         
         database.closeConnection();
         
@@ -953,7 +953,7 @@ public class DataStore {
             String copyID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_COPY_ID));
             
             reservedCopy.setCopyID(copyID);
-            reservedCopy.setCopy((ReservationCancellable)CatalogueCopy.getCatalogueItem(copyID));
+            reservedCopy.setCopy((ReservationCancellable)CatalogueCopy.getCatalogueCopy(copyID));
             reservedCopy.setDateAvailable(null);
             
             result.add(reservedCopy);
@@ -1026,7 +1026,7 @@ public class DataStore {
             currentHolding.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
             String copyID = resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID));
-            currentHolding.setCopy((Extendable)CatalogueCopy.getCatalogueItem(copyID));
+            currentHolding.setCopy((Extendable)CatalogueCopy.getCatalogueCopy(copyID));
             
             result.add(currentHolding);
         }
@@ -1045,7 +1045,7 @@ public class DataStore {
         Calendar dateAvailable = new GregorianCalendar();
         
         result.setCopyID(copyID);
-        result.setCopy((ReservationCancellable)CatalogueCopy.getCatalogueItem(copyID));
+        result.setCopy((ReservationCancellable)CatalogueCopy.getCatalogueCopy(copyID));
         result.setDateAvailable(null);
             
         where.add(WILDCARD_CHAR);
@@ -1110,7 +1110,7 @@ public class DataStore {
             result.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
             result.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            result.setCopy(CatalogueCopy.getCatalogueItem(copyID));
+            result.setCopy(CatalogueCopy.getCatalogueCopy(copyID));
             result.setMember((Member)User.getUser(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_USER_ID))));
             
         }

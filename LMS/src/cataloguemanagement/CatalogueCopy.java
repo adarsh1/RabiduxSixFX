@@ -32,7 +32,7 @@ public abstract class CatalogueCopy implements Displayable {
         
     }
     
-    public static CatalogueCopy getCatalogueItem (String copyID) throws SQLException, ClassNotFoundException {
+    public static CatalogueCopy getCatalogueCopy (String copyID) throws SQLException, ClassNotFoundException {
         
         DataStore datastore = new DataStore();
         return datastore.getCopy(copyID);
