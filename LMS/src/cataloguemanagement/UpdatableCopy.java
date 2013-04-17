@@ -12,7 +12,7 @@ import exception.ItemNotFoundException;
  * @author Allen
  */
 public interface UpdatableCopy {
-    public abstract void addNewCopy(String itemID, String location, int NumberOfCopies) throws ItemNotFoundException;    
-    public abstract void updateCopy(String copyID, String location); 
-    public abstract void deleteCopy(String copyID) throws CopyOnLoanException;
+    public abstract void addNewCopy() throws ItemNotFoundException;    
+    public abstract void updateCopy(); 
+    public abstract void deleteCopy() throws CopyOnLoanException;
 }

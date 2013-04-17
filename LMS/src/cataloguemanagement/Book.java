@@ -5,6 +5,8 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
+import exception.CopyOnLoanException;
+import exception.ItemNotFoundException;
 import java.sql.*;
 import java.util.*;
 
@@ -13,7 +15,8 @@ import java.util.*;
  * @author mmin001
  */
 
-public class Book extends CatalogueCopy implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,UpdatableItem {
+public class Book extends CatalogueCopy 
+    implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,UpdatableItem, UpdatableCopy {
     
     private String ISBN;
     private String genre;
@@ -138,10 +141,6 @@ public class Book extends CatalogueCopy implements Borrowable,Extendable,Reserva
         
     }
 
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public String getIndividualCopyID() {
@@ -180,5 +179,35 @@ public class Book extends CatalogueCopy implements Borrowable,Extendable,Reserva
         DataStore dataStore = new DataStore();
         return dataStore.getRecord(super.getIndividualCopyID());
         
+    }
+
+    @Override
+    public void addNewItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteItem() throws CopyOnLoanException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addNewCopy() throws ItemNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateCopy() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteCopy() throws CopyOnLoanException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -4,11 +4,16 @@
  */
 package cataloguemanagement;
 
+import exception.CopyOnLoanException;
+import java.util.Calendar;
+
 /**
  *
  * @author Richard
  */
 public interface UpdatableItem {
-    public abstract void update();
+    public abstract void addNewItem();  
+    public abstract void updateItem(); 
+    public abstract void deleteItem() throws CopyOnLoanException;
     
 }
