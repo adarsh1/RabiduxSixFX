@@ -1091,7 +1091,7 @@ public class DataStore {
         
         database.initializeConnection();
         
-        resultSet = database.selectRecord(Table.RECORD, where);
+        resultSet = database.selectRecord(Table.RECORD, where, 1);
         
         if (!resultSet.next()) {
             
@@ -1109,6 +1109,41 @@ public class DataStore {
         set.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND)));
         
         database.updateRecord(Table.RECORD, set, where);
+        
+        where.clear();
+        where.add(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_USER_ID)));
+        where.add(WILDCARD_CHAR);
+        
+        resultSet = database.selectRecord(Table.USER, where);
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
+        
+        set.clear();
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_TYPE)));
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USERNAME)));
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_PASSWORD)));
+        
+        double userFine = resultSet.getDouble(Table.USER.getAttribute(Table.USER_FINE));
+        String isSuspended = resultSet.getString(Table.USER.getAttribute(Table.USER_IS_SUSPENDED));
+        
+        userFine += fine;
+        if (userFine > 0.00) {
+            
+            isSuspended = "1";
+            
+        }
+        
+        set.add(Double.toString(userFine));
+        set.add(isSuspended);
+        
+        where.clear();
+        where.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_ID)));
+        
+        database.updateRecord(Table.USER, set, where);
         
         database.closeConnection();
         
@@ -1355,7 +1390,7 @@ public class DataStore {
         set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USERNAME)));
         set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_PASSWORD)));
         set.add("0");
-        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_IS_SUSPENDED)));
+        set.add("0");
         
         where.clear();
         where.add(userID);
