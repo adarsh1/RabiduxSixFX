@@ -1,6 +1,7 @@
 
 package updatecatalogue;
 
+import cataloguemanagement.Book;
 import cataloguemanagement.UpdatableCopy;
 import cataloguemanagement.UpdatableItem;
 import exception.ItemExistException;
@@ -25,7 +26,13 @@ public class UpdateMgr {
     }
     
     public void addNewBook(String title, String author, Calendar publishDate, String Description, String ISBN, String genre) throws ItemExistException{
-        
+        Book newBook = new Book();
+        newBook.setTitle(title);
+        newBook.setAuthor(author);
+        newBook.setDescription(Description);
+        newBook.setPublishDate(publishDate);
+        newBook.setISBN(ISBN);
+        newBook.setGenre(genre);
     }
 
     /**

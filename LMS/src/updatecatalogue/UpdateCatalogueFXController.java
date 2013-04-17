@@ -7,9 +7,11 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -88,6 +90,9 @@ public class UpdateCatalogueFXController extends BaseFXController
     @FXML //  fx:id="newItemTitle"
     private TextField newItemTitle; // Value injected by FXMLLoader
 
+    @FXML //  fx:id="optionPane"
+    private AnchorPane optionPane; // Value injected by FXMLLoader
+
     @FXML //  fx:id="updateCopyButton"
     private Button updateCopyButton; // Value injected by FXMLLoader
 
@@ -153,8 +158,9 @@ public class UpdateCatalogueFXController extends BaseFXController
     // Handler for Button[fx:id="newCopyButton"] onAction
     public void handleNewCopyButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the newCopyPane
-        actionHolderPane.getChildren().clear();
-        actionHolderPane.getChildren().add(newCopyPane);
+        setAllChildrenInvisible();
+        newCopyPane.setVisible(true);
+        this.handleOnShowAnimation(actionHolderPane);
     }
 
     // Handler for Button[fx:id="newCopyConfirmButton"] onAction
@@ -165,8 +171,9 @@ public class UpdateCatalogueFXController extends BaseFXController
     // Handler for Button[fx:id="newItemButton"] onAction
     public void handleNewItemButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the newItemPane
-        actionHolderPane.getChildren().clear();
-        actionHolderPane.getChildren().add(newItemPane);
+        setAllChildrenInvisible();
+        newItemPane.setVisible(true);
+        this.handleOnShowAnimation(actionHolderPane);
     }
 
     // Handler for Button[fx:id="newItemConfirm"] onAction
@@ -179,15 +186,22 @@ public class UpdateCatalogueFXController extends BaseFXController
             if (bookType.isSelected()){
                 String ISBN = newBookISBN.getText();
                 String genre = newBookGenre.getText();
-                updateMgr.addNewBook(title, author, publishDate, description, ISBN, genre);
-                
+                if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){
+                    updateMgr.addNewBook(title, author, publishDate, description, ISBN, genre);
+                }
+                else{                    
+                    displayWarning("Item Information incomplete", "Please fill in the necessary fields");
+                }
             }
+        }
+        catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
+            displayWarning("Sorry","Date format is wrong\n" + e.getMessage());
         }
         catch(ItemExistException e){
             displayWarning("Sorry",e.getMessage());
         }
-        catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
-            displayWarning("Sorry","Date format is wrong\n" + e.getMessage());
+        catch(Exception e){
+            displayWarning("Sorry","One of the fields is wrong:\n" + e.getMessage());
         }
         
     }
@@ -195,8 +209,9 @@ public class UpdateCatalogueFXController extends BaseFXController
     // Handler for Button[fx:id="updateCopyButton"] onAction
     public void handleUpdateCopyButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the updateCopyPane
-        actionHolderPane.getChildren().clear();
-        actionHolderPane.getChildren().add(updateCopyPane);
+        setAllChildrenInvisible();
+        updateCopyPane.setVisible(true);
+        this.handleOnShowAnimation(actionHolderPane);
     }
 
     // Handler for Button[fx:id="updateCopyConfirmButton"] onAction
@@ -212,8 +227,9 @@ public class UpdateCatalogueFXController extends BaseFXController
     // Handler for Button[fx:id="updateItemButton"] onAction
     public void handleUpdateItemButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the updateItemPane
-        actionHolderPane.getChildren().clear();
-        actionHolderPane.getChildren().add(updateItemPane);
+        setAllChildrenInvisible();
+        updateItemPane.setVisible(true);
+        this.handleOnShowAnimation(actionHolderPane);
     }
 
     // Handler for Button[fx:id="updateItemConfirmButton"] onAction
@@ -253,6 +269,7 @@ public class UpdateCatalogueFXController extends BaseFXController
         assert newItemPane != null : "fx:id=\"newItemPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert newItemPublishDate != null : "fx:id=\"newItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert newItemTitle != null : "fx:id=\"newItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert optionPane != null : "fx:id=\"optionPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateCopyButton != null : "fx:id=\"updateCopyButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateCopyConfirmButton != null : "fx:id=\"updateCopyConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateCopyDeleteButton != null : "fx:id=\"updateCopyDeleteButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
@@ -288,7 +305,8 @@ public class UpdateCatalogueFXController extends BaseFXController
 
     @Override
     public void playOnShowAnimation() {
-        this.handleOnShowAnimation(contentPane);
+        this.handleOnShowAnimation(actionHolderPane);
+        this.handleOnShowAnimation(optionPane);
     }
     
     private GregorianCalendar parseDate(String dateString) throws ArrayIndexOutOfBoundsException, NumberFormatException{
@@ -296,12 +314,20 @@ public class UpdateCatalogueFXController extends BaseFXController
 
         int year = Integer.parseInt(dateElement[0]);
         int month = Integer.parseInt(dateElement[1]);
-        int date = Integer.parseInt(dateElement[1]);
+        int date = Integer.parseInt(dateElement[2]);
         GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setLenient(false);
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DATE, date);
+        calendar.set(Calendar.DAY_OF_MONTH, date);
         return calendar;
+    }
+    
+    private void setAllChildrenInvisible(){
+        ObservableList<Node> panes = actionHolderPane.getChildren();
+        for (int i=0; i<panes.size(); i++){
+            panes.get(i).setVisible(false);
+        }
     }
 }
 
