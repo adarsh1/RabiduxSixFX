@@ -1,8 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package updatecatalogue;
+
+import cataloguemanagement.Updatable;
+import exception.ItemExistException;
+import usermanagement.Librarian;
 
 /**
  *
@@ -10,4 +11,17 @@ package updatecatalogue;
  */
 public class UpdateMgr {
     
+    private Librarian currentLibrarian;
+    private Updatable copy;
+    
+    public UpdateMgr(Librarian currentLibrarian){
+        this.currentLibrarian = currentLibrarian;
+    }
+    public UpdateMgr(){
+        //empty constructor
+    }
+    
+    public void addNewItem() throws ItemExistException{
+        
+    }
 }

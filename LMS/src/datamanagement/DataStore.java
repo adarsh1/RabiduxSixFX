@@ -27,7 +27,7 @@ public class DataStore {
         database = instance.createDatabase();
     }
     
-    public void insertItem(CatalogueItem catalogueItem) throws SQLException, ClassNotFoundException {
+    public void insertItem(CatalogueCopy catalogueItem) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> itemValues = new ArrayList<> ();
         
@@ -39,11 +39,11 @@ public class DataStore {
        
     }
     
-    public CatalogueItem getCopy(String copyID) throws SQLException, ClassNotFoundException {
+    public CatalogueCopy getCopy(String copyID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
-        CatalogueItem catalogueItem = null;
+        CatalogueCopy catalogueItem = null;
         
         if (!isValidCopyID(copyID)) {
             
@@ -68,7 +68,7 @@ public class DataStore {
             catalogueItem = new Book();
             
             catalogueItem.setIndividualCopyID(copyID);
-            catalogueItem.setType(CatalogueItem.BOOK);
+            catalogueItem.setType(CatalogueCopy.BOOK);
             catalogueItem.setItemID(itemID);
             catalogueItem.setLocation(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
             
@@ -733,7 +733,7 @@ public class DataStore {
             pastTransaction.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
             pastTransaction.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            pastTransaction.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
+            pastTransaction.setCopy(CatalogueCopy.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
             pastTransaction.setMember((Member)User.getUser(userID));
             
             result.add(pastTransaction);
@@ -840,7 +840,7 @@ public class DataStore {
         transactionHistoryItem.setDateReturned(null);
         transactionHistoryItem.setDateToReturn(timeToReturn);
         transactionHistoryItem.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
-        transactionHistoryItem.setCopy(CatalogueItem.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
+        transactionHistoryItem.setCopy(CatalogueCopy.getCatalogueItem(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID))));
         
         database.closeConnection();
         
@@ -953,7 +953,7 @@ public class DataStore {
             String copyID = resultSet.getString(Table.COPY.getAttribute(Table.COPY_COPY_ID));
             
             reservedCopy.setCopyID(copyID);
-            reservedCopy.setCopy((ReservationCancellable)CatalogueItem.getCatalogueItem(copyID));
+            reservedCopy.setCopy((ReservationCancellable)CatalogueCopy.getCatalogueItem(copyID));
             reservedCopy.setDateAvailable(null);
             
             result.add(reservedCopy);
@@ -1026,7 +1026,7 @@ public class DataStore {
             currentHolding.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
             String copyID = resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_COPY_ID));
-            currentHolding.setCopy((Extendable)CatalogueItem.getCatalogueItem(copyID));
+            currentHolding.setCopy((Extendable)CatalogueCopy.getCatalogueItem(copyID));
             
             result.add(currentHolding);
         }
@@ -1045,7 +1045,7 @@ public class DataStore {
         Calendar dateAvailable = new GregorianCalendar();
         
         result.setCopyID(copyID);
-        result.setCopy((ReservationCancellable)CatalogueItem.getCatalogueItem(copyID));
+        result.setCopy((ReservationCancellable)CatalogueCopy.getCatalogueItem(copyID));
         result.setDateAvailable(null);
             
         where.add(WILDCARD_CHAR);
@@ -1110,7 +1110,7 @@ public class DataStore {
             result.setFineAmount(Double.parseDouble(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_FINE_AMOUNT))));
             result.setNumOfExtend(Integer.parseInt(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_NUM_OF_EXTEND))));
             
-            result.setCopy(CatalogueItem.getCatalogueItem(copyID));
+            result.setCopy(CatalogueCopy.getCatalogueItem(copyID));
             result.setMember((Member)User.getUser(resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_USER_ID))));
             
         }

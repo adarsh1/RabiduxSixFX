@@ -5,7 +5,7 @@
 package resetfine;
 
 import cataloguemanagement.Borrowable;
-import cataloguemanagement.CatalogueItem;
+import cataloguemanagement.CatalogueCopy;
 import cataloguemanagement.PastTransaction;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;

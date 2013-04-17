@@ -12,7 +12,7 @@ import java.util.*;
  *
  * @author Allen
  */
-public abstract class CatalogueItem implements Displayable {
+public abstract class CatalogueCopy implements Displayable {
     
     //data field common to all catalogue items
     private String itemID;
@@ -28,11 +28,11 @@ public abstract class CatalogueItem implements Displayable {
     public static final int BOOK = 0;
     
 
-    public CatalogueItem(){
+    public CatalogueCopy(){
         
     }
     
-    public static CatalogueItem getCatalogueItem (String copyID) throws SQLException, ClassNotFoundException {
+    public static CatalogueCopy getCatalogueItem (String copyID) throws SQLException, ClassNotFoundException {
         
         DataStore datastore = new DataStore();
         return datastore.getCopy(copyID);

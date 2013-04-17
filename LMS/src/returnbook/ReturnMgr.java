@@ -5,7 +5,7 @@
 package returnbook;
 
 import cataloguemanagement.Borrowable;
-import cataloguemanagement.CatalogueItem;
+import cataloguemanagement.CatalogueCopy;
 import cataloguemanagement.PastTransaction;
 import cataloguemanagement.Returnable;
 import exception.NotEligibleToBorrowOrReserveException;
@@ -52,7 +52,7 @@ public class ReturnMgr {
     //create a borrowable item based on item ID
     public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
         //get the catalogue item from catalogue management
-        CatalogueItem catalogueItem = CatalogueItem.getCatalogueItem(copyID);
+        CatalogueCopy catalogueItem = CatalogueCopy.getCatalogueItem(copyID);
         //if the item is of Borrowable instance
         if (catalogueItem instanceof Returnable){
             //cast to returnable type
