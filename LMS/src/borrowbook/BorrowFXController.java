@@ -96,13 +96,14 @@ public class BorrowFXController extends BaseFXController implements Initializabl
             displayWarning(header,text);
         }        
     }
-    
+    /*
     private void displayItemErrorMsg(String message){
         bookInfoPane.setVisible(false);
         itemMsg.setVisible(true);
         itemMsg.setText(message);
         this.handleOnShowAnimation(itemMsg, 500, 20.0);        
     }
+    */
     
     private void getItemDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
         //create a borrowable item

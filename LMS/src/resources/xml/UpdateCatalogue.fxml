@@ -30,7 +30,7 @@
     <Button fx:id="updateCopyButton" layoutY="140.0" mnemonicParsing="false" onAction="#handleUpdateCopyButtonAction" prefWidth="120.0" text="Update Copy" />
     <AnchorPane id="actionPane" fx:id="actionHolderPane" layoutX="150.0" prefHeight="450.0" prefWidth="350.0">
       <children>
-        <AnchorPane fx:id="newItemPane" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="350.0" visible="false">
+        <AnchorPane fx:id="newItemPane" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="350.0">
           <children>
             <TextField id="itemTitleField" fx:id="newItemTitle" layoutY="90.0" prefWidth="305.0" promptText="Title of the item" />
             <TextField id="itemTitleField" fx:id="newItemAuthor" layoutY="130.0" prefWidth="305.0" promptText="Author" />
@@ -39,23 +39,23 @@
                 <ToggleGroup fx:id="itemType" />
               </toggleGroup>
             </RadioButton>
-            <TextField id="itemTitleField" fx:id="newItemPublishDate" layoutY="170.0" prefWidth="305.0" promptText="Publish Date" />
+            <TextField id="itemTitleField" fx:id="newItemPublishDate" layoutY="170.0" prefWidth="305.0" promptText="Publish Date (YYYY-MM-DD)" />
             <TextArea id="itemDescriptionField" fx:id="newItemDescription" layoutY="210.0" prefHeight="101.0" prefWidth="305.0" promptText="Description" wrapText="true" />
-            <AnchorPane layoutY="330.0" prefHeight="87.0" prefWidth="350.0">
+            <AnchorPane fx:id="bookInfoPane" layoutY="330.0" prefHeight="87.0" prefWidth="350.0" visible="false">
               <children>
-                <TextField id="itemTitleField" fx:id="newItemISBN" prefWidth="305.0" promptText="ISBN" />
-                <TextField id="itemTitleField" fx:id="newItemGenre" layoutY="40.0" prefWidth="305.0" promptText="Genre" />
+                <TextField id="itemTitleField" fx:id="newBookISBN" prefWidth="305.0" promptText="ISBN" />
+                <TextField id="itemTitleField" fx:id="newBookGenre" layoutY="40.0" prefWidth="305.0" promptText="Genre" />
               </children>
             </AnchorPane>
-            <Button id="confirmButton" fx:id="newItemConfirm" defaultButton="true" layoutX="267.0" layoutY="425.0" mnemonicParsing="false" text="Confirm" />
+            <Button id="confirmButton" fx:id="newItemConfirm" defaultButton="true" layoutX="267.0" layoutY="425.0" mnemonicParsing="false" onAction="#handleNewItemConfirmAction" text="Confirm" />
             <Label layoutY="-8.0" styleClass="font-grey, header-3" text="Add a new item" />
           </children>
         </AnchorPane>
-        <AnchorPane fx:id="updateItemPane" prefHeight="450.0" prefWidth="350.0">
+        <AnchorPane fx:id="updateItemPane" prefHeight="450.0" prefWidth="350.0" visible="false">
           <children>
             <TextField layoutY="50.0" prefHeight="25.0" prefWidth="241.0" />
             <Label layoutY="-9.0" styleClass="font-grey, header-3" text="Enter the item ID" />
-            <Button fx:id="getItemDetailsButton" layoutX="253.0" layoutY="50.0" mnemonicParsing="false" text="Get Details" />
+            <Button fx:id="getItemDetailsButton" layoutX="253.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetItemDetailsButtonAction" text="Get Details" />
             <AnchorPane fx:id="updateItemInfoPane" layoutY="100.0" prefHeight="350.0" prefWidth="350.0">
               <children>
                 <TextArea id="itemDescriptionField" fx:id="updateItemDescription" layoutY="100.0" prefHeight="101.0" prefWidth="305.0" promptText="Description" wrapText="true" />
@@ -68,7 +68,7 @@
                     <TextField id="itemTitleField" fx:id="updateItemGenre" layoutY="40.0" prefWidth="305.0" promptText="Genre" />
                   </children>
                 </AnchorPane>
-                <Button fx:id="updateItemConfirmButton" defaultButton="true" layoutX="267.0" layoutY="323.0" mnemonicParsing="false" text="Confirm" />
+                <Button fx:id="updateItemConfirmButton" defaultButton="true" layoutX="267.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleUpdateItemConfirmButtonAction" text="Confirm" />
                 <Button fx:id="updateItemDeleteButton" layoutX="165.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleUpdateItemDeleteButtonAction" text="Delete" />
               </children>
             </AnchorPane>
