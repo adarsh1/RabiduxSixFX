@@ -152,7 +152,7 @@ public class UpdateCatalogueFXController extends BaseFXController
 
     // Handler for Button[fx:id="getItemDetailsButton"] onAction
     public void handleGetItemDetailsButtonAction(ActionEvent event) {
-        // handle the event here
+        
     }
 
     // Handler for Button[fx:id="newCopyButton"] onAction

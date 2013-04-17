@@ -25,14 +25,29 @@ public class UpdateMgr {
         //empty constructor
     }
     
-    public void addNewBook(String title, String author, Calendar publishDate, String Description, String ISBN, String genre) throws ItemExistException{
+    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemExistException{
         Book newBook = new Book();
         newBook.setTitle(title);
         newBook.setAuthor(author);
-        newBook.setDescription(Description);
+        newBook.setDescription(description);
         newBook.setPublishDate(publishDate);
         newBook.setISBN(ISBN);
         newBook.setGenre(genre);
+        
+        newBook.addNewItem();
+    }
+    
+    public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre){
+        Book bookToUpdate = new Book();
+        bookToUpdate.setItemID(itemID);
+        bookToUpdate.setTitle(title);
+        bookToUpdate.setAuthor(author);
+        bookToUpdate.setDescription(description);
+        bookToUpdate.setPublishDate(publishDate);
+        bookToUpdate.setISBN(ISBN);
+        bookToUpdate.setGenre(genre);
+        
+        bookToUpdate.updateItem();
     }
 
     /**
