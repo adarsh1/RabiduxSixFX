@@ -47,7 +47,7 @@
             <Image url="@../images/user%20icon.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <Label fx:id="logoutbutton" layoutX="187.0" layoutY="20.0" onMouseClicked="#logoutbuttonhandler" text="LOG OUT" textAlignment="RIGHT" />
+        <Label fx:id="logoutbutton" layoutX="187.0" layoutY="20.0" onMouseClicked="#logoutbuttonhandler" styleClass="logout-label" text="LOG OUT" textAlignment="RIGHT" />
         <Label fx:id="username" alignment="CENTER_RIGHT" layoutX="7.0" prefWidth="230.0" styleClass="font-bold" text="liux0047@e.ntu.edu.sg" textAlignment="RIGHT" />
       </children>
     </Pane>
@@ -63,6 +63,18 @@
       </children>
     </Pane>
     <AnchorPane id="" fx:id="contentPlaceHolderPane" layoutX="190.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
+    <AnchorPane fx:id="logoutPane" layoutY="190.0" prefHeight="150.0" prefWidth="900.0" styleClass="logout-pane" visible="false">
+      <children>
+        <AnchorPane id="logoutMsgPane" fx:id="logoutMessageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
+          <children>
+            <Label id="logoutMsg" fx:id="logoutHeader" styleClass="logout-header" text="title" />
+            <Label id="LogoutMessageText" fx:id="logoutText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="logout-text" text="Label" />
+            <Button fx:id="yesLogout" layoutX="337.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleLogoutYesButtonAction" styleClass="logout-button" text="YES" />
+            <Button fx:id="noLogout" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleLogoutNoButtonAction" styleClass="logout-button" text="NO" />
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />
