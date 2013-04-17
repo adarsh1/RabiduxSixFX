@@ -5,8 +5,6 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
-import exception.CopyOnLoanException;
-import exception.ItemNotFoundException;
 import java.sql.*;
 import java.util.*;
 
@@ -16,7 +14,7 @@ import java.util.*;
  */
 
 public class Book extends CatalogueCopy 
-    implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,UpdatableItem, UpdatableCopy {
+    implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable{
     
     private String ISBN;
     private String genre;
@@ -220,35 +218,5 @@ public class Book extends CatalogueCopy
         DataStore dataStore = new DataStore();
         return dataStore.getRecord(super.getIndividualCopyID());
         
-    }
-
-    @Override
-    public void addNewItem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateItem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteItem() throws CopyOnLoanException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addNewCopy() throws ItemNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateCopy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteCopy() throws CopyOnLoanException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

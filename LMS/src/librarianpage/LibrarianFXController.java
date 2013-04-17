@@ -100,10 +100,8 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     
     
    public void logoutbuttonhandler(MouseEvent event) {
-        
-        
         logoutHeader.setText("Confirm Logout");
-            String text = username.getText()+" are you sure you want to logout?";
+        String text = username.getText()+" are you sure you want to logout?";
         logoutText.setText(text);
         disableAllPanes("");
         
