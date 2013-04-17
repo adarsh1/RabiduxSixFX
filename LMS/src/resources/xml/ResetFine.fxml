@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="borrowPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="returnbook.ReturnFXController">
+<AnchorPane id="borrowPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="resetfine.ResetFineFXController">
   <children>
     <Pane id="bookInfoPane" fx:id="userinfoPane" layoutY="117.0" prefHeight="333.0" prefWidth="500.0" visible="false">
       <children>
-        <Label id="itemID" fx:id="userFine" layoutX="70.0" layoutY="69.0" prefHeight="23.9609375" styleClass="font-grey" />
-        <Label id="author" fx:id="userName" layoutX="70.0" layoutY="30.0" prefHeight="23.9609375" styleClass="font-grey" />
-        <Button fx:id="confirmBorrow" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleResetButtonAction" text="Reset" />
+        <Label id="itemID" fx:id="userFine" layoutX="14.0" layoutY="69.0" prefHeight="31.9609375" styleClass="font-grey, header-4" />
+        <Label id="author" fx:id="userName" layoutX="14.0" layoutY="30.0" prefHeight="32.9609375" styleClass="font-grey, header-4" />
+        <Button id="confirmBorrow" fx:id="resetButton" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleResetButtonAction" text="Reset" />
       </children>
     </Pane>
     <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the member's UserID" />

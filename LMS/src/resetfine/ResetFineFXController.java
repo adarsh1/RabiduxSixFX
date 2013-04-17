@@ -45,7 +45,7 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     private Pane userinfoPane; // Value injected by FXMLLoader
 
     @FXML //  fx:id="confirmBorrow"
-    private Button confirmBorrow; // Value injected by FXMLLoader
+    private Button resetButton; // Value injected by FXMLLoader
 
     @FXML //  fx:id="contentPane"
     private AnchorPane contentPane; // Value injected by FXMLLoader
@@ -82,20 +82,27 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     
     // Handler for Button[fx:id="getDetails"] onAction
     public void handleGetDetailsButtonAction(ActionEvent event) {
-        // handle the event here
+        try
+        {
+            getUserDetails();
+        }
+        catch (Exception e)
+        {
+            userIDField.clear();
+            String header = "No User Found";
+            String text = "Oops we could not find a User with this Id\nPlease recheck your User-ID.\n";
+            text += "Error message:" + e.getMessage();
+            displayWarning(header,text);
+        }
     }
 
-    // Handler for Button[fx:id="confirmBorrow"] onAction
-    public void handleResetButtonAction(ActionEvent event) {
-        // handle the event here
-    }
     
     
-    private void getItemDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
+    private void getUserDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
     
-        //ResetFineMgr.setMember(userIDField.getText());
-        //userName.setT(ResetFineMgr.getUserName());
-        //userFine.setText(ResetFineMgr.getFine());
+        resetFineMgr.setMember(userIDField.getText());
+        userName.setText("User Name : "+resetFineMgr.getUserName());
+        userFine.setText("User Fine    : "+resetFineMgr.getUserFine());
         //make the book info panel visible
         userinfoPane.setVisible(true);
 
@@ -106,9 +113,9 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     
     
     //handle the borrow when the confirm button is pressed
-    public void handleConfirmButtonAction(ActionEvent event){
+    public void handleResetButtonAction(ActionEvent event){
         try{
-            //ResetFineMgr.reset();
+            resetFineMgr.reset();
             String text = "The Member's fine has been reset to 0.\n";
             displaySuccess("Thank you",text);
         }
@@ -125,7 +132,7 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert userinfoPane != null : "fx:id=\"userinfoPane\" was not injected: check your FXML file 'Borrow.fxml'.";
-        assert confirmBorrow != null : "fx:id=\"confirmBorrow\" was not injected: check your FXML file 'Borrow.fxml'.";
+        assert resetButton != null : "fx:id=\"confirmBorrow\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert userIDField != null : "fx:id=\"userIDField\" was not injected: check your FXML file 'Borrow.fxml'.";
         assert getDetails != null : "fx:id=\"getDetails\" was not injected: check your FXML file 'Borrow.fxml'.";
@@ -139,8 +146,6 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     @Override   //call the inherited method to update the current member
     public void setInitialData( ModelController modelController){      
         this.setModelController(modelController);
-        //set the current member to borrow
-        resetFineMgr.setCurrentMember((Member)modelController.getUser());
     }
         
     @Override   //play new animation when shown

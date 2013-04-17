@@ -11,6 +11,7 @@ import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import java.sql.SQLException;
 import usermanagement.Member;
+import usermanagement.User;
 
 /**
  *
@@ -19,11 +20,11 @@ import usermanagement.Member;
 public class ResetFineMgr {
  
      
-    private Member currentMember;
+    private Member finedMember;
     
     //a member object required to construct
     public ResetFineMgr(Member currentMember){
-        this.currentMember = currentMember;
+        this.finedMember = currentMember;
     }
     public ResetFineMgr(){
         //empty constructor
@@ -31,32 +32,38 @@ public class ResetFineMgr {
     
 
     /**
-     * @return the currentMember
+     * @return the finedMember
      */
     public Member getCurrentMember() {
-        return currentMember;
+        return finedMember;
     }
 
     /**
-     * @param currentMember the currentMember to set
+     * @param finedMember the currentMember to set
      */
-    public void setCurrentMember(Member currentMember) {
-        this.currentMember = currentMember;
+    public void setFinedMember(Member finedMember) {
+        this.finedMember = finedMember;
     }
     
     
-    public void setMember(String userID)
+    public void setMember(String userID) throws SQLException, ClassNotFoundException
     {
-        //get member from datastore 
+        finedMember = (Member)User.getUser(userID);
+        
     }
 
     public String getUserName()
     {
-        return currentMember.getUsername();
+        return finedMember.getUsername();
     }
     
     public String getUserFine()
     {
-        return (currentMember.getFineAmount() + "");
+        return (finedMember.getFineAmount() + "");
+    }
+    
+    public void reset() throws SQLException, ClassNotFoundException
+    {
+        finedMember.resetFine();
     }
 }
