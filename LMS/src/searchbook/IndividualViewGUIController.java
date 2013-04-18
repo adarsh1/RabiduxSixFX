@@ -161,7 +161,7 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
      * @param text The text who's height is to be measured 
      * @param charsPerLine The characters per line.
      * @param lineHeight The height of each line.
-     * @return 
+     * @return Height of text
      */
 private double computeTextHeight(String text, int charsPerLine, double lineHeight){
         return text.length() / charsPerLine * lineHeight;
