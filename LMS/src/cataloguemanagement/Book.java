@@ -17,6 +17,8 @@ import java.util.*;
 public class Book extends CatalogueCopy 
     implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,ItemUpdatable{
     
+    public static int GRACE_PERIOD = 3;
+    
     private String ISBN;
     private String genre;
     
@@ -291,6 +293,8 @@ public class Book extends CatalogueCopy
     public boolean isReserved() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
+        
+        dataStore.refreshReserve(super.getIndividualCopyID(), Book.GRACE_PERIOD);
         return dataStore.isCopyReserved(super.getIndividualCopyID());
         
     }
