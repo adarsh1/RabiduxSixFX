@@ -18,6 +18,7 @@ public class Faculty extends Member{
         super();
         setUsertype(User.FACULTY);
         setMaxHolding(Member.FACULTY_MAX_HOLDING);
+        setMaxReserve(Member.FACULTY_MAX_RESERVE);
         
     }
 
