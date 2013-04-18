@@ -1742,8 +1742,8 @@ public class DataStore {
 
         values.add(copyID);
         values.add((String)details.get(Table.COPY_ITEM_ID));
-        values.add((String)details.get(Table.COPY_LOCATION));
         values.add(NULL_VARCHAR);
+        values.add((String)details.get(Table.COPY_LOCATION));
 
         database.initializeConnection();
 
