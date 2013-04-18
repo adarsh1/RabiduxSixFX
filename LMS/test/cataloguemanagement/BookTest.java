@@ -4,7 +4,6 @@
  */
 package cataloguemanagement;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,19 +37,7 @@ public class BookTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getBook method, of class Book.
-     */
-    @Test
-    public void testGetBook() throws Exception {
-        System.out.println("getBook");
-        String copyID = "";
-        Book expResult = null;
-        Book result = Book.getBook(copyID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of isValidBook method, of class Book.
@@ -66,59 +53,6 @@ public class BookTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getISBN method, of class Book.
-     */
-    @Test
-    public void testGetISBN() {
-        System.out.println("getISBN");
-        Book instance = new Book();
-        String expResult = "";
-        String result = instance.getISBN();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setISBN method, of class Book.
-     */
-    @Test
-    public void testSetISBN() {
-        System.out.println("setISBN");
-        String ISBN = "";
-        Book instance = new Book();
-        instance.setISBN(ISBN);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getGenre method, of class Book.
-     */
-    @Test
-    public void testGetGenre() {
-        System.out.println("getGenre");
-        Book instance = new Book();
-        String expResult = "";
-        String result = instance.getGenre();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setGenre method, of class Book.
-     */
-    @Test
-    public void testSetGenre() {
-        System.out.println("setGenre");
-        String genre = "";
-        Book instance = new Book();
-        instance.setGenre(genre);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of borrow method, of class Book.
@@ -136,76 +70,7 @@ public class BookTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getTitle method, of class Book.
-     */
-    @Test
-    public void testGetTitle() {
-        System.out.println("getTitle");
-        Book instance = new Book();
-        String expResult = "";
-        String result = instance.getTitle();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getDescription method, of class Book.
-     */
-    @Test
-    public void testGetDescription() {
-        System.out.println("getDescription");
-        Book instance = new Book();
-        String expResult = "";
-        String result = instance.getDescription();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getAuthor method, of class Book.
-     */
-    @Test
-    public void testGetAuthor() {
-        System.out.println("getAuthor");
-        Book instance = new Book();
-        String expResult = "";
-        String result = instance.getAuthor();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPublishDate method, of class Book.
-     */
-    @Test
-    public void testGetPublishDate() {
-        System.out.println("getPublishDate");
-        Book instance = new Book();
-        Calendar expResult = null;
-        Calendar result = instance.getPublishDate();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getItemID method, of class Book.
-     */
-    @Test
-    public void testGetItemID() {
-        System.out.println("getItemID");
-        Book instance = new Book();
-        String expResult = "";
-        String result = instance.getItemID();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of extend method, of class Book.
      */
@@ -255,20 +120,6 @@ public class BookTest {
         double fine = 0.0;
         Book instance = new Book();
         instance.returnCopy(fine);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIndividualCopyID method, of class Book.
-     */
-    @Test
-    public void testGetIndividualCopyID() {
-        System.out.println("getIndividualCopyID");
-        Book instance = new Book();
-        String expResult = "";
-        String result = instance.getIndividualCopyID();
-        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
