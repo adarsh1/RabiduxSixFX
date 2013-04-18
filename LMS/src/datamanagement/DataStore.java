@@ -1171,6 +1171,20 @@ public class DataStore {
             
         }
         
+        where.clear();
+        where.add(copyID);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        
+        resultSet = database.selectRecord(Table.COPY, where);
+        
+        if (!resultSet.next()) {
+            
+            database.closeConnection();
+            throw new NullResultException();
+            
+        }
+        
         set.add(userID);
         set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
         

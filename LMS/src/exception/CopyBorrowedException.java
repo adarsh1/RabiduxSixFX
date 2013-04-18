@@ -15,7 +15,7 @@ public class CopyBorrowedException extends BorrowException {
      */
     public CopyBorrowedException() {
         
-        super("The book has been reserved by another user");
+        super("The book has been borrowed by another user");
         
     }
 
