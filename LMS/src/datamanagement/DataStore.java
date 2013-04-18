@@ -2,12 +2,12 @@
 package datamanagement;
 
 import cataloguemanagement.*;
+import exception.*;
 import factory.DatabaseFactory;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import usermanagement.*;
-import exception.*;
 
 /**
  *
@@ -832,7 +832,7 @@ public class DataStore {
      */
     public int getNumOfBorrowing(String userID) throws SQLException, ClassNotFoundException {
         
-        int result = 0;
+        int result;
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
         
