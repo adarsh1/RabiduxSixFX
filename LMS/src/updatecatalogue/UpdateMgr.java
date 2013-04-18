@@ -44,7 +44,7 @@ public class UpdateMgr {
     public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException{
         
         ItemUpdatable itemUpdatable = new Book();
-        HashMap<String, Object> hashMap = new HashMap ();
+        HashMap<String, Object> hashMap = new HashMap<> ();
         
         hashMap.put(Table.BOOK_TITLE, title);
         hashMap.put(Table.BOOK_AUTHOR, author);
@@ -74,7 +74,7 @@ public class UpdateMgr {
     public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException{
         
         ItemUpdatable itemUpdatable = new Book();
-        HashMap<String, Object> hashMap = new HashMap ();
+        HashMap<String, Object> hashMap = new HashMap<> ();
         
         hashMap.put(Table.BOOK_TITLE, title);
         hashMap.put(Table.BOOK_AUTHOR, author);
@@ -130,7 +130,7 @@ public class UpdateMgr {
     public void addNewCopy(String itemID, String location) throws SQLException, ClassNotFoundException{
         
         CopyUpdatable copyUpdatable = new Book();
-        HashMap<String, Object> hashMap = new HashMap ();
+        HashMap<String, Object> hashMap = new HashMap<> ();
         
         hashMap.put(Table.COPY_ITEM_ID, itemID);
         hashMap.put(Table.COPY_LOCATION, location);
@@ -150,7 +150,7 @@ public class UpdateMgr {
     public void updateCopy(String itemID, String copyID, String location) throws SQLException, ClassNotFoundException{
         
         CopyUpdatable copyUpdatable = new Book();
-        HashMap<String, Object> hashMap = new HashMap ();
+        HashMap<String, Object> hashMap = new HashMap<> ();
         
         hashMap.put(Table.COPY_ITEM_ID, itemID);
         hashMap.put(Table.COPY_COPY_ID, copyID);

@@ -1606,8 +1606,10 @@ public class DataStore {
         
     }
 
-    public void addItem(HashMap<String, Object> details) {
+    public void addItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+        
         throw new UnsupportedOperationException("Not yet implemented");
+        
     }
 
     public void updateItem(HashMap<String, Object> details) {
