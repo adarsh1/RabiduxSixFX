@@ -6,6 +6,7 @@ package Holdings;
 
 import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedCopy;
+import exception.CopyReservedException;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.UserSuspendedException;
 import factory.SystemConfig;
@@ -117,7 +118,7 @@ public class HoldingsMgrTest {
         }
         catch(Exception e)
         {
-          System.out.println("Passed");
+          Assert.assertTrue("Incorrect Exception",e instanceof CopyReservedException);
         }
     }
     
