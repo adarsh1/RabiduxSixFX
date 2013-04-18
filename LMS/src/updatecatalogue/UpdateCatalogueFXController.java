@@ -10,14 +10,13 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -43,6 +42,18 @@ public class UpdateCatalogueFXController extends BaseFXController
 
     @FXML //  fx:id="bookType"
     private RadioButton bookType; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="confirmHeader"
+    private Label confirmHeader; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="confirmMessageHolderPane"
+    private AnchorPane confirmMessageHolderPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="confirmPane"
+    private AnchorPane confirmPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="confirmText"
+    private Label confirmText; // Value injected by FXMLLoader
 
     @FXML //  fx:id="contentPane"
     private AnchorPane contentPane; // Value injected by FXMLLoader
@@ -94,6 +105,9 @@ public class UpdateCatalogueFXController extends BaseFXController
 
     @FXML //  fx:id="newItemTitle"
     private TextField newItemTitle; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="noConfirm"
+    private Button noConfirm; // Value injected by FXMLLoader
 
     @FXML //  fx:id="optionPane"
     private AnchorPane optionPane; // Value injected by FXMLLoader
@@ -155,12 +169,20 @@ public class UpdateCatalogueFXController extends BaseFXController
     @FXML //  fx:id="updateItemTitle"
     private TextField updateItemTitle; // Value injected by FXMLLoader
 
+    @FXML //  fx:id="yesConfirm"
+    private Button yesConfirm; // Value injected by FXMLLoader
+
+
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert actionHolderPane != null : "fx:id=\"actionHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert bookInfoPane != null : "fx:id=\"bookInfoPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert bookType != null : "fx:id=\"bookType\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert confirmHeader != null : "fx:id=\"confirmHeader\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert confirmMessageHolderPane != null : "fx:id=\"confirmMessageHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert confirmPane != null : "fx:id=\"confirmPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert confirmText != null : "fx:id=\"confirmText\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert getCopyDetailsButton != null : "fx:id=\"getCopyDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert getItemDetailsButton != null : "fx:id=\"getItemDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
@@ -183,6 +205,7 @@ public class UpdateCatalogueFXController extends BaseFXController
         assert newItemPane != null : "fx:id=\"newItemPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert newItemPublishDate != null : "fx:id=\"newItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert newItemTitle != null : "fx:id=\"newItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert noConfirm != null : "fx:id=\"noConfirm\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert optionPane != null : "fx:id=\"optionPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateCopyButton != null : "fx:id=\"updateCopyButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateCopyConfirmButton != null : "fx:id=\"updateCopyConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
@@ -203,8 +226,8 @@ public class UpdateCatalogueFXController extends BaseFXController
         assert updateItemPane != null : "fx:id=\"updateItemPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateItemPublishDate != null : "fx:id=\"updateItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateItemTitle != null : "fx:id=\"updateItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert yesConfirm != null : "fx:id=\"yesConfirm\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
 
-        // initialize your logic here: all @FXML variables will have been injected
         updateMgr = new UpdateMgr();
     }
 
@@ -277,6 +300,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             String itemID = newCopyItemID.getText();
             String location = newCopyLocation.getText();
             updateMgr.addNewCopy(itemID, location);
+            this.displaySuccess("New Copy Added", "A new copy for " + itemID + " has been successfully created.");
         }
         /*
         catch(ItemNotFoundException e){
@@ -316,6 +340,7 @@ public class UpdateCatalogueFXController extends BaseFXController
                 String genre = newBookGenre.getText();
                 if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){
                     updateMgr.addNewBook(title, author, publishDate, description, ISBN, genre);
+                    this.displaySuccess("New Item Added", "New item " + title + " has been successfully added");
                 }
                 else{                    
                     displayWarning("Item Information incomplete", "Please fill in the necessary fields");
@@ -364,9 +389,18 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleUpdateCopyDeleteButtonAction(ActionEvent event) {
+        confirmHeader.setText("Confirm delete action");
+        String text = "are you sure you want to update this copy?";
+        confirmText.setText(text);
+        confirmPane.setVisible(true);
+        this.handleOnShowAnimation(confirmMessageHolderPane);
+    }
+    
+    private void deleteCopy(){
         try {
             String copyID = updateCopyID.getText();
-            updateMgr.deleteCopy(copyID);
+            updateMgr.deleteCopy(copyID);            
+            
         } catch (SQLException | ClassNotFoundException ex) {
             this.displayWarning("Error", ex.getMessage());
         }
@@ -398,7 +432,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             String description = updateItemDescription.getText();
             String ISBN = updateItemISBN.getText();
             String genre = updateItemGenre.getText();
-            if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){
+            if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){                
                 updateMgr.updateBook(itemID, title, author, publishDate, description, ISBN, genre);
             }
             else{                    
@@ -419,6 +453,14 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleUpdateItemDeleteButtonAction(ActionEvent event) {
+        confirmHeader.setText("Confirm delete action");
+        String text = "are you sure you want to update this item?";
+        confirmText.setText(text);
+        confirmPane.setVisible(true);
+        this.handleOnShowAnimation(confirmMessageHolderPane);
+    }
+    
+    private void deleteItem(){
         try {
             String itemID = updateItemItemID.getText();
             updateMgr.deleteBook(itemID);
@@ -443,6 +485,22 @@ public class UpdateCatalogueFXController extends BaseFXController
         //set the book info pane to be visible
         if(bookType.isSelected()){
             bookInfoPane.setVisible(true);
+        }
+    }
+    
+    // Handler for Button[fx:id="noConfirm"] onAction
+    public void handleNoConfirmButtonAction(ActionEvent event) {
+        // handle the event here
+    }
+
+    // Handler for Button[fx:id="yesConfirm"] onAction
+    public void handleYesConfirmButtonAction(ActionEvent event) {
+        Node button = (Node)event.getSource();
+        if (button.getId().equals("updateItemDeleteButton")){
+            deleteItem();
+        }
+        else if(button.getId().equals("updateCopyDeleteButton")){
+            deleteCopy();
         }
     }
 
