@@ -122,6 +122,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
      */
     // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void handlesearchbutton(ActionEvent event)throws IOException{
+        if(!searchButton.isDisabled())
         getDetails();
     }
     
@@ -190,8 +191,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
      */
     @FXML
     void updateSearchButton(KeyEvent event) {
-        if(searchButton.isDisabled()==false)
-          updateSearchButton();
+        updateSearchButton();
     }
 
     @FXML
