@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.ItemNotFoundException;
 import java.util.HashMap;
 
 /**
@@ -20,15 +21,15 @@ public class UpdatableCopy {
         
     }
     
-    public void updateCopy(String copyID, String location){
+    public void updateCopy(String copyID, String location) throws ItemNotFoundException{
         
     }
     
-    public HashMap getCopyDetails(String copyID){
+    public HashMap getCopyDetails(String copyID) throws ItemNotFoundException{
         return new HashMap();
     }
     
-    public void deleteCopy(String copyID){
+    public void deleteCopy(String copyID) throws ItemNotFoundException{
         
     }
 }
