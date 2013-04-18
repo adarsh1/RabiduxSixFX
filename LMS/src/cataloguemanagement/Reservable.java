@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.*;
 import java.sql.SQLException;
 
 /**
@@ -18,34 +19,34 @@ public interface Reservable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract void reserve(String userID) throws SQLException, ClassNotFoundException;
+    public abstract void reserve(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, UserNotFoundException, CopyBorrowedException ;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract boolean isReserved () throws SQLException, ClassNotFoundException;
+    public abstract boolean isReserved () throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException ;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract boolean isBorrowed () throws SQLException, ClassNotFoundException;
+    public abstract boolean isBorrowed () throws SQLException, ClassNotFoundException, CopyNotFoundException ;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException;
+    public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException;
+    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException;
     
 }

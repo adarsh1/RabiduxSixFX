@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.*;
 import java.sql.SQLException;
 
 /**
@@ -19,5 +20,5 @@ public interface Extendable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException;
+    public abstract void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException;
 }

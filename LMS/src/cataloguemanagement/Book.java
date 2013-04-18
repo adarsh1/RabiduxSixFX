@@ -5,6 +5,7 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
+import exception.*;
 import java.sql.*;
 import java.util.*;
 
@@ -35,7 +36,7 @@ public class Book extends CatalogueCopy
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static Book getBook(String copyID) throws SQLException, ClassNotFoundException {
+    public static Book getBook(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         return (Book) CatalogueCopy.getCatalogueCopy(copyID);
         
@@ -106,13 +107,13 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException {
+    public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyReservedException, CopyBorrowedException {
         
         DataStore dataStore = new DataStore();
         
         if (dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
             
-//            throw new BookBorrowedException();
+            throw new CopyBorrowedException();
             
         }
         
@@ -179,7 +180,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException{
+    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException{
         
         DataStore dataStore = new DataStore();
                 
@@ -200,19 +201,19 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void reserve(String userID) throws SQLException, ClassNotFoundException {
+    public void reserve(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, UserNotFoundException, CopyBorrowedException {
         
         DataStore dataStore = new DataStore();
         
         if (!dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
             
-//            throw new CopyNotBorrowedException();
+            throw new CopyNotBorrowedException();
             
         }
         
         if (dataStore.isCopyReserved(super.getIndividualCopyID())) {
             
-//            throw new CopyReservedException();
+            throw new CopyReservedException();
             
         }
         
@@ -227,7 +228,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException {
+    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         
@@ -248,7 +249,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void returnCopy(double fine) throws SQLException, ClassNotFoundException {
+    public void returnCopy(double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
         
@@ -281,7 +282,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public boolean isReserved() throws SQLException, ClassNotFoundException {
+    public boolean isReserved() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
         return dataStore.isCopyReserved(super.getIndividualCopyID());
@@ -295,7 +296,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public boolean isBorrowed() throws SQLException, ClassNotFoundException {
+    public boolean isBorrowed() throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.isCopyBorrowed(super.getIndividualCopyID());
@@ -309,7 +310,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public ReservedCopy getReservedCopy() throws SQLException, ClassNotFoundException {
+    public ReservedCopy getReservedCopy() throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getReservedCopy(super.getIndividualCopyID());
@@ -323,7 +324,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public PastTransaction getPastTransaction() throws SQLException, ClassNotFoundException {
+    public PastTransaction getPastTransaction() throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getRecord(super.getIndividualCopyID());
@@ -331,7 +332,7 @@ public class Book extends CatalogueCopy
     }
 
     @Override
-    public void addNewItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+    public void addNewItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, InvalidItemTypeException {
         
         DataStore dataStore = new DataStore();      
         dataStore.addItem(details, CatalogueCopy.BOOK);
@@ -339,7 +340,7 @@ public class Book extends CatalogueCopy
     }
 
     @Override
-    public void updateItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+    public void updateItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
         DataStore dataStore = new DataStore();
         dataStore.updateItem(details, CatalogueCopy.BOOK);
@@ -347,7 +348,7 @@ public class Book extends CatalogueCopy
     }
 
     @Override
-    public HashMap<String, Object> getItem(String itemID) throws SQLException, ClassNotFoundException {
+    public HashMap<String, Object> getItem(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, NullResultException, InvalidItemTypeException {
         
         DataStore dataStore = new DataStore();
         HashMap<String, Object> details;
@@ -359,7 +360,7 @@ public class Book extends CatalogueCopy
     }
 
     @Override
-    public void deleteItem(String itemID) throws SQLException, ClassNotFoundException {
+    public void deleteItem(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
         DataStore dataStore = new DataStore();
         dataStore.deleteItem(itemID, CatalogueCopy.BOOK);
@@ -375,7 +376,7 @@ public class Book extends CatalogueCopy
     }
 
     @Override
-    public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+    public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();      
         dataStore.updateCopy(details);
@@ -383,7 +384,7 @@ public class Book extends CatalogueCopy
     }
 
     @Override
-    public HashMap<String, Object> getCopy(String copyID) throws SQLException, ClassNotFoundException {
+    public HashMap<String, Object> getCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
         HashMap<String, Object> details;
@@ -395,7 +396,7 @@ public class Book extends CatalogueCopy
     }
 
     @Override
-    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException {
+    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         DataStore dataStore = new DataStore();
         dataStore.deleteCopy(copyID);

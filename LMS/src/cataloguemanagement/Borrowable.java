@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.*;
 import java.sql.*;
 
 /**
@@ -20,7 +21,7 @@ public interface Borrowable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract PastTransaction borrow (String userID, int loanDuration) throws SQLException, ClassNotFoundException;
+    public abstract PastTransaction borrow (String userID, int loanDuration) throws SQLException, ClassNotFoundException, CopyBorrowedException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyReservedException;
    
     
 }

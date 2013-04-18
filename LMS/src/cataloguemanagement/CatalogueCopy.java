@@ -5,6 +5,9 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
+import exception.CopyNotFoundException;
+import exception.ItemNotFoundException;
+import exception.NullResultException;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -45,7 +48,7 @@ public abstract class CatalogueCopy implements Displayable, CopyUpdatable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static CatalogueCopy getCatalogueCopy (String copyID) throws SQLException, ClassNotFoundException {
+    public static CatalogueCopy getCatalogueCopy (String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         DataStore datastore = new DataStore();
         return datastore.getCopy(copyID);
@@ -72,7 +75,7 @@ public abstract class CatalogueCopy implements Displayable, CopyUpdatable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public Boolean isOverdue() throws SQLException, ClassNotFoundException {
+    public Boolean isOverdue() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
         
@@ -101,6 +104,7 @@ public abstract class CatalogueCopy implements Displayable, CopyUpdatable {
      *
      * @return
      */
+    @Override
     public String getLocation() {
         
         return location;
