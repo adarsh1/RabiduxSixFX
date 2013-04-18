@@ -268,6 +268,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
             catch(Exception except)
             {
             setChanged();
+            except.printStackTrace();
             notifyObservers(except);
             } 
         }
