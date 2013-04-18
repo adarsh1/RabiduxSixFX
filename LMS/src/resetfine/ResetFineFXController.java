@@ -114,6 +114,7 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     
     //handle the borrow when the confirm button is pressed
     public void handleResetButtonAction(ActionEvent event){
+        userinfoPane.setVisible(false);
         try{
             resetFineMgr.reset();
             String text = "The Member's fine has been reset to 0.\n";

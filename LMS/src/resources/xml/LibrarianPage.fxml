@@ -29,15 +29,9 @@
             <Image url="@../images/update.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/history.jpg" preserveRatio="false" smooth="false" />
-          </image>
-        </ImageView>
         <Button id="searchButton" fx:id="returnMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleReturnMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="Return" />
         <Button id="BorrowMenuButton" fx:id="resetFineMenuButton" layoutX="55.0" layoutY="100.0" mnemonicParsing="false" onAction="#handlefineMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="Reset Fine" />
         <Button id="hoo" fx:id="updateMenuButton" layoutX="55.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleupdateMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="Update" />
-        <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleHistoryMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="History" />
       </children>
     </Pane>
     <Pane id="annoucementPane" fx:id="footerPane" layoutX="600.0" layoutY="530.0" prefHeight="60.0" prefWidth="280.0">
