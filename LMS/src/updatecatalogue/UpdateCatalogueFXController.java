@@ -66,6 +66,24 @@ public class UpdateCatalogueFXController extends BaseFXController
     @FXML //  fx:id="getItemDetailsButton"
     private Button getItemDetailsButton; // Value injected by FXMLLoader
 
+    @FXML //  fx:id="hideMessage"
+    private Button hideMessage; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="maskPane"
+    private AnchorPane maskPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="messageHeader"
+    private Label messageHeader; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="messageHolderPane"
+    private AnchorPane messageHolderPane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="messagePane"
+    private AnchorPane messagePane; // Value injected by FXMLLoader
+
+    @FXML //  fx:id="messageText"
+    private Label messageText; // Value injected by FXMLLoader
+
     @FXML //  fx:id="newBookGenre"
     private TextField newBookGenre; // Value injected by FXMLLoader
 
@@ -401,6 +419,7 @@ public class UpdateCatalogueFXController extends BaseFXController
         String text = "are you sure you want to update this copy?";
         confirmText.setText(text);
         confirmPane.setVisible(true);
+        maskPane.setVisible(true);
         this.handleOnShowAnimation(confirmMessageHolderPane);
     }
     
@@ -466,6 +485,7 @@ public class UpdateCatalogueFXController extends BaseFXController
         String text = "are you sure you want to update this item?";
         confirmText.setText(text);
         confirmPane.setVisible(true);
+        maskPane.setVisible(true);
         this.handleOnShowAnimation(confirmMessageHolderPane);
     }
     
@@ -479,8 +499,6 @@ public class UpdateCatalogueFXController extends BaseFXController
             this.displayWarning("Sorry", e.getMessage());
         }
     }
-
-    
         
     /**
      *
@@ -500,6 +518,7 @@ public class UpdateCatalogueFXController extends BaseFXController
     // Handler for Button[fx:id="noConfirm"] onAction
     public void handleNoConfirmButtonAction(ActionEvent event) {
         confirmPane.setVisible(false);
+        maskPane.setVisible(false);
     }
 
     // Handler for Button[fx:id="yesConfirm"] onAction
@@ -512,6 +531,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             deleteCopy();
             this.clearUpdateCopyFields();
         }
+        maskPane.setVisible(false);
         confirmPane.setVisible(false);
     }
 
