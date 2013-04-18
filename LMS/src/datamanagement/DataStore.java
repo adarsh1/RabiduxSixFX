@@ -1773,8 +1773,16 @@ public class DataStore {
             
         }
         
-        set.add((String)details.get(Table.COPY_ITEM_ID));
-        set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
+        if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)) == null) {
+            
+            set.add(NULL_VARCHAR);
+            
+        } else {
+            
+            set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
+            
+        }
+        
         set.add((String)details.get(Table.COPY_LOCATION));
 
         where.clear();
