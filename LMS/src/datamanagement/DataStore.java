@@ -1609,7 +1609,7 @@ public class DataStore {
     public void addItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> values = new ArrayList<> ();
-        String itemID = null;
+        String itemID;
         
         if (itemType == CatalogueCopy.BOOK) {
             
@@ -1643,7 +1643,13 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         
         if (itemType == CatalogueCopy.BOOK) {
-                        
+            
+            if (!isValidBookID((String)details.get(Table.BOOK_BOOK_ID))) {
+                
+//                throw new ItemNotFoundException();
+                
+            }
+            
             where.add((String)details.get(Table.BOOK_BOOK_ID));
             
             set.add((String)details.get(Table.BOOK_TITLE));
@@ -1675,6 +1681,12 @@ public class DataStore {
         Calendar publishDate = new GregorianCalendar();
         
         if (itemType == CatalogueCopy.BOOK) {
+            
+            if (!isValidBookID(itemID)) {
+                
+//                throw new ItemNotFoundException();
+                
+            }
             
             where.add(itemID);
             where.add(WILDCARD_CHAR);
@@ -1719,6 +1731,12 @@ public class DataStore {
         
         if (itemType == CatalogueCopy.BOOK) {
             
+            if (!isValidBookID(itemID)) {
+                
+//                throw new ItemNotFoundException();
+                
+            }
+            
             where.add(itemID);
             
             database.initializeConnection();
@@ -1739,7 +1757,7 @@ public class DataStore {
         
         ArrayList<String> values = new ArrayList<> ();
         String copyID = database.getNewID(Table.COPY);
-
+        
         values.add(copyID);
         values.add((String)details.get(Table.COPY_ITEM_ID));
         values.add(NULL_VARCHAR);
@@ -1758,7 +1776,13 @@ public class DataStore {
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
         ResultSet resultSet;
-
+        
+        if (!isValidCopyID((String)details.get(Table.COPY_COPY_ID))) {
+            
+//            throw new CopyNotFoundException();
+            
+        }
+        
         where.add((String)details.get(Table.COPY_COPY_ID));
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -1801,6 +1825,12 @@ public class DataStore {
         HashMap<String, Object> details = new HashMap<> ();
         Calendar publishDate = new GregorianCalendar();
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException();
+            
+        }
+        
         where.add(copyID);
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -1827,6 +1857,12 @@ public class DataStore {
     public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> where = new ArrayList<> ();
+        
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException();
+            
+        }
         
         where.add(copyID);
 
