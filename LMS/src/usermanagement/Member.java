@@ -4,10 +4,9 @@
  */
 package usermanagement;
 
-import cataloguemanagement.CurrentHolding;
-import cataloguemanagement.ReservedCopy;
-import cataloguemanagement.PastTransaction;
+import cataloguemanagement.*;
 import datamanagement.DataStore;
+import exception.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -64,7 +63,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isEligibleToBorrow() throws SQLException, ClassNotFoundException{
+    public boolean isEligibleToBorrow() throws SQLException, ClassNotFoundException, UserNotFoundException{
         
         boolean result;
         
@@ -82,7 +81,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
         
     }
     
-    public boolean isEligibleToReserve() throws SQLException, ClassNotFoundException{
+    public boolean isEligibleToReserve() throws SQLException, ClassNotFoundException, UserNotFoundException{
         
         boolean result;
         
@@ -101,14 +100,14 @@ public abstract class Member extends User implements BorrowRecordAccessible{
     }
     
     
-    private int getNumOfBorrowedItem() throws SQLException, ClassNotFoundException {
+    private int getNumOfBorrowedItem() throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getNumOfBorrowing(super.getUserID());
         
     }
     
-    private int getNumOfReservedItem() throws SQLException, ClassNotFoundException {
+    private int getNumOfReservedItem() throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getNumOfReserving(super.getUserID());
@@ -168,7 +167,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void resetFine() throws SQLException, ClassNotFoundException {
+    public void resetFine() throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
         dataStore.resetFine(super.getUserID());
@@ -188,7 +187,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException {
+    public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException, InvalidUserTypeException {
         
         DataStore dataStore = new DataStore();
         ArrayList<PastTransaction> A = dataStore.getRecords(super.getUserID());
@@ -202,7 +201,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException {
+    public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getReservedCopies(super.getUserID());
@@ -216,7 +215,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException{
+    public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException{
         
         DataStore dataStore = new DataStore();
         return dataStore.getCurrentHoldings(super.getUserID());

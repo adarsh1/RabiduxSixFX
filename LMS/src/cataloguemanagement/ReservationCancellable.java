@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.*;
 import java.sql.SQLException;
 
 /**
@@ -18,6 +19,6 @@ public interface ReservationCancellable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException;
+    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException ;
   
 }

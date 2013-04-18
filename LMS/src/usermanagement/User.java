@@ -51,7 +51,7 @@ public class User {
      * @throws IncorrectPasswordException
      */
     
-    public static User getUserByName(String username) throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public static User getUserByName(String username) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
         DataStore dataStore = new DataStore();
         
@@ -65,7 +65,7 @@ public class User {
         
     }
     
-    public static User getUser(String username, String password) throws SQLException, ClassNotFoundException, UserNotFoundException, IncorrectPasswordException {
+    public static User getUser(String username, String password) throws SQLException, ClassNotFoundException, UserNotFoundException, IncorrectPasswordException, NullResultException, InvalidUserTypeException {
         
         DataStore dataStore = new DataStore();
         
@@ -92,7 +92,7 @@ public class User {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static User getUser(String userID) throws SQLException, ClassNotFoundException {
+    public static User getUser(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
         DataStore dataStore = new DataStore();
         
@@ -106,7 +106,7 @@ public class User {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isSuspended() throws SQLException, ClassNotFoundException {
+    public boolean isSuspended() throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
         return dataStore.isUserSuspended(userID);
