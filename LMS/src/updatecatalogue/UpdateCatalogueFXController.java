@@ -496,18 +496,18 @@ public class UpdateCatalogueFXController extends BaseFXController
     
     // Handler for Button[fx:id="noConfirm"] onAction
     public void handleNoConfirmButtonAction(ActionEvent event) {
-        // handle the event here
+        confirmPane.setVisible(false);
     }
 
     // Handler for Button[fx:id="yesConfirm"] onAction
     public void handleYesConfirmButtonAction(ActionEvent event) {
-        Node button = (Node)event.getSource();
-        if (button.getId().equals("updateItemDeleteButton")){
+        if (updateItemPane.isVisible()){
             deleteItem();
         }
-        else if(button.getId().equals("updateCopyDeleteButton")){
+        else if(updateCopyPane.isVisible()){
             deleteCopy();
         }
+        confirmPane.setVisible(false);
     }
 
     /**

@@ -13,33 +13,20 @@
 package resetfine;
 
 import baseGUI.BaseFXController;
-import borrowbook.BorrowMgr;
-import cataloguemanagement.PastTransaction;
-import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
 import exception.UserNotFoundException;
 import globalcontrol.ModelController;
 import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import java.net.URL;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import usermanagement.Member;
 
 
 /**
@@ -62,21 +49,6 @@ public class ResetFineFXController extends BaseFXController implements Initializ
 
     @FXML //  fx:id="getDetails"
     private Button getDetails; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="hideMessage"
-    private Button hideMessage; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messageHeader"
-    private Label messageHeader; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messageHolderPane"
-    private AnchorPane messageHolderPane; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messagePane"
-    private AnchorPane messagePane; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messageText"
-    private Label messageText; // Value injected by FXMLLoader
 
     @FXML //  fx:id="userFine"
     private Label userFine; // Value injected by FXMLLoader
