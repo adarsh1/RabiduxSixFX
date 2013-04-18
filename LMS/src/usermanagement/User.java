@@ -50,6 +50,21 @@ public class User {
      * @throws UserNotFoundException
      * @throws IncorrectPasswordException
      */
+    
+    public static User getUserByName(String username) throws SQLException, ClassNotFoundException, UserNotFoundException, IncorrectPasswordException {
+        
+        DataStore dataStore = new DataStore();
+        
+        if (!dataStore.isValidUsername(username)) {
+            
+            throw new UserNotFoundException("User name does not exsit!");
+            
+        }
+        
+        return dataStore.getUserByName(username);
+        
+    }
+    
     public static User getUser(String username, String password) throws SQLException, ClassNotFoundException, UserNotFoundException, IncorrectPasswordException {
         
         DataStore dataStore = new DataStore();
@@ -66,7 +81,7 @@ public class User {
             
         }
         
-        return dataStore.getUser(username, password);
+        return dataStore.getUserByName(username);
         
     }
     
