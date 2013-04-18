@@ -17,6 +17,7 @@ import borrowbook.BorrowMgr;
 import cataloguemanagement.PastTransaction;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +27,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -107,15 +110,18 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     
     
     private void getUserDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
-    
-        resetFineMgr.setMember(userIDField.getText());
-        userName.setText("User Name : "+resetFineMgr.getUserName());
-        userFine.setText("User Fine    : "+resetFineMgr.getUserFine());
-        //make the book info panel visible
-        userinfoPane.setVisible(true);
+        try {
+            resetFineMgr.setMember(userIDField.getText());
+            userName.setText("User Name : "+resetFineMgr.getUserName());
+            userFine.setText("User Fine    : "+resetFineMgr.getUserFine());
+            //make the book info panel visible
+            userinfoPane.setVisible(true);
 
-        //generate animation
-        this.handleOnShowAnimation(userinfoPane);
+            //generate animation
+            this.handleOnShowAnimation(userinfoPane);
+        } catch (UserNotFoundException ex) {
+            this.displayWarning("Error", "User not found " + ex.getMessage());
+        }
         
     }
     
