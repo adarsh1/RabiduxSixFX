@@ -4,7 +4,10 @@
  */
 package updatecatalogue;
 
+import exception.ItemNotFoundException;
+import factory.SystemConfig;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -25,6 +28,8 @@ public class UpdateMgrTest {
     
     @BeforeClass
     public static void setUpClass() {
+        SystemConfig instance = SystemConfig.getInstance();
+        instance.useMySQLDB();
     }
     
     @AfterClass
@@ -42,53 +47,61 @@ public class UpdateMgrTest {
     /**
      * Test of addNewBook method, of class UpdateMgr.
      */
-    @Test
+    @Test(expected=NullPointerException.class)
     public void testAddNewBook() throws Exception {
         System.out.println("addNewBook");
-        String title = "";
-        String author = "";
+        String title = "title";
+        String author = "author";
         Calendar publishDate = null;
-        String description = "";
-        String ISBN = "";
-        String genre = "";
+        String description = "description";
+        String ISBN = "ISBN";
+        String genre = "genre";
         UpdateMgr instance = new UpdateMgr();
         instance.addNewBook(title, author, publishDate, description, ISBN, genre);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+    
     /**
      * Test of updateBook method, of class UpdateMgr.
      */
-    @Test
-    public void testUpdateBook() throws Exception {
+    @Test(expected=NullPointerException.class)
+    public void testUpdateBook1() throws Exception {
         System.out.println("updateBook");
-        String itemID = "";
-        String title = "";
-        String author = "";
+        String itemID = "3000000001";
+        String title = "title";
+        String author = "author";
         Calendar publishDate = null;
-        String description = "";
-        String ISBN = "";
-        String genre = "";
+        String description = "description";
+        String ISBN = "ISBN";
+        String genre = "genre";
         UpdateMgr instance = new UpdateMgr();
         instance.updateBook(itemID, title, author, publishDate, description, ISBN, genre);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    @Test(expected=ItemNotFoundException.class)
+    public void testUpdateBook2() throws Exception {
+        System.out.println("updateBook");
+        String itemID = "";
+        String title = "title";
+        String author = "author";
+        Calendar publishDate = new GregorianCalendar(2011,2,2);
+        String description = "description";
+        String ISBN = "ISBN";
+        String genre = "genre";
+        UpdateMgr instance = new UpdateMgr();
+        instance.updateBook(itemID, title, author, publishDate, description, ISBN, genre);
     }
 
     /**
      * Test of getItemInfo method, of class UpdateMgr.
      */
-    @Test
+    @Test(expected=ItemNotFoundException.class)
     public void testGetItemInfo() throws Exception {
         System.out.println("getItemInfo");
         String itemID = "";
         UpdateMgr instance = new UpdateMgr();
         HashMap expResult = null;
         HashMap result = instance.getItemInfo(itemID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

@@ -216,14 +216,4 @@ public class UpdateMgr {
         this.currentLibrarian = currentLibrarian;
     }
 
-    private void setBookDetails(HashMap<String, Object> newBook, String title, String author, String description, Calendar publishDate, String ISBN, String genre) {
-        newBook.put(Table.BOOK_TITLE,title);
-        newBook.put(Table.BOOK_AUTHOR,author);
-        newBook.put(Table.BOOK_DESCRIPTION, description);
-        newBook.put(Table.BOOK_DATE,publishDate);
-        newBook.put(Table.BOOK_ISBN, ISBN);
-        newBook.put(Table.BOOK_GENRE, genre);
-        
-        //bookToUpdate.updateItem();
-    }
 }
