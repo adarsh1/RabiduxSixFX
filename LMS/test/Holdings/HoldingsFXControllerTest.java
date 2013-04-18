@@ -7,6 +7,7 @@ package Holdings;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,6 +50,32 @@ public class HoldingsFXControllerTest {
         ResourceBundle resources = null;
         HoldingsFXController instance = new HoldingsFXController();
         instance.initialize(fxmlFileLocation, resources);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of handleConfirmYesButtonAction method, of class HoldingsFXController.
+     */
+    @Test
+    public void testHandleConfirmYesButtonAction() {
+        System.out.println("handleConfirmYesButtonAction");
+        ActionEvent event = null;
+        HoldingsFXController instance = new HoldingsFXController();
+        instance.handleConfirmYesButtonAction(event);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of handleConfirmNoButtonAction method, of class HoldingsFXController.
+     */
+    @Test
+    public void testHandleConfirmNoButtonAction() {
+        System.out.println("handleConfirmNoButtonAction");
+        ActionEvent event = null;
+        HoldingsFXController instance = new HoldingsFXController();
+        instance.handleConfirmNoButtonAction(event);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
