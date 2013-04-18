@@ -15,7 +15,7 @@
   <children>
     <AnchorPane id="actionPane" fx:id="actionHolderPane" layoutX="150.0" prefHeight="450.0" prefWidth="350.0">
       <children>
-        <AnchorPane fx:id="newItemPane" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="350.0" visible="false">
+        <AnchorPane fx:id="newItemPane" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="350.0">
           <children>
             <TextField id="itemTitleField" fx:id="newItemTitle" layoutY="90.0" prefWidth="350.0" promptText="Title of the item" />
             <TextField id="itemTitleField" fx:id="newItemAuthor" layoutY="130.0" prefWidth="350.0" promptText="Author" />
@@ -73,12 +73,16 @@
           <children>
             <Label layoutY="-7.0" styleClass="font-grey, header-3" text="Update a copy" />
             <TextField id="newCopyItemID" fx:id="updateCopyID" layoutY="75.0" prefHeight="25.0" prefWidth="244.0" promptText="The ID of this copy" />
-            <TextField id="newCopyLocation" fx:id="updateCopyLocation" layoutY="145.0" prefHeight="25.0" prefWidth="350.0" promptText="Location" />
             <Label layoutY="50.0" styleClass="header-5" text="Copy ID" />
-            <Label layoutY="120.0" styleClass="header-5" text="Location" />
-            <Button id="newCopyConfirmButton" fx:id="updateCopyConfirmButton" defaultButton="true" layoutX="267.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleUpdateCopyConfirmButtonAction" text="Confirm" />
             <Button id="updateCopyGetDetailsButton" fx:id="getCopyDetailsButton" layoutX="253.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleGetCopyDetailsButtonAction" text="Get Details" />
-            <Button fx:id="updateCopyDeleteButton" layoutX="167.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleUpdateCopyDeleteButtonAction" text="Delete" />
+            <AnchorPane id="updateCopy" fx:id="updateCopyInfoPane" disable="true" layoutY="125.0" prefHeight="325.0" prefWidth="350.0">
+              <children>
+                <Button fx:id="updateCopyDeleteButton" layoutX="168.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleUpdateCopyDeleteButtonAction" text="Delete" />
+                <Button id="newCopyConfirmButton" fx:id="updateCopyConfirmButton" defaultButton="true" layoutX="267.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleUpdateCopyConfirmButtonAction" text="Confirm" />
+                <TextField id="newCopyLocation" fx:id="updateCopyLocation" layoutY="25.0" prefHeight="25.0" prefWidth="350.0" promptText="Location" />
+                <Label styleClass="header-5" text="Location" />
+              </children>
+            </AnchorPane>
           </children>
         </AnchorPane>
       </children>
