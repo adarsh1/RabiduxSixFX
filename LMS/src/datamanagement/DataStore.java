@@ -652,13 +652,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
-        if (bookID == null) {
-            
-            return false;
-            
-        }
-        
+                
         database.initializeConnection();
         
         where.add(bookID);
@@ -695,13 +689,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
-        if (userID == null) {
-            
-            return false;
-            
-        }
-        
+                
         database.initializeConnection();
         
         where.add(userID);
@@ -736,13 +724,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
-        if (username == null) {
-            
-            return false;
-            
-        }
-        
+                
         database.initializeConnection();
         
         where.add(WILDCARD_CHAR);
@@ -778,13 +760,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
-        if (loanID == null) {
-            
-            return false;
-            
-        }
-        
+                
         database.initializeConnection();
         
         where.add(loanID);
@@ -821,13 +797,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
-        if (copyID == null) {
-            
-            return false;
-            
-        }
-        
+                
         database.initializeConnection();
         
         where.add(copyID);
