@@ -9,6 +9,7 @@ import cataloguemanagement.CatalogueCopy;
 import cataloguemanagement.PastTransaction;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 import usermanagement.Member;
 import usermanagement.User;
@@ -55,13 +56,13 @@ public class ResetFineMgr {
     
     /**
      *
-     * @param userID
+     * @param userName
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void setMember(String userID) throws SQLException, ClassNotFoundException
+    public void setMember(String userName) throws SQLException, ClassNotFoundException, UserNotFoundException
     {
-        finedMember = (Member)User.getUser(userID);
+        finedMember = (Member)User.getUserByName(userName);
         
     }
 

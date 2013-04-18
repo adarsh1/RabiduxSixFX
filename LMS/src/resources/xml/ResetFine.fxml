@@ -20,7 +20,7 @@
         <Button id="confirmBorrow" fx:id="resetButton" layoutX="417.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleResetButtonAction" text="Reset" />
       </children>
     </Pane>
-    <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the member's UserID" />
+    <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the member's UserName" />
     <TextField id="itemIDField" fx:id="userIDField" layoutY="50.0" prefHeight="31.0" prefWidth="390.0" />
     <Button fx:id="getDetails" defaultButton="true" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" prefHeight="30.0" text="Get info" />
     <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">

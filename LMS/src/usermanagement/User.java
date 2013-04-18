@@ -51,7 +51,7 @@ public class User {
      * @throws IncorrectPasswordException
      */
     
-    public static User getUserByName(String username) throws SQLException, ClassNotFoundException, UserNotFoundException, IncorrectPasswordException {
+    public static User getUserByName(String username) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         

@@ -106,6 +106,7 @@ public class DataStore {
             
         } else {
             
+//            database.closeConnection();
 //            throw new ItemNotFoundException("Item ID is not valid");
             
         }
@@ -168,6 +169,7 @@ public class DataStore {
             
         } else {
             
+//            database.closeConnection();            
 //            throw new InvalidUserTypeException("The user type is invalid");
             
         }
@@ -233,6 +235,7 @@ public class DataStore {
             
         } else {
             
+//            database.closeConnection();            
 //            throw new InvalidUserTypeException("The user type is invalid");
             
         }
@@ -288,12 +291,13 @@ public class DataStore {
 
             }
             
+            database.closeConnection();
+            
         } else {
             
 //            throw new ItemNotFoundException("Item ID is invalid");
             
         }
-        database.closeConnection();
         
         return result;
         
@@ -438,17 +442,7 @@ public class DataStore {
             result = true;
             
         }
-        
-//        if (resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) == null) {
-//            
-//            result = true;
-//            
-//        } else {
-//            
-//            result = false;
-//            
-//        }
-        
+                
         database.closeConnection();
         
         return result;
@@ -483,6 +477,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -530,6 +525,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -577,6 +573,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -624,6 +621,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -853,16 +851,6 @@ public class DataStore {
         
         resultSet = database.selectRecord(Table.RECORD, where);
         
-//        while (resultSet.next()) {
-//            
-//            if (resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)) == null) {
-//                
-//                result ++;
-//                
-//            } 
-//            
-//        }
-        
         result = database.getNumOfRows(resultSet);
         
         database.closeConnection();
@@ -1024,12 +1012,14 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
         
         if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)) != null && resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)).compareTo(userID) != 0) {
             
+//            database.closeConnection();
 //            throw new BookReservedException();
             
         }
@@ -1098,6 +1088,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -1168,6 +1159,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -1219,6 +1211,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -1266,6 +1259,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -1289,6 +1283,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -1587,6 +1582,7 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
@@ -1609,7 +1605,7 @@ public class DataStore {
     public void addItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> values = new ArrayList<> ();
-        String itemID = null;
+        String itemID;
         
         if (itemType == CatalogueCopy.BOOK) {
             
@@ -1643,7 +1639,13 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         
         if (itemType == CatalogueCopy.BOOK) {
-                        
+            
+            if (!isValidBookID((String)details.get(Table.BOOK_BOOK_ID))) {
+                
+//                throw new ItemNotFoundException();
+                
+            }
+            
             where.add((String)details.get(Table.BOOK_BOOK_ID));
             
             set.add((String)details.get(Table.BOOK_TITLE));
@@ -1676,6 +1678,12 @@ public class DataStore {
         
         if (itemType == CatalogueCopy.BOOK) {
             
+            if (!isValidBookID(itemID)) {
+                
+//                throw new ItemNotFoundException();
+                
+            }
+            
             where.add(itemID);
             where.add(WILDCARD_CHAR);
             where.add(WILDCARD_CHAR);
@@ -1688,6 +1696,7 @@ public class DataStore {
             
             if (!resultSet.next()) {
                 
+//                database.closeConnection();
 //                throw new NullResultException();
                 
             }
@@ -1702,6 +1711,8 @@ public class DataStore {
             details.put(Table.BOOK_DESCRIPTION, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_DESCRIPTION)));
             details.put(Table.BOOK_ISBN, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_ISBN)));
             details.put(Table.BOOK_GENRE, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_GENRE)));
+            
+            database.closeConnection();
             
         } else {
             
@@ -1718,6 +1729,12 @@ public class DataStore {
         ArrayList<String> where = new ArrayList<> ();
         
         if (itemType == CatalogueCopy.BOOK) {
+            
+            if (!isValidBookID(itemID)) {
+                
+//                throw new ItemNotFoundException();
+                
+            }
             
             where.add(itemID);
             
@@ -1739,7 +1756,7 @@ public class DataStore {
         
         ArrayList<String> values = new ArrayList<> ();
         String copyID = database.getNewID(Table.COPY);
-
+        
         values.add(copyID);
         values.add((String)details.get(Table.COPY_ITEM_ID));
         values.add(NULL_VARCHAR);
@@ -1758,7 +1775,13 @@ public class DataStore {
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
         ResultSet resultSet;
-
+        
+        if (!isValidCopyID((String)details.get(Table.COPY_COPY_ID))) {
+            
+//            throw new CopyNotFoundException();
+            
+        }
+        
         where.add((String)details.get(Table.COPY_COPY_ID));
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -1769,12 +1792,21 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
+//            database.closeConnection();
 //            throw new NullResultException();
             
         }
         
-        set.add((String)details.get(Table.COPY_ITEM_ID));
-        set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
+        if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)) == null) {
+            
+            set.add(NULL_VARCHAR);
+            
+        } else {
+            
+            set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
+            
+        }
+        
         set.add((String)details.get(Table.COPY_LOCATION));
 
         where.clear();
@@ -1793,6 +1825,12 @@ public class DataStore {
         HashMap<String, Object> details = new HashMap<> ();
         Calendar publishDate = new GregorianCalendar();
         
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException();
+            
+        }
+        
         where.add(copyID);
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
@@ -1802,8 +1840,9 @@ public class DataStore {
         resultSet = database.selectRecord(Table.COPY, where);
 
         if (!resultSet.next()) {
-
-//                throw new NullResultException();
+            
+//            database.closeConnection();
+//            throw new NullResultException();
 
         }
 
@@ -1811,7 +1850,9 @@ public class DataStore {
         details.put(Table.COPY_ITEM_ID, resultSet.getString(Table.COPY.getAttribute(Table.COPY_ITEM_ID)));
         details.put(Table.COPY_LOCATION, resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
         details.put(Table.COPY_RESERVED_BY, resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
-
+        
+        database.closeConnection();
+        
         return details;
         
     }
@@ -1819,6 +1860,12 @@ public class DataStore {
     public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> where = new ArrayList<> ();
+        
+        if (!isValidCopyID(copyID)) {
+            
+//            throw new CopyNotFoundException();
+            
+        }
         
         where.add(copyID);
 
