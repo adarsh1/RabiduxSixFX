@@ -147,6 +147,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     
     //handle the borrow when the confirm button is pressed
     public void handleConfirmButtonAction(ActionEvent event){
+        bookInfoPane.setVisible(false);
         try{
             if(!returnMgr.returnbook())
             {//set the text to be shown
@@ -155,9 +156,11 @@ public class ReturnFXController extends BaseFXController implements Initializabl
             }
             else
             {
+             
              String text = "The book has been successfully returned.\n";
-             text += "A fine of " + returnMgr.getfine() + "is to be paid by the member";
+             text += "A fine of " + returnMgr.getfine() + " is to be paid by the member";
              displaySuccess("Thank you",text);
+             
             }
            }
         catch(SQLException | ClassNotFoundException e){

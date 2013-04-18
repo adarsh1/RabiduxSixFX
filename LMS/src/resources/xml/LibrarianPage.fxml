@@ -29,15 +29,9 @@
             <Image url="@../images/update.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/history.jpg" preserveRatio="false" smooth="false" />
-          </image>
-        </ImageView>
         <Button id="searchButton" fx:id="returnMenuButton" contentDisplay="CENTER" layoutX="55.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleReturnMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="Return" />
         <Button id="BorrowMenuButton" fx:id="resetFineMenuButton" layoutX="55.0" layoutY="100.0" mnemonicParsing="false" onAction="#handlefineMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="Reset Fine" />
         <Button id="hoo" fx:id="updateMenuButton" layoutX="55.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleupdateMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="Update" />
-        <Button fx:id="historyMenuButton" layoutX="55.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleHistoryMenuButtonAction" prefHeight="30.0" prefWidth="120.0" styleClass="menu-buton" text="History" />
       </children>
     </Pane>
     <Pane id="annoucementPane" fx:id="footerPane" layoutX="600.0" layoutY="530.0" prefHeight="60.0" prefWidth="280.0">
@@ -47,7 +41,7 @@
             <Image url="@../images/user%20icon.jpg" preserveRatio="false" smooth="false" />
           </image>
         </ImageView>
-        <Label fx:id="logoutbutton" layoutX="187.0" layoutY="20.0" onMouseClicked="#logoutbuttonhandler" text="LOG OUT" textAlignment="RIGHT" />
+        <Label fx:id="logoutbutton" layoutX="187.0" layoutY="20.0" onMouseClicked="#logoutbuttonhandler" styleClass="logout-label" text="LOG OUT" textAlignment="RIGHT" />
         <Label fx:id="username" alignment="CENTER_RIGHT" layoutX="7.0" prefWidth="230.0" styleClass="font-bold" text="liux0047@e.ntu.edu.sg" textAlignment="RIGHT" />
       </children>
     </Pane>
@@ -63,6 +57,18 @@
       </children>
     </Pane>
     <AnchorPane id="" fx:id="contentPlaceHolderPane" layoutX="190.0" layoutY="50.0" prefHeight="450.0" prefWidth="500.0" />
+    <AnchorPane fx:id="logoutPane" layoutY="190.0" prefHeight="150.0" prefWidth="900.0" styleClass="logout-pane" visible="false">
+      <children>
+        <AnchorPane id="logoutMsgPane" fx:id="logoutMessageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
+          <children>
+            <Label id="logoutMsg" fx:id="logoutHeader" styleClass="logout-header" text="title" />
+            <Label id="LogoutMessageText" fx:id="logoutText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="logout-text" text="Label" />
+            <Button fx:id="yesLogout" layoutX="337.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleLogoutYesButtonAction" styleClass="logout-button" text="YES" />
+            <Button fx:id="noLogout" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleLogoutNoButtonAction" styleClass="logout-button" text="NO" />
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />

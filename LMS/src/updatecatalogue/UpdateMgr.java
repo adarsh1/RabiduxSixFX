@@ -1,11 +1,11 @@
 
 package updatecatalogue;
 
-import cataloguemanagement.Book;
+import cataloguemanagement.UpdatableBook;
 import cataloguemanagement.UpdatableCopy;
-import cataloguemanagement.UpdatableItem;
-import exception.ItemExistException;
+import datamanagement.Table;
 import java.util.Calendar;
+import java.util.HashMap;
 import usermanagement.Librarian;
 
 /**
@@ -15,8 +15,6 @@ import usermanagement.Librarian;
 public class UpdateMgr {
     
     private Librarian currentLibrarian;
-    private UpdatableItem updatableItem;
-    private UpdatableCopy updatableCopy;    
     
     public UpdateMgr(Librarian currentLibrarian){
         this.currentLibrarian = currentLibrarian;
@@ -25,30 +23,47 @@ public class UpdateMgr {
         //empty constructor
     }
     
-    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemExistException{
-        Book newBook = new Book();
-        newBook.setTitle(title);
-        newBook.setAuthor(author);
-        newBook.setDescription(description);
-        newBook.setPublishDate(publishDate);
-        newBook.setISBN(ISBN);
-        newBook.setGenre(genre);
-        
-        newBook.addNewItem();
+    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre){
+        UpdatableBook updatableBook = new UpdatableBook();
+        updatableBook.updateBook(genre, title, author, description, publishDate, ISBN, genre);
     }
     
     public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre){
-        Book bookToUpdate = new Book();
-        bookToUpdate.setItemID(itemID);
-        bookToUpdate.setTitle(title);
-        bookToUpdate.setAuthor(author);
-        bookToUpdate.setDescription(description);
-        bookToUpdate.setPublishDate(publishDate);
-        bookToUpdate.setISBN(ISBN);
-        bookToUpdate.setGenre(genre);
-        
-        bookToUpdate.updateItem();
+        UpdatableBook updatableBook = new UpdatableBook();     
+        updatableBook.updateBook(itemID, title, author, description, publishDate, ISBN, genre);
     }
+    
+    public HashMap getItemInfo(String itemID){
+        UpdatableBook updatableBook = new UpdatableBook(); 
+        return updatableBook.getBookDetails(itemID);
+    }
+    
+    public void deleteBook(String itemID){
+        UpdatableBook updatableBook = new UpdatableBook(); 
+        updatableBook.deleteBook(itemID);
+    }
+    
+    public void addNewCopy(String location){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        updatableCopy.addNewCopy(location);
+    }
+        
+    public void updateCopy(String copyID, String location){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        updatableCopy.updateCopy(copyID, location);
+    }
+    
+    public HashMap getCopyDetails(String copyID){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        return updatableCopy.getCopyDetails(copyID);
+    }
+    
+    public void deleteCopy(String copyID){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        updatableCopy.deleteCopy(copyID);
+    }
+    
+    
 
     /**
      * @return the currentLibrarian
@@ -64,31 +79,14 @@ public class UpdateMgr {
         this.currentLibrarian = currentLibrarian;
     }
 
-    /**
-     * @return the updatableItem
-     */
-    public UpdatableItem getUpdatableItem() {
-        return updatableItem;
-    }
-
-    /**
-     * @param updatableItem the updatableItem to set
-     */
-    public void setUpdatableItem(UpdatableItem updatableItem) {
-        this.updatableItem = updatableItem;
-    }
-
-    /**
-     * @return the updatableCopy
-     */
-    public UpdatableCopy getUpdatableCopy() {
-        return updatableCopy;
-    }
-
-    /**
-     * @param updatableCopy the updatableCopy to set
-     */
-    public void setUpdatableCopy(UpdatableCopy updatableCopy) {
-        this.updatableCopy = updatableCopy;
+    private void setBookDetails(HashMap<String, Object> newBook, String title, String author, String description, Calendar publishDate, String ISBN, String genre) {
+        newBook.put(Table.BOOK_TITLE,title);
+        newBook.put(Table.BOOK_AUTHOR,author);
+        newBook.put(Table.BOOK_DESCRIPTION, description);
+        newBook.put(Table.BOOK_DATE,publishDate);
+        newBook.put(Table.BOOK_ISBN, ISBN);
+        newBook.put(Table.BOOK_GENRE, genre);
+        
+        //bookToUpdate.updateItem();
     }
 }

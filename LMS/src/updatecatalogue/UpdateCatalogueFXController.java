@@ -197,9 +197,6 @@ public class UpdateCatalogueFXController extends BaseFXController
         catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
             displayWarning("Sorry","Date format is wrong\n" + e.getMessage());
         }
-        catch(ItemExistException e){
-            displayWarning("Sorry",e.getMessage());
-        }
         catch(Exception e){
             displayWarning("Sorry","One of the fields is wrong:\n" + e.getMessage());
         }

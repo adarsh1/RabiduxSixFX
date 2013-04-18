@@ -74,14 +74,6 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     @FXML //  fx:id="updateMenuButton"
     private Button updateMenuButton; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="historyMenuButton"
-    private Button historyMenuButton; // Value injected by FXMLLoader
-    
-    // Handler for Button[fx:id="historyMenuButton"] onAction
-    public void handleHistoryMenuButtonAction(ActionEvent event) {
-        transitPane("UpdateCatalogue.fxml");
-    }
-
     // Handler for Button[fx:id="returnMenuButton"] onAction
     public void handleReturnMenuButtonAction(ActionEvent event) {
         transitPane("Return.fxml");
@@ -89,7 +81,6 @@ public class LibrarianFXController extends BaseFXController implements Initializ
 
     // Handler for Button[fx:id="resetFineMenuButton"] onAction
     public void handlefineMenuButtonAction(ActionEvent event) {
-        System.out.println("Works till here");
         transitPane("ResetFine.fxml");
     }
 
@@ -100,10 +91,8 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     
     
    public void logoutbuttonhandler(MouseEvent event) {
-        
-        
         logoutHeader.setText("Confirm Logout");
-            String text = username.getText()+" are you sure you want to logout?";
+        String text = username.getText()+" are you sure you want to logout?";
         logoutText.setText(text);
         disableAllPanes("");
         
@@ -162,7 +151,6 @@ public class LibrarianFXController extends BaseFXController implements Initializ
         assert footerPane != null : "fx:id=\"footerPane\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
         assert helpPane != null : "fx:id=\"helpPane\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
         assert helpText != null : "fx:id=\"helpText\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
-        assert historyMenuButton != null : "fx:id=\"historyMenuButton\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
         assert logoutbutton != null : "fx:id=\"logoutbutton\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
         assert menuPane != null : "fx:id=\"menuPane\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
         assert resetFineMenuButton != null : "fx:id=\"resetFineMenuButton\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
