@@ -36,10 +36,10 @@
       </children>
     </Pane>
     <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="-13.0" styleClass="header-2, font-grey" text="Enter the ID of your copy" />
-    <TextField id="itemIDField" fx:id="copyIDField" layoutY="50.0" prefHeight="31.0" prefWidth="390.0" />
+    <TextField id="itemIDField" fx:id="copyIDField" layoutX="0.0" layoutY="49.0" prefHeight="31.0" prefWidth="390.0" promptText="Enter Copy ID found on your copy label" />
     <Button fx:id="getDetails" defaultButton="true" layoutX="404.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetDetailsButtonAction" prefHeight="30.0" text="Get details" />
     <Label id="borrowMsg" fx:id="itemMsg" layoutY="120.0" styleClass="warning-msg" />
-    <AnchorPane id="messagePane" fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
+    <AnchorPane fx:id="messagePane" layoutX="-190.0" layoutY="140.0" prefHeight="150.0" prefWidth="900.0" styleClass="success-pane" visible="false">
       <children>
         <AnchorPane id="warningMsgPane" fx:id="messageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
           <children>
