@@ -10,6 +10,7 @@ import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.NullResultException;
 import exception.UserNotFoundException;
+import exception.UserSuspendedException;
 import java.sql.SQLException;
 import usermanagement.Member;
 
@@ -48,13 +49,16 @@ public class IndividualViewGUIMgr {
      * @throws NotEligibleToBorrowOrReserveException 
      */
     //reserve the book
-    public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, CopyBorrowedException{
+    public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, CopyBorrowedException, UserSuspendedException{
+        if (currentMember.isSuspended()){
+            throw new UserSuspendedException();
+        }
         //if this member is allowed to borrow or reserve
-        if(currentMember.isEligibleToReserve()){
-             item.getCopies().get(i).reserve(currentMember.getUserID());
+        if(!currentMember.isEligibleToReserve()){
+            throw new NotEligibleToBorrowOrReserveException("You have exceeded your maximum reservations, you are not elligible to reserve");             
         }
         else {
-            throw new NotEligibleToBorrowOrReserveException("You have exceeded your maximum reservations, you are not elligible to reserve");
+            item.getCopies().get(i).reserve(currentMember.getUserID());
         }
     }
     //create a borrowable item based on item ID

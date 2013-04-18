@@ -12,6 +12,7 @@ import exception.NotEligibleToBorrowOrReserveException;
 import exception.NullResultException;
 import exception.TypeMismatchException;
 import exception.UserNotFoundException;
+import exception.UserSuspendedException;
 import java.sql.SQLException;
 import usermanagement.Member;
 
@@ -46,13 +47,16 @@ public class BorrowMgr {
      * @throws ClassNotFoundException
      * @throws NotEligibleToBorrowOrReserveException
      */
-    public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyBorrowedException, CopyNotFoundException, CopyReservedException, NullResultException{
+    public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyBorrowedException, CopyNotFoundException, CopyReservedException, NullResultException, UserSuspendedException{
+        if (currentMember.isSuspended()){
+            throw new UserSuspendedException();
+        }
         //if this member is allowed to borrow or reserve
-        if(currentMember.isEligibleToBorrow()){
-          return item.borrow(currentMember.getUserID(), currentMember.getLoanDuration());
+        else if(!currentMember.isEligibleToBorrow()){
+            throw new NotEligibleToBorrowOrReserveException("Sorry, you are not able to borrow");          
         }
         else {
-            throw new NotEligibleToBorrowOrReserveException("Sorry, you are not able to borrow");
+            return item.borrow(currentMember.getUserID(), currentMember.getLoanDuration());
         }
     }
     
