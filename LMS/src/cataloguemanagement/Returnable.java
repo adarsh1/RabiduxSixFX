@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.*;
 import java.sql.SQLException;
 
 /**
@@ -18,7 +19,7 @@ public interface Returnable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract void returnCopy(double fine) throws SQLException, ClassNotFoundException ;
+    public abstract void returnCopy(double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException ;
     /**
      *
      * @return

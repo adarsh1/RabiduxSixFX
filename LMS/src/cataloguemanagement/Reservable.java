@@ -26,27 +26,27 @@ public interface Reservable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract boolean isReserved () throws SQLException, ClassNotFoundException;
+    public abstract boolean isReserved () throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException ;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract boolean isBorrowed () throws SQLException, ClassNotFoundException;
+    public abstract boolean isBorrowed () throws SQLException, ClassNotFoundException, CopyNotFoundException ;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException;
+    public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException, CopyNotFoundException ;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException;
+    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException, CopyNotFoundException;
     
 }
