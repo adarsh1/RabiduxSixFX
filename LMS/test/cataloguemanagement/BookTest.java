@@ -65,101 +65,43 @@ public class BookTest {
 
 
     /**
-     * Test of borrow method, of class Book.
-     */
-    @Test
-    public void testBorrow() throws Exception {
-        System.out.println("borrow");
-        String userID = "";
-        int loanDuration = 0;
-        Book instance = new Book();
-        PastTransaction expResult = null;
-        PastTransaction result = instance.borrow(userID, loanDuration);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    
-    /**
-     * Test of extend method, of class Book.
-     */
-    @Test
-    public void testExtend() throws Exception {
-        System.out.println("extend");
-        String loanID = "";
-        int loanDuration = 0;
-        Book instance = new Book();
-        instance.extend(loanID, loanDuration);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of reserve method, of class Book.
-     */
-    @Test
-    public void testReserve() throws Exception {
-        System.out.println("reserve");
-        String userID = "";
-        Book instance = new Book();
-        instance.reserve(userID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of cancelReservation method, of class Book.
-     */
-    @Test
-    public void testCancelReservation() throws Exception {
-        System.out.println("cancelReservation");
-        String userID = "";
-        Book instance = new Book();
-        instance.cancelReservation(userID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of returnCopy method, of class Book.
-     */
-    @Test
-    public void testReturnCopy() throws Exception {
-        System.out.println("returnCopy");
-        double fine = 0.0;
-        Book instance = new Book();
-        instance.returnCopy(fine);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of isReserved method, of class Book.
      */
     @Test
-    public void testIsReserved() throws Exception {
+    public void testIsReserved1() throws Exception {
         System.out.println("isReserved");
-        Book instance = new Book();
+        Book instance =(Book) CatalogueCopy.getCatalogueCopy("2000000004");
+        boolean expResult = true;
+        boolean result = instance.isReserved();
+        assertEquals(expResult, result);
+    }
+    @Test
+    public void testIsReserved2() throws Exception {
+        System.out.println("isReserved");
+        Book instance =(Book) CatalogueCopy.getCatalogueCopy("2000000005");
         boolean expResult = false;
         boolean result = instance.isReserved();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of isBorrowed method, of class Book.
      */
     @Test
-    public void testIsBorrowed() throws Exception {
+    public void testIsBorrowed1() throws Exception {
         System.out.println("isBorrowed");
-        Book instance = new Book();
+        Book instance = (Book) CatalogueCopy.getCatalogueCopy("2000000005");
         boolean expResult = false;
         boolean result = instance.isBorrowed();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    @Test
+    public void testIsBorrowed2() throws Exception {
+        System.out.println("isBorrowed");
+        Book instance = (Book) CatalogueCopy.getCatalogueCopy("2000000003");
+        boolean expResult = true;
+        boolean result = instance.isBorrowed();
+        assertEquals(expResult, result);
     }
 
     /**
