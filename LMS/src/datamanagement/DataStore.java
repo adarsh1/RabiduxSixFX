@@ -1753,16 +1753,81 @@ public class DataStore {
         
     }
 
-    public void updateCopy(HashMap<String, Object> details) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+        
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        ResultSet resultSet;
+
+        where.add((String)details.get(Table.COPY_COPY_ID));
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.COPY, where);
+        
+        if (!resultSet.next()) {
+            
+//            throw new NullResultException();
+            
+        }
+        
+        set.add((String)details.get(Table.COPY_ITEM_ID));
+        set.add((String)details.get(Table.COPY_LOCATION));
+        set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
+
+        where.clear();
+        where.add((String)details.get(Table.COPY_COPY_ID));
+
+        database.updateRecord(Table.COPY, set, where);
+
+        database.closeConnection();
+        
     }
 
-    public HashMap<String, Object> getCopyInfo(String copyID) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public HashMap<String, Object> getCopyInfo(String copyID) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        HashMap<String, Object> details = new HashMap<> ();
+        Calendar publishDate = new GregorianCalendar();
+        
+        where.add(copyID);
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+
+        database.initializeConnection();
+
+        resultSet = database.selectRecord(Table.COPY, where);
+
+        if (!resultSet.next()) {
+
+//                throw new NullResultException();
+
+        }
+
+        details.put(Table.COPY_COPY_ID, copyID);
+        details.put(Table.COPY_ITEM_ID, resultSet.getString(Table.COPY.getAttribute(Table.COPY_ITEM_ID)));
+        details.put(Table.COPY_LOCATION, resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
+        details.put(Table.COPY_RESERVED_BY, resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
+
+        return details;
+        
     }
 
-    public void deleteCopy(String copyID) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException {
+        
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add(copyID);
+
+        database.initializeConnection();
+
+        database.deleteRecord(Table.COPY, where);
+
+        database.closeConnection();
+        
     }
 
 
