@@ -98,7 +98,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
      * @param event
      */
     public void handleLogoutNoButtonAction(ActionEvent event){
-        enableAllPanes("");
+        String [] exceptions={""};
+        enableAllPanes(exceptions);
         logoutPane.setVisible(false);
     }
     // Handler for Button[fx:id="borrow"] onAction
@@ -148,7 +149,8 @@ public class MemberFXController extends BaseFXController implements Initializabl
         logoutHeader.setText("Confirm Logout");
             String text = username.getText()+" are you sure you want to logout?";
         logoutText.setText(text);
-        disableAllPanes("");
+         String [] exceptions={""};
+        disableAllPanes(exceptions);
         
         logoutPane.setVisible(true);
         this.handleOnShowAnimation(logoutMessageHolderPane);
@@ -160,11 +162,13 @@ public class MemberFXController extends BaseFXController implements Initializabl
             BaseFXController bfc=(BaseFXController)o;
             if(arg instanceof Boolean){
                 Boolean disable=(Boolean)arg;
+                String [] exceptions={bfc.getMessagePaneID()};
                 if(disable.booleanValue()==true){
-                    disableAllPanes(bfc.getMessagePaneID());
+                    
+                    disableAllPanes(exceptions);
                 }
                 else{    
-                    enableAllPanes(bfc.getMessagePaneID());
+                    enableAllPanes(exceptions);
                 } 
             }
             else if(arg instanceof Observable){
@@ -292,23 +296,36 @@ public class MemberFXController extends BaseFXController implements Initializabl
         this.contentPlaceHolderPane = contentPlaceHolderPane;
     }
     
-    private void disableAllPanes(String idExcept) {
+    private void disableAllPanes(String []idExcept) {
         enableDisablePanes(idExcept ,true);
     }
 
-    private void enableAllPanes(String idExcept) {
+    private void enableAllPanes(String []idExcept) {
         enableDisablePanes(idExcept ,false);
     }
     
-    private void enableDisablePanes(String idExcept ,boolean flag){
+    private void enableDisablePanes(String [] idExcept ,boolean flag){
         footerPane.setDisable(flag);
         menuPane.setDisable(flag);
         Pane p=(Pane)contentPlaceHolderPane.getChildren().get(0);
         for(int i=0;i<p.getChildren().size(); i++){
             Node n=p.getChildren().get(i);
             String nid=n.getId();
-            if(nid==null||!nid.equals(idExcept))
-            n.setDisable(flag);
+            if(nid==null)
+                n.setDisable(flag);
+            else
+            {boolean idOk=true;
+             for(int j=0;j<idExcept.length;j++)
+             {
+                 if(nid.equals(idExcept[j]))
+                 { idOk=false;
+                   break;
+                 }
+             }
+             if(idOk)
+                n.setDisable(flag);
+            
+            }
         }
     }
     

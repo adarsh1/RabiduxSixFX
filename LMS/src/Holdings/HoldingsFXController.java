@@ -110,6 +110,8 @@ private void initializeBorrowScrollPane() {
      */
     public void handleConfirmYesButtonAction(ActionEvent event){
        Node node=((Node) confEvent.getSource()).getParent();
+       String [] exceptions={""};
+       enableDisablePanes(exceptions,false);
        if(node.getId().charAt(0)=='r')
        { cancelReservation(node);    
        }
@@ -117,7 +119,6 @@ private void initializeBorrowScrollPane() {
        {  extend(node);   
        }
        confirmPane.setVisible(false);
-       enableDisablePanes("",false);
     }
      /**
      *
@@ -125,7 +126,8 @@ private void initializeBorrowScrollPane() {
      */
     public void handleConfirmNoButtonAction(ActionEvent event){
      confirmPane.setVisible(false);
-     enableDisablePanes("" ,false);
+     String [] exceptions={""};
+     enableDisablePanes(exceptions ,false);
     }
     
     /**
@@ -359,7 +361,8 @@ private void initializeBorrowScrollPane() {
             confEvent=e;
             updateConfirmPane("Confirm Action", "Are You Sure you wish to cancel this Reservation?");
             confirmPane.setVisible(true);
-            enableDisablePanes(confirmPane.getId() ,true);
+            String [] exceptions={confirmPane.getId(),messagePane.getId()};
+            enableDisablePanes( exceptions,true);
         handleOnShowAnimation(confirmMessageHolderPane);   
         }
     }
@@ -377,7 +380,8 @@ private void initializeBorrowScrollPane() {
           confEvent=e;
           updateConfirmPane("Confirm Action", "Are You Sure you wish to Extend this Copy?");
           confirmPane.setVisible(true);
-          enableDisablePanes(confirmPane.getId() ,true);
+          String [] exceptions={confirmPane.getId(),messagePane.getId()};
+          enableDisablePanes(exceptions ,true);
           handleOnShowAnimation(confirmMessageHolderPane); 
         }
 }
@@ -385,13 +389,25 @@ private void initializeBorrowScrollPane() {
         confirmHeader.setText(title);
         confirmText.setText(message);
     }
-    private void enableDisablePanes(String idExcept ,boolean flag){
+    private void enableDisablePanes(String[] idExcept ,boolean flag){
         Pane p=contentPane;
         for(int i=0;i<p.getChildren().size(); i++){
             Node n=p.getChildren().get(i);
             String nid=n.getId();
-            if(nid==null||!nid.equals(idExcept))
-            n.setDisable(flag);
+            if(nid==null)
+                n.setDisable(flag);
+            else
+            {boolean idOk=true;
+             for(int j=0;j<idExcept.length;j++)
+             {
+                 if(nid.equals(idExcept[j]))
+                 { idOk=false;
+                   break;
+                 }
+             }
+             if(idOk)
+                n.setDisable(flag);
         }
+    }
     }
 }
