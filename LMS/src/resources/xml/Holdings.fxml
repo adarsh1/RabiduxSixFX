@@ -37,6 +37,18 @@
         </AnchorPane>
       </children>
     </AnchorPane>
+    <AnchorPane fx:id="confirmPane" id="confirmPane" layoutX="-190" layoutY="150.0" prefHeight="150.0" prefWidth="900.0" styleClass="confirm-pane" visible="false">
+      <children>
+        <AnchorPane id="confirmMsgPane" fx:id="confirmMessageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
+          <children>
+            <Label id="confirmMsg" fx:id="confirmHeader" styleClass="confirm-header" text="title" />
+            <Label id="confirmMessageText" fx:id="confirmText" alignment="TOP_LEFT" layoutY="50.0" prefHeight="60.0" prefWidth="500.0" styleClass="confirm-text" text="Label" />
+            <Button fx:id="yesconfirm" layoutX="337.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleConfirmYesButtonAction" styleClass="confirm-button" text="YES" />
+            <Button fx:id="noconfirm" layoutX="437.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleConfirmNoButtonAction" styleClass="confirm-button" text="NO" />
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@../JMetro/JMetroLightTheme.css" />

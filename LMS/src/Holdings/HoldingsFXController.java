@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +55,26 @@ public class HoldingsFXController extends BaseFXController implements Initializa
     @FXML
     private VBox reserveVB;
     
+      @FXML
+    private Label confirmHeader;
+
+    @FXML
+    private AnchorPane confirmMessageHolderPane;
+
+    @FXML
+    private AnchorPane confirmPane;
+
+    @FXML
+    private Label confirmText;
+    
+    @FXML
+    private Button noconfirm;
+    
+    @FXML
+    private Button yesconfirm;
+    
+    private MouseEvent confEvent;
+    
     private HoldingsMgr holdingsMgr;
 
     /**
@@ -82,13 +103,38 @@ private void initializeBorrowScrollPane() {
                 handleNodeScaleTransition(p, 400,0,1);
          }
     }
+
 /**
+     *
+     * @param event
+     */
+    public void handleConfirmYesButtonAction(ActionEvent event){
+       Node node=((Node) confEvent.getSource()).getParent();
+       if(node.getId().charAt(0)=='r')
+       { cancelReservation(node);    
+       }
+       else if(node.getId().charAt(0)=='h')
+       {  extend(node);   
+       }
+       confirmPane.setVisible(false);
+       enableDisablePanes("",false);
+    }
+     /**
+     *
+     * @param event
+     */
+    public void handleConfirmNoButtonAction(ActionEvent event){
+     confirmPane.setVisible(false);
+     enableDisablePanes("" ,false);
+    }
+    
+    /**
  * Creates the Individual Borrowed Copy Panes.
  * @param p The Pane to be filled
  * @param index the index of the particular {@link cataloguemanagement.CurrentHolding} object in the ArrayList in {@link #holdingsMgr}.
  */
  private void createHoldingIndividual(Pane p,int index) {
-        p.setId(""+index);
+        p.setId("h"+index);
         p.getStyleClass().add("borrow-holding");
         p.setMinSize(460, 64);
         ImageView bookCover;
@@ -149,7 +195,7 @@ private void initializeBorrowScrollPane() {
  * @param index the index of the particular {@link cataloguemanagement.ReservedCopy} object in the ArrayList in {@link #holdingsMgr}.
  */
  private void createReservedIndividual(Pane p,int index) {
-        p.setId(""+index);
+        p.setId("r"+index);
         p.getStyleClass().add("reserve-holding");
         p.setMinSize(460, 64);
         ImageView bookCover;
@@ -225,6 +271,53 @@ private void initializeBorrowScrollPane() {
         initializeBorrowScrollPane();
         initializeReserveScrollPane();
     }
+
+    private void cancelReservation(Node node){
+        try
+    {int id=Integer.parseInt(node.getId().substring(1));
+     holdingsMgr.cancelReservation(id);
+     try{
+     String cancelledId=holdingsMgr.getReservedCopies().get(id).getCopy().getItemID();
+     holdingsMgr.createItem();
+     initializeReserveScrollPane();
+     displaySuccess("Reservation Cancelled", "Your reservation of item "+cancelledId+" was successfully cancelled.");
+     }
+     catch(ClassNotFoundException| SQLException| TypeMismatchException |NumberFormatException except){
+         setChanged();
+        notifyObservers(except);
+     }
+    }
+    catch(SQLException|ClassNotFoundException except)
+    {
+        String text = "We regret to inform you that your reservation could not be cancelled.\n";
+        text += "Reasons might be: \n";
+        text += except.getMessage();
+        displayWarning("Sorry", text);
+    }
+    }
+    private void extend(Node node){
+        try
+        {int id=Integer.parseInt(node.getId().substring(1));
+         holdingsMgr.extend(id);
+         try{
+         holdingsMgr.createItem();
+         initializeBorrowScrollPane();
+         SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
+         displaySuccess("Extended", "Your Extension of item "+holdingsMgr.getCurrentHoldings().get(id).getCopy().getItemID()+" was successful.\n Please return by\n"+format.format(holdingsMgr.getCurrentHoldings().get(id).getDateToReturn().getTime()));
+         }
+         catch(ClassNotFoundException| SQLException| TypeMismatchException except){
+             setChanged();
+            notifyObservers(except);
+         }
+        }
+        catch(SQLException|ClassNotFoundException| NotEligibleToBorrowOrReserveException except)
+        {
+            String text = "We regret to inform you that your extension request could not be approved.\n";
+            text += "Reasons might be: \n";
+            text += except.getMessage();
+            displayWarning("Sorry", text);
+        }   
+    }
   /**
    * This anonymous class handles the Mouse Click events of the Get Details Button for each Reserved Copy.
    */ 
@@ -263,29 +356,11 @@ private void initializeBorrowScrollPane() {
          */
         @Override
         public void handle(MouseEvent e) {
-            Node node=((Node) e.getSource()).getParent();
-            try
-        {int id=Integer.parseInt(node.getId());
-         holdingsMgr.cancelReservation(id);
-         try{
-         String cancelledId=holdingsMgr.getReservedCopies().get(id).getCopy().getItemID();
-         holdingsMgr.createItem();
-         initializeReserveScrollPane();
-         displaySuccess("Reservation Cancelled", "Your reservation of item "+cancelledId+" was successfully cancelled.");
-         }
-         catch(ClassNotFoundException| SQLException| TypeMismatchException except){
-             setChanged();
-            notifyObservers(except);
-         }
-        }
-        catch(SQLException|ClassNotFoundException except)
-        {
-            String text = "We regret to inform you that your reservation could not be cancelled.\n";
-            text += "Reasons might be: \n";
-            text += except.getMessage();
-            displayWarning("Sorry", text);
-        }    
-            
+            confEvent=e;
+            updateConfirmPane("Confirm Action", "Are You Sure you wish to cancel this Reservation?");
+            confirmPane.setVisible(true);
+            enableDisablePanes(confirmPane.getId() ,true);
+        handleOnShowAnimation(confirmMessageHolderPane);   
         }
     }
   /**
@@ -299,29 +374,24 @@ private void initializeBorrowScrollPane() {
          */
         @Override
         public void handle(MouseEvent e) {
-           Node node=((Node) e.getSource()).getParent();
-            try
-        {int id=Integer.parseInt(node.getId());
-         holdingsMgr.extend(id);
-         try{
-         holdingsMgr.createItem();
-         initializeBorrowScrollPane();
-         SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy", Locale.ENGLISH);
-         displaySuccess("Extended", "Your Extension of item "+holdingsMgr.getCurrentHoldings().get(id).getCopy().getItemID()+" was successful.\n Please return by\n"+format.format(holdingsMgr.getCurrentHoldings().get(id).getDateToReturn().getTime()));
-         }
-         catch(ClassNotFoundException| SQLException| TypeMismatchException except){
-             setChanged();
-            notifyObservers(except);
-         }
-        }
-        catch(SQLException|ClassNotFoundException| NotEligibleToBorrowOrReserveException except)
-        {
-            String text = "We regret to inform you that your extension request could not be approved.\n";
-            text += "Reasons might be: \n";
-            text += except.getMessage();
-            displayWarning("Sorry", text);
-        }        
-            
+          confEvent=e;
+          updateConfirmPane("Confirm Action", "Are You Sure you wish to Extend this Copy?");
+          confirmPane.setVisible(true);
+          enableDisablePanes(confirmPane.getId() ,true);
+          handleOnShowAnimation(confirmMessageHolderPane); 
         }
 }
+    private void updateConfirmPane(String title,String message){
+        confirmHeader.setText(title);
+        confirmText.setText(message);
+    }
+    private void enableDisablePanes(String idExcept ,boolean flag){
+        Pane p=contentPane;
+        for(int i=0;i<p.getChildren().size(); i++){
+            Node n=p.getChildren().get(i);
+            String nid=n.getId();
+            if(nid==null||!nid.equals(idExcept))
+            n.setDisable(flag);
+        }
+    }
 }
