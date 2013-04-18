@@ -4,13 +4,20 @@
  */
 package login;
 
+
+import exception.*;
+import factory.SystemConfig;
 import globalcontrol.ModelController;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import usermanagement.Faculty;
+import usermanagement.Librarian;
+import usermanagement.Student;
 import usermanagement.User;
 
 /**
@@ -24,6 +31,8 @@ public class LoginMgrTest {
     
     @BeforeClass
     public static void setUpClass() {
+         SystemConfig instance = SystemConfig.getInstance();
+        instance.useMySQLDB();
     }
     
     @AfterClass
@@ -42,67 +51,66 @@ public class LoginMgrTest {
      * Test of createUser method, of class LoginMgr.
      */
     @Test
-    public void testCreateUser() throws Exception {
-        System.out.println("createUser");
-        String username = "";
-        String password = "";
+    public void testCreateUserInvalidId() throws Exception {
+        System.out.println("createUserInvalidId");
+        String username = "usernamedoesnotexist";
+        String password = "pass";
         LoginMgr instance = new LoginMgr();
+        try{
+            instance.createUser(username, password);
+            fail("The test case is a prototype.");
+        }
+       catch(Exception e)
+        {
+          Assert.assertTrue("Incorrect Exception",e instanceof UserNotFoundException);
+        }
+    }
+    
+    @Test
+    public void testCreateUserInvalidPass() throws Exception {
+        System.out.println("createUserInvalidPassword");
+        String username = "asp";
+        String password = "not123";
+        LoginMgr instance = new LoginMgr();
+        try{
+            instance.createUser(username, password);
+            fail("The test case is a prototype.");
+        }
+       catch(Exception e)
+        {
+          Assert.assertTrue("Incorrect Exception",e instanceof IncorrectPasswordException);
+        }
+    }
+    
+    
+    
+    @Test
+    public void testCreateProperUser() throws Exception {
+        System.out.println("createProperUser");
+        String username = "teststudent";
+        String password = "testpass";
+        LoginMgr instance = new LoginMgr();
+        
+        //Assume teststudent, testfaculty and testlibrarian are already registered users of the LMS
+        // and are of the type Student, Faculty and Librarian respectively
+        
+        
         instance.createUser(username, password);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(instance.getUser() instanceof Student)
+            fail("The test case is a prototype.");
+        
+        username = "testfaculty";
+        password = "testpass";
+        instance.createUser(username, password);
+        if(instance.getUser() instanceof Faculty)
+            fail("The test case is a prototype.");
+        
+        username = "testlibrarian";
+        password = "testpass";
+        instance.createUser(username, password);
+        if(instance.getUser() instanceof Librarian)
+            fail("The test case is a prototype.");
+        
     }
 
-    /**
-     * Test of getModelController method, of class LoginMgr.
-     */
-    @Test
-    public void testGetModelController() {
-        System.out.println("getModelController");
-        LoginMgr instance = new LoginMgr();
-        ModelController expResult = null;
-        ModelController result = instance.getModelController();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setModelController method, of class LoginMgr.
-     */
-    @Test
-    public void testSetModelController() {
-        System.out.println("setModelController");
-        ModelController modelController = null;
-        LoginMgr instance = new LoginMgr();
-        instance.setModelController(modelController);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getUser method, of class LoginMgr.
-     */
-    @Test
-    public void testGetUser() {
-        System.out.println("getUser");
-        LoginMgr instance = new LoginMgr();
-        User expResult = null;
-        User result = instance.getUser();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setUser method, of class LoginMgr.
-     */
-    @Test
-    public void testSetUser() {
-        System.out.println("setUser");
-        User user = null;
-        LoginMgr instance = new LoginMgr();
-        instance.setUser(user);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 }
