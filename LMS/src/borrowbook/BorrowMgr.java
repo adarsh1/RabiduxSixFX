@@ -4,8 +4,14 @@ package borrowbook;
 import cataloguemanagement.Borrowable;
 import cataloguemanagement.CatalogueCopy;
 import cataloguemanagement.PastTransaction;
+import exception.CopyBorrowedException;
+import exception.CopyNotFoundException;
+import exception.CopyReservedException;
+import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
+import exception.NullResultException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 import usermanagement.Member;
 
@@ -40,7 +46,7 @@ public class BorrowMgr {
      * @throws ClassNotFoundException
      * @throws NotEligibleToBorrowOrReserveException
      */
-    public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
+    public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyBorrowedException, CopyNotFoundException, CopyReservedException, NullResultException{
         //if this member is allowed to borrow or reserve
         if(currentMember.isEligibleToBorrow()){
           return item.borrow(currentMember.getUserID(), currentMember.getLoanDuration());
@@ -58,7 +64,7 @@ public class BorrowMgr {
      * @throws ClassNotFoundException
      * @throws TypeMismatchException
      */
-    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
+    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException, CopyNotFoundException, ItemNotFoundException{
         //get the catalogue item from catalogue management
         CatalogueCopy catalogueItem = CatalogueCopy.getCatalogueCopy(copyID);
         //if the item is of Borrowable instance

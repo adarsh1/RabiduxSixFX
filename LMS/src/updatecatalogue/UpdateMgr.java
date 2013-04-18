@@ -3,7 +3,10 @@ package updatecatalogue;
 
 import cataloguemanagement.*;
 import datamanagement.Table;
+import exception.CopyNotFoundException;
+import exception.InvalidItemTypeException;
 import exception.ItemNotFoundException;
+import exception.NullResultException;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -41,7 +44,7 @@ public class UpdateMgr {
      * @param genre
      * @throws ItemNotFoundException
      */
-    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException, InvalidItemTypeException{
         
         ItemUpdatable itemUpdatable = new Book();
         HashMap<String, Object> hashMap = new HashMap<> ();
@@ -71,7 +74,7 @@ public class UpdateMgr {
      * @param genre
      * @throws ItemNotFoundException
      */
-    public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+    public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException, InvalidItemTypeException{
         
         ItemUpdatable itemUpdatable = new Book();
         HashMap<String, Object> hashMap = new HashMap<> ();
@@ -96,7 +99,7 @@ public class UpdateMgr {
      * @return
      * @throws ItemNotFoundException
      */
-    public HashMap getItemInfo(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+    public HashMap getItemInfo(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException, NullResultException, InvalidItemTypeException{
         
         ItemUpdatable itemUpdatable = new Book();
         HashMap<String, Object> hashMap;
@@ -114,7 +117,7 @@ public class UpdateMgr {
      * @param itemID
      * @throws ItemNotFoundException
      */
-    public void deleteBook(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+    public void deleteBook(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException, InvalidItemTypeException{
         
         ItemUpdatable itemUpdatable = new Book();
         
@@ -148,7 +151,7 @@ public class UpdateMgr {
      * @param location
      * @throws ItemNotFoundException
      */
-    public void updateCopy(String copyID, String location) throws SQLException, ClassNotFoundException{
+    public void updateCopy(String copyID, String location) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException{
         
         CopyUpdatable copyUpdatable = new Book();
         HashMap<String, Object> hashMap = new HashMap<> ();
@@ -168,7 +171,7 @@ public class UpdateMgr {
      * @return
      * @throws ItemNotFoundException
      */
-    public HashMap getCopyDetails(String copyID) throws SQLException, ClassNotFoundException{
+    public HashMap getCopyDetails(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException{
         
         CopyUpdatable copyUpdatable = new Book();
         HashMap<String, Object> hashMap;
@@ -186,7 +189,7 @@ public class UpdateMgr {
      * @param copyID
      * @throws ItemNotFoundException
      */
-    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException{
+    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException{
         
         CopyUpdatable copyUpdatable = new Book();
         

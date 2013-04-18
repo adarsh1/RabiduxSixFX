@@ -5,6 +5,8 @@
 package login;
 
 import exception.IncorrectPasswordException;
+import exception.InvalidUserTypeException;
+import exception.NullResultException;
 import exception.UserNotFoundException;
 import globalcontrol.ModelController;
 import java.sql.SQLException;
@@ -37,7 +39,7 @@ public class LoginMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException{
+    public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException, NullResultException, InvalidUserTypeException{
         setUser(User.getUser(username, password));
         //if no exception was thrown, user can be set in main controller
         modelController.setUser(user);

@@ -5,6 +5,9 @@
 package searchbook;
 
 import cataloguemanagement.ReservableCopyGroup;
+import exception.CopyNotFoundException;
+import exception.InvalidKeywordException;
+import exception.ItemNotFoundException;
 import java.sql.SQLException;
 import java.util.*;
 import usermanagement.Member;
@@ -40,7 +43,7 @@ public class SearchMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void SearchByTitle(String searchstring) throws SQLException, ClassNotFoundException
+    public void SearchByTitle(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {
         
         setItemGroup(ReservableCopyGroup.getReservableCopyGroups("TITLE", searchstring));
@@ -53,7 +56,7 @@ public class SearchMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void SearchByAuthor(String searchstring) throws SQLException, ClassNotFoundException
+    public void SearchByAuthor(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {
         setItemGroup(ReservableCopyGroup.getReservableCopyGroups("AUTHOR", searchstring));
     }
@@ -64,7 +67,7 @@ public class SearchMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void SearchByISBN(String searchstring) throws SQLException, ClassNotFoundException
+    public void SearchByISBN(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {
         setItemGroup(ReservableCopyGroup.getReservableCopyGroups("ISBN", searchstring));
     }
@@ -75,7 +78,7 @@ public class SearchMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void SearchByGenre(String searchstring) throws SQLException, ClassNotFoundException
+    public void SearchByGenre(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {
         setItemGroup(ReservableCopyGroup.getReservableCopyGroups("GENRE", searchstring));
     }

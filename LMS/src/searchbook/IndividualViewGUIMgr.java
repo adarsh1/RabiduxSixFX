@@ -2,7 +2,14 @@
 package searchbook;
 
 import cataloguemanagement.ReservableCopyGroup;
+import exception.CopyBorrowedException;
+import exception.CopyNotBorrowedException;
+import exception.CopyNotFoundException;
+import exception.CopyReservedException;
+import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
+import exception.NullResultException;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 import usermanagement.Member;
 
@@ -41,7 +48,7 @@ public class IndividualViewGUIMgr {
      * @throws NotEligibleToBorrowOrReserveException 
      */
     //reserve the book
-    public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
+    public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, CopyBorrowedException{
         //if this member is allowed to borrow or reserve
         if(currentMember.isEligibleToReserve()){
              item.getCopies().get(i).reserve(currentMember.getUserID());
@@ -57,7 +64,7 @@ public class IndividualViewGUIMgr {
      * @throws SQLException
      * @throws ClassNotFoundException 
      */
-    public void createItem(String ID) throws SQLException, ClassNotFoundException{
+    public void createItem(String ID) throws SQLException, ClassNotFoundException, ItemNotFoundException, CopyNotFoundException{
         //get the catalogue item from catalogue management
         ReservableCopyGroup rItem = ReservableCopyGroup.getReservableCopyGroup(ID);
         //if the item is of Borrowable instance

@@ -4,18 +4,18 @@
  */
 package returnbook;
 
-import cataloguemanagement.Borrowable;
 import cataloguemanagement.CatalogueCopy;
 import cataloguemanagement.PastTransaction;
 import cataloguemanagement.Returnable;
-import exception.NotEligibleToBorrowOrReserveException;
+import exception.CopyNotFoundException;
+import exception.InvalidUserTypeException;
+import exception.ItemNotFoundException;
+import exception.NullResultException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 import usermanagement.Librarian;
 import usermanagement.Member;
 
@@ -54,7 +54,7 @@ public class ReturnMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean returnbook() throws SQLException, ClassNotFoundException{
+    public boolean returnbook() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException{
         
         boolean finepresent = calculatefine();
         item.returnCopy(fine);
@@ -70,7 +70,7 @@ public class ReturnMgr {
      * @throws ClassNotFoundException
      * @throws TypeMismatchException
      */
-    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
+    public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException{
         //get the catalogue item from catalogue management
         CatalogueCopy catalogueItem = CatalogueCopy.getCatalogueCopy(copyID);
         //if the item is of Borrowable instance

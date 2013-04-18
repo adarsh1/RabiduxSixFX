@@ -4,11 +4,8 @@
  */
 package resetfine;
 
-import cataloguemanagement.Borrowable;
-import cataloguemanagement.CatalogueCopy;
-import cataloguemanagement.PastTransaction;
-import exception.NotEligibleToBorrowOrReserveException;
-import exception.TypeMismatchException;
+import exception.InvalidUserTypeException;
+import exception.NullResultException;
 import exception.UserNotFoundException;
 import java.sql.SQLException;
 import usermanagement.Member;
@@ -60,7 +57,7 @@ public class ResetFineMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void setMember(String userName) throws SQLException, ClassNotFoundException, UserNotFoundException
+    public void setMember(String userName) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException
     {
         finedMember = (Member)User.getUserByName(userName);
         
@@ -89,7 +86,7 @@ public class ResetFineMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void reset() throws SQLException, ClassNotFoundException
+    public void reset() throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException
     {
         finedMember.resetFine();
     }
