@@ -45,6 +45,7 @@ public class IndividualViewGUIMgrTest {
     
     @Before
     public void setUp() {
+        //These are testing members set up in database prior to testing
         fm=new Faculty();
         fm.setUserID("10000000XX");
         fm.setUsername("faculty1");
@@ -182,7 +183,7 @@ public class IndividualViewGUIMgrTest {
            System.out.println("Item Cannot be Created with null id");
        }
        try{System.out.println("InvalidID");
-           instance.createItem("");
+           instance.createItem("xyz");
            Assert.fail("Item created with invalid ID");
        }
        catch(Exception e){
