@@ -245,6 +245,8 @@ public class UpdateCatalogueFXController extends BaseFXController
             updateItemAuthor.setText((String)itemInfo.get(Table.BOOK_AUTHOR));
             updateItemDescription.setText((String)itemInfo.get(Table.BOOK_DESCRIPTION));
             updateItemPublishDate.setText(formatDateString((Calendar)itemInfo.get(Table.BOOK_DATE)));
+            updateItemISBN.setText((String)itemInfo.get(Table.BOOK_ISBN));
+            updateItemGenre.setText((String)itemInfo.get(Table.BOOK_GENRE));
             //enable item info pane
             updateItemInfoPane.setDisable(false);
         }

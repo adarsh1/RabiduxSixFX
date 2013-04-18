@@ -36,7 +36,7 @@
             <Label layoutY="-8.0" styleClass="font-grey, header-3" text="Add a new item" />
           </children>
         </AnchorPane>
-        <AnchorPane fx:id="updateItemPane" prefHeight="450.0" prefWidth="350.0" visible="false">
+        <AnchorPane fx:id="updateItemPane" prefHeight="450.0" prefWidth="350.0">
           <children>
             <TextField fx:id="updateItemItemID" layoutY="50.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter the ID of the item to be updated" />
             <Label layoutY="-9.0" styleClass="font-grey, header-3" text="Update existing Item" />
@@ -59,7 +59,7 @@
             </AnchorPane>
           </children>
         </AnchorPane>
-        <AnchorPane fx:id="newCopyPane" prefHeight="450.0" prefWidth="350.0">
+        <AnchorPane fx:id="newCopyPane" prefHeight="450.0" prefWidth="350.0" visible="false">
           <children>
             <Label layoutY="-7.0" styleClass="font-grey, header-3" text="Add a new copy" />
             <TextField fx:id="newCopyItemID" layoutY="75.0" prefHeight="25.0" prefWidth="350.0" promptText="The item ID for this copy" />
