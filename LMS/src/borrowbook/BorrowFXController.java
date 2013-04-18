@@ -7,8 +7,15 @@ package borrowbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.PastTransaction;
+import exception.CopyBorrowedException;
+import exception.CopyNotFoundException;
+import exception.CopyReservedException;
+import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
+import exception.NullResultException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
+import exception.UserSuspendedException;
 import globalcontrol.ModelController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +29,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.scene.Node;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
@@ -114,35 +122,39 @@ public class BorrowFXController extends BaseFXController implements Initializabl
     */
     
     private void getItemDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
-        //create a borrowable item
-        String copyID = copyIDField.getText();            
-        borrowMgr.createItem(copyID);
-        //display all the info about this copy
-        itemTitle.setText(borrowMgr.getItem().getTitle());
-        fullItemTitle.setText(borrowMgr.getItem().getTitle());
-        itemAuthor.setText("Author: " + borrowMgr.getItem().getAuthor());
-        itemID.setText("Item ID: " + borrowMgr.getItem().getItemID());
-        String itemDescriptionText = borrowMgr.getItem().getDescription();
-        itemDescription.setText(itemDescriptionText);
-        //add the image to the bookcover field
-        Image image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemID() + ".jpg"); 
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
-        imageView.setFitWidth(130.0);
-        imageView.setPreserveRatio(true);
-        bookcoverField.getChildren().add(imageView);
+        try {
+            //create a borrowable item
+            String copyID = copyIDField.getText();            
+            borrowMgr.createItem(copyID);
+            //display all the info about this copy
+            itemTitle.setText(borrowMgr.getItem().getTitle());
+            fullItemTitle.setText(borrowMgr.getItem().getTitle());
+            itemAuthor.setText("Author: " + borrowMgr.getItem().getAuthor());
+            itemID.setText("Item ID: " + borrowMgr.getItem().getItemID());
+            String itemDescriptionText = borrowMgr.getItem().getDescription();
+            itemDescription.setText(itemDescriptionText);
+            //add the image to the bookcover field
+            Image image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemID() + ".jpg"); 
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitWidth(130.0);
+            imageView.setPreserveRatio(true);
+            bookcoverField.getChildren().add(imageView);
 
-        //make the book info field invisible
-        itemMsg.setVisible(false);
-        //resize the content pane inside scroll pane accordign to the length of the text
-        double height = computeTextHeight(itemDescriptionText ,60, 18.0);
-        itemDescriptionAnchorPane.setPrefHeight(height);        
-        
-        //make the book info panel visible
-        bookInfoPane.setVisible(true);
+            //make the book info field invisible
+            itemMsg.setVisible(false);
+            //resize the content pane inside scroll pane accordign to the length of the text
+            double height = computeTextHeight(itemDescriptionText ,60, 18.0);
+            itemDescriptionAnchorPane.setPrefHeight(height);        
+            
+            //make the book info panel visible
+            bookInfoPane.setVisible(true);
 
-        //generate animation
-        this.handleOnShowAnimation(bookInfoPane);
+            //generate animation
+            this.handleOnShowAnimation(bookInfoPane);
+        } catch (CopyNotFoundException | ItemNotFoundException ex) {
+            displayWarning("Error",ex.getMessage());
+        }
     }
     
     //compute the height needed for the scroll pane based on the text length
@@ -169,7 +181,9 @@ public class BorrowFXController extends BaseFXController implements Initializabl
             text += "Reasons might be: \n";
             text += e.getMessage();
             displayWarning("Sorry",text);
-        }
+        } catch (Exception ex) {
+            displayWarning("Sorry",ex.getMessage());
+        } 
     }
     
     

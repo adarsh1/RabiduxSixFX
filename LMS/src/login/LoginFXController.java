@@ -150,7 +150,9 @@ public class LoginFXController extends BaseFXController implements Initializable
         catch(UserNotFoundException | IncorrectPasswordException | SQLException | ClassNotFoundException e){
             //if user not found, raise this exception
             warningMsgField.setText(e.getMessage());
-        }
+        } catch (Exception ex) {
+            warningMsgField.setText(ex.getMessage());
+        } 
         
     }
     
