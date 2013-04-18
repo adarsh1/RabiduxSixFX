@@ -8,6 +8,10 @@ package history;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.PastTransaction;
+import exception.CopyNotFoundException;
+import exception.InvalidUserTypeException;
+import exception.ItemNotFoundException;
+import exception.UserNotFoundException;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
@@ -175,7 +179,7 @@ public class HistoryFXController extends BaseFXController implements Initializab
         Member m = (Member)this.getModelController().getUser();
         try {
             historyMgr.setItemGroup(m.getPastTransactions());
-        } catch (SQLException | ClassNotFoundException ex ) {
+        } catch (SQLException | ClassNotFoundException |UserNotFoundException |CopyNotFoundException |ItemNotFoundException |InvalidUserTypeException ex ) {
             Logger.getLogger(HistoryFXController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
