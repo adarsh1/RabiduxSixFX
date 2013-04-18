@@ -114,7 +114,7 @@ public abstract class Database {
         String newID = new String();
         initializeConnection();
         
-        ResultSet resultSet = selectRecord(Table.RECORD, 1);
+        ResultSet resultSet = selectRecord(table, 1);
         
         if (resultSet.next()) {
             
