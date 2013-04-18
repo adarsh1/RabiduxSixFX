@@ -652,7 +652,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
+                
         database.initializeConnection();
         
         where.add(bookID);
@@ -689,7 +689,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
+                
         database.initializeConnection();
         
         where.add(userID);
@@ -724,7 +724,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
+                
         database.initializeConnection();
         
         where.add(WILDCARD_CHAR);
@@ -760,7 +760,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
+                
         database.initializeConnection();
         
         where.add(loanID);
@@ -797,7 +797,7 @@ public class DataStore {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
-        
+                
         database.initializeConnection();
         
         where.add(copyID);
