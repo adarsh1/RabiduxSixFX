@@ -1774,8 +1774,8 @@ public class DataStore {
         }
         
         set.add((String)details.get(Table.COPY_ITEM_ID));
-        set.add((String)details.get(Table.COPY_LOCATION));
         set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)));
+        set.add((String)details.get(Table.COPY_LOCATION));
 
         where.clear();
         where.add((String)details.get(Table.COPY_COPY_ID));
