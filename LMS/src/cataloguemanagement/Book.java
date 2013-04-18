@@ -334,7 +334,7 @@ public class Book extends CatalogueCopy
     public void addNewItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();      
-        dataStore.addItem(details);
+        dataStore.addItem(details, CatalogueCopy.BOOK);
         
     }
 
@@ -342,7 +342,7 @@ public class Book extends CatalogueCopy
     public void updateItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        dataStore.updateItem(details);
+        dataStore.updateItem(details, CatalogueCopy.BOOK);
         
     }
 
@@ -352,7 +352,7 @@ public class Book extends CatalogueCopy
         DataStore dataStore = new DataStore();
         HashMap<String, Object> details;
         
-        details = dataStore.getItemInfo(itemID);
+        details = dataStore.getItemInfo(itemID, CatalogueCopy.BOOK);
         
         return details;
         
@@ -362,7 +362,7 @@ public class Book extends CatalogueCopy
     public void deleteItem(String itemID) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
-        dataStore.deleteItem(itemID);
+        dataStore.deleteItem(itemID, CatalogueCopy.BOOK);
         
     }
 
