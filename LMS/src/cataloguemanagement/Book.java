@@ -180,7 +180,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException{
+    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException{
         
         DataStore dataStore = new DataStore();
                 
@@ -310,7 +310,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public ReservedCopy getReservedCopy() throws SQLException, ClassNotFoundException, CopyNotFoundException {
+    public ReservedCopy getReservedCopy() throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getReservedCopy(super.getIndividualCopyID());
@@ -324,7 +324,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public PastTransaction getPastTransaction() throws SQLException, ClassNotFoundException, CopyNotFoundException {
+    public PastTransaction getPastTransaction() throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getRecord(super.getIndividualCopyID());

@@ -40,13 +40,13 @@ public interface Reservable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException, CopyNotFoundException ;
+    public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException, CopyNotFoundException;
+    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException;
     
 }

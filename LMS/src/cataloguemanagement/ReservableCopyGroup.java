@@ -5,6 +5,7 @@
 package cataloguemanagement;
 
 import datamanagement.*;
+import exception.CopyNotFoundException;
 import exception.InvalidKeywordException;
 import exception.ItemNotFoundException;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class ReservableCopyGroup {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static ReservableCopyGroup getReservableCopyGroup (String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException {
+    public static ReservableCopyGroup getReservableCopyGroup (String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, CopyNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getCopyGroup(itemID);
@@ -51,7 +52,7 @@ public class ReservableCopyGroup {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static ArrayList<ReservableCopyGroup> getReservableCopyGroups (String searchCriteria, String keyword) throws SQLException, ClassNotFoundException, InvalidKeywordException {
+    public static ArrayList<ReservableCopyGroup> getReservableCopyGroups (String searchCriteria, String keyword) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getCopyGroups(searchCriteria, keyword);

@@ -26,6 +26,6 @@ public interface Returnable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException, CopyNotFoundException;
+    public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException;
     
 }

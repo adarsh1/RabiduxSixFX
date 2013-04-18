@@ -4,12 +4,9 @@
  */
 package usermanagement;
 
-import cataloguemanagement.CurrentHolding;
-import cataloguemanagement.ReservedCopy;
-import cataloguemanagement.PastTransaction;
+import cataloguemanagement.*;
 import datamanagement.DataStore;
-import exception.NullResultException;
-import exception.UserNotFoundException;
+import exception.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -190,7 +187,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException, InvalidUserTypeException {
         
         DataStore dataStore = new DataStore();
         ArrayList<PastTransaction> A = dataStore.getRecords(super.getUserID());
@@ -204,7 +201,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getReservedCopies(super.getUserID());
@@ -218,7 +215,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException{
+    public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException{
         
         DataStore dataStore = new DataStore();
         return dataStore.getCurrentHoldings(super.getUserID());

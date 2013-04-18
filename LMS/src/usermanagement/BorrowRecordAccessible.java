@@ -21,20 +21,20 @@ public interface BorrowRecordAccessible {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException, UserNotFoundException ;
+    public abstract ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException, InvalidUserTypeException;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException;
+    public abstract ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException;
     /**
      *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException;
+    public abstract ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException;
     
 }
