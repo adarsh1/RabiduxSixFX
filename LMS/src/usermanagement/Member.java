@@ -8,6 +8,8 @@ import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedCopy;
 import cataloguemanagement.PastTransaction;
 import datamanagement.DataStore;
+import exception.NullResultException;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -64,7 +66,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isEligibleToBorrow() throws SQLException, ClassNotFoundException{
+    public boolean isEligibleToBorrow() throws SQLException, ClassNotFoundException, UserNotFoundException{
         
         boolean result;
         
@@ -82,7 +84,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
         
     }
     
-    public boolean isEligibleToReserve() throws SQLException, ClassNotFoundException{
+    public boolean isEligibleToReserve() throws SQLException, ClassNotFoundException, UserNotFoundException{
         
         boolean result;
         
@@ -101,14 +103,14 @@ public abstract class Member extends User implements BorrowRecordAccessible{
     }
     
     
-    private int getNumOfBorrowedItem() throws SQLException, ClassNotFoundException {
+    private int getNumOfBorrowedItem() throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getNumOfBorrowing(super.getUserID());
         
     }
     
-    private int getNumOfReservedItem() throws SQLException, ClassNotFoundException {
+    private int getNumOfReservedItem() throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getNumOfReserving(super.getUserID());
@@ -168,7 +170,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void resetFine() throws SQLException, ClassNotFoundException {
+    public void resetFine() throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
         DataStore dataStore = new DataStore();
         dataStore.resetFine(super.getUserID());
