@@ -14,7 +14,7 @@
 <AnchorPane id="searrchPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="searchbook.SearchFXController">
   <children>
     <Label layoutY="-13.0" styleClass="header-2, font-grey" text="Find catalogue items" />
-    <TextField fx:id="keywordField" layoutY="50.0" onKeyReleased="#updateSearchButton" onKeyTyped="#updateSearchButton" prefHeight="31.0" prefWidth="409.0" />
+    <TextField fx:id="keywordField" layoutY="50.0" onKeyReleased="#updateSearchButton" onKeyTyped="#updateSearchButton" prefHeight="31.0" prefWidth="409.0" promptText="Enter Search Query" />
     <Button fx:id="searchButton" defaultButton="true" disable="true" layoutX="422.0" layoutY="50.0" mnemonicParsing="false" onAction="#handlesearchbutton" prefHeight="30.0" text="Search" />
     <RadioButton fx:id="byTitle" layoutY="90.0" mnemonicParsing="false" selected="true" text="By Title">
       <toggleGroup>

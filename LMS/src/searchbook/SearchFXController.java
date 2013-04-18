@@ -208,6 +208,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
         int i;
         for(i=0;i<searchMgr.getNoOfResults();i++)
         {  Pane p=new Pane();
+           if(!searchMgr.getItemGroup().get(i).getCopies().isEmpty())
                   createIndividual(p,searchMgr.getItemGroup().get(i));
                 vb.getChildren().add(p);
                 handleNodeScaleTransition(p, 400,0,1);
