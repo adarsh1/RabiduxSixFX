@@ -1,8 +1,9 @@
 
 package updatecatalogue;
 
+import cataloguemanagement.UpdatableBook;
+import cataloguemanagement.UpdatableCopy;
 import datamanagement.Table;
-import exception.ItemExistException;
 import java.util.Calendar;
 import java.util.HashMap;
 import usermanagement.Librarian;
@@ -22,22 +23,47 @@ public class UpdateMgr {
         //empty constructor
     }
     
-    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemExistException{
-        HashMap<String, Object> newBook = new HashMap();
-        setBookDetails(newBook, title, author, description, publishDate, ISBN, genre);
-        
-        //newBook.addNewItem();
+    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre){
+        UpdatableBook updatableBook = new UpdatableBook();
+        updatableBook.updateBook(genre, title, author, description, publishDate, ISBN, genre);
     }
     
     public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre){
-        HashMap<String, Object> newBook = new HashMap();
-        newBook.put(Table.BOOK_BOOK_ID,itemID);
-        setBookDetails(newBook, title, author, description, publishDate, ISBN, genre);        
+        UpdatableBook updatableBook = new UpdatableBook();     
+        updatableBook.updateBook(itemID, title, author, description, publishDate, ISBN, genre);
     }
     
     public HashMap getItemInfo(String itemID){
-        return new HashMap();
+        UpdatableBook updatableBook = new UpdatableBook(); 
+        return updatableBook.getBookDetails(itemID);
     }
+    
+    public void deleteBook(String itemID){
+        UpdatableBook updatableBook = new UpdatableBook(); 
+        updatableBook.deleteBook(itemID);
+    }
+    
+    public void addNewCopy(String location){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        updatableCopy.addNewCopy(location);
+    }
+        
+    public void updateCopy(String copyID, String location){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        updatableCopy.updateCopy(copyID, location);
+    }
+    
+    public HashMap getCopyDetails(String copyID){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        return updatableCopy.getCopyDetails(copyID);
+    }
+    
+    public void deleteCopy(String copyID){
+        UpdatableCopy updatableCopy = new UpdatableCopy();
+        updatableCopy.deleteCopy(copyID);
+    }
+    
+    
 
     /**
      * @return the currentLibrarian
