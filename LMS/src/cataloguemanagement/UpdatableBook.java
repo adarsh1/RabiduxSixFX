@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.ItemNotFoundException;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -21,15 +22,15 @@ public class UpdatableBook {
         
     }
     
-    public void updateBook(String itemID, String title, String author, String description, Calendar publishDate, String ISBN, String genre){
+    public void updateBook(String itemID, String title, String author, String description, Calendar publishDate, String ISBN, String genre) throws ItemNotFoundException{
         
     }
     
-    public HashMap getBookDetails(String itemID){
+    public HashMap getBookDetails(String itemID) throws ItemNotFoundException{
         return new HashMap();
     }
     
-    public void deleteBook(String itemID){
+    public void deleteBook(String itemID) throws ItemNotFoundException{
         
     }
 }

@@ -4,6 +4,7 @@ package updatecatalogue;
 import cataloguemanagement.UpdatableBook;
 import cataloguemanagement.UpdatableCopy;
 import datamanagement.Table;
+import exception.ItemNotFoundException;
 import java.util.Calendar;
 import java.util.HashMap;
 import usermanagement.Librarian;
@@ -23,22 +24,22 @@ public class UpdateMgr {
         //empty constructor
     }
     
-    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre){
+    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException{
         UpdatableBook updatableBook = new UpdatableBook();
         updatableBook.updateBook(genre, title, author, description, publishDate, ISBN, genre);
     }
     
-    public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre){
+    public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException{
         UpdatableBook updatableBook = new UpdatableBook();     
         updatableBook.updateBook(itemID, title, author, description, publishDate, ISBN, genre);
     }
     
-    public HashMap getItemInfo(String itemID){
+    public HashMap getItemInfo(String itemID) throws ItemNotFoundException{
         UpdatableBook updatableBook = new UpdatableBook(); 
         return updatableBook.getBookDetails(itemID);
     }
     
-    public void deleteBook(String itemID){
+    public void deleteBook(String itemID) throws ItemNotFoundException{
         UpdatableBook updatableBook = new UpdatableBook(); 
         updatableBook.deleteBook(itemID);
     }
@@ -48,17 +49,17 @@ public class UpdateMgr {
         updatableCopy.addNewCopy(location);
     }
         
-    public void updateCopy(String copyID, String location){
+    public void updateCopy(String copyID, String location) throws ItemNotFoundException{
         UpdatableCopy updatableCopy = new UpdatableCopy();
         updatableCopy.updateCopy(copyID, location);
     }
     
-    public HashMap getCopyDetails(String copyID){
+    public HashMap getCopyDetails(String copyID) throws ItemNotFoundException{
         UpdatableCopy updatableCopy = new UpdatableCopy();
         return updatableCopy.getCopyDetails(copyID);
     }
     
-    public void deleteCopy(String copyID){
+    public void deleteCopy(String copyID) throws ItemNotFoundException{
         UpdatableCopy updatableCopy = new UpdatableCopy();
         updatableCopy.deleteCopy(copyID);
     }
