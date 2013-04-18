@@ -332,42 +332,74 @@ public class Book extends CatalogueCopy
 
     @Override
     public void addNewItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();      
+        dataStore.addItem(details);
+        
     }
 
     @Override
     public void updateItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        dataStore.updateItem(details);
+        
     }
 
     @Override
     public HashMap<String, Object> getItem(String itemID) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        HashMap<String, Object> details;
+        
+        details = dataStore.getItemInfo(itemID);
+        
+        return details;
+        
     }
 
     @Override
     public void deleteItem(String itemID) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        dataStore.deleteItem(itemID);
+        
     }
 
     @Override
     public void addNewCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();      
+        dataStore.addCopy(details);
+        
     }
 
     @Override
     public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();      
+        dataStore.updateCopy(details);
+        
     }
 
     @Override
     public HashMap<String, Object> getCopy(String copyID) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        HashMap<String, Object> details;
+        
+        details = dataStore.getCopyInfo(copyID);
+        
+        return details;
+        
     }
 
     @Override
     public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        DataStore dataStore = new DataStore();
+        dataStore.deleteCopy(copyID);
+        
     }
 
 }

@@ -41,25 +41,7 @@ public class DataStore {
         DatabaseFactory instance = DatabaseFactory.getInstance();
         database = instance.createDatabase();
     }
-    
-    /**
-     *
-     * @param catalogueItem
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     */
-    public void insertItem(CatalogueCopy catalogueItem) throws SQLException, ClassNotFoundException {
-        
-        ArrayList<String> itemValues = new ArrayList<> ();
-        
-        
-        database.initializeConnection();
-        
-        
-        database.closeConnection();
-       
-    }
-    
+     
     /**
      *
      * @param copyID
@@ -1623,5 +1605,38 @@ public class DataStore {
         database.closeConnection();
         
     }
+
+    public void addItem(HashMap<String, Object> details) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void updateItem(HashMap<String, Object> details) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public HashMap<String, Object> getItemInfo(String itemID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void deleteItem(String itemID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void addCopy(HashMap<String, Object> details) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void updateCopy(HashMap<String, Object> details) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public HashMap<String, Object> getCopyInfo(String copyID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void deleteCopy(String copyID) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 
 }
