@@ -14,7 +14,7 @@ import java.util.*;
  */
 
 public class Book extends CatalogueCopy 
-    implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable{
+    implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,ItemUpdatable{
     
     private String ISBN;
     private String genre;
@@ -329,4 +329,45 @@ public class Book extends CatalogueCopy
         return dataStore.getRecord(super.getIndividualCopyID());
         
     }
+
+    @Override
+    public void addNewItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void updateItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public HashMap<String, Object> getItem(String itemID) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteItem(String itemID) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void addNewCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public HashMap<String, Object> getCopy(String copyID) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

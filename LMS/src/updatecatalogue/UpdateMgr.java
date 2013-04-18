@@ -1,10 +1,10 @@
 
 package updatecatalogue;
 
-import cataloguemanagement.UpdatableBook;
-import cataloguemanagement.UpdatableCopy;
+import cataloguemanagement.*;
 import datamanagement.Table;
 import exception.ItemNotFoundException;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashMap;
 import usermanagement.Librarian;
@@ -41,9 +41,23 @@ public class UpdateMgr {
      * @param genre
      * @throws ItemNotFoundException
      */
-    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException{
-        UpdatableBook updatableBook = new UpdatableBook();
-        updatableBook.updateBook(genre, title, author, description, publishDate, ISBN, genre);
+    public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+        
+        ItemUpdatable itemUpdatable = new Book();
+        HashMap<String, Object> hashMap = new HashMap ();
+        
+        hashMap.put(Table.BOOK_TITLE, title);
+        hashMap.put(Table.BOOK_AUTHOR, author);
+        hashMap.put(Table.BOOK_DATE, publishDate);
+        hashMap.put(Table.BOOK_DESCRIPTION, description);
+        hashMap.put(Table.BOOK_ISBN, ISBN);
+        hashMap.put(Table.BOOK_GENRE, genre);
+        
+        itemUpdatable.addNewItem(hashMap);
+        
+//        UpdatableBook updatableBook = new UpdatableBook();
+//        updatableBook.updateBook(genre, title, author, description, publishDate, ISBN, genre);
+        
     }
     
     /**
@@ -57,9 +71,22 @@ public class UpdateMgr {
      * @param genre
      * @throws ItemNotFoundException
      */
-    public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException{
-        UpdatableBook updatableBook = new UpdatableBook();     
-        updatableBook.updateBook(itemID, title, author, description, publishDate, ISBN, genre);
+    public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+        
+        ItemUpdatable itemUpdatable = new Book();
+        HashMap<String, Object> hashMap = new HashMap ();
+        
+        hashMap.put(Table.BOOK_TITLE, title);
+        hashMap.put(Table.BOOK_AUTHOR, author);
+        hashMap.put(Table.BOOK_DATE, publishDate);
+        hashMap.put(Table.BOOK_DESCRIPTION, description);
+        hashMap.put(Table.BOOK_ISBN, ISBN);
+        hashMap.put(Table.BOOK_GENRE, genre);
+        
+        itemUpdatable.updateItem(hashMap);
+        
+//        UpdatableBook updatableBook = new UpdatableBook();     
+//        updatableBook.updateBook(itemID, title, author, description, publishDate, ISBN, genre);
     }
     
     /**
@@ -68,9 +95,17 @@ public class UpdateMgr {
      * @return
      * @throws ItemNotFoundException
      */
-    public HashMap getItemInfo(String itemID) throws ItemNotFoundException{
-        UpdatableBook updatableBook = new UpdatableBook(); 
-        return updatableBook.getBookDetails(itemID);
+    public HashMap getItemInfo(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+        
+        ItemUpdatable itemUpdatable = new Book();
+        HashMap<String, Object> hashMap;
+        
+        hashMap = itemUpdatable.getItem(itemID);
+        
+        return hashMap;
+        
+//        UpdatableBook updatableBook = new UpdatableBook(); 
+//        return updatableBook.getBookDetails(itemID);
     }
     
     /**
@@ -78,18 +113,32 @@ public class UpdateMgr {
      * @param itemID
      * @throws ItemNotFoundException
      */
-    public void deleteBook(String itemID) throws ItemNotFoundException{
-        UpdatableBook updatableBook = new UpdatableBook(); 
-        updatableBook.deleteBook(itemID);
+    public void deleteBook(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException{
+        
+        ItemUpdatable itemUpdatable = new Book();
+        
+        itemUpdatable.deleteItem(itemID);
+        
+//        UpdatableBook updatableBook = new UpdatableBook(); 
+//        updatableBook.deleteBook(itemID);
     }
     
     /**
      *
      * @param location
      */
-    public void addNewCopy(String location){
-        UpdatableCopy updatableCopy = new UpdatableCopy();
-        updatableCopy.addNewCopy(location);
+    public void addNewCopy(String itemID, String location) throws SQLException, ClassNotFoundException{
+        
+        CopyUpdatable copyUpdatable = new Book();
+        HashMap<String, Object> hashMap = new HashMap ();
+        
+        hashMap.put(Table.COPY_ITEM_ID, itemID);
+        hashMap.put(Table.COPY_LOCATION, location);
+        
+        copyUpdatable.addNewCopy(hashMap);
+        
+//        UpdatableCopy updatableCopy = new UpdatableCopy();
+//        updatableCopy.addNewCopy(location);
     }
         
     /**
@@ -98,9 +147,19 @@ public class UpdateMgr {
      * @param location
      * @throws ItemNotFoundException
      */
-    public void updateCopy(String copyID, String location) throws ItemNotFoundException{
-        UpdatableCopy updatableCopy = new UpdatableCopy();
-        updatableCopy.updateCopy(copyID, location);
+    public void updateCopy(String itemID, String copyID, String location) throws SQLException, ClassNotFoundException{
+        
+        CopyUpdatable copyUpdatable = new Book();
+        HashMap<String, Object> hashMap = new HashMap ();
+        
+        hashMap.put(Table.COPY_ITEM_ID, itemID);
+        hashMap.put(Table.COPY_COPY_ID, copyID);
+        hashMap.put(Table.COPY_LOCATION, location);
+        
+        copyUpdatable.updateCopy(hashMap);
+        
+//        UpdatableCopy updatableCopy = new UpdatableCopy();
+//        updatableCopy.updateCopy(copyID, location);
     }
     
     /**
@@ -109,9 +168,17 @@ public class UpdateMgr {
      * @return
      * @throws ItemNotFoundException
      */
-    public HashMap getCopyDetails(String copyID) throws ItemNotFoundException{
-        UpdatableCopy updatableCopy = new UpdatableCopy();
-        return updatableCopy.getCopyDetails(copyID);
+    public HashMap getCopyDetails(String copyID) throws SQLException, ClassNotFoundException{
+        
+        CopyUpdatable copyUpdatable = new Book();
+        HashMap<String, Object> hashMap;
+        
+        hashMap = copyUpdatable.getCopy(copyID);
+        
+        return hashMap;
+        
+//        UpdatableCopy updatableCopy = new UpdatableCopy();
+//        return updatableCopy.getCopyDetails(copyID);
     }
     
     /**
@@ -119,9 +186,15 @@ public class UpdateMgr {
      * @param copyID
      * @throws ItemNotFoundException
      */
-    public void deleteCopy(String copyID) throws ItemNotFoundException{
-        UpdatableCopy updatableCopy = new UpdatableCopy();
-        updatableCopy.deleteCopy(copyID);
+    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException{
+        
+        CopyUpdatable copyUpdatable = new Book();
+        
+        copyUpdatable.deleteCopy(copyID);
+        
+//        UpdatableCopy updatableCopy = new UpdatableCopy();
+//        updatableCopy.deleteCopy(copyID);
+
     }
     
     
