@@ -106,7 +106,7 @@
         </AnchorPane>
       </children>
     </AnchorPane>
-    <AnchorPane fx:id="maskPane" layoutX="-190.0" layoutY="-50.0" opacity="0.2" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color:black" visible="false" />
+    <AnchorPane fx:id="maskPane" layoutX="-190.0" layoutY="-50.0" opacity="0.2" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color:white" visible="false" />
     <AnchorPane fx:id="confirmPane" layoutX="-190.0" layoutY="150.0" prefHeight="150.0" prefWidth="900.0" styleClass="logout-pane" visible="false">
       <children>
         <AnchorPane id="confirmMsgPane" fx:id="confirmMessageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">

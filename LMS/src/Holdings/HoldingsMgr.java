@@ -5,8 +5,13 @@ package Holdings;
 
 import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedCopy;
+import exception.CopyNotFoundException;
+import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
+import exception.NullResultException;
+import exception.RecordNotFoundException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import usermanagement.Member;
@@ -49,7 +54,7 @@ public class HoldingsMgr {
      * @throws NotEligibleToBorrowOrReserveException 
      */
     //borrow the book
-    public void extend(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
+    public void extend(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException{
         //if this member is allowed to borrow or reserve
         if(currentHoldings.get(i).getNumOfExtend()<MAX_EXTENSIONS){
              currentHoldings.get(i).getCopy().extend(currentHoldings.get(i).getLoanID(), currentMember.getLoanDuration());
@@ -64,7 +69,7 @@ public class HoldingsMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void cancelReservation(int i) throws SQLException, ClassNotFoundException{
+    public void cancelReservation(int i) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException{
         //if this member is allowed to borrow or reserve
              reservedCopies.get(i).getCopy().cancelReservation(currentMember.getUserID());
     }
@@ -75,7 +80,7 @@ public class HoldingsMgr {
      * @throws SQLException
      * @throws ClassNotFoundException 
      */
-    public void createItem() throws SQLException, ClassNotFoundException, TypeMismatchException{
+    public void createItem() throws SQLException, ClassNotFoundException, TypeMismatchException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException{
         //get the catalogue item from catalogue management
         setReservedCopies(currentMember.getReservedCopies());
         setCurrentHoldings(currentMember.getCurrentHoldingItems());
