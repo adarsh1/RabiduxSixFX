@@ -7,6 +7,7 @@ package returnbook;
 import cataloguemanagement.CatalogueCopy;
 import cataloguemanagement.PastTransaction;
 import cataloguemanagement.Returnable;
+import exception.CopyNotBorrowedException;
 import exception.CopyNotFoundException;
 import exception.InvalidUserTypeException;
 import exception.ItemNotFoundException;
@@ -54,7 +55,7 @@ public class ReturnMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean returnbook() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException{
+    public boolean returnbook() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, CopyNotBorrowedException{
         
         boolean finepresent = calculatefine();
         item.returnCopy(fine);

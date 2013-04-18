@@ -288,7 +288,7 @@ private void initializeBorrowScrollPane() {
         notifyObservers(except);
      }
     }
-    catch(SQLException|ClassNotFoundException| CopyNotFoundException| NullResultException| NumberFormatException| UserNotFoundException except)
+    catch(SQLException|ClassNotFoundException| CopyNotReservedException| CopyNotFoundException| NullResultException| NumberFormatException| UserNotFoundException except)
     {
         String text = "We regret to inform you that your reservation could not be cancelled.\n";
         text += "Reasons might be: \n";

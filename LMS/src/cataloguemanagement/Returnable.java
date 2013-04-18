@@ -19,7 +19,7 @@ public interface Returnable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract void returnCopy(double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException ;
+    public abstract void returnCopy(double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, CopyNotBorrowedException;
     /**
      *
      * @return

@@ -234,13 +234,13 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException {
+    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException, CopyNotReservedException {
         
         DataStore dataStore = new DataStore();
         
         if (!dataStore.isCopyReserved(super.getIndividualCopyID())) {
             
-//            throw new CopyNotReservedException();
+            throw new CopyNotReservedException();
             
         }
         
@@ -255,13 +255,13 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void returnCopy(double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
+    public void returnCopy(double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, CopyNotBorrowedException {
         
         DataStore dataStore = new DataStore();
         
         if (!dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
             
-//            throw new CopyNotBorrowedException();
+            throw new CopyNotBorrowedException();
             
         }
         

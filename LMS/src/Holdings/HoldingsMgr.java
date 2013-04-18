@@ -6,6 +6,7 @@ package Holdings;
 import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedCopy;
 import exception.CopyNotFoundException;
+import exception.CopyNotReservedException;
 import exception.CopyOverdueException;
 import exception.CopyReservedException;
 import exception.ItemNotFoundException;
@@ -74,7 +75,7 @@ public class HoldingsMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void cancelReservation(int i) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException{
+    public void cancelReservation(int i) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException, CopyNotReservedException{
         //if this member is allowed to borrow or reserve
              reservedCopies.get(i).getCopy().cancelReservation(currentMember.getUserID());
     }

@@ -6,13 +6,7 @@ package returnbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.PastTransaction;
-import exception.CopyNotFoundException;
-import exception.InvalidUserTypeException;
-import exception.ItemNotFoundException;
-import exception.NotEligibleToBorrowOrReserveException;
-import exception.NullResultException;
-import exception.TypeMismatchException;
-import exception.UserNotFoundException;
+import exception.*;
 import globalcontrol.ModelController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -176,7 +170,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
              
             }
            }
-        catch(SQLException | ClassNotFoundException |CopyNotFoundException |NullResultException  e){
+        catch(SQLException | ClassNotFoundException |CopyNotFoundException| CopyNotBorrowedException| NullResultException  e){
             String text = "We regret to inform you that the book could not be returned.\n";
             text += "Reasons might be: \n";
             text += e.getMessage();

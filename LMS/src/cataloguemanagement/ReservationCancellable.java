@@ -19,6 +19,6 @@ public interface ReservationCancellable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException ;
+    public void cancelReservation(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException, CopyNotReservedException ;
   
 }
