@@ -1148,13 +1148,14 @@ public class DataStore {
             
         }
         
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
         where.add(copyID);
-        where.add(WILDCARD_CHAR);
-        where.add(WILDCARD_CHAR);
+        where.add(NULL_DATETIME);
         
         database.initializeConnection();
         
-        resultSet = database.selectRecord(Table.COPY, where);
+        resultSet = database.selectRecord(Table.RECORD, where);
         
         if (!resultSet.next()) {
             
@@ -1163,7 +1164,7 @@ public class DataStore {
             
         }
         
-        if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)).compareTo(userID) == 0) {
+        if (resultSet.getString(Table.RECORD.getAttribute(Table.RECORD_USER_ID)).compareTo(userID) == 0) {
             
             database.closeConnection();
             throw new CopyBorrowedException("The copy has borrowed by the user");
