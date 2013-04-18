@@ -122,6 +122,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
      */
     // Handler for Button[Button[id=null, styleClass=button]] onAction
     public void handlesearchbutton(ActionEvent event)throws IOException{
+        if(!searchButton.isDisabled())
         getDetails();
     }
     
@@ -193,6 +194,10 @@ public class SearchFXController extends BaseFXController implements Initializabl
         updateSearchButton();
     }
 
+    @FXML
+    void searchButtonPress(ActionEvent event) {
+        getDetails();
+    }
     /**
      * Initializes the Scroll Pane which displays all the search results.
      */
