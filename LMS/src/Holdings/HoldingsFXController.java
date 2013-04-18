@@ -332,7 +332,7 @@ private void initializeBorrowScrollPane() {
         public void handle(MouseEvent e) {
             Node node=((Node) e.getSource()).getParent();
             try
-        {int id=Integer.parseInt(node.getId());
+        {int id=Integer.parseInt(node.getId().substring(1));
             FXMLLoader fxmlLoader=transitPane("IndividualReservableGUI.fxml", (Pane)contentPane.getParent(), getModelController() );
             IndividualViewGUIController ic = fxmlLoader.<IndividualViewGUIController>getController();
             setChanged();
