@@ -558,7 +558,7 @@ public class UpdateCatalogueFXController extends BaseFXController
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setLenient(false);
         calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month--);
+        calendar.set(Calendar.MONTH, --month);
         calendar.set(Calendar.DAY_OF_MONTH, date);
         return calendar;
     }
