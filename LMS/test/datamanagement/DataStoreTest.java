@@ -575,4 +575,18 @@ public class DataStoreTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of refreshReserve method, of class DataStore.
+     */
+    @Test
+    public void testRefreshReserve() throws Exception {
+        System.out.println("refreshReserve");
+        String copyID = "";
+        int gracePeriod = 0;
+        DataStore instance = new DataStore();
+        instance.refreshReserve(copyID, gracePeriod);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }
