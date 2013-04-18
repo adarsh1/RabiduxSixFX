@@ -187,7 +187,8 @@ public class SearchFXController extends BaseFXController implements Initializabl
      */
     @FXML
     void updateSearchButton(KeyEvent event) {
-        updateSearchButton();
+        if(searchButton.isDisabled()==false)
+          updateSearchButton();
     }
 
     @FXML
