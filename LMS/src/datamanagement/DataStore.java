@@ -256,7 +256,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException {
+    public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, CopyNotFoundException {
         
         ResultSet resultSet;
         ReservableCopyGroup result = new ReservableCopyGroup ();
@@ -310,7 +310,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException, InvalidKeywordException {
+    public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException {
         
         ResultSet resultSet;
         ArrayList<ReservableCopyGroup> result = new ArrayList<> ();
@@ -898,7 +898,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<PastTransaction> getRecords(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public ArrayList<PastTransaction> getRecords(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException, InvalidUserTypeException {
         
         ResultSet resultSet;
         ArrayList<PastTransaction> result = new ArrayList<> ();
@@ -1054,7 +1054,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public PastTransaction extend(String copyID, String loanID, int extend_time) throws SQLException, ClassNotFoundException, RecordNotFoundException, CopyNotFoundException, NullResultException {
+    public PastTransaction extend(String copyID, String loanID, int extend_time) throws SQLException, ClassNotFoundException, RecordNotFoundException, CopyNotFoundException, NullResultException, ItemNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -1328,7 +1328,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1395,7 +1395,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<CurrentHolding> getCurrentHoldings(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
+    public ArrayList<CurrentHolding> getCurrentHoldings(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1458,7 +1458,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ReservedCopy getReservedCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
+    public ReservedCopy getReservedCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1502,7 +1502,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public PastTransaction getRecord(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
+    public PastTransaction getRecord(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
         ResultSet resultSet;
         PastTransaction result = new PastTransaction ();

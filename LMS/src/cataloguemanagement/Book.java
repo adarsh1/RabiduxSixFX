@@ -36,7 +36,7 @@ public class Book extends CatalogueCopy
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static Book getBook(String copyID) throws SQLException, ClassNotFoundException {
+    public static Book getBook(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         return (Book) CatalogueCopy.getCatalogueCopy(copyID);
         
