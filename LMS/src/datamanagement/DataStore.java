@@ -124,7 +124,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public User getUser(String username, String password) throws SQLException, ClassNotFoundException {
+    public User getUserByName(String username) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
