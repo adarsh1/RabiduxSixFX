@@ -70,9 +70,9 @@ public class ResetFineMgrTest {
     @Test
     public void testSetMember() throws Exception {
         System.out.println("setMember");
-        String userID = "";
+        String userName = "";
         ResetFineMgr instance = new ResetFineMgr();
-        instance.setMember(userID);
+        instance.setMember(userName);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

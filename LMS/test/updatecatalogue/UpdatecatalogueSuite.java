@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package usermanagement;
+package updatecatalogue;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,8 +16,8 @@ import org.junit.runners.Suite;
  * @author Allen
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({FacultyTest.class, LibrarianTest.class, StudentTest.class, UserTest.class})
-public class UsermanagementSuite {
+@Suite.SuiteClasses({updatecatalogue.UpdateMgrTest.class, updatecatalogue.UpdateCatalogueFXControllerTest.class})
+public class UpdatecatalogueSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

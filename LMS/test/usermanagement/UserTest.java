@@ -37,6 +37,20 @@ public class UserTest {
     }
 
     /**
+     * Test of getUserByName method, of class User.
+     */
+    @Test
+    public void testGetUserByName() throws Exception {
+        System.out.println("getUserByName");
+        String username = "";
+        User expResult = null;
+        User result = User.getUserByName(username);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
      * Test of getUser method, of class User.
      */
     @Test

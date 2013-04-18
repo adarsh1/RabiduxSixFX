@@ -38,14 +38,28 @@ public class MemberTest {
     }
 
     /**
-     * Test of isEligibleToBorrowOrReserve method, of class Member.
+     * Test of isEligibleToBorrow method, of class Member.
      */
     @Test
-    public void testIsEligibleToBorrowOrReserve() throws Exception {
-        System.out.println("isEligibleToBorrowOrReserve");
+    public void testIsEligibleToBorrow() throws Exception {
+        System.out.println("isEligibleToBorrow");
         Member instance = new MemberImpl();
         boolean expResult = false;
-        boolean result = instance.isEligibleToBorrowOrReserve();
+        boolean result = instance.isEligibleToBorrow();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of isEligibleToReserve method, of class Member.
+     */
+    @Test
+    public void testIsEligibleToReserve() throws Exception {
+        System.out.println("isEligibleToReserve");
+        Member instance = new MemberImpl();
+        boolean expResult = false;
+        boolean result = instance.isEligibleToReserve();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -74,6 +88,19 @@ public class MemberTest {
         int maxHolding = 0;
         Member instance = new MemberImpl();
         instance.setMaxHolding(maxHolding);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setMaxReserve method, of class Member.
+     */
+    @Test
+    public void testSetMaxReserve() {
+        System.out.println("setMaxReserve");
+        int maxReserve = 0;
+        Member instance = new MemberImpl();
+        instance.setMaxReserve(maxReserve);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

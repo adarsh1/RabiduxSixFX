@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
  * @author Allen
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({baseGUI.BaseFXControllerTest.class, baseGUI.AnimatableTest.class})
+@Suite.SuiteClasses({})
 public class BaseGUISuite {
 
     @BeforeClass

@@ -105,17 +105,4 @@ public class SearchFXControllerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of searchButtonPress method, of class SearchFXController.
-     */
-    @Test
-    public void testSearchButtonPress() {
-        System.out.println("searchButtonPress");
-        ActionEvent event = null;
-        SearchFXController instance = new SearchFXController();
-        instance.searchButtonPress(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 }

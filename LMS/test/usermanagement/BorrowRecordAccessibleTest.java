@@ -7,6 +7,10 @@ package usermanagement;
 import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.PastTransaction;
 import cataloguemanagement.ReservedCopy;
+import exception.CopyNotFoundException;
+import exception.InvalidUserTypeException;
+import exception.ItemNotFoundException;
+import exception.UserNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.After;
@@ -85,15 +89,15 @@ public class BorrowRecordAccessibleTest {
 
     public class BorrowRecordAccessibleImpl implements BorrowRecordAccessible {
 
-        public ArrayList<PastTransaction> getPastTransactions() throws SQLException, ClassNotFoundException {
+        public ArrayList<PastTransaction> getPastTransactions() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException, InvalidUserTypeException {
             return null;
         }
 
-        public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException {
+        public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
             return null;
         }
 
-        public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException {
+        public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
             return null;
         }
     }

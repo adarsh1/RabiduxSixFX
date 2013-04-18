@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package usermanagement;
+package datamanagement;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,8 +16,8 @@ import org.junit.runners.Suite;
  * @author Allen
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({FacultyTest.class, LibrarianTest.class, StudentTest.class, UserTest.class})
-public class UsermanagementSuite {
+@Suite.SuiteClasses({DataStoreTest.class, TableTest.class, MySQLDBTest.class})
+public class DatamanagementSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
  * @author Allen
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({UpdatableBookTest.class, CurrentHoldingTest.class, CatalogueCopyTest.class, ReservedCopyTest.class, ItemUpdatableTest.class, BookTest.class, ExtendableTest.class, DisplayableTest.class, UpdatableCopyTest.class, PastTransactionTest.class, ReservationCancellableTest.class, ReservableTest.class, CopyUpdatableTest.class, ReservableCopyGroupTest.class, ReturnableTest.class, BorrowableTest.class})
+@Suite.SuiteClasses({cataloguemanagement.UpdatableBookTest.class, cataloguemanagement.CurrentHoldingTest.class, cataloguemanagement.ReservedCopyTest.class, cataloguemanagement.BookTest.class, cataloguemanagement.UpdatableCopyTest.class, cataloguemanagement.PastTransactionTest.class, cataloguemanagement.ReservableCopyGroupTest.class})
 public class CataloguemanagementSuite {
 
     @BeforeClass
