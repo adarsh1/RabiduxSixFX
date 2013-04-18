@@ -378,6 +378,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             String copyID = updateCopyID.getText();
             String location = updateCopyLocation.getText();
             updateMgr.updateCopy(copyID, location);
+            this.displaySuccess("Updated", "Copy information has successfully been updated");
         } catch (SQLException | ClassNotFoundException ex) {
             this.displayWarning("Error", ex.getMessage());
         }
@@ -434,6 +435,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             String genre = updateItemGenre.getText();
             if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){                
                 updateMgr.updateBook(itemID, title, author, publishDate, description, ISBN, genre);
+                this.displaySuccess("Updated", "Item information has successfully been updated");
             }
             else{                    
                 displayWarning("Item Information incomplete", "Please fill in the necessary fields");
