@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public abstract class Member extends User implements BorrowRecordAccessible{
     
     private int maxHolding;
+    private int maxReserve;
     private double fineAmount;
     
     //maximal number of holdings for student and staff
@@ -28,8 +29,15 @@ public abstract class Member extends User implements BorrowRecordAccessible{
     /**
      *
      */
+    public static final int STUDENT_MAX_RESERVE = 2;
+    /**
+     *
+     */
     public static final int FACULTY_MAX_HOLDING = 3;
-    
+    /**
+     *
+     */
+    public static final int FACULTY_MAX_RESERVE = 3;
     //loan duration for student and faculty
     /**
      *
@@ -56,11 +64,11 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isEligibleToBorrowOrReserve() throws SQLException, ClassNotFoundException{
+    public boolean isEligibleToBorrow() throws SQLException, ClassNotFoundException{
         
         boolean result;
         
-        if ( getNumOfBorrowedItem() + getNumOfReservedItem() < maxHolding ) {
+        if ( getNumOfBorrowedItem() < maxHolding ) {
             
             result = true;
             
@@ -73,6 +81,25 @@ public abstract class Member extends User implements BorrowRecordAccessible{
         return result;
         
     }
+    
+    public boolean isEligibleToReserve() throws SQLException, ClassNotFoundException{
+        
+        boolean result;
+        
+        if ( getNumOfReservedItem() < maxReserve ) {
+            
+            result = true;
+            
+        } else {
+            
+            result = false;
+            
+        }
+        
+        return result;
+        
+    }
+    
     
     private int getNumOfBorrowedItem() throws SQLException, ClassNotFoundException {
         
@@ -107,7 +134,15 @@ public abstract class Member extends User implements BorrowRecordAccessible{
         this.maxHolding = maxHolding;
         
     }
-
+/**
+     *
+     * @param maxReserve
+     */
+    public void setMaxReserve(int maxReserve) {
+        
+        this.maxReserve = maxReserve;
+        
+    }
     /**
      *
      * @return

@@ -43,11 +43,11 @@ public class IndividualViewGUIMgr {
     //reserve the book
     public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
         //if this member is allowed to borrow or reserve
-        if(currentMember.isEligibleToBorrowOrReserve()){
+        if(currentMember.isEligibleToReserve()){
              item.getCopies().get(i).reserve(currentMember.getUserID());
         }
         else {
-            throw new NotEligibleToBorrowOrReserveException("You have exceeded your maximum loans, you are not elligible to reserve");
+            throw new NotEligibleToBorrowOrReserveException("You have exceeded your maximum reservations, you are not elligible to reserve");
         }
     }
     //create a borrowable item based on item ID
