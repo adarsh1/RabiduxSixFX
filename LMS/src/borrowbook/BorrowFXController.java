@@ -7,15 +7,10 @@ package borrowbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.PastTransaction;
-import exception.CopyBorrowedException;
 import exception.CopyNotFoundException;
-import exception.CopyReservedException;
 import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
-import exception.NullResultException;
 import exception.TypeMismatchException;
-import exception.UserNotFoundException;
-import exception.UserSuspendedException;
 import globalcontrol.ModelController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,8 +24,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
@@ -134,7 +127,13 @@ public class BorrowFXController extends BaseFXController implements Initializabl
             String itemDescriptionText = borrowMgr.getItem().getDescription();
             itemDescription.setText(itemDescriptionText);
             //add the image to the bookcover field
-            Image image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemID() + ".jpg"); 
+            Image image;
+            try{
+                image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + borrowMgr.getItem().getItemID() + ".jpg"); 
+            }
+            catch(Exception e){
+                image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg"); 
+            }
             ImageView imageView = new ImageView();
             imageView.setImage(image);
             imageView.setFitWidth(130.0);

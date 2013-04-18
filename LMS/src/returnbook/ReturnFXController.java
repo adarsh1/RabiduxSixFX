@@ -5,7 +5,6 @@
 package returnbook;
 
 import baseGUI.BaseFXController;
-import cataloguemanagement.PastTransaction;
 import exception.*;
 import globalcontrol.ModelController;
 import javafx.event.ActionEvent;
@@ -17,10 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
@@ -28,7 +24,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import usermanagement.Librarian;
-import usermanagement.Member;
 
 
 /**
@@ -123,7 +118,13 @@ public class ReturnFXController extends BaseFXController implements Initializabl
         String itemDescriptionText = returnMgr.getItem().getDescription();
         itemDescription.setText(itemDescriptionText);
         //add the image to the bookcover field
-        Image image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + returnMgr.getItem().getItemID() + ".jpg"); 
+        Image image;
+            try{
+                image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + returnMgr.getItem().getItemID() + ".jpg"); 
+            }
+            catch(Exception e){
+                image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg"); 
+            }
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         imageView.setFitWidth(130.0);
