@@ -14,7 +14,7 @@
 <AnchorPane id="historyPane" fx:id="contentPane" prefHeight="450.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml" fx:controller="history.HistoryFXController">
   <children>
     <Label id="" layoutY="-9.0" prefHeight="48.0" prefWidth="330.0" styleClass="header-2, font-grey" text="Borrowing History" />
-    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutY="59.0" prefHeight="391.0" prefWidth="500.0" styleClass="history-pane">
+    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutY="59.0" pannable="true" prefHeight="391.0" prefWidth="500.0" styleClass="history-pane">
       <content>
         <VBox fx:id="itemPane" prefHeight="369.0" prefWidth="485.0" styleClass="history-vb" />
       </content>

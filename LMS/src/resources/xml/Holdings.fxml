@@ -16,12 +16,12 @@
     <Label id="BorrowedItemLabel" layoutY="-13.0" styleClass="header-2, font-grey" text="Your Current Holding" />
     <Label layoutX="1.0" layoutY="44.0" styleClass="header-4, font-grey" text="Borrowed Items" />
     <Label layoutX="5.0" layoutY="244.0" styleClass="header-4, font-grey" text="Reserved Items" />
-    <ScrollPane layoutX="1.0" layoutY="80.0" prefHeight="158.00009999999747" prefWidth="499.0" styleClass="holdings-scroll">
+    <ScrollPane layoutX="1.0" layoutY="80.0" pannable="true" prefHeight="158.00009999999747" prefWidth="499.0" styleClass="holdings-scroll">
       <content>
         <VBox fx:id="borrowVB" prefHeight="138.0" prefWidth="474.0" spacing="20.0" />
       </content>
     </ScrollPane>
-    <ScrollPane layoutX="0.0" layoutY="283.0" prefHeight="167.0" prefWidth="500.0" styleClass="holdings-scroll">
+    <ScrollPane layoutX="0.0" layoutY="283.0" pannable="true" prefHeight="167.0" prefWidth="500.0" styleClass="holdings-scroll">
       <content>
         <VBox fx:id="reserveVB" prefHeight="143.0" prefWidth="474.0" />
       </content>
@@ -37,7 +37,7 @@
         </AnchorPane>
       </children>
     </AnchorPane>
-    <AnchorPane fx:id="confirmPane" id="confirmPane" layoutX="-190" layoutY="150.0" prefHeight="150.0" prefWidth="900.0" styleClass="confirm-pane" visible="false">
+    <AnchorPane fx:id="confirmPane" layoutX="-190.0" layoutY="150.0" prefHeight="150.0" prefWidth="900.0" styleClass="confirm-pane" visible="false">
       <children>
         <AnchorPane id="confirmMsgPane" fx:id="confirmMessageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
           <children>
