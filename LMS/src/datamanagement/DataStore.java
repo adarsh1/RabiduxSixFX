@@ -1164,6 +1164,13 @@ public class DataStore {
             
         }
         
+        if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)).compareTo(userID) == 0) {
+            
+//            database.closeConnection();
+//            throw new CopyBorrowedException("The copy has borrowed by the user");
+            
+        }
+        
         set.add(userID);
         set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
         

@@ -182,7 +182,7 @@ public class Book extends CatalogueCopy
     public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException{
         
         DataStore dataStore = new DataStore();
-        
+                
         if (dataStore.isCopyOverdue(super.getIndividualCopyID())) {
             
 //            throw new CopyOverdueException();
