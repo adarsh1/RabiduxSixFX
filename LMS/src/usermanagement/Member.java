@@ -190,7 +190,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException {
+    public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         ArrayList<PastTransaction> A = dataStore.getRecords(super.getUserID());
@@ -204,7 +204,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException {
+    public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         DataStore dataStore = new DataStore();
         return dataStore.getReservedCopies(super.getUserID());
@@ -218,7 +218,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @throws ClassNotFoundException
      */
     @Override
-    public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException{
+    public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException{
         
         DataStore dataStore = new DataStore();
         return dataStore.getCurrentHoldings(super.getUserID());
