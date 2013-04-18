@@ -2,7 +2,10 @@ package updatecatalogue;
 
 import baseGUI.BaseFXController;
 import datamanagement.Table;
+import exception.CopyNotFoundException;
+import exception.InvalidItemTypeException;
 import exception.ItemNotFoundException;
+import exception.NullResultException;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
@@ -10,6 +13,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -271,7 +276,9 @@ public class UpdateCatalogueFXController extends BaseFXController
         }        
         catch( SQLException | ClassNotFoundException e){
             this.displayWarning("Error", e.getMessage());
-        }
+        } catch (Exception ex) {
+            this.displayWarning("Error", ex.getMessage());
+        } 
     }
 
     // Handler for Button[fx:id="getItemDetailsButton"] onAction
@@ -297,7 +304,9 @@ public class UpdateCatalogueFXController extends BaseFXController
         }
         catch(ItemNotFoundException | SQLException | ClassNotFoundException e){
             this.displayWarning("Error", e.getMessage());
-        }
+        } catch (Exception ex) {
+            this.displayWarning("Error", ex.getMessage());
+        } 
     }
 
     // Handler for Button[fx:id="newCopyButton"] onAction
@@ -406,7 +415,9 @@ public class UpdateCatalogueFXController extends BaseFXController
             this.clearUpdateCopyFields();
         } catch (SQLException | ClassNotFoundException ex) {
             this.displayWarning("Error", ex.getMessage());
-        }
+        } catch (Exception ex) {
+            this.displayWarning("Error", ex.getMessage());
+        } 
     }
 
     // Handler for Button[fx:id="updateCopyDeleteButton"] onAction
@@ -429,7 +440,9 @@ public class UpdateCatalogueFXController extends BaseFXController
             updateMgr.deleteCopy(copyID);    
         } catch (SQLException | ClassNotFoundException ex) {
             this.displayWarning("Error", ex.getMessage());
-        }
+        } catch (Exception ex) {
+            this.displayWarning("Error", ex.getMessage());
+        } 
     }
 
     // Handler for Button[fx:id="updateItemButton"] onAction
@@ -497,7 +510,9 @@ public class UpdateCatalogueFXController extends BaseFXController
             this.displayWarning("Item ID Error", e.getMessage());
         } catch (SQLException | ClassNotFoundException e) {
             this.displayWarning("Sorry", e.getMessage());
-        }
+        } catch (Exception ex) {
+            this.displayWarning("Error", ex.getMessage());
+        } 
     }
         
     /**
