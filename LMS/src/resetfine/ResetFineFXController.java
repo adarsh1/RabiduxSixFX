@@ -13,6 +13,9 @@
 package resetfine;
 
 import baseGUI.BaseFXController;
+import exception.CopyNotFoundException;
+import exception.InvalidUserTypeException;
+import exception.ItemNotFoundException;
 import exception.TypeMismatchException;
 import exception.UserNotFoundException;
 import globalcontrol.ModelController;
@@ -91,7 +94,7 @@ public class ResetFineFXController extends BaseFXController implements Initializ
 
             //generate animation
             this.handleOnShowAnimation(userinfoPane);
-        } catch (UserNotFoundException ex) {
+        } catch (UserNotFoundException |InvalidUserTypeException ex) {
             this.displayWarning("Error", "User not found " + ex.getMessage());
         }
         

@@ -6,8 +6,13 @@ package returnbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.PastTransaction;
+import exception.CopyNotFoundException;
+import exception.InvalidUserTypeException;
+import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
+import exception.NullResultException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
 import globalcontrol.ModelController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,7 +100,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
         try{                        
             getItemDetails();
         }
-        catch (SQLException | ClassNotFoundException | TypeMismatchException e){
+        catch (SQLException | ClassNotFoundException | TypeMismatchException |UserNotFoundException |CopyNotFoundException |ItemNotFoundException |InvalidUserTypeException e){
            // displayItemErrorMsg(e.getMessage());
             copyIDField.clear();
             String header = "No Item Found";
@@ -112,7 +117,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
         this.handleOnShowAnimation(itemMsg, 500, 20.0);        
     }
     
-    private void getItemDetails() throws SQLException, ClassNotFoundException, TypeMismatchException{
+    private void getItemDetails() throws SQLException, ClassNotFoundException, TypeMismatchException, UserNotFoundException ,CopyNotFoundException ,ItemNotFoundException ,InvalidUserTypeException{
         //create a borrowable item
         String copyID = copyIDField.getText();            
         returnMgr.createItem(copyID);
@@ -171,7 +176,7 @@ public class ReturnFXController extends BaseFXController implements Initializabl
              
             }
            }
-        catch(SQLException | ClassNotFoundException e){
+        catch(SQLException | ClassNotFoundException |CopyNotFoundException |NullResultException  e){
             String text = "We regret to inform you that the book could not be returned.\n";
             text += "Reasons might be: \n";
             text += e.getMessage();
