@@ -1608,12 +1608,63 @@ public class DataStore {
 
     public void addItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException {
         
-        throw new UnsupportedOperationException("Not yet implemented");
+        ArrayList<String> values = new ArrayList<> ();
+        String itemID = null;
+        
+        if (itemType == CatalogueCopy.BOOK) {
+            
+            itemID = database.getNewID(Table.BOOK);
+            
+            values.add(itemID);
+            values.add((String)details.get(Table.BOOK_TITLE));
+            values.add((String)details.get(Table.BOOK_AUTHOR));
+            values.add((String)details.get(Table.BOOK_ISBN));
+            values.add((String)details.get(Table.BOOK_GENRE));
+            values.add(SDF.format(((Calendar)details.get(Table.BOOK_DATE)).getTime()));
+            values.add((String)details.get(Table.BOOK_DESCRIPTION));
+            
+            database.initializeConnection();
+            
+            database.insertRecord(Table.BOOK, values);
+            
+            database.closeConnection();
+            
+        } else {
+            
+//            throw new InvalidItemTypeException();
+            
+        }
         
     }
 
-    public void updateItem(HashMap<String, Object> details, int itemType) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void updateItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException {
+        
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        
+        if (itemType == CatalogueCopy.BOOK) {
+                        
+            where.add((String)details.get(Table.BOOK_BOOK_ID));
+            
+            set.add((String)details.get(Table.BOOK_TITLE));
+            set.add((String)details.get(Table.BOOK_AUTHOR));
+            set.add((String)details.get(Table.BOOK_ISBN));
+            set.add((String)details.get(Table.BOOK_GENRE));
+            set.add(SDF.format(((Calendar)details.get(Table.BOOK_DATE)).getTime()));
+            set.add((String)details.get(Table.BOOK_DESCRIPTION));
+            
+            database.initializeConnection();
+            
+            database.updateRecord(Table.BOOK, set, where);
+            
+            database.closeConnection();
+            
+        } else {
+            
+//            throw new InvalidItemTypeException();
+            
+        }
+        
     }
 
     public HashMap<String, Object> getItemInfo(String itemID, int itemType) {
