@@ -4,8 +4,10 @@
  */
 package updatecatalogue;
 
+import exception.CopyNotFoundException;
 import exception.ItemNotFoundException;
 import factory.SystemConfig;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -107,63 +109,53 @@ public class UpdateMgrTest {
     /**
      * Test of deleteBook method, of class UpdateMgr.
      */
-    @Test
+    @Test(expected=ItemNotFoundException.class)
     public void testDeleteBook() throws Exception {
         System.out.println("deleteBook");
         String itemID = "";
         UpdateMgr instance = new UpdateMgr();
         instance.deleteBook(itemID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of addNewCopy method, of class UpdateMgr.
      */
-    @Test
+    @Test(expected=SQLException.class)
     public void testAddNewCopy() throws Exception {
         System.out.println("addNewCopy");
         String itemID = "";
-        String location = "";
+        String location = "a location";
         UpdateMgr instance = new UpdateMgr();
         instance.addNewCopy(itemID, location);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of updateCopy method, of class UpdateMgr.
      */
-    @Test
+    @Test(expected=CopyNotFoundException.class)
     public void testUpdateCopy() throws Exception {
         System.out.println("updateCopy");
         String copyID = "";
-        String location = "";
+        String location = "a location";
         UpdateMgr instance = new UpdateMgr();
         instance.updateCopy(copyID, location);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getCopyDetails method, of class UpdateMgr.
      */
-    @Test
+    @Test(expected=CopyNotFoundException.class)
     public void testGetCopyDetails() throws Exception {
         System.out.println("getCopyDetails");
         String copyID = "";
         UpdateMgr instance = new UpdateMgr();
-        HashMap expResult = null;
         HashMap result = instance.getCopyDetails(copyID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of deleteCopy method, of class UpdateMgr.
      */
-    @Test
+    @Test(expected=CopyNotFoundException.class)
     public void testDeleteCopy() throws Exception {
         System.out.println("deleteCopy");
         String copyID = "";
@@ -173,30 +165,4 @@ public class UpdateMgrTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getCurrentLibrarian method, of class UpdateMgr.
-     */
-    @Test
-    public void testGetCurrentLibrarian() {
-        System.out.println("getCurrentLibrarian");
-        UpdateMgr instance = new UpdateMgr();
-        Librarian expResult = null;
-        Librarian result = instance.getCurrentLibrarian();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCurrentLibrarian method, of class UpdateMgr.
-     */
-    @Test
-    public void testSetCurrentLibrarian() {
-        System.out.println("setCurrentLibrarian");
-        Librarian currentLibrarian = null;
-        UpdateMgr instance = new UpdateMgr();
-        instance.setCurrentLibrarian(currentLibrarian);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 }
