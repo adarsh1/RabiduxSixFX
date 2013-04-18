@@ -9,6 +9,7 @@ import cataloguemanagement.PastTransaction;
 import cataloguemanagement.ReservableCopyGroup;
 import cataloguemanagement.ReservedCopy;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,19 +41,6 @@ public class DataStoreTest {
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of insertItem method, of class DataStore.
-     */
-    @Test
-    public void testInsertItem() throws Exception {
-        System.out.println("insertItem");
-        CatalogueCopy catalogueItem = null;
-        DataStore instance = new DataStore();
-        instance.insertItem(catalogueItem);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -473,6 +461,118 @@ public class DataStoreTest {
         String userID = "";
         DataStore instance = new DataStore();
         instance.resetFine(userID);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addItem method, of class DataStore.
+     */
+    @Test
+    public void testAddItem() throws Exception {
+        System.out.println("addItem");
+        HashMap<String, Object> details = null;
+        int itemType = 0;
+        DataStore instance = new DataStore();
+        instance.addItem(details, itemType);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of updateItem method, of class DataStore.
+     */
+    @Test
+    public void testUpdateItem() throws Exception {
+        System.out.println("updateItem");
+        HashMap<String, Object> details = null;
+        int itemType = 0;
+        DataStore instance = new DataStore();
+        instance.updateItem(details, itemType);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getItemInfo method, of class DataStore.
+     */
+    @Test
+    public void testGetItemInfo() throws Exception {
+        System.out.println("getItemInfo");
+        String itemID = "";
+        int itemType = 0;
+        DataStore instance = new DataStore();
+        HashMap expResult = null;
+        HashMap result = instance.getItemInfo(itemID, itemType);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of deleteItem method, of class DataStore.
+     */
+    @Test
+    public void testDeleteItem() throws Exception {
+        System.out.println("deleteItem");
+        String itemID = "";
+        int itemType = 0;
+        DataStore instance = new DataStore();
+        instance.deleteItem(itemID, itemType);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addCopy method, of class DataStore.
+     */
+    @Test
+    public void testAddCopy() throws Exception {
+        System.out.println("addCopy");
+        HashMap<String, Object> details = null;
+        DataStore instance = new DataStore();
+        instance.addCopy(details);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of updateCopy method, of class DataStore.
+     */
+    @Test
+    public void testUpdateCopy() {
+        System.out.println("updateCopy");
+        HashMap<String, Object> details = null;
+        DataStore instance = new DataStore();
+        instance.updateCopy(details);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getCopyInfo method, of class DataStore.
+     */
+    @Test
+    public void testGetCopyInfo() {
+        System.out.println("getCopyInfo");
+        String copyID = "";
+        DataStore instance = new DataStore();
+        HashMap expResult = null;
+        HashMap result = instance.getCopyInfo(copyID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of deleteCopy method, of class DataStore.
+     */
+    @Test
+    public void testDeleteCopy() {
+        System.out.println("deleteCopy");
+        String copyID = "";
+        DataStore instance = new DataStore();
+        instance.deleteCopy(copyID);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

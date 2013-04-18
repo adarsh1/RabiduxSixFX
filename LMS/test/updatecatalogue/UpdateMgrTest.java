@@ -108,11 +108,12 @@ public class UpdateMgrTest {
      * Test of addNewCopy method, of class UpdateMgr.
      */
     @Test
-    public void testAddNewCopy() {
+    public void testAddNewCopy() throws Exception {
         System.out.println("addNewCopy");
+        String itemID = "";
         String location = "";
         UpdateMgr instance = new UpdateMgr();
-        instance.addNewCopy(location);
+        instance.addNewCopy(itemID, location);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -123,10 +124,11 @@ public class UpdateMgrTest {
     @Test
     public void testUpdateCopy() throws Exception {
         System.out.println("updateCopy");
+        String itemID = "";
         String copyID = "";
         String location = "";
         UpdateMgr instance = new UpdateMgr();
-        instance.updateCopy(copyID, location);
+        instance.updateCopy(itemID, copyID, location);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

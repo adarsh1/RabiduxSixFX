@@ -5,6 +5,7 @@
 package cataloguemanagement;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -324,6 +325,114 @@ public class BookTest {
         PastTransaction expResult = null;
         PastTransaction result = instance.getPastTransaction();
         assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addNewItem method, of class Book.
+     */
+    @Test
+    public void testAddNewItem() throws Exception {
+        System.out.println("addNewItem");
+        HashMap<String, Object> details = null;
+        Book instance = new Book();
+        instance.addNewItem(details);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of updateItem method, of class Book.
+     */
+    @Test
+    public void testUpdateItem() throws Exception {
+        System.out.println("updateItem");
+        HashMap<String, Object> details = null;
+        Book instance = new Book();
+        instance.updateItem(details);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getItem method, of class Book.
+     */
+    @Test
+    public void testGetItem() throws Exception {
+        System.out.println("getItem");
+        String itemID = "";
+        Book instance = new Book();
+        HashMap expResult = null;
+        HashMap result = instance.getItem(itemID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of deleteItem method, of class Book.
+     */
+    @Test
+    public void testDeleteItem() throws Exception {
+        System.out.println("deleteItem");
+        String itemID = "";
+        Book instance = new Book();
+        instance.deleteItem(itemID);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addNewCopy method, of class Book.
+     */
+    @Test
+    public void testAddNewCopy() throws Exception {
+        System.out.println("addNewCopy");
+        HashMap<String, Object> details = null;
+        Book instance = new Book();
+        instance.addNewCopy(details);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of updateCopy method, of class Book.
+     */
+    @Test
+    public void testUpdateCopy() throws Exception {
+        System.out.println("updateCopy");
+        HashMap<String, Object> details = null;
+        Book instance = new Book();
+        instance.updateCopy(details);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getCopy method, of class Book.
+     */
+    @Test
+    public void testGetCopy() throws Exception {
+        System.out.println("getCopy");
+        String copyID = "";
+        Book instance = new Book();
+        HashMap expResult = null;
+        HashMap result = instance.getCopy(copyID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of deleteCopy method, of class Book.
+     */
+    @Test
+    public void testDeleteCopy() throws Exception {
+        System.out.println("deleteCopy");
+        String copyID = "";
+        Book instance = new Book();
+        instance.deleteCopy(copyID);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
