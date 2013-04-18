@@ -305,6 +305,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             String location = newCopyLocation.getText();
             updateMgr.addNewCopy(itemID, location);
             this.displaySuccess("New Copy Added", "A new copy for " + itemID + " has been successfully created.");
+            this.clearNewCopyFields();
         }
         /*
         catch(ItemNotFoundException e){
@@ -345,6 +346,7 @@ public class UpdateCatalogueFXController extends BaseFXController
                 if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){
                     updateMgr.addNewBook(title, author, publishDate, description, ISBN, genre);
                     this.displaySuccess("New Item Added", "New item " + title + " has been successfully added");
+                    this.clearNewItemFields();
                 }
                 else{                    
                     displayWarning("Item Information incomplete", "Please fill in the necessary fields");
@@ -383,6 +385,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             String location = updateCopyLocation.getText();
             updateMgr.updateCopy(copyID, location);
             this.displaySuccess("Updated", "Copy information has successfully been updated");
+            this.clearUpdateCopyFields();
         } catch (SQLException | ClassNotFoundException ex) {
             this.displayWarning("Error", ex.getMessage());
         }
@@ -404,8 +407,7 @@ public class UpdateCatalogueFXController extends BaseFXController
     private void deleteCopy(){
         try {
             String copyID = this.tempCopyID;
-            updateMgr.deleteCopy(copyID);            
-            
+            updateMgr.deleteCopy(copyID);    
         } catch (SQLException | ClassNotFoundException ex) {
             this.displayWarning("Error", ex.getMessage());
         }
@@ -440,6 +442,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){                
                 updateMgr.updateBook(itemID, title, author, publishDate, description, ISBN, genre);
                 this.displaySuccess("Updated", "Item information has successfully been updated");
+                this.clearUpdateItemFields();
             }
             else{                    
                 displayWarning("Item Information incomplete", "Please fill in the necessary fields");
@@ -503,9 +506,11 @@ public class UpdateCatalogueFXController extends BaseFXController
     public void handleYesConfirmButtonAction(ActionEvent event) {
         if (updateItemPane.isVisible()){
             deleteItem();
+            this.clearUpdateItemFields();
         }
         else if(updateCopyPane.isVisible()){
             deleteCopy();
+            this.clearUpdateCopyFields();
         }
         confirmPane.setVisible(false);
     }
@@ -548,6 +553,36 @@ public class UpdateCatalogueFXController extends BaseFXController
         return (year + "-" + month + "-" + dateOfMonth);
     }
     
+    private void clearNewItemFields(){
+        newItemTitle.setText("");
+        newItemAuthor.setText("");
+        newItemPublishDate.setText("");
+        newItemDescription.setText("");
+        newBookISBN.setText("");
+        newBookGenre.setText("");
+    }
+    
+    private void clearUpdateItemFields(){
+        updateItemItemID.setText("");
+        updateItemDescription.setText("");
+        updateItemPublishDate.setText("");
+        updateItemTitle.setText("");
+        updateItemAuthor.setText("");
+        updateItemISBN.setText("");
+        updateItemGenre.setText("");
+        updateItemInfoPane.setDisable(true);
+    }
+    
+    private void clearNewCopyFields(){
+        newCopyItemID.setText("");
+        newCopyLocation.setText("");
+    }
+    
+    private void clearUpdateCopyFields(){
+        updateCopyID.setText("");
+        updateCopyLocation.setText("");
+        updateCopyInfoPane.setDisable(true);
+    }
     
 }
 
