@@ -3,8 +3,14 @@
 package Holdings;
 
 import baseGUI.BaseFXController;
+import exception.CopyNotFoundException;
+import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
+import exception.NullResultException;
+import exception.RecordNotFoundException;
 import exception.TypeMismatchException;
+import exception.UserNotFoundException;
+import exception.UserSuspendedException;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
@@ -266,7 +272,7 @@ private void initializeBorrowScrollPane() {
             holdingsMgr.createItem();
             
         }
-        catch(ClassNotFoundException| SQLException| TypeMismatchException e){
+        catch(ClassNotFoundException| SQLException| TypeMismatchException | CopyNotFoundException | ItemNotFoundException | UserNotFoundException e){
             setChanged();
             notifyObservers(e);
         }
@@ -284,12 +290,12 @@ private void initializeBorrowScrollPane() {
      initializeReserveScrollPane();
      displaySuccess("Reservation Cancelled", "Your reservation of item "+cancelledId+" was successfully cancelled.");
      }
-     catch(ClassNotFoundException| SQLException| TypeMismatchException |NumberFormatException except){
+     catch(ClassNotFoundException| SQLException| TypeMismatchException |NumberFormatException | CopyNotFoundException | ItemNotFoundException | UserNotFoundException except){
          setChanged();
         notifyObservers(except);
      }
     }
-    catch(SQLException|ClassNotFoundException except)
+    catch(SQLException|ClassNotFoundException| CopyNotFoundException| NullResultException| NumberFormatException| UserNotFoundException except)
     {
         String text = "We regret to inform you that your reservation could not be cancelled.\n";
         text += "Reasons might be: \n";
@@ -312,7 +318,7 @@ private void initializeBorrowScrollPane() {
             notifyObservers(except);
          }
         }
-        catch(SQLException|ClassNotFoundException| NotEligibleToBorrowOrReserveException except)
+        catch(SQLException|ClassNotFoundException| NotEligibleToBorrowOrReserveException | CopyNotFoundException| ItemNotFoundException| NullResultException| NumberFormatException| RecordNotFoundException| UserNotFoundException| UserSuspendedException except)
         {
             String text = "We regret to inform you that your extension request could not be approved.\n";
             text += "Reasons might be: \n";

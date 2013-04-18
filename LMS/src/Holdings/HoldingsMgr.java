@@ -12,6 +12,7 @@ import exception.NullResultException;
 import exception.RecordNotFoundException;
 import exception.TypeMismatchException;
 import exception.UserNotFoundException;
+import exception.UserSuspendedException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import usermanagement.Member;
@@ -54,8 +55,10 @@ public class HoldingsMgr {
      * @throws NotEligibleToBorrowOrReserveException 
      */
     //borrow the book
-    public void extend(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException{
+    public void extend(int i) throws ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, NotEligibleToBorrowOrReserveException, NullResultException, RecordNotFoundException, SQLException, UserNotFoundException, UserSuspendedException{
         //if this member is allowed to borrow or reserve
+        if(currentMember.isSuspended())
+            throw new UserSuspendedException();
         if(currentHoldings.get(i).getNumOfExtend()<MAX_EXTENSIONS){
              currentHoldings.get(i).getCopy().extend(currentHoldings.get(i).getLoanID(), currentMember.getLoanDuration());
         }

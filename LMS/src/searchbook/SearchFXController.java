@@ -7,6 +7,9 @@ package searchbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.ReservableCopyGroup;
+import exception.CopyNotFoundException;
+import exception.InvalidKeywordException;
+import exception.ItemNotFoundException;
 import globalcontrol.ModelController;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
@@ -225,7 +228,7 @@ public class SearchFXController extends BaseFXController implements Initializabl
         else
           searchMgr.SearchByGenre(keywordField.getText());
           } 
-        catch(SQLException|ClassNotFoundException e)
+        catch(SQLException|ClassNotFoundException| CopyNotFoundException| InvalidKeywordException| ItemNotFoundException e)
         {displayWarning("Oops","An Unexpected Error occured while processing your query.\nReason might be: \n"+e.getMessage());
         }
         if(searchMgr.getNoOfResults()!=0)

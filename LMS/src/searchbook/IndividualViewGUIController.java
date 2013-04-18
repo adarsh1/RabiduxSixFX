@@ -4,7 +4,16 @@ package searchbook;
 
 import baseGUI.BaseFXController;
 import cataloguemanagement.Reservable;
+import exception.CopyBorrowedException;
+import exception.CopyNotBorrowedException;
+import exception.CopyNotFoundException;
+import exception.CopyReservedException;
+import exception.InvalidUserTypeException;
+import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
+import exception.NullResultException;
+import exception.UserNotFoundException;
+import exception.UserSuspendedException;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
@@ -13,6 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -121,11 +132,11 @@ public class IndividualViewGUIController extends BaseFXController implements Ini
     try{
         individualMgr.createItem(id);
     }
-    catch(SQLException|ClassNotFoundException e)
+    catch(SQLException|ClassNotFoundException | CopyNotFoundException | ItemNotFoundException e)
     {  
         setChanged();
         notifyObservers(e);
-    }
+    }   
     title.setText(individualMgr.getItem().getTitle());
     title.setTooltip(new Tooltip(title.getText()));
     title.setTextOverrun( OverrunStyle.CENTER_WORD_ELLIPSIS);
@@ -277,7 +288,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             p.getChildren().addAll(copyID,copyText,status,statusText,returnDate,returnText,reserveButton); 
           }
         }
-        catch(SQLException|ClassNotFoundException e){
+        catch(SQLException|ClassNotFoundException| CopyNotFoundException| InvalidUserTypeException| ItemNotFoundException| NullResultException| UserNotFoundException e){
             setChanged();
             notifyObservers(e);
         }
@@ -324,7 +335,7 @@ private double computeTextHeight(String text, int charsPerLine, double lineHeigh
             text += "It will be tentatively be available to you by "+availableDate+".\nKindly Borrow it by "+borrowByDate+". Following which this reservation shall expire";
             displaySuccess("Thank you",text);
             }
-            catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException except){
+            catch(NotEligibleToBorrowOrReserveException | SQLException | ClassNotFoundException | CopyBorrowedException|CopyNotFoundException | CopyNotBorrowedException| CopyReservedException| InvalidUserTypeException| ItemNotFoundException| NullResultException| NumberFormatException| UserNotFoundException| UserSuspendedException except){
             String text = "We regret to inform you that your request to reserve this copy was not granted.\n";
             text += "Reasons might be: \n";
             text += except.getMessage();
