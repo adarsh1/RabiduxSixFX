@@ -12,6 +12,10 @@ package datamanagement;
 import java.sql.*;
 import java.util.*;
 
+/**
+ *
+ * @author Allen
+ */
 public class MySQLDB extends Database{
     
     private Connection connection;
@@ -20,6 +24,13 @@ public class MySQLDB extends Database{
     private String user;
     private String password;
     
+    /**
+     *
+     * @param host
+     * @param databaseName
+     * @param user
+     * @param password
+     */
     public MySQLDB (String host,String databaseName, String user, String password) {
         
         super();
@@ -30,6 +41,11 @@ public class MySQLDB extends Database{
     }
     
     //initialize the connection to the database
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void initializeConnection() throws SQLException, ClassNotFoundException {
         
@@ -40,11 +56,21 @@ public class MySQLDB extends Database{
     }
     
     //close the connection to the database
+    /**
+     *
+     * @throws SQLException
+     */
     @Override
     public void closeConnection() throws SQLException{
         getConnection().close();
     }
     
+    /**
+     *
+     * @param table
+     * @param values
+     * @throws SQLException
+     */
     @Override
     public void insertRecord (Table table, ArrayList<String> values) throws SQLException {
         
@@ -86,6 +112,13 @@ public class MySQLDB extends Database{
         
     }
     
+    /**
+     *
+     * @param table
+     * @param set
+     * @param where
+     * @throws SQLException
+     */
     @Override
     public void updateRecord (Table table, ArrayList<String> set, ArrayList<String> where) throws SQLException {
         
@@ -134,6 +167,12 @@ public class MySQLDB extends Database{
         
     }
     
+    /**
+     *
+     * @param table
+     * @param where
+     * @throws SQLException
+     */
     @Override
     public void deleteRecord (Table table, ArrayList<String> where) throws SQLException{
         
@@ -164,6 +203,13 @@ public class MySQLDB extends Database{
         
     }
     
+    /**
+     *
+     * @param table
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ResultSet selectRecord (Table table, ArrayList<String> where) throws SQLException {
         
@@ -232,6 +278,13 @@ public class MySQLDB extends Database{
         return resultSet;
     }
     
+    /**
+     *
+     * @param table
+     * @param top
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ResultSet selectRecord (Table table, int top) throws SQLException {
         
@@ -261,6 +314,14 @@ public class MySQLDB extends Database{
         
     }
     
+    /**
+     *
+     * @param table
+     * @param where
+     * @param top
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ResultSet selectRecord (Table table, ArrayList<String> where, int top) throws SQLException {
         

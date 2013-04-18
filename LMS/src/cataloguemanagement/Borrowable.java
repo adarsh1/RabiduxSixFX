@@ -12,6 +12,14 @@ import java.sql.*;
  */
 public interface Borrowable extends Displayable {
    
+    /**
+     *
+     * @param userID
+     * @param loanDuration
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public abstract PastTransaction borrow (String userID, int loanDuration) throws SQLException, ClassNotFoundException;
    
     

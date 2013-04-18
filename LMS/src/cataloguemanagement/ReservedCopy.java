@@ -17,40 +17,67 @@ public class ReservedCopy {
     private Calendar dateAvailable;
     private ReservationCancellable copy;
     
+    /**
+     *
+     */
     public ReservedCopy() {
         
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCopyID () {
         
         return this.copyID;
         
     }
     
+    /**
+     *
+     * @param copyID
+     */
     public void setCopyID (String copyID) {
         
         this.copyID = copyID;
         
     }
     
+    /**
+     *
+     * @return
+     */
     public Calendar getDateAvailable () {
         
         return this.dateAvailable;
         
     }
     
+    /**
+     *
+     * @param dateAvailable
+     */
     public void setDateAvailable(Calendar dateAvailable) {
         
         this.dateAvailable = dateAvailable;
         
     }
     
+    /**
+     *
+     * @return
+     */
     public ReservationCancellable getCopy() {
         
         return this.copy;
         
     }
     
+    /**
+     *
+     * @param copy
+     */
     public void setCopy(ReservationCancellable copy) {
         
         this.copy = copy;

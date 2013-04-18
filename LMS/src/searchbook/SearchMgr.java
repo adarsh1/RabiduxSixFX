@@ -18,15 +18,28 @@ public class SearchMgr {
     private Member currentMember;
     private ArrayList<ReservableCopyGroup> itemGroup; 
     
+    /**
+     *
+     */
     public SearchMgr ()
     {   
     }
     
+    /**
+     *
+     * @param user
+     */
     public void setCurrentMember(Member user)
     {
         currentMember = user;
     }
     
+    /**
+     *
+     * @param searchstring
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void SearchByTitle(String searchstring) throws SQLException, ClassNotFoundException
     {
         
@@ -34,30 +47,60 @@ public class SearchMgr {
         
     }
     
+    /**
+     *
+     * @param searchstring
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void SearchByAuthor(String searchstring) throws SQLException, ClassNotFoundException
     {
         setItemGroup(ReservableCopyGroup.getReservableCopyGroups("AUTHOR", searchstring));
     }
     
+    /**
+     *
+     * @param searchstring
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void SearchByISBN(String searchstring) throws SQLException, ClassNotFoundException
     {
         setItemGroup(ReservableCopyGroup.getReservableCopyGroups("ISBN", searchstring));
     }
     
+    /**
+     *
+     * @param searchstring
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void SearchByGenre(String searchstring) throws SQLException, ClassNotFoundException
     {
         setItemGroup(ReservableCopyGroup.getReservableCopyGroups("GENRE", searchstring));
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<ReservableCopyGroup> getItemGroup () 
     {
         return itemGroup;
     }
     
+    /**
+     *
+     * @param group
+     */
     public void setItemGroup (ArrayList<ReservableCopyGroup> group)
     {
         this.itemGroup = group;
     }
+    /**
+     *
+     * @return
+     */
     public int getNoOfResults(){
       return  itemGroup.size();
     }

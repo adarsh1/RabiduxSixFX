@@ -39,6 +39,10 @@ import javafx.scene.layout.Pane;
 import usermanagement.Member;
 
 
+/**
+ *
+ * @author Allen
+ */
 public class ResetFineFXController extends BaseFXController implements Initializable {
 
     @FXML //  fx:id="userinfoPane"
@@ -81,6 +85,10 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     private ResetFineMgr resetFineMgr;
     
     // Handler for Button[fx:id="getDetails"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleGetDetailsButtonAction(ActionEvent event) {
         try
         {
@@ -113,6 +121,10 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     
     
     //handle the borrow when the confirm button is pressed
+    /**
+     *
+     * @param event
+     */
     public void handleResetButtonAction(ActionEvent event){
         userinfoPane.setVisible(false);
         try{
@@ -130,6 +142,11 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     }
     
     
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert userinfoPane != null : "fx:id=\"userinfoPane\" was not injected: check your FXML file 'Borrow.fxml'.";
@@ -144,11 +161,18 @@ public class ResetFineFXController extends BaseFXController implements Initializ
     }
     
     
+    /**
+     *
+     * @param modelController
+     */
     @Override   //call the inherited method to update the current member
     public void setInitialData( ModelController modelController){      
         this.setModelController(modelController);
     }
         
+    /**
+     *
+     */
     @Override   //play new animation when shown
     public void playOnShowAnimation (){
         this.handleOnShowAnimation(contentPane);

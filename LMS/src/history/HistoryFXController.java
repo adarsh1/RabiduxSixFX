@@ -30,6 +30,10 @@ import searchbook.SearchFXController;
 import usermanagement.Member;
 
 
+/**
+ *
+ * @author Allen
+ */
 public class HistoryFXController extends BaseFXController implements Initializable{
     
     private HistoryMgr historyMgr;
@@ -46,7 +50,12 @@ public class HistoryFXController extends BaseFXController implements Initializab
      @FXML //  fx:id="nohistory"
     private Label nohistory; // Value injected by FXMLLoader
     
-   @Override // This method is called by the FXMLLoader when initialization is complete
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
+    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'History.fxml'.";
         assert itemPane != null : "fx:id=\"itemPane\" was not injected: check your FXML file 'History.fxml'.";
@@ -148,6 +157,10 @@ public class HistoryFXController extends BaseFXController implements Initializab
     }
    
    
+    /**
+     *
+     * @param modelController
+     */
     @Override
     public void setInitialData( ModelController modelController){   
         this.setModelController(modelController);
@@ -178,6 +191,9 @@ public class HistoryFXController extends BaseFXController implements Initializab
     
     
     
+    /**
+     *
+     */
     @Override
     public void playOnShowAnimation() {
         this.handleOnShowAnimation(contentPane);

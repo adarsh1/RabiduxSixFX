@@ -10,12 +10,19 @@ package exception;
  */
 public class ReserveException extends Exception {
     
+    /**
+     *
+     */
     public ReserveException() {
         
         super("Reserve is not successful");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public ReserveException(String msg) {
         
         super(msg);

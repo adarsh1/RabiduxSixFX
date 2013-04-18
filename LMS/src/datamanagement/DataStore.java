@@ -15,18 +15,39 @@ import exception.*;
  * @edit Adarsh
  */
 public class DataStore {
+    /**
+     *
+     */
     public static final String WILDCARD_CHAR = "%";
+    /**
+     *
+     */
     public static final String NULL_VARCHAR = "NULLVARCHAR";
+    /**
+     *
+     */
     public static final String NULL_DATETIME = "NULLDATETIME";
+    /**
+     *
+     */
     public static SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     private Database database;
     
+    /**
+     *
+     */
     public DataStore(){
         DatabaseFactory instance = DatabaseFactory.getInstance();
         database = instance.createDatabase();
     }
     
+    /**
+     *
+     * @param catalogueItem
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void insertItem(CatalogueCopy catalogueItem) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> itemValues = new ArrayList<> ();
@@ -39,6 +60,13 @@ public class DataStore {
        
     }
     
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public CatalogueCopy getCopy(String copyID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -106,6 +134,14 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public User getUser(String username, String password) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -164,6 +200,13 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public User getUser(String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -222,6 +265,13 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param itemID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -267,6 +317,14 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param searchCriteria
+     * @param keyword
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -362,6 +420,13 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isCopyBorrowed(String copyID) throws SQLException, ClassNotFoundException {
         
         boolean result;
@@ -407,6 +472,13 @@ public class DataStore {
         return result;
     }
     
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isCopyOverdue(String copyID) throws SQLException, ClassNotFoundException {
         
         boolean result;
@@ -448,6 +520,13 @@ public class DataStore {
         return result;
     }
     
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isCopyReserved(String copyID) throws SQLException, ClassNotFoundException {
         
         boolean result;
@@ -488,6 +567,13 @@ public class DataStore {
         return result;
     }
     
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isUserSuspended(String userID) throws SQLException, ClassNotFoundException {
         
         boolean result;
@@ -527,6 +613,14 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isValidUserPassword(String username, String password) throws SQLException, ClassNotFoundException {
         
         boolean result;
@@ -568,6 +662,13 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param bookID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isValidBookID(String bookID) throws SQLException, ClassNotFoundException{
         
         boolean result;
@@ -598,6 +699,13 @@ public class DataStore {
         return result;
     }
     
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isValidUserID(String userID) throws SQLException, ClassNotFoundException{
         
         boolean result;
@@ -626,6 +734,13 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param username
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isValidUsername(String username) throws SQLException, ClassNotFoundException{
         
         boolean result;
@@ -655,6 +770,13 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param loanID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isValidLoanID(String loanID) throws SQLException, ClassNotFoundException{
         
         boolean result;
@@ -685,6 +807,13 @@ public class DataStore {
         
     }
     
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean isValidCopyID(String copyID) throws SQLException, ClassNotFoundException{
         
         boolean result;
@@ -714,6 +843,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public int getNumOfBorrowing(String userID) throws SQLException, ClassNotFoundException {
         
         int result = 0;
@@ -752,6 +888,13 @@ public class DataStore {
         return result;
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public int getNumOfReserving(String userID) throws SQLException, ClassNotFoundException {
         
         int result;
@@ -779,6 +922,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<PastTransaction> getRecords(String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -840,6 +990,15 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @param userID
+     * @param loanDuration
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public PastTransaction borrow(String copyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -915,6 +1074,15 @@ public class DataStore {
         return transactionHistoryItem;
     }
 
+    /**
+     *
+     * @param copyID
+     * @param loanID
+     * @param extend_time
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public PastTransaction extend(String copyID, String loanID, int extend_time) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -983,6 +1151,13 @@ public class DataStore {
         return transactionHistoryItem;
     }
 
+    /**
+     *
+     * @param copyID
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void reserve(String copyID, String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -1027,6 +1202,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void cancelReservation(String copyID, String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -1071,6 +1253,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @param fine
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void returnBook(String copyID, double fine) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -1149,6 +1338,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -1209,6 +1405,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param userID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<CurrentHolding> getCurrentHoldings(String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -1265,6 +1468,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ReservedCopy getReservedCopy(String copyID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -1302,6 +1512,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public PastTransaction getRecord(String copyID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;
@@ -1361,6 +1578,12 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void resetFine(String userID) throws SQLException, ClassNotFoundException {
         
         ResultSet resultSet;

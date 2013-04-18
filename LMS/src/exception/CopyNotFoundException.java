@@ -10,12 +10,19 @@ package exception;
  */
 public class CopyNotFoundException extends DatabaseException {
     
+    /**
+     *
+     */
     public CopyNotFoundException() {
         
         super("Copy not found in the database");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public CopyNotFoundException(String msg) {
         
         super(msg);

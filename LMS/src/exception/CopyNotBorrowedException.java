@@ -10,12 +10,19 @@ package exception;
  */
 public class CopyNotBorrowedException extends ReserveException {
     
+    /**
+     *
+     */
     public CopyNotBorrowedException() {
         
         super("Book has not been borrowed");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public CopyNotBorrowedException(String msg) {
         
         super(msg);

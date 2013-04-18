@@ -10,6 +10,9 @@ package usermanagement;
  */
 public class Faculty extends Member{
     
+    /**
+     *
+     */
     public Faculty(){
         
         super();
@@ -18,6 +21,10 @@ public class Faculty extends Member{
         
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getLoanDuration() {
         return Member.FACULTY_LOAN_DURATION;

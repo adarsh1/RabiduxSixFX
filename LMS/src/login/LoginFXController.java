@@ -22,6 +22,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import usermanagement.Librarian;
 
+/**
+ *
+ * @author Allen
+ */
 public class LoginFXController extends BaseFXController implements Initializable {
 
     @FXML //  fx:id="warningMsgField"
@@ -46,9 +50,18 @@ public class LoginFXController extends BaseFXController implements Initializable
     private int currentFieldState;
     private int previousFieldState;
     
+    /**
+     *
+     */
     public static final int DISABLED = 0;
+    /**
+     *
+     */
     public static final int ENABLED = 1;
     
+    /**
+     *
+     */
     public LoginFXController(){
         loginMgr = new LoginMgr(); 
         setModelController(loginMgr.getModelController());
@@ -58,6 +71,10 @@ public class LoginFXController extends BaseFXController implements Initializable
     
     
     //enable the login once user has entered username and password
+    /**
+     *
+     * @param event
+     */
     public void handleOnKeyTyped(KeyEvent event){   
         updateFieldState();
         //handle Enterkey pressed
@@ -73,6 +90,10 @@ public class LoginFXController extends BaseFXController implements Initializable
         }
     }
     //handle on key released action
+    /**
+     *
+     * @param event
+     */
     public void handleOnKeyReleased(KeyEvent event){
         //update field state and login button
         updateFieldState();
@@ -80,6 +101,9 @@ public class LoginFXController extends BaseFXController implements Initializable
     }
     
     //update login button based on the state of the fields
+    /**
+     *
+     */
     public void updateLoginButton(){
         //if input field is empty, disable login button
         if (currentFieldState == DISABLED){
@@ -92,6 +116,10 @@ public class LoginFXController extends BaseFXController implements Initializable
     }
     
     // Handler for Button login [Button[id=null, styleClass=button]] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleLoginButtonAction(ActionEvent event){    
         //if button pressed and input field not null
         if(currentFieldState == ENABLED){
@@ -101,6 +129,10 @@ public class LoginFXController extends BaseFXController implements Initializable
         }
     }
     
+    /**
+     *
+     * @param node
+     */
     public void login(Node node){
         String userID = usernameField.getText();
         String password = passwordField.getText();
@@ -122,7 +154,12 @@ public class LoginFXController extends BaseFXController implements Initializable
         
     }
     
-   @Override // This method is called by the FXMLLoader when initialization is complete
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
+    @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert warningMsgField != null : "fx:id=\"label\" was not injected: check your FXML file 'Login.fxml'.";
         assert passwordField != null : "fx:id=\"password\" was not injected: check your FXML file 'Login.fxml'.";
@@ -152,10 +189,17 @@ public class LoginFXController extends BaseFXController implements Initializable
         transitScene("LibrarianPage.fxml",node, loginMgr.getModelController());
     }    
     
+    /**
+     *
+     * @param modelController
+     */
     @Override   //set up the content once the ModelController is available
     public void setInitialData( ModelController modelController){
     }
     
+    /**
+     *
+     */
     @Override
     public void playOnShowAnimation() {
         //call animation to play

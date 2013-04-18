@@ -10,12 +10,19 @@ package exception;
  */
 public class SearchException extends Exception {
     
+    /**
+     *
+     */
     public SearchException() {
         
         super("Search is not successful");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public SearchException(String msg) {
         
         super(msg);

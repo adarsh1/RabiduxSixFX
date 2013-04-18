@@ -31,6 +31,11 @@ public class LMS extends Application {
     private FXMLLoader fxmlLoader;
     
     
+    /**
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(final Stage primaryStage) throws Exception {
         SystemConfig instance = SystemConfig.getInstance();

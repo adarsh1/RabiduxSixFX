@@ -10,12 +10,19 @@ package exception;
  */
 public class ExtendException extends Exception {
     
+    /**
+     *
+     */
     public ExtendException() {
         
         super("Extend is not successful");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public ExtendException(String msg) {
         
         super(msg);

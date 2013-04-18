@@ -10,12 +10,19 @@ package exception;
  */
 public class CopyNotReservedException extends ReserveException {
     
+    /**
+     *
+     */
     public CopyNotReservedException() {
         
         super("Copy has not been reserved");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public CopyNotReservedException(String msg) {
         
         super(msg);

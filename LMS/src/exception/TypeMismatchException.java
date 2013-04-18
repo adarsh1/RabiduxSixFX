@@ -16,6 +16,8 @@ public class TypeMismatchException extends Exception {
     /**
      * Creates a new instance of
      * <code>TypeMismatchException</code> without detail message.
+     * @param instanceID 
+     * @param typeName 
      */
     
     public TypeMismatchException(String instanceID, String typeName) {
@@ -23,6 +25,9 @@ public class TypeMismatchException extends Exception {
         this.typeName = typeName;
     }
     
+    /**
+     *
+     */
     public TypeMismatchException() {
         this("Anonymous", "Anonymous");
     }
@@ -31,7 +36,6 @@ public class TypeMismatchException extends Exception {
      * Constructs an instance of
      * <code>TypeMismatchException</code> with the specified detail message.
      *
-     * @param msg the detail message.
      */    
     
     @Override

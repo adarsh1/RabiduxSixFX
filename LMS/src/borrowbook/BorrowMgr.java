@@ -19,13 +19,27 @@ public class BorrowMgr {
     private Borrowable item;   
     
     //a member object required to construct
+    /**
+     *
+     * @param currentMember
+     */
     public BorrowMgr(Member currentMember){
         this.currentMember = currentMember;
     }
+    /**
+     *
+     */
     public BorrowMgr(){
         //empty constructor
     }
     //borrow the book
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws NotEligibleToBorrowOrReserveException
+     */
     public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
         //if this member is allowed to borrow or reserve
         if(currentMember.isEligibleToBorrowOrReserve()){
@@ -37,6 +51,13 @@ public class BorrowMgr {
     }
     
     //create a borrowable item based on item ID
+    /**
+     *
+     * @param copyID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws TypeMismatchException
+     */
     public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
         //get the catalogue item from catalogue management
         CatalogueCopy catalogueItem = CatalogueCopy.getCatalogueCopy(copyID);

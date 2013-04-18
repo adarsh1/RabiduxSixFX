@@ -26,25 +26,50 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ *
+ * @author Allen
+ */
 public abstract class BaseFXController extends Observable implements Initializable, Animatable {
+    /**
+     *
+     */
     @FXML //  fx:id="hideMessage"
     protected Button hideMessage; // Value injected by FXMLLoader
     
+    /**
+     *
+     */
     @FXML //  fx:id="MessageText"
     protected Label messageText; // Value injected by FXMLLoader
     
+    /**
+     *
+     */
     @FXML //  fx:id="messageHeader"
     protected Label messageHeader; // Value injected by FXMLLoader
 
+    /**
+     *
+     */
     @FXML //  fx:id="messageHolderPane"
     protected AnchorPane messageHolderPane; // Value injected by FXMLLoader
 
+    /**
+     *
+     */
     @FXML //  fx:id="messagePane"
     protected AnchorPane messagePane; // Value injected by FXMLLoader
     
+    /**
+     *
+     */
     @FXML //  fx:id="logout"
     protected ImageView logout; // Value injected by FXMLLoader
 
+    /**
+     *
+     */
     @FXML //  fx:id="name"
     protected Text name; // Value injected by FXMLLoader
     
@@ -74,6 +99,11 @@ public abstract class BaseFXController extends Observable implements Initializab
         messageHeader.setText("");
     }
     //handle the borrow when the confirm button is pressed
+    /**
+     *
+     * @param header
+     * @param text
+     */
     public void displaySuccess(String header,String text)
     {setStyleSucess();
     messageHeader.setText(header);
@@ -82,6 +112,11 @@ public abstract class BaseFXController extends Observable implements Initializab
      this.handleOnShowAnimation(messageHolderPane);
      disableAll();
     }
+    /**
+     *
+     * @param header
+     * @param text
+     */
     public void displayWarning(String header,String text)
     {setStyleWarning();
     messageHeader.setText(header);
@@ -90,9 +125,17 @@ public abstract class BaseFXController extends Observable implements Initializab
      this.handleOnShowAnimation(messageHolderPane);
      disableAll();
     }
+    /**
+     *
+     * @return
+     */
     public String getMessagePaneID()
     {return messagePane.getId();
     }
+    /**
+     *
+     * @param event
+     */
     public void handleHideMessageButtonAction(ActionEvent event){
         messagePane.setVisible(false);
         enableAll();
@@ -155,6 +198,11 @@ public abstract class BaseFXController extends Observable implements Initializab
                   }});
     }*/
     
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file ";
@@ -178,6 +226,12 @@ public abstract class BaseFXController extends Observable implements Initializab
         this.modelController = modelController;
     }
     //show element with Metro style animation
+    /**
+     *
+     * @param node
+     * @param millis
+     * @param offset
+     */
     @Override
     public void handleOnShowAnimation(Node node, int millis, double offset){
         //fade in
@@ -203,11 +257,22 @@ public abstract class BaseFXController extends Observable implements Initializab
         parallelTransition.play();
     }
     //overloading the above function. Provide a default animation
+    /**
+     *
+     * @param node
+     */
     public void handleOnShowAnimation(Node node){
         handleOnShowAnimation(node, 1000, 10.0);
     }
     
     //apply fade animation
+    /**
+     *
+     * @param node
+     * @param millis
+     * @param fromValue
+     * @param toValue
+     */
     @Override
     public void handleNodeFadeTransition(Node node, int millis, double fromValue, double toValue){
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(millis), node);
@@ -217,12 +282,24 @@ public abstract class BaseFXController extends Observable implements Initializab
     }
    
     //overloading handleNodeFadeTransistion with default from value and to value
+    /**
+     *
+     * @param node
+     * @param millis
+     */
     @Override
     public void handleNodeFadeTransition(Node node, int millis){
         handleNodeFadeTransition(node, millis, 0.0, 1.0);
     }
    
     //apply scale transition to a node element
+    /**
+     *
+     * @param node
+     * @param millis
+     * @param fromValue
+     * @param toValue
+     */
     @Override
     public void handleNodeScaleTransition (Node node, int millis, double fromValue, double toValue ){        
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(millis), node);
@@ -233,11 +310,23 @@ public abstract class BaseFXController extends Observable implements Initializab
         scaleTransition.play();
     }
     //overloading handleNodeScaleTransition with default from value and to value
-     public void handleNodeScaleTransition (Node node, int millis){
+     /**
+     *
+     * @param node
+     * @param millis
+     */
+    public void handleNodeScaleTransition (Node node, int millis){
          handleNodeScaleTransition(node, millis, 0.0, 0.1);
      }
      
-     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
+     /**
+     *
+     * @param resourceURL
+     * @param placeHolderPane
+     * @param modelController
+     * @return
+     */
+    public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
         try{      
             //load the FXML file
             FXMLLoader fxmlLoader = generateFXMLLoader( ModelController.FXML_PATH + resourceURL);
@@ -266,6 +355,12 @@ public abstract class BaseFXController extends Observable implements Initializab
     }
      
     //tansit to another scene where ModelController is needed
+    /**
+     *
+     * @param resourceURL
+     * @param node
+     * @param modelController
+     */
     public void transitScene(String resourceURL, Node node, ModelController modelController){
         Stage stage=(Stage) node.getScene().getWindow();
         try{      
@@ -283,6 +378,11 @@ public abstract class BaseFXController extends Observable implements Initializab
     }
     
     //tansit to another scene where ModelController is NOT needed
+    /**
+     *
+     * @param resourceURL
+     * @param node
+     */
     public void transitScene(String resourceURL, Node node){
         Stage stage=(Stage) node.getScene().getWindow();
         try{      
@@ -297,35 +397,64 @@ public abstract class BaseFXController extends Observable implements Initializab
        }
     }
     
+    /**
+     *
+     * @param fxmlLoader
+     * @return
+     * @throws IOException
+     */
     protected Parent loadFXML(FXMLLoader fxmlLoader) throws IOException{     
         Parent root = (Parent)fxmlLoader.load(); 
         return root;
     }
     
+    /**
+     *
+     * @param resourceURL
+     * @return
+     */
     protected FXMLLoader generateFXMLLoader(String resourceURL){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resourceURL)); 
         return fxmlLoader;
     }     
     
+    /**
+     *
+     * @param stage
+     * @param root
+     */
     protected void initialStage (Stage stage, Parent root){
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();        
     }
+    /**
+     *
+     */
     protected void enableAll()
     {
         setChanged();
         notifyObservers(false);
         
     }
+    /**
+     *
+     */
     protected void disableAll()
     {
         setChanged();
         notifyObservers(true);
     }
+    /**
+     *
+     * @param modelController
+     */
     public abstract void setInitialData( ModelController modelController);
     
+    /**
+     *
+     */
     @Override
     public abstract void playOnShowAnimation(); 
 }

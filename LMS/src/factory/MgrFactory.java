@@ -13,6 +13,10 @@ public class MgrFactory {
     private MgrFactory() {
     }
     
+    /**
+     *
+     * @return
+     */
     public static MgrFactory getInstance() {
         return MgrFactoryHolder.INSTANCE;
     }

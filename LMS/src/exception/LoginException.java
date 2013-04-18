@@ -10,12 +10,19 @@ package exception;
  */
 public class LoginException extends Exception {
     
+    /**
+     *
+     */
     public LoginException() {
         
         super("Login is not successful");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public LoginException(String msg) {
         
         super(msg);

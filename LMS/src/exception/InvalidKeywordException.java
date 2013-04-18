@@ -10,12 +10,19 @@ package exception;
  */
 public class InvalidKeywordException extends SearchException {
     
+    /**
+     *
+     */
     public InvalidKeywordException() {
         
         super("Seach keyword cannot be empty");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public InvalidKeywordException(String msg) {
         
         super(msg);

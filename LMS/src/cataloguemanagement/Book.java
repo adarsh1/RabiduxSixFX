@@ -19,18 +19,35 @@ public class Book extends CatalogueCopy
     private String ISBN;
     private String genre;
     
+    /**
+     *
+     */
     public Book () {
         
         super();
         
     }
     
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static Book getBook(String copyID) throws SQLException, ClassNotFoundException {
         
         return (Book) CatalogueCopy.getCatalogueCopy(copyID);
         
     }
     
+    /**
+     *
+     * @param itemID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static Boolean isValidBook(String itemID) throws SQLException, ClassNotFoundException {
         
         DataStore dataStore = new DataStore();
@@ -38,6 +55,10 @@ public class Book extends CatalogueCopy
         
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String getISBN() {
         
@@ -45,12 +66,20 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param ISBN
+     */
     public void setISBN(String ISBN) {
         
         this.ISBN = ISBN;
         
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String getGenre() {
         
@@ -58,12 +87,24 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param genre
+     */
     public void setGenre(String genre) {
         
         this.genre = genre;
         
     }
 
+    /**
+     *
+     * @param userID
+     * @param loanDuration
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException {
         
@@ -79,6 +120,10 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getTitle() {
         
@@ -86,6 +131,10 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getDescription() {
         
@@ -93,6 +142,10 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getAuthor() {
         
@@ -100,6 +153,10 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Calendar getPublishDate() {
         
@@ -114,6 +171,13 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param loanID
+     * @param loanDuration
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException{
         
@@ -129,6 +193,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void reserve(String userID) throws SQLException, ClassNotFoundException {
         
@@ -150,6 +220,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void cancelReservation(String userID) throws SQLException, ClassNotFoundException {
         
@@ -165,6 +241,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param fine
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void returnCopy(double fine) throws SQLException, ClassNotFoundException {
         
@@ -181,6 +263,10 @@ public class Book extends CatalogueCopy
     }
 
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getIndividualCopyID() {
         
@@ -188,6 +274,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public boolean isReserved() throws SQLException, ClassNotFoundException {
         
@@ -196,6 +288,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public boolean isBorrowed() throws SQLException, ClassNotFoundException {
         
@@ -204,6 +302,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public ReservedCopy getReservedCopy() throws SQLException, ClassNotFoundException {
         
@@ -212,6 +316,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public PastTransaction getPastTransaction() throws SQLException, ClassNotFoundException {
         

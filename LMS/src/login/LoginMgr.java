@@ -19,12 +19,24 @@ public class LoginMgr {
     private User user;
     private ModelController modelController;
     
+    /**
+     *
+     */
     public LoginMgr(){
         //default longinMgr constructor
         modelController = new ModelController();
     }
     
     //create a user based on userName entered. If no such user exists, throw exception
+    /**
+     *
+     * @param username
+     * @param password
+     * @throws UserNotFoundException
+     * @throws IncorrectPasswordException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException{
         setUser(User.getUser(username, password));
         //if no exception was thrown, user can be set in main controller

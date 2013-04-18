@@ -146,16 +146,28 @@ public class UpdateCatalogueFXController extends BaseFXController
 
 
     // Handler for Button[fx:id="getCopyDetailsButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleGetCopyDetailsButtonAction(ActionEvent event) {
         // handle the event here
     }
 
     // Handler for Button[fx:id="getItemDetailsButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleGetItemDetailsButtonAction(ActionEvent event) {
         
     }
 
     // Handler for Button[fx:id="newCopyButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleNewCopyButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the newCopyPane
         setAllChildrenInvisible();
@@ -164,11 +176,19 @@ public class UpdateCatalogueFXController extends BaseFXController
     }
 
     // Handler for Button[fx:id="newCopyConfirmButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleNewCopyConfirmButtonAction(ActionEvent event) {
         // handle the event here
     }
 
     // Handler for Button[fx:id="newItemButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleNewItemButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the newItemPane
         setAllChildrenInvisible();
@@ -177,6 +197,10 @@ public class UpdateCatalogueFXController extends BaseFXController
     }
 
     // Handler for Button[fx:id="newItemConfirm"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleNewItemConfirmAction(ActionEvent event) {
         try{
             String title = newItemTitle.getText();
@@ -204,6 +228,10 @@ public class UpdateCatalogueFXController extends BaseFXController
     }
 
     // Handler for Button[fx:id="updateCopyButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleUpdateCopyButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the updateCopyPane
         setAllChildrenInvisible();
@@ -212,16 +240,28 @@ public class UpdateCatalogueFXController extends BaseFXController
     }
 
     // Handler for Button[fx:id="updateCopyConfirmButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleUpdateCopyConfirmButtonAction(ActionEvent event) {
         // handle the event here
     }
 
     // Handler for Button[fx:id="updateCopyDeleteButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleUpdateCopyDeleteButtonAction(ActionEvent event) {
         // handle the event here
     }
 
     // Handler for Button[fx:id="updateItemButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleUpdateItemButtonAction(ActionEvent event) {
         //delete all panes on actionHolderPane and add the updateItemPane
         setAllChildrenInvisible();
@@ -230,15 +270,28 @@ public class UpdateCatalogueFXController extends BaseFXController
     }
 
     // Handler for Button[fx:id="updateItemConfirmButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleUpdateItemConfirmButtonAction(ActionEvent event) {
         // handle the event here
     }
 
     // Handler for Button[fx:id="updateItemDeleteButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleUpdateItemDeleteButtonAction(ActionEvent event) {
         // handle the event here
     }
 
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert actionHolderPane != null : "fx:id=\"actionHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
@@ -289,6 +342,10 @@ public class UpdateCatalogueFXController extends BaseFXController
         updateMgr = new UpdateMgr();
     }
 
+    /**
+     *
+     * @param modelController
+     */
     @Override
     public void setInitialData(ModelController modelController) {
         this.setModelController(modelController);
@@ -300,6 +357,9 @@ public class UpdateCatalogueFXController extends BaseFXController
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void playOnShowAnimation() {
         this.handleOnShowAnimation(actionHolderPane);

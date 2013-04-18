@@ -13,11 +13,26 @@ import java.util.Map;
  */
 public class SystemConfig {
     
+    /**
+     *
+     */
     public static final String DATABASE_TYPE = "Database";
     
+    /**
+     *
+     */
     public static final String HOST = "host";
+    /**
+     *
+     */
     public static final String DATABASE = "database";
+    /**
+     *
+     */
     public static final String USER = "user";
+    /**
+     *
+     */
     public static final String PASSWORD = "password";
     
     private String MySQL = "MySQL";
@@ -31,6 +46,10 @@ public class SystemConfig {
     private SystemConfig() {
     }
     
+    /**
+     *
+     * @return
+     */
     public static SystemConfig getInstance() {
         return SystemConfigHolder.INSTANCE;
     }
@@ -40,6 +59,9 @@ public class SystemConfig {
         private static final SystemConfig INSTANCE = new SystemConfig();
     }
     
+    /**
+     *
+     */
     public void useMySQLDB(){
         databaseConfigs.put(DATABASE_TYPE, MySQL);
         databaseConfigs.put(HOST, MySQLHost);
@@ -48,22 +70,42 @@ public class SystemConfig {
         databaseConfigs.put(PASSWORD, MySQLPassword);
     }
     
+    /**
+     *
+     * @return
+     */
     public String getDatabaseType(){
         return databaseConfigs.get(DATABASE_TYPE);
     }
     
+    /**
+     *
+     * @return
+     */
     public String getMySQLPasswordHost(){
         return databaseConfigs.get(HOST);
     }
     
+    /**
+     *
+     * @return
+     */
     public String getMySQLPasswordDatabaseName(){
         return databaseConfigs.get(DATABASE);
     }
     
+    /**
+     *
+     * @return
+     */
     public String getMySQLPasswordUser(){
         return databaseConfigs.get(USER);
     }
     
+    /**
+     *
+     * @return
+     */
     public String getMySQLPasswordPassword(){
         return databaseConfigs.get(PASSWORD);
     }

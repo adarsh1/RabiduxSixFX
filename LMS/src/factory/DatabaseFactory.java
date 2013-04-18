@@ -13,6 +13,10 @@ public class DatabaseFactory {
     private DatabaseFactory() {
     }
     
+    /**
+     *
+     * @return
+     */
     public static DatabaseFactory getInstance() {
         return DataStoreFactoryHolder.INSTANCE;
     }
@@ -22,6 +26,10 @@ public class DatabaseFactory {
         private static final DatabaseFactory INSTANCE = new DatabaseFactory();
     }
     
+    /**
+     *
+     * @return
+     */
     public Database createDatabase(){
         
         SystemConfig instance = SystemConfig.getInstance();

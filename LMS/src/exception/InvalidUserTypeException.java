@@ -10,12 +10,19 @@ package exception;
  */
 public class InvalidUserTypeException extends DatabaseException{
     
+    /**
+     *
+     */
     public InvalidUserTypeException(){
         
         super("User type is not defined");
         
     }
     
+    /**
+     *
+     * @param message
+     */
     public InvalidUserTypeException(String message){
         
         super (message);

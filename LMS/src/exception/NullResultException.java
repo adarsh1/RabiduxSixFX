@@ -10,12 +10,19 @@ package exception;
  */
 public class NullResultException extends DatabaseException {
     
+    /**
+     *
+     */
     public NullResultException() {
         
         super("An empty result set is received from database");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public NullResultException(String msg) {
         
         super(msg);

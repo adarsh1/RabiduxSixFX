@@ -12,10 +12,40 @@ import java.sql.SQLException;
  */
 public interface Reservable extends Displayable {
     
+    /**
+     *
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public abstract void reserve(String userID) throws SQLException, ClassNotFoundException;
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public abstract boolean isReserved () throws SQLException, ClassNotFoundException;
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public abstract boolean isBorrowed () throws SQLException, ClassNotFoundException;
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException;
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException;
     
 }

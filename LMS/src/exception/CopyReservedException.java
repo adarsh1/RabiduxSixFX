@@ -10,12 +10,19 @@ package exception;
  */
 public class CopyReservedException extends BorrowException {
     
+    /**
+     *
+     */
     public CopyReservedException() {
         
         super("The book has been reserved by another user");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public CopyReservedException(String msg) {
         
         super(msg);

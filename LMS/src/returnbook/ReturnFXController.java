@@ -87,6 +87,10 @@ public class ReturnFXController extends BaseFXController implements Initializabl
    
     
     // Handler for Button Get details onAction    
+    /**
+     *
+     * @param event
+     */
     public void handleGetDetailsButtonAction (ActionEvent event){
         try{                        
             getItemDetails();
@@ -146,6 +150,10 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     }
     
     //handle the borrow when the confirm button is pressed
+    /**
+     *
+     * @param event
+     */
     public void handleConfirmButtonAction(ActionEvent event){
         bookInfoPane.setVisible(false);
         try{
@@ -172,6 +180,11 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     }
     
     
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert bookInfoPane != null : "fx:id=\"bookInfoPane\" was not injected: check your FXML file 'Borrow.fxml'.";
@@ -196,6 +209,10 @@ public class ReturnFXController extends BaseFXController implements Initializabl
     }
     
     
+    /**
+     *
+     * @param modelController
+     */
     @Override   //call the inherited method to update the current member
     public void setInitialData( ModelController modelController){      
         this.setModelController(modelController);
@@ -203,6 +220,9 @@ public class ReturnFXController extends BaseFXController implements Initializabl
         returnMgr.setCurrentLibrarian((Librarian)modelController.getUser());
     }
         
+    /**
+     *
+     */
     @Override   //play new animation when shown
     public void playOnShowAnimation (){
         this.handleOnShowAnimation(contentPane);

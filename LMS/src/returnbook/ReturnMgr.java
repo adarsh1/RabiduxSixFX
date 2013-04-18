@@ -32,15 +32,28 @@ public class ReturnMgr {
     private PastTransaction loandetails;
     
     //a member object required to construct
+    /**
+     *
+     * @param currentLibrarian
+     */
     public ReturnMgr(Librarian currentLibrarian){
         this.currentLibrarian = currentLibrarian;
         fine = 0;
     }
+    /**
+     *
+     */
     public ReturnMgr(){
         //empty constructor
         fine = 0;
     }
     //borrow the book
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean returnbook() throws SQLException, ClassNotFoundException{
         
         boolean finepresent = calculatefine();
@@ -50,6 +63,13 @@ public class ReturnMgr {
     
     
     //create a borrowable item based on item ID
+    /**
+     *
+     * @param copyID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws TypeMismatchException
+     */
     public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException{
         //get the catalogue item from catalogue management
         CatalogueCopy catalogueItem = CatalogueCopy.getCatalogueCopy(copyID);
@@ -94,6 +114,10 @@ public class ReturnMgr {
     }
     
     
+    /**
+     *
+     * @return
+     */
     public boolean calculatefine()
     {
         Calendar now = Calendar.getInstance();
@@ -115,6 +139,10 @@ public class ReturnMgr {
         
     }
     
+    /**
+     *
+     * @return
+     */
     public float getfine()
     {
         return fine;

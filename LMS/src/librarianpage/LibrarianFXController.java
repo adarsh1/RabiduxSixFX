@@ -21,6 +21,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 
+/**
+ *
+ * @author Allen
+ */
 public class LibrarianFXController extends BaseFXController implements Initializable,Observer {
 
     @FXML //  fx:id="basePane"
@@ -75,22 +79,38 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     private Button updateMenuButton; // Value injected by FXMLLoader
 
     // Handler for Button[fx:id="returnMenuButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleReturnMenuButtonAction(ActionEvent event) {
         transitPane("Return.fxml");
     }
 
     // Handler for Button[fx:id="resetFineMenuButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handlefineMenuButtonAction(ActionEvent event) {
         transitPane("ResetFine.fxml");
     }
 
     // Handler for Button[fx:id="updateMenuButton"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleupdateMenuButtonAction(ActionEvent event) {
         transitPane("UpdateCatalogue.fxml");
     }
     
     
-   public void logoutbuttonhandler(MouseEvent event) {
+    /**
+     *
+     * @param event
+     */
+    public void logoutbuttonhandler(MouseEvent event) {
         logoutHeader.setText("Confirm Logout");
         String text = username.getText()+" are you sure you want to logout?";
         logoutText.setText(text);
@@ -129,12 +149,20 @@ public class LibrarianFXController extends BaseFXController implements Initializ
         }
     }
     
-     public void handleLogoutYesButtonAction(ActionEvent event){
+     /**
+     *
+     * @param event
+     */
+    public void handleLogoutYesButtonAction(ActionEvent event){
         Node node=(Node) event.getSource();
         gotologin(node); 
     }
      
-     public void handleLogoutNoButtonAction(ActionEvent event){
+     /**
+     *
+     * @param event
+     */
+    public void handleLogoutNoButtonAction(ActionEvent event){
         enableAllPanes("");
         logoutPane.setVisible(false);
     }
@@ -144,6 +172,11 @@ public class LibrarianFXController extends BaseFXController implements Initializ
         transitScene("Login.fxml", node);
     }
      
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert basePane != null : "fx:id=\"basePane\" was not injected: check your FXML file 'LibrarianPage.fxml'.";
@@ -164,7 +197,11 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     
 
 
-     @Override   //set up the content once the ModelController is available
+     /**
+     *
+     * @param modelController
+     */
+    @Override   //set up the content once the ModelController is available
     public void setInitialData( ModelController modelController){
         this.addObserver(this);
         username.setText(modelController.getUser().getUsername());
@@ -247,6 +284,13 @@ public class LibrarianFXController extends BaseFXController implements Initializ
         }
     }
     
+    /**
+     *
+     * @param resourceURL
+     * @param placeHolderPane
+     * @param modelController
+     * @return
+     */
     @Override
     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
         FXMLLoader fl = super.transitPane(resourceURL, placeHolderPane, modelController);
@@ -256,9 +300,17 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     }
     
     //overloading transitPane function without placeholder or modelcontroller
+    /**
+     *
+     * @param resourceURL
+     * @return
+     */
     public FXMLLoader transitPane(String resourceURL){
        return transitPane(resourceURL, getContentPlaceHolderPane(), this.getModelController());
     }
+    /**
+     *
+     */
     @Override
     public void playOnShowAnimation(){         
         //show search pane when first loaded

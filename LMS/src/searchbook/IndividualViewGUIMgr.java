@@ -14,6 +14,9 @@ public class IndividualViewGUIMgr {
     
     private Member currentMember;
     private ReservableCopyGroup item;   
+    /**
+     *
+     */
     public static final int STUDENT_RESERVE_DURATION = 3;
     
     /**

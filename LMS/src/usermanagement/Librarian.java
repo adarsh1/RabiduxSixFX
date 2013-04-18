@@ -10,6 +10,9 @@ package usermanagement;
  */
 public class Librarian extends User{
     
+    /**
+     *
+     */
     public Librarian(){
         
         super ();

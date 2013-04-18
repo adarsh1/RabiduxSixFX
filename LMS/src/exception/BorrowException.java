@@ -10,12 +10,19 @@ package exception;
  */
 public class BorrowException extends Exception {
     
+    /**
+     *
+     */
     public BorrowException() {
         
         super("Borrow is not successful");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public BorrowException(String msg) {
         
         super(msg);

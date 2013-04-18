@@ -22,14 +22,20 @@ public class HoldingsMgr {
     private Member currentMember;    
     private ArrayList<ReservedCopy> reservedCopies;
     private ArrayList<CurrentHolding> currentHoldings;
+    /**
+     *
+     */
     public static final int MAX_EXTENSIONS=3;
     //constrcutor
+    /**
+     *
+     */
     public HoldingsMgr(){      
        
     }
 
     /**
-     * @return the {@link #currentMember}
+     * @param currentMember 
      */
      //a member object required to construct
     public HoldingsMgr(Member currentMember){

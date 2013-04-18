@@ -12,6 +12,12 @@ import java.sql.SQLException;
  */
 public interface ReservationCancellable extends Displayable {
     
+    /**
+     *
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void cancelReservation(String userID) throws SQLException, ClassNotFoundException;
   
 }

@@ -12,38 +12,125 @@ import java.util.*;
  */
 public enum Table {
     
+    /**
+     *
+     */
     USER("user", new String[] {"user_id", "user_type", "username", "password", "fine", "is_suspended"} ), 
+    /**
+     *
+     */
     COPY("individual_copy", new String[] {"copy_id", "item_id", "reserved_by", "location"}), 
+    /**
+     *
+     */
     BOOK("book", new String[] {"book_id", "title", "author", "isbn", "genre", "date", "description"}), 
+    /**
+     *
+     */
     RECORD("loan_record", new String[] {"loan_id", "user_id", "copy_id", "time_borrowed", "time_returned", "time_to_return", "fine_amount", "num_of_extend"});
     
+    /**
+     *
+     */
     public static final String USER_USER_ID = "USER_ID";
+    /**
+     *
+     */
     public static final String USER_USER_TYPE = "USER_TYPE";
+    /**
+     *
+     */
     public static final String USER_USERNAME = "USERNAME";
+    /**
+     *
+     */
     public static final String USER_PASSWORD = "PASSWORD";
+    /**
+     *
+     */
     public static final String USER_FINE = "FINE";
+    /**
+     *
+     */
     public static final String USER_IS_SUSPENDED = "IS_SUSPENDED";
     
+    /**
+     *
+     */
     public static final String COPY_COPY_ID = "COPY_ID";
+    /**
+     *
+     */
     public static final String COPY_ITEM_ID = "ITEM_ID";
+    /**
+     *
+     */
     public static final String COPY_RESERVED_BY = "RESERVED_BY";
+    /**
+     *
+     */
     public static final String COPY_LOCATION = "LOCATION";
     
+    /**
+     *
+     */
     public static final String BOOK_BOOK_ID = "BOOK_ID";
+    /**
+     *
+     */
     public static final String BOOK_TITLE = "TITLE";
+    /**
+     *
+     */
     public static final String BOOK_AUTHOR = "AUTHOR";
+    /**
+     *
+     */
     public static final String BOOK_ISBN = "ISBN";
+    /**
+     *
+     */
     public static final String BOOK_GENRE = "GENRE";
+    /**
+     *
+     */
     public static final String BOOK_DATE = "DATE";
+    /**
+     *
+     */
     public static final String BOOK_DESCRIPTION = "DESCRIPTION";
     
+    /**
+     *
+     */
     public static final String RECORD_LOAN_ID = "LOAN_ID";
+    /**
+     *
+     */
     public static final String RECORD_USER_ID = "USER_ID";
+    /**
+     *
+     */
     public static final String RECORD_COPY_ID = "COPY_ID";
+    /**
+     *
+     */
     public static final String RECORD_TIME_BORROWED = "TIME_BORROWED";
+    /**
+     *
+     */
     public static final String RECORD_TIME_RETURNED = "TIME_RETURNED";
+    /**
+     *
+     */
     public static final String RECORD_TIME_TO_RETURN = "TIME_TO_RETURN";
+    /**
+     *
+     */
     public static final String RECORD_FINE_AMOUNT = "FINE_AMOUNT";
+    /**
+     *
+     */
     public static final String RECORD_NUM_OF_EXTEND = "NUM_OF_EXTEND";
     
     private String tableName;
@@ -95,12 +182,21 @@ public enum Table {
         
     }
     
+    /**
+     *
+     * @return
+     */
     public String getTableName() {
         
         return this.tableName;
         
     }
     
+    /**
+     *
+     * @param token
+     * @return
+     */
     public String getAttribute(String token) {
         
         return this.attributeMap.get(token);

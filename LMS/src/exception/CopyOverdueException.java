@@ -10,12 +10,19 @@ package exception;
  */
 public class CopyOverdueException extends ExtendException {
     
+    /**
+     *
+     */
     public CopyOverdueException() {
         
         super("The copy has overdued");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public CopyOverdueException(String msg) {
         
         super(msg);

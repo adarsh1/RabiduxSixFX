@@ -23,9 +23,16 @@ public class ResetFineMgr {
     private Member finedMember;
     
     //a member object required to construct
+    /**
+     *
+     * @param currentMember
+     */
     public ResetFineMgr(Member currentMember){
         this.finedMember = currentMember;
     }
+    /**
+     *
+     */
     public ResetFineMgr(){
         //empty constructor
     }
@@ -46,22 +53,41 @@ public class ResetFineMgr {
     }
     
     
+    /**
+     *
+     * @param userID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void setMember(String userID) throws SQLException, ClassNotFoundException
     {
         finedMember = (Member)User.getUser(userID);
         
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUserName()
     {
         return finedMember.getUsername();
     }
     
+    /**
+     *
+     * @return
+     */
     public String getUserFine()
     {
         return (finedMember.getFineAmount() + "");
     }
     
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void reset() throws SQLException, ClassNotFoundException
     {
         finedMember.resetFine();

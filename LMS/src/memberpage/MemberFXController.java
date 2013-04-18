@@ -85,35 +85,63 @@ public class MemberFXController extends BaseFXController implements Initializabl
     private Label logoutbutton; // Value injected by FXMLLoader
     
     
+    /**
+     *
+     * @param event
+     */
     public void handleLogoutYesButtonAction(ActionEvent event){
         Node node=(Node) event.getSource();
         gotologin(node); 
     }
-     public void handleLogoutNoButtonAction(ActionEvent event){
+     /**
+     *
+     * @param event
+     */
+    public void handleLogoutNoButtonAction(ActionEvent event){
         enableAllPanes("");
         logoutPane.setVisible(false);
     }
     // Handler for Button[fx:id="borrow"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleborrowMenuButtonAction(ActionEvent event) {            
        transitPane("Borrow.fxml"); 
     }
     // Handler for Button[fx:id="history"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleHistoryMenuButtonAction(ActionEvent event) {
         transitPane("History.fxml");
     }   
 
     // Handler for Button[fx:id="search"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleSearchMenuButtonAction(ActionEvent event) {
         transitPane("Search.fxml");
     }
 
     // Handler for Button[fx:id="rentals"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleHoldingsMenuButtonAction(ActionEvent event) {
         transitPane("Holdings.fxml");
     }
     
     
     // Handler for Label[fx:id="logoutbutton"] onMouseClicked
+    /**
+     *
+     * @param event
+     */
     public void logoutbuttonhandler(MouseEvent event) {
         
         
@@ -161,6 +189,9 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
      
     
+    /**
+     *
+     */
     @Override
     public void playOnShowAnimation(){         
         //show search pane when first loaded
@@ -171,6 +202,11 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
     
 
+    /**
+     *
+     * @param fxmlFileLocation
+     * @param resources
+     */
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert basePane != null : "fx:id=\"basePane\" was not injected: check your FXML file 'MemberPage.fxml'.";
@@ -189,6 +225,10 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }    
 
     
+    /**
+     *
+     * @param modelController
+     */
     @Override   //set up the content once the ModelController is available
     public void setInitialData( ModelController modelController){
         this.addObserver(this);
@@ -272,6 +312,13 @@ public class MemberFXController extends BaseFXController implements Initializabl
         }
     }
     
+    /**
+     *
+     * @param resourceURL
+     * @param placeHolderPane
+     * @param modelController
+     * @return
+     */
     @Override
     public FXMLLoader transitPane(String resourceURL, Pane placeHolderPane, ModelController modelController){
         FXMLLoader fl = super.transitPane(resourceURL, placeHolderPane, modelController);
@@ -281,6 +328,11 @@ public class MemberFXController extends BaseFXController implements Initializabl
     }
     
     //overloading transitPane function without placeholder or modelcontroller
+    /**
+     *
+     * @param resourceURL
+     * @return
+     */
     public FXMLLoader transitPane(String resourceURL){
        return transitPane(resourceURL, getContentPlaceHolderPane(), this.getModelController());
     }
