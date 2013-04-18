@@ -41,6 +41,8 @@ public class UpdateCatalogueFXController extends BaseFXController
     private String tempItemID;
     private String tempCopyID;
 
+    
+    
     @FXML //  fx:id="actionHolderPane"
     private AnchorPane actionHolderPane; // Value injected by FXMLLoader
 
@@ -70,24 +72,9 @@ public class UpdateCatalogueFXController extends BaseFXController
 
     @FXML //  fx:id="getItemDetailsButton"
     private Button getItemDetailsButton; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="hideMessage"
-    private Button hideMessage; // Value injected by FXMLLoader
-
+    
     @FXML //  fx:id="maskPane"
     private AnchorPane maskPane; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messageHeader"
-    private Label messageHeader; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messageHolderPane"
-    private AnchorPane messageHolderPane; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messagePane"
-    private AnchorPane messagePane; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="messageText"
-    private Label messageText; // Value injected by FXMLLoader
 
     @FXML //  fx:id="newBookGenre"
     private TextField newBookGenre; // Value injected by FXMLLoader
@@ -212,6 +199,7 @@ public class UpdateCatalogueFXController extends BaseFXController
         assert getCopyDetailsButton != null : "fx:id=\"getCopyDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert getItemDetailsButton != null : "fx:id=\"getItemDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert hideMessage != null : "fx:id=\"hideMessage\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert maskPane != null : "fx:id=\"maskPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert messageHeader != null : "fx:id=\"messageHeader\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert messageHolderPane != null : "fx:id=\"messageHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert messagePane != null : "fx:id=\"messagePane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
@@ -252,6 +240,8 @@ public class UpdateCatalogueFXController extends BaseFXController
         assert updateItemPublishDate != null : "fx:id=\"updateItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert updateItemTitle != null : "fx:id=\"updateItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
         assert yesConfirm != null : "fx:id=\"yesConfirm\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+
+        // initialize your logic here: all @FXML variables will have been injected
 
         updateMgr = new UpdateMgr();
     }
