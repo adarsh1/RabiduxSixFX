@@ -6,6 +6,8 @@ package Holdings;
 import cataloguemanagement.CurrentHolding;
 import cataloguemanagement.ReservedCopy;
 import exception.CopyNotFoundException;
+import exception.CopyOverdueException;
+import exception.CopyReservedException;
 import exception.ItemNotFoundException;
 import exception.NotEligibleToBorrowOrReserveException;
 import exception.NullResultException;
@@ -55,7 +57,7 @@ public class HoldingsMgr {
      * @throws NotEligibleToBorrowOrReserveException 
      */
     //borrow the book
-    public void extend(int i) throws ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, NotEligibleToBorrowOrReserveException, NullResultException, RecordNotFoundException, SQLException, UserNotFoundException, UserSuspendedException{
+    public void extend(int i) throws ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, NotEligibleToBorrowOrReserveException, NullResultException, RecordNotFoundException, SQLException, UserNotFoundException, UserSuspendedException, CopyOverdueException, CopyReservedException{
         //if this member is allowed to borrow or reserve
         if(currentMember.isSuspended())
             throw new UserSuspendedException();

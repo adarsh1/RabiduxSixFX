@@ -180,13 +180,19 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException{
+    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException, CopyOverdueException, CopyReservedException {
         
         DataStore dataStore = new DataStore();
                 
         if (dataStore.isCopyOverdue(super.getIndividualCopyID())) {
             
-//            throw new CopyOverdueException();
+            throw new CopyOverdueException();
+            
+        }
+        
+        if (dataStore.isCopyReserved(super.getIndividualCopyID())) {
+            
+            throw new CopyReservedException();
             
         }
         

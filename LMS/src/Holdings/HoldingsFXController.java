@@ -3,14 +3,7 @@
 package Holdings;
 
 import baseGUI.BaseFXController;
-import exception.CopyNotFoundException;
-import exception.ItemNotFoundException;
-import exception.NotEligibleToBorrowOrReserveException;
-import exception.NullResultException;
-import exception.RecordNotFoundException;
-import exception.TypeMismatchException;
-import exception.UserNotFoundException;
-import exception.UserSuspendedException;
+import exception.*;
 import globalcontrol.ModelController;
 import java.net.URL;
 import java.sql.SQLException;
@@ -318,7 +311,7 @@ private void initializeBorrowScrollPane() {
             notifyObservers(except);
          }
         }
-        catch(SQLException|ClassNotFoundException| NotEligibleToBorrowOrReserveException | CopyNotFoundException| ItemNotFoundException| NullResultException| NumberFormatException| RecordNotFoundException| UserNotFoundException| UserSuspendedException except)
+        catch(SQLException|ClassNotFoundException| NotEligibleToBorrowOrReserveException| CopyReservedException| CopyNotFoundException| ItemNotFoundException| NullResultException| NumberFormatException| RecordNotFoundException| UserNotFoundException| CopyOverdueException| UserSuspendedException except)
         {
             String text = "We regret to inform you that your extension request could not be approved.\n";
             text += "Reasons might be: \n";
