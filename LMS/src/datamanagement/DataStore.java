@@ -1667,16 +1667,90 @@ public class DataStore {
         
     }
 
-    public HashMap<String, Object> getItemInfo(String itemID, int itemType) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public HashMap<String, Object> getItemInfo(String itemID, int itemType) throws SQLException, ClassNotFoundException {
+        
+        ResultSet resultSet;
+        ArrayList<String> where = new ArrayList<> ();
+        HashMap<String, Object> details = new HashMap<> ();
+        Calendar publishDate = new GregorianCalendar();
+        
+        if (itemType == CatalogueCopy.BOOK) {
+            
+            where.add(itemID);
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
+            
+            database.initializeConnection();
+            
+            resultSet = database.selectRecord(Table.BOOK, where);
+            
+            if (!resultSet.next()) {
+                
+//                throw new NullResultException();
+                
+            }
+            
+            details.put(Table.BOOK_BOOK_ID, itemID);
+            details.put(Table.BOOK_TITLE, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_TITLE)));
+            details.put(Table.BOOK_AUTHOR, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_AUTHOR)));
+            
+            publishDate.setTime(resultSet.getTimestamp(Table.BOOK.getAttribute(Table.BOOK_DATE)));
+            
+            details.put(Table.BOOK_DATE, publishDate);
+            details.put(Table.BOOK_DESCRIPTION, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_DESCRIPTION)));
+            details.put(Table.BOOK_ISBN, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_ISBN)));
+            details.put(Table.BOOK_GENRE, resultSet.getString(Table.BOOK.getAttribute(Table.BOOK_GENRE)));
+            
+        } else {
+            
+//            throw new InvalidItemTypeException();
+            
+        }
+        
+        return details;
+        
     }
 
-    public void deleteItem(String itemID, int itemType) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void deleteItem(String itemID, int itemType) throws SQLException, ClassNotFoundException {
+        
+        ArrayList<String> where = new ArrayList<> ();
+        
+        if (itemType == CatalogueCopy.BOOK) {
+            
+            where.add(itemID);
+            
+            database.initializeConnection();
+            
+            database.deleteRecord(Table.BOOK, where);
+            
+            database.closeConnection();
+            
+        } else {
+            
+//            throw new InvalidItemTypeException();
+            
+        }
+        
     }
 
-    public void addCopy(HashMap<String, Object> details) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void addCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+        
+        ArrayList<String> values = new ArrayList<> ();
+        String copyID = database.getNewID(Table.COPY);
+
+        values.add(copyID);
+        values.add((String)details.get(Table.COPY_ITEM_ID));
+        values.add((String)details.get(Table.COPY_LOCATION));
+        values.add(NULL_VARCHAR);
+
+        database.initializeConnection();
+
+        database.insertRecord(Table.COPY, values);
+
+        database.closeConnection();
+        
     }
 
     public void updateCopy(HashMap<String, Object> details) {

@@ -76,6 +76,7 @@ public class UpdateMgr {
         ItemUpdatable itemUpdatable = new Book();
         HashMap<String, Object> hashMap = new HashMap<> ();
         
+        hashMap.put(Table.BOOK_BOOK_ID, itemID);
         hashMap.put(Table.BOOK_TITLE, title);
         hashMap.put(Table.BOOK_AUTHOR, author);
         hashMap.put(Table.BOOK_DATE, publishDate);
