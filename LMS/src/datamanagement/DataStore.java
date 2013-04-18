@@ -1898,5 +1898,78 @@ public class DataStore {
         
     }
 
+    public void refreshReserve(String copyID, int gracePeriod) throws CopyNotFoundException, SQLException, ClassNotFoundException, NullResultException {
+        
+        ArrayList<String> where = new ArrayList<> ();
+        ResultSet resultSet;
+        Calendar today = new GregorianCalendar();
+        Calendar returnDate = new GregorianCalendar();
+        
+        if (!isValidCopyID(copyID)) {
+            
+            throw new CopyNotFoundException();
+            
+        }
+        
+        where.add(WILDCARD_CHAR);
+        where.add(WILDCARD_CHAR);
+        where.add(copyID);
+        where.add(NULL_DATETIME);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.RECORD, where);
+        
+        if (database.getNumOfRows(resultSet) != 0) {
+            
+            return ; 
+            
+        }
+        
+        where.add(WILDCARD_CHAR);
+        
+        resultSet = database.selectRecord(Table.RECORD, where, 1);
+        
+        if (database.getNumOfRows(resultSet) == 0) {
+            
+            return ; 
+            
+        }
+        
+        resultSet.next();
+        returnDate.setTime(resultSet.getTimestamp(Table.RECORD.getAttribute(Table.RECORD_TIME_RETURNED)));
+        returnDate.add(Calendar.DAY_OF_YEAR, gracePeriod);
+        
+        if (today.compareTo(returnDate) > 0) {
+            
+            ArrayList<String> set = new ArrayList<> ();
+            
+            where.clear();
+            where.add(copyID);
+            where.add(WILDCARD_CHAR);
+            where.add(WILDCARD_CHAR);
+            
+            resultSet = database.selectRecord(Table.COPY, where);
+            
+            if (!resultSet.next()) {
+                
+                database.closeConnection();
+                throw new NullResultException();
+                
+            }
+            
+            set.add(NULL_VARCHAR);
+            set.add(resultSet.getString(Table.COPY.getAttribute(Table.COPY_LOCATION)));
+            
+            where.clear();
+            where.add(copyID);
+            
+            database.updateRecord(Table.COPY, set, where);
+            
+        }
+        
+        database.closeConnection();
+        
+    }
 
 }

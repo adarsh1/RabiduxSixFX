@@ -33,6 +33,7 @@ public interface Reservable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
+    
     public abstract boolean isBorrowed () throws SQLException, ClassNotFoundException, CopyNotFoundException ;
     /**
      *
