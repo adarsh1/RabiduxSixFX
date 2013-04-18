@@ -11,7 +11,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import usermanagement.Faculty;
 import usermanagement.Member;
+import usermanagement.Student;
 
 /**
  *
@@ -32,6 +34,12 @@ public class IndividualViewGUIMgrTest {
     
     @Before
     public void setUp() {
+        Member fm=new Faculty();
+        fm.setUserID("1000000004");
+        fm.setUsername("faculty1");
+        Member sm=new Student();
+        sm.setUserID("1000000005");
+        sm.setUsername("student1");
     }
     
     @After
@@ -43,9 +51,10 @@ public class IndividualViewGUIMgrTest {
      */
     @Test
     public void testReserve() throws Exception {
-        System.out.println("reserve");
+        System.out.println("reserveFaculty");
         int i = 0;
         IndividualViewGUIMgr instance = new IndividualViewGUIMgr();
+        instance.setCurrentMember(fm);
         instance.reserve(i);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
