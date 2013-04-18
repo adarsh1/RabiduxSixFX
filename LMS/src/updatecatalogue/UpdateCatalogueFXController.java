@@ -33,6 +33,8 @@ public class UpdateCatalogueFXController extends BaseFXController
     implements Initializable {
     
     private UpdateMgr updateMgr;
+    private String tempItemID;
+    private String tempCopyID;
 
     @FXML //  fx:id="actionHolderPane"
     private AnchorPane actionHolderPane; // Value injected by FXMLLoader
@@ -247,6 +249,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             updateCopyLocation.setText((String)(copyInfo.get(Table.COPY_LOCATION)));
             //enable the info pane
             updateCopyInfoPane.setDisable(false);
+            this.tempCopyID = copyID;
         }        
         catch( SQLException | ClassNotFoundException e){
             this.displayWarning("Error", e.getMessage());
@@ -272,6 +275,7 @@ public class UpdateCatalogueFXController extends BaseFXController
             updateItemGenre.setText((String)itemInfo.get(Table.BOOK_GENRE));
             //enable item info pane
             updateItemInfoPane.setDisable(false);
+            this.tempItemID = itemID;
         }
         catch(ItemNotFoundException | SQLException | ClassNotFoundException e){
             this.displayWarning("Error", e.getMessage());
@@ -375,7 +379,7 @@ public class UpdateCatalogueFXController extends BaseFXController
      */
     public void handleUpdateCopyConfirmButtonAction(ActionEvent event) {
         try {
-            String copyID = updateCopyID.getText();
+            String copyID = this.tempCopyID;
             String location = updateCopyLocation.getText();
             updateMgr.updateCopy(copyID, location);
             this.displaySuccess("Updated", "Copy information has successfully been updated");
@@ -399,7 +403,7 @@ public class UpdateCatalogueFXController extends BaseFXController
     
     private void deleteCopy(){
         try {
-            String copyID = updateCopyID.getText();
+            String copyID = this.tempCopyID;
             updateMgr.deleteCopy(copyID);            
             
         } catch (SQLException | ClassNotFoundException ex) {
@@ -426,7 +430,7 @@ public class UpdateCatalogueFXController extends BaseFXController
      */
     public void handleUpdateItemConfirmButtonAction(ActionEvent event) {
         try{
-            String itemID = updateItemItemID.getText();
+            String itemID = this.tempItemID;
             String title = updateItemTitle.getText();
             String author = updateItemAuthor.getText();
             GregorianCalendar publishDate = parseDate(updateItemPublishDate.getText());
@@ -464,7 +468,7 @@ public class UpdateCatalogueFXController extends BaseFXController
     
     private void deleteItem(){
         try {
-            String itemID = updateItemItemID.getText();
+            String itemID = this.tempItemID;
             updateMgr.deleteBook(itemID);
         } catch (ItemNotFoundException e) {
             this.displayWarning("Item ID Error", e.getMessage());
