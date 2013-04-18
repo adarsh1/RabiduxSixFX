@@ -148,12 +148,11 @@ public class UpdateMgr {
      * @param location
      * @throws ItemNotFoundException
      */
-    public void updateCopy(String itemID, String copyID, String location) throws SQLException, ClassNotFoundException{
+    public void updateCopy(String copyID, String location) throws SQLException, ClassNotFoundException{
         
         CopyUpdatable copyUpdatable = new Book();
         HashMap<String, Object> hashMap = new HashMap<> ();
         
-        hashMap.put(Table.COPY_ITEM_ID, itemID);
         hashMap.put(Table.COPY_COPY_ID, copyID);
         hashMap.put(Table.COPY_LOCATION, location);
         

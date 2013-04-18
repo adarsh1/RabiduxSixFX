@@ -1,12 +1,17 @@
 package updatecatalogue;
 
 import baseGUI.BaseFXController;
-import exception.ItemExistException;
+import datamanagement.Table;
+import exception.ItemNotFoundException;
 import globalcontrol.ModelController;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -105,6 +110,9 @@ public class UpdateCatalogueFXController extends BaseFXController
     @FXML //  fx:id="updateCopyID"
     private TextField updateCopyID; // Value injected by FXMLLoader
 
+    @FXML //  fx:id="updateCopyInfoPane"
+    private AnchorPane updateCopyInfoPane; // Value injected by FXMLLoader
+
     @FXML //  fx:id="updateCopyLocation"
     private TextField updateCopyLocation; // Value injected by FXMLLoader
 
@@ -135,6 +143,9 @@ public class UpdateCatalogueFXController extends BaseFXController
     @FXML //  fx:id="updateItemInfoPane"
     private AnchorPane updateItemInfoPane; // Value injected by FXMLLoader
 
+    @FXML //  fx:id="updateItemItemID"
+    private TextField updateItemItemID; // Value injected by FXMLLoader
+
     @FXML //  fx:id="updateItemPane"
     private AnchorPane updateItemPane; // Value injected by FXMLLoader
 
@@ -145,13 +156,78 @@ public class UpdateCatalogueFXController extends BaseFXController
     private TextField updateItemTitle; // Value injected by FXMLLoader
 
 
+    @Override // This method is called by the FXMLLoader when initialization is complete
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        assert actionHolderPane != null : "fx:id=\"actionHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert bookInfoPane != null : "fx:id=\"bookInfoPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert bookType != null : "fx:id=\"bookType\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert getCopyDetailsButton != null : "fx:id=\"getCopyDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert getItemDetailsButton != null : "fx:id=\"getItemDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert hideMessage != null : "fx:id=\"hideMessage\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert messageHeader != null : "fx:id=\"messageHeader\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert messageHolderPane != null : "fx:id=\"messageHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert messagePane != null : "fx:id=\"messagePane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert messageText != null : "fx:id=\"messageText\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newBookGenre != null : "fx:id=\"newBookGenre\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newBookISBN != null : "fx:id=\"newBookISBN\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newCopyButton != null : "fx:id=\"newCopyButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newCopyConfirmButton != null : "fx:id=\"newCopyConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newCopyItemID != null : "fx:id=\"newCopyItemID\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newCopyLocation != null : "fx:id=\"newCopyLocation\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newCopyPane != null : "fx:id=\"newCopyPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newItemAuthor != null : "fx:id=\"newItemAuthor\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newItemButton != null : "fx:id=\"newItemButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newItemConfirm != null : "fx:id=\"newItemConfirm\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newItemDescription != null : "fx:id=\"newItemDescription\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newItemPane != null : "fx:id=\"newItemPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newItemPublishDate != null : "fx:id=\"newItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert newItemTitle != null : "fx:id=\"newItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert optionPane != null : "fx:id=\"optionPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateCopyButton != null : "fx:id=\"updateCopyButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateCopyConfirmButton != null : "fx:id=\"updateCopyConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateCopyDeleteButton != null : "fx:id=\"updateCopyDeleteButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateCopyID != null : "fx:id=\"updateCopyID\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateCopyInfoPane != null : "fx:id=\"updateCopyInfoPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateCopyLocation != null : "fx:id=\"updateCopyLocation\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateCopyPane != null : "fx:id=\"updateCopyPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemAuthor != null : "fx:id=\"updateItemAuthor\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemButton != null : "fx:id=\"updateItemButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemConfirmButton != null : "fx:id=\"updateItemConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemDeleteButton != null : "fx:id=\"updateItemDeleteButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemDescription != null : "fx:id=\"updateItemDescription\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemGenre != null : "fx:id=\"updateItemGenre\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemISBN != null : "fx:id=\"updateItemISBN\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemInfoPane != null : "fx:id=\"updateItemInfoPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemItemID != null : "fx:id=\"updateItemItemID\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemPane != null : "fx:id=\"updateItemPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemPublishDate != null : "fx:id=\"updateItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+        assert updateItemTitle != null : "fx:id=\"updateItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
+
+        // initialize your logic here: all @FXML variables will have been injected
+        updateMgr = new UpdateMgr();
+    }
+
+
+
     // Handler for Button[fx:id="getCopyDetailsButton"] onAction
     /**
      *
      * @param event
      */
     public void handleGetCopyDetailsButtonAction(ActionEvent event) {
-        // handle the event here
+        String copyID = updateCopyID.getText();
+        try{
+            //get the details from mgr
+            HashMap copyInfo = updateMgr.getCopyDetails(copyID);
+            //display on the fields
+            updateCopyLocation.setText((String)(copyInfo.get(Table.COPY_LOCATION)));
+            //enable the info pane
+            updateCopyInfoPane.setDisable(false);
+        }        
+        catch( SQLException | ClassNotFoundException e){
+            this.displayWarning("Error", e.getMessage());
+        }
     }
 
     // Handler for Button[fx:id="getItemDetailsButton"] onAction
@@ -160,7 +236,21 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleGetItemDetailsButtonAction(ActionEvent event) {
-        
+        String itemID = updateItemItemID.getText();
+        try{
+            //get the details from mgr
+            HashMap itemInfo = updateMgr.getItemInfo(itemID);
+            //display on the fields
+            updateItemTitle.setText((String)itemInfo.get(Table.BOOK_TITLE));
+            updateItemAuthor.setText((String)itemInfo.get(Table.BOOK_AUTHOR));
+            updateItemDescription.setText((String)itemInfo.get(Table.BOOK_DESCRIPTION));
+            updateItemPublishDate.setText(formatDateString((Calendar)itemInfo.get(Table.BOOK_DATE)));
+            //enable item info pane
+            updateItemInfoPane.setDisable(false);
+        }
+        catch(ItemNotFoundException | SQLException | ClassNotFoundException e){
+            this.displayWarning("Error", e.getMessage());
+        }
     }
 
     // Handler for Button[fx:id="newCopyButton"] onAction
@@ -181,7 +271,19 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleNewCopyConfirmButtonAction(ActionEvent event) {
-        // handle the event here
+        try{
+            String itemID = newCopyItemID.getText();
+            String location = newCopyLocation.getText();
+            updateMgr.addNewCopy(itemID, location);
+        }
+        /*
+        catch(ItemNotFoundException e){
+            displayWarning("Error","Item ID not found\n" + e.getMessage());
+        }
+        */ 
+        catch(SQLException | ClassNotFoundException e){
+            displayWarning("Sorry","One of the fields is wrong:\n" + e.getMessage());
+        }
     }
 
     // Handler for Button[fx:id="newItemButton"] onAction
@@ -245,7 +347,13 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleUpdateCopyConfirmButtonAction(ActionEvent event) {
-        // handle the event here
+        try {
+            String copyID = updateCopyID.getText();
+            String location = updateCopyLocation.getText();
+            updateMgr.updateCopy(copyID, location);
+        } catch (SQLException | ClassNotFoundException ex) {
+            this.displayWarning("Error", ex.getMessage());
+        }
     }
 
     // Handler for Button[fx:id="updateCopyDeleteButton"] onAction
@@ -254,7 +362,12 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleUpdateCopyDeleteButtonAction(ActionEvent event) {
-        // handle the event here
+        try {
+            String copyID = updateCopyID.getText();
+            updateMgr.deleteCopy(copyID);
+        } catch (SQLException | ClassNotFoundException ex) {
+            this.displayWarning("Error", ex.getMessage());
+        }
     }
 
     // Handler for Button[fx:id="updateItemButton"] onAction
@@ -275,7 +388,27 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleUpdateItemConfirmButtonAction(ActionEvent event) {
-        // handle the event here
+        try{
+            String itemID = updateItemItemID.getText();
+            String title = updateItemTitle.getText();
+            String author = updateItemAuthor.getText();
+            GregorianCalendar publishDate = parseDate(updateItemPublishDate.getText());
+            String description = updateItemDescription.getText();
+            String ISBN = updateItemISBN.getText();
+            String genre = updateItemGenre.getText();
+            if (title.length()>0 && author.length()>0 && description.length()>0 && ISBN.length()>0 && genre.length()>0){
+                updateMgr.updateBook(itemID, title, author, publishDate, description, ISBN, genre);
+            }
+            else{                    
+                displayWarning("Item Information incomplete", "Please fill in the necessary fields");
+            }            
+        }
+        catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
+            displayWarning("Sorry","Date format is wrong\n" + e.getMessage());
+        }
+        catch(Exception e){
+            displayWarning("Sorry","One of the fields is wrong:\n" + e.getMessage());
+        }
     }
 
     // Handler for Button[fx:id="updateItemDeleteButton"] onAction
@@ -284,64 +417,18 @@ public class UpdateCatalogueFXController extends BaseFXController
      * @param event
      */
     public void handleUpdateItemDeleteButtonAction(ActionEvent event) {
-        // handle the event here
+        try {
+            String itemID = updateItemItemID.getText();
+            updateMgr.deleteBook(itemID);
+        } catch (ItemNotFoundException e) {
+            this.displayWarning("Item ID Error", e.getMessage());
+        } catch (SQLException | ClassNotFoundException e) {
+            this.displayWarning("Sorry", e.getMessage());
+        }
     }
 
-    /**
-     *
-     * @param fxmlFileLocation
-     * @param resources
-     */
-    @Override // This method is called by the FXMLLoader when initialization is complete
-    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-        assert actionHolderPane != null : "fx:id=\"actionHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert bookInfoPane != null : "fx:id=\"bookInfoPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert bookType != null : "fx:id=\"bookType\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert contentPane != null : "fx:id=\"contentPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert getCopyDetailsButton != null : "fx:id=\"getCopyDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert getItemDetailsButton != null : "fx:id=\"getItemDetailsButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert hideMessage != null : "fx:id=\"hideMessage\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert messageHeader != null : "fx:id=\"messageHeader\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert messageHolderPane != null : "fx:id=\"messageHolderPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert messagePane != null : "fx:id=\"messagePane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert messageText != null : "fx:id=\"messageText\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newBookGenre != null : "fx:id=\"newBookGenre\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newBookISBN != null : "fx:id=\"newBookISBN\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newCopyButton != null : "fx:id=\"newCopyButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newCopyConfirmButton != null : "fx:id=\"newCopyConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newCopyItemID != null : "fx:id=\"newCopyItemID\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newCopyLocation != null : "fx:id=\"newCopyLocation\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newCopyPane != null : "fx:id=\"newCopyPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newItemAuthor != null : "fx:id=\"newItemAuthor\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newItemButton != null : "fx:id=\"newItemButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newItemConfirm != null : "fx:id=\"newItemConfirm\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newItemDescription != null : "fx:id=\"newItemDescription\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newItemPane != null : "fx:id=\"newItemPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newItemPublishDate != null : "fx:id=\"newItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert newItemTitle != null : "fx:id=\"newItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert optionPane != null : "fx:id=\"optionPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateCopyButton != null : "fx:id=\"updateCopyButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateCopyConfirmButton != null : "fx:id=\"updateCopyConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateCopyDeleteButton != null : "fx:id=\"updateCopyDeleteButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateCopyID != null : "fx:id=\"updateCopyID\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateCopyLocation != null : "fx:id=\"updateCopyLocation\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateCopyPane != null : "fx:id=\"updateCopyPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemAuthor != null : "fx:id=\"updateItemAuthor\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemButton != null : "fx:id=\"updateItemButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemConfirmButton != null : "fx:id=\"updateItemConfirmButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemDeleteButton != null : "fx:id=\"updateItemDeleteButton\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemDescription != null : "fx:id=\"updateItemDescription\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemGenre != null : "fx:id=\"updateItemGenre\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemISBN != null : "fx:id=\"updateItemISBN\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemInfoPane != null : "fx:id=\"updateItemInfoPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemPane != null : "fx:id=\"updateItemPane\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemPublishDate != null : "fx:id=\"updateItemPublishDate\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-        assert updateItemTitle != null : "fx:id=\"updateItemTitle\" was not injected: check your FXML file 'UpdateCatalogue.fxml'.";
-
-        // initialize your logic here: all @FXML variables will have been injected
-        updateMgr = new UpdateMgr();
-    }
-
+    
+        
     /**
      *
      * @param modelController
@@ -375,7 +462,7 @@ public class UpdateCatalogueFXController extends BaseFXController
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setLenient(false);
         calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.MONTH, month--);
         calendar.set(Calendar.DAY_OF_MONTH, date);
         return calendar;
     }
@@ -386,5 +473,15 @@ public class UpdateCatalogueFXController extends BaseFXController
             panes.get(i).setVisible(false);
         }
     }
+    
+    private String formatDateString(Calendar date){
+        int year = date.get(Calendar.YEAR);
+        int month = date.get(Calendar.MONTH);
+        month++;
+        int dateOfMonth = date.get(Calendar.DAY_OF_MONTH);
+        return (year + "-" + month + "-" + dateOfMonth);
+    }
+    
+    
 }
 
