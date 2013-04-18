@@ -119,12 +119,12 @@ public class ReturnFXController extends BaseFXController implements Initializabl
         itemDescription.setText(itemDescriptionText);
         //add the image to the bookcover field
         Image image;
-            try{
-                image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + returnMgr.getItem().getItemID() + ".jpg"); 
-            }
-            catch(Exception e){
-                image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg"); 
-            }
+        try{
+            image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + returnMgr.getItem().getItemID() + ".jpg"); 
+        }
+        catch(Exception e){
+            image = new Image(ModelController.BOOKCOVER_IMAGE_PATH + "default_book_cover.jpg"); 
+        }
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         imageView.setFitWidth(130.0);

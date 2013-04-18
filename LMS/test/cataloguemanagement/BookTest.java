@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import factory.SystemConfig;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,6 +24,8 @@ public class BookTest {
     
     @BeforeClass
     public static void setUpClass() {
+        SystemConfig instance = SystemConfig.getInstance();
+        instance.useMySQLDB();
     }
     
     @AfterClass
@@ -43,14 +46,21 @@ public class BookTest {
      * Test of isValidBook method, of class Book.
      */
     @Test
-    public void testIsValidBook() throws Exception {
+    public void testIsValidBook1() throws Exception {
         System.out.println("isValidBook");
-        String itemID = "";
-        Boolean expResult = null;
+        String itemID = "3000000002";
+        Boolean expResult = true;
         Boolean result = Book.isValidBook(itemID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testIsValidBook2() throws Exception {
+        System.out.println("isValidBook");
+        String itemID = "invalid";
+        Boolean expResult = false;
+        Boolean result = Book.isValidBook(itemID);
+        assertEquals(expResult, result);
     }
 
 
