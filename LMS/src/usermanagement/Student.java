@@ -18,7 +18,7 @@ public class Student extends Member{
         super();
         setUsertype(User.STUDENT);
         setMaxHolding(Member.STUDENT_MAX_HOLDING);
-        
+        setMaxReserve(Member.STUDENT_MAX_RESERVE);
     }
 
     /**

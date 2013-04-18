@@ -42,7 +42,7 @@ public class BorrowMgr {
      */
     public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException{
         //if this member is allowed to borrow or reserve
-        if(currentMember.isEligibleToBorrowOrReserve()){
+        if(currentMember.isEligibleToBorrow()){
           return item.borrow(currentMember.getUserID(), currentMember.getLoanDuration());
         }
         else {

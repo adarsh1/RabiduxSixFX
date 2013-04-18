@@ -947,7 +947,7 @@
  ******************************************************************************/
 .holdings-scroll{
     -fx-background-color:#ffffff;
-    -fx-padding:10 10 10 10;
+    -fx-padding:10 10 10 0;
 }
 .borrow-holding{
     -fx-background-color: #e9e9e9;

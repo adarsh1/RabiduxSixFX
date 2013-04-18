@@ -60,7 +60,7 @@ public class HoldingsMgr {
     }
     /**
      * Reserves the ith {@link cataloguemanagement.ReservedCopy} object in {@link #reservedCopies}
-     * @param i the index of the {@link cataloguemanagement.Reservable} object in {@link #item}
+     * @param i the index of the {@link cataloguemanagement.Reservable} object in {@link #reservedCopies}
      * @throws SQLException
      * @throws ClassNotFoundException
      */
