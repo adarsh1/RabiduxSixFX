@@ -39,7 +39,7 @@
         <AnchorPane fx:id="updateItemPane" prefHeight="450.0" prefWidth="350.0" visible="false">
           <children>
             <TextField fx:id="updateItemItemID" layoutY="50.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter the ID of the item to be updated" />
-            <Label layoutY="-9.0" styleClass="font-grey, header-3" text="Update existing Item" />
+            <Label layoutY="-9.0" styleClass="font-grey, header-3" text="Update existing item" />
             <Button fx:id="getItemDetailsButton" layoutX="253.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleGetItemDetailsButtonAction" text="Get Details" />
             <AnchorPane fx:id="updateItemInfoPane" disable="true" layoutY="100.0" prefHeight="350.0" prefWidth="350.0">
               <children>
@@ -106,7 +106,7 @@
         </AnchorPane>
       </children>
     </AnchorPane>
-    <AnchorPane fx:id="confirmPane" layoutX="-190.0" layoutY="190.0" prefHeight="150.0" prefWidth="900.0" styleClass="logout-pane" visible="false">
+    <AnchorPane fx:id="confirmPane" layoutX="-190.0" layoutY="150.0" prefHeight="150.0" prefWidth="900.0" styleClass="logout-pane" visible="false">
       <children>
         <AnchorPane id="confirmMsgPane" fx:id="confirmMessageHolderPane" layoutX="190.0" prefHeight="150.0" prefWidth="500.0">
           <children>
