@@ -47,6 +47,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public CatalogueCopy getCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
@@ -119,10 +121,11 @@ public class DataStore {
     /**
      *
      * @param username
-     * @param password
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     * @throws InvalidUserTypeException  
      */
     public User getUserByName(String username) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
@@ -189,6 +192,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     * @throws InvalidUserTypeException  
      */
     public User getUser(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
@@ -255,6 +260,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws ItemNotFoundException 
+     * @throws CopyNotFoundException  
      */
     public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, CopyNotFoundException {
         
@@ -309,6 +316,9 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws InvalidKeywordException 
+     * @throws ItemNotFoundException
+     * @throws CopyNotFoundException  
      */
     public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException {
         
@@ -411,6 +421,7 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException  
      */
     public boolean isCopyBorrowed(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
@@ -453,6 +464,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws NullResultException  
      */
     public boolean isCopyOverdue(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
@@ -502,6 +515,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException  
      */
     public boolean isCopyReserved(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
@@ -550,6 +565,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     * @throws NullResultException  
      */
     public boolean isUserSuspended(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
@@ -598,6 +615,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws NullResultException 
+     * @throws UserNotFoundException  
      */
     public boolean isValidUserPassword(String username, String password) throws SQLException, ClassNotFoundException, NullResultException, UserNotFoundException {
         
@@ -828,6 +847,7 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException  
      */
     public int getNumOfBorrowing(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
@@ -863,6 +883,7 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException  
      */
     public int getNumOfReserving(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
@@ -897,6 +918,10 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException
+     * @throws InvalidUserTypeException  
      */
     public ArrayList<PastTransaction> getRecords(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException, InvalidUserTypeException {
         
@@ -967,6 +992,10 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws UserNotFoundException 
+     * @throws NullResultException 
+     * @throws CopyReservedException  
      */
     public PastTransaction borrow(String copyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyReservedException {
         
@@ -1053,6 +1082,10 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws RecordNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException
+     * @throws NullResultException  
      */
     public PastTransaction extend(String copyID, String loanID, int extend_time) throws SQLException, ClassNotFoundException, RecordNotFoundException, CopyNotFoundException, NullResultException, ItemNotFoundException {
         
@@ -1129,6 +1162,10 @@ public class DataStore {
      * @param userID
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws UserNotFoundException
+     * @throws NullResultException
+     * @throws CopyBorrowedException  
      */
     public void reserve(String copyID, String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyBorrowedException {
         
@@ -1203,6 +1240,9 @@ public class DataStore {
      * @param userID
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws UserNotFoundException
+     * @throws NullResultException  
      */
     public void cancelReservation(String copyID, String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException {
         
@@ -1255,6 +1295,8 @@ public class DataStore {
      * @param fine
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws NullResultException  
      */
     public void returnBook(String copyID, double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
@@ -1342,6 +1384,9 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
@@ -1409,6 +1454,9 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException 
+     * @throws ItemNotFoundException
+     * @throws CopyNotFoundException  
      */
     public ArrayList<CurrentHolding> getCurrentHoldings(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
@@ -1472,6 +1520,8 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public ReservedCopy getReservedCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
@@ -1516,6 +1566,10 @@ public class DataStore {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws UserNotFoundException
+     * @throws ItemNotFoundException 
+     * @throws InvalidUserTypeException  
      */
     public PastTransaction getRecord(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
@@ -1581,6 +1635,8 @@ public class DataStore {
      * @param userID
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException 
+     * @throws NullResultException  
      */
     public void resetFine(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
@@ -1623,6 +1679,14 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param details
+     * @param itemType
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InvalidItemTypeException
+     */
     public void addItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException, InvalidItemTypeException {
         
         ArrayList<String> values = new ArrayList<> ();
@@ -1654,6 +1718,15 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param details
+     * @param itemType
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws InvalidItemTypeException
+     */
     public void updateItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
         ArrayList<String> set = new ArrayList<> ();
@@ -1690,6 +1763,17 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param itemID
+     * @param itemType
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws NullResultException
+     * @throws InvalidItemTypeException
+     */
     public HashMap<String, Object> getItemInfo(String itemID, int itemType) throws SQLException, ClassNotFoundException, ItemNotFoundException, NullResultException, InvalidItemTypeException {
         
         ResultSet resultSet;
@@ -1745,6 +1829,15 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param itemID
+     * @param itemType
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws InvalidItemTypeException
+     */
     public void deleteItem(String itemID, int itemType) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
         ArrayList<String> where = new ArrayList<> ();
@@ -1773,6 +1866,12 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param details
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void addCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
         
         ArrayList<String> values = new ArrayList<> ();
@@ -1791,6 +1890,14 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param details
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException
+     */
     public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         ArrayList<String> set = new ArrayList<> ();
@@ -1839,6 +1946,15 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException
+     */
     public HashMap<String, Object> getCopyInfo(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         ResultSet resultSet;
@@ -1878,6 +1994,13 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     */
     public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         ArrayList<String> where = new ArrayList<> ();
@@ -1898,6 +2021,15 @@ public class DataStore {
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @param gracePeriod
+     * @throws CopyNotFoundException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws NullResultException
+     */
     public void refreshReserve(String copyID, int gracePeriod) throws CopyNotFoundException, SQLException, ClassNotFoundException, NullResultException {
         
         ArrayList<String> where = new ArrayList<> ();

@@ -46,6 +46,12 @@ public class BorrowMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      * @throws NotEligibleToBorrowOrReserveException
+     * @throws UserNotFoundException 
+     * @throws CopyBorrowedException 
+     * @throws CopyNotFoundException 
+     * @throws NullResultException
+     * @throws UserSuspendedException
+     * @throws CopyReservedException  
      */
     public PastTransaction borrow() throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyBorrowedException, CopyNotFoundException, CopyReservedException, NullResultException, UserSuspendedException{
         if (currentMember.isSuspended()){
@@ -67,6 +73,8 @@ public class BorrowMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      * @throws TypeMismatchException
+     * @throws CopyNotFoundException
+     * @throws ItemNotFoundException  
      */
     public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException, CopyNotFoundException, ItemNotFoundException{
         //get the catalogue item from catalogue management

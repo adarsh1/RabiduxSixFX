@@ -38,6 +38,8 @@ public class LoginMgr {
      * @throws IncorrectPasswordException
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws NullResultException
+     * @throws InvalidUserTypeException  
      */
     public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException, NullResultException, InvalidUserTypeException{
         setUser(User.getUser(username, password));

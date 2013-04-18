@@ -46,7 +46,14 @@ public class IndividualViewGUIMgr {
      * @param i the index of the {@link cataloguemanagement.Reservable} object in {@link #item}
      * @throws SQLException
      * @throws ClassNotFoundException
-     * @throws NotEligibleToBorrowOrReserveException 
+     * @throws NotEligibleToBorrowOrReserveException
+     * @throws UserNotFoundException 
+     * @throws CopyNotFoundException 
+     * @throws NullResultException
+     * @throws CopyNotBorrowedException
+     * @throws CopyBorrowedException
+     * @throws CopyReservedException
+     * @throws UserSuspendedException  
      */
     //reserve the book
     public void reserve(int i) throws SQLException, ClassNotFoundException, NotEligibleToBorrowOrReserveException, UserNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, CopyBorrowedException, UserSuspendedException{
@@ -66,7 +73,9 @@ public class IndividualViewGUIMgr {
      * Initializes {@link #item} based on the itemID in ID.
      * @param ID the itemID String to generate the {@link ReservableCopyGroup}.
      * @throws SQLException
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws CopyNotFoundException  
      */
     public void createItem(String ID) throws SQLException, ClassNotFoundException, ItemNotFoundException, CopyNotFoundException{
         //get the catalogue item from catalogue management

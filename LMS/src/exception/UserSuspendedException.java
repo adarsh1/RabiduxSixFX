@@ -10,12 +10,19 @@ package exception;
  */
 public class UserSuspendedException extends Exception {
     
+    /**
+     *
+     */
     public UserSuspendedException() {
         
         super("Your account is suspended");
         
     }
 
+    /**
+     *
+     * @param msg
+     */
     public UserSuspendedException(String msg) {
         
         super(msg);

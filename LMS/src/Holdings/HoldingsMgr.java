@@ -54,8 +54,16 @@ public class HoldingsMgr {
      * Extends the ith {@link cataloguemanagement.CurrentHolding} object in {@link #currentHoldings}
      * @param i the index of the {@link cataloguemanagement.CurrentHolding} object in {@link #currentHoldings}
      * @throws SQLException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException 
      * @throws ClassNotFoundException
-     * @throws NotEligibleToBorrowOrReserveException 
+     * @throws NullResultException 
+     * @throws NotEligibleToBorrowOrReserveException
+     * @throws CopyReservedException
+     * @throws RecordNotFoundException
+     * @throws UserSuspendedException 
+     * @throws CopyOverdueException 
+     * @throws UserNotFoundException  
      */
     //borrow the book
     public void extend(int i) throws ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, NotEligibleToBorrowOrReserveException, NullResultException, RecordNotFoundException, SQLException, UserNotFoundException, UserSuspendedException, CopyOverdueException, CopyReservedException{
@@ -74,6 +82,10 @@ public class HoldingsMgr {
      * @param i the index of the {@link cataloguemanagement.Reservable} object in {@link #reservedCopies}
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException 
+     * @throws UserNotFoundException
+     * @throws CopyNotReservedException  
      */
     public void cancelReservation(int i) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException, CopyNotReservedException{
         //if this member is allowed to borrow or reserve
@@ -84,7 +96,10 @@ public class HoldingsMgr {
      * Initializes {@link #reservedCopies} and the {@link #currentHoldings} based on the {@link #currentMember}.
      * @throws TypeMismatchException
      * @throws SQLException
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     * @throws CopyNotFoundException
+     * @throws ItemNotFoundException  
      */
     public void createItem() throws SQLException, ClassNotFoundException, TypeMismatchException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException{
         //get the catalogue item from catalogue management

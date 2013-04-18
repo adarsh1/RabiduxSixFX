@@ -18,6 +18,12 @@ public interface Reservable extends Displayable {
      * @param userID
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws NullResultException
+     * @throws CopyNotBorrowedException
+     * @throws CopyReservedException 
+     * @throws CopyBorrowedException
+     * @throws UserNotFoundException  
      */
     public abstract void reserve(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, UserNotFoundException, CopyBorrowedException ;
     /**
@@ -25,6 +31,8 @@ public interface Reservable extends Displayable {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws NullResultException  
      */
     public abstract boolean isReserved () throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException ;
     /**
@@ -32,6 +40,7 @@ public interface Reservable extends Displayable {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException  
      */
     
     public abstract boolean isBorrowed () throws SQLException, ClassNotFoundException, CopyNotFoundException ;
@@ -40,6 +49,8 @@ public interface Reservable extends Displayable {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws ItemNotFoundException  
      */
     public abstract ReservedCopy getReservedCopy () throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException;
     /**
@@ -47,6 +58,10 @@ public interface Reservable extends Displayable {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws InvalidUserTypeException
+     * @throws UserNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public abstract PastTransaction getPastTransaction () throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException;
     

@@ -42,6 +42,9 @@ public class SearchMgr {
      * @param searchstring
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws InvalidKeywordException 
+     * @throws CopyNotFoundException
+     * @throws ItemNotFoundException  
      */
     public void SearchByTitle(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {
@@ -55,6 +58,9 @@ public class SearchMgr {
      * @param searchstring
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws InvalidKeywordException 
+     * @throws CopyNotFoundException
+     * @throws ItemNotFoundException  
      */
     public void SearchByAuthor(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {
@@ -66,6 +72,9 @@ public class SearchMgr {
      * @param searchstring
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws InvalidKeywordException 
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public void SearchByISBN(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {
@@ -77,6 +86,9 @@ public class SearchMgr {
      * @param searchstring
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws InvalidKeywordException 
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public void SearchByGenre(String searchstring) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException
     {

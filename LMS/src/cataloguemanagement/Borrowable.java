@@ -20,6 +20,11 @@ public interface Borrowable extends Displayable {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyBorrowedException 
+     * @throws CopyNotFoundException
+     * @throws UserNotFoundException
+     * @throws CopyReservedException
+     * @throws NullResultException  
      */
     public abstract PastTransaction borrow (String userID, int loanDuration) throws SQLException, ClassNotFoundException, CopyBorrowedException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyReservedException;
    

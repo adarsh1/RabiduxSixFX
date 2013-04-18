@@ -43,6 +43,9 @@ public class UpdateMgr {
      * @param ISBN
      * @param genre
      * @throws ItemNotFoundException
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     * @throws InvalidItemTypeException  
      */
     public void addNewBook(String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException, InvalidItemTypeException{
         
@@ -73,6 +76,9 @@ public class UpdateMgr {
      * @param ISBN
      * @param genre
      * @throws ItemNotFoundException
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     * @throws InvalidItemTypeException  
      */
     public void updateBook(String itemID, String title, String author, Calendar publishDate, String description, String ISBN, String genre) throws ItemNotFoundException, SQLException, ClassNotFoundException, InvalidItemTypeException{
         
@@ -98,6 +104,10 @@ public class UpdateMgr {
      * @param itemID
      * @return
      * @throws ItemNotFoundException
+     * @throws SQLException 
+     * @throws NullResultException
+     * @throws ClassNotFoundException 
+     * @throws InvalidItemTypeException  
      */
     public HashMap getItemInfo(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException, NullResultException, InvalidItemTypeException{
         
@@ -116,6 +126,9 @@ public class UpdateMgr {
      *
      * @param itemID
      * @throws ItemNotFoundException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InvalidItemTypeException  
      */
     public void deleteBook(String itemID) throws ItemNotFoundException, SQLException, ClassNotFoundException, InvalidItemTypeException{
         
@@ -129,7 +142,10 @@ public class UpdateMgr {
     
     /**
      *
+     * @param itemID 
      * @param location
+     * @throws SQLException
+     * @throws ClassNotFoundException  
      */
     public void addNewCopy(String itemID, String location) throws SQLException, ClassNotFoundException{
         
@@ -149,7 +165,10 @@ public class UpdateMgr {
      *
      * @param copyID
      * @param location
-     * @throws ItemNotFoundException
+     * @throws SQLException 
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException  
      */
     public void updateCopy(String copyID, String location) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException{
         
@@ -169,7 +188,10 @@ public class UpdateMgr {
      *
      * @param copyID
      * @return
-     * @throws ItemNotFoundException
+     * @throws SQLException 
+     * @throws CopyNotFoundException 
+     * @throws ClassNotFoundException
+     * @throws NullResultException  
      */
     public HashMap getCopyDetails(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException{
         
@@ -187,7 +209,9 @@ public class UpdateMgr {
     /**
      *
      * @param copyID
-     * @throws ItemNotFoundException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException  
      */
     public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException{
         

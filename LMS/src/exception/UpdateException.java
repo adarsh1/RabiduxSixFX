@@ -10,12 +10,19 @@ package exception;
  */
 public class UpdateException extends Exception {
     
+    /**
+     *
+     */
     public UpdateException() {
         
         super("Item type does not exsit");
         
     }
     
+    /**
+     *
+     * @param msg
+     */
     public UpdateException(String msg) {
         
         super(msg);

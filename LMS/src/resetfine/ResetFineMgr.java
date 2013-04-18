@@ -56,6 +56,8 @@ public class ResetFineMgr {
      * @param userName
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     * @throws InvalidUserTypeException  
      */
     public void setMember(String userName) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException
     {
@@ -85,6 +87,8 @@ public class ResetFineMgr {
      *
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException 
+     * @throws NullResultException  
      */
     public void reset() throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException
     {

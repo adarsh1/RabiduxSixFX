@@ -17,6 +17,9 @@ import java.util.*;
 public class Book extends CatalogueCopy 
     implements Borrowable,Extendable,Reservable,ReservationCancellable,Returnable,ItemUpdatable{
     
+    /**
+     *
+     */
     public static int GRACE_PERIOD = 3;
     
     private String ISBN;
@@ -37,6 +40,8 @@ public class Book extends CatalogueCopy
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public static Book getBook(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
@@ -107,6 +112,11 @@ public class Book extends CatalogueCopy
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws UserNotFoundException
+     * @throws CopyBorrowedException
+     * @throws NullResultException
+     * @throws CopyReservedException  
      */
     @Override
     public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyReservedException, CopyBorrowedException {
@@ -180,6 +190,12 @@ public class Book extends CatalogueCopy
      * @param loanDuration
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws NullResultException 
+     * @throws RecordNotFoundException
+     * @throws ItemNotFoundException 
+     * @throws CopyOverdueException 
+     * @throws CopyReservedException  
      */
     @Override
     public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException, CopyOverdueException, CopyReservedException {
@@ -207,6 +223,12 @@ public class Book extends CatalogueCopy
      * @param userID
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws CopyNotBorrowedException
+     * @throws NullResultException 
+     * @throws UserNotFoundException
+     * @throws CopyReservedException
+     * @throws CopyBorrowedException  
      */
     @Override
     public void reserve(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, UserNotFoundException, CopyBorrowedException {
@@ -234,6 +256,10 @@ public class Book extends CatalogueCopy
      * @param userID
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws CopyNotReservedException
+     * @throws UserNotFoundException 
+     * @throws NullResultException  
      */
     @Override
     public void cancelReservation(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, UserNotFoundException, CopyNotReservedException {
@@ -255,6 +281,9 @@ public class Book extends CatalogueCopy
      * @param fine
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws NullResultException
+     * @throws CopyNotBorrowedException  
      */
     @Override
     public void returnCopy(double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, CopyNotBorrowedException {
@@ -288,6 +317,8 @@ public class Book extends CatalogueCopy
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException  
      */
     @Override
     public boolean isReserved() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
@@ -304,6 +335,7 @@ public class Book extends CatalogueCopy
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException  
      */
     @Override
     public boolean isBorrowed() throws SQLException, ClassNotFoundException, CopyNotFoundException {
@@ -318,6 +350,8 @@ public class Book extends CatalogueCopy
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     @Override
     public ReservedCopy getReservedCopy() throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
@@ -332,6 +366,10 @@ public class Book extends CatalogueCopy
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException
+     * @throws UserNotFoundException 
+     * @throws InvalidUserTypeException  
      */
     @Override
     public PastTransaction getPastTransaction() throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException {
@@ -341,6 +379,13 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param details
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InvalidItemTypeException
+     */
     @Override
     public void addNewItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, InvalidItemTypeException {
         
@@ -349,6 +394,14 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param details
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws InvalidItemTypeException
+     */
     @Override
     public void updateItem(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
@@ -357,6 +410,16 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param itemID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws NullResultException
+     * @throws InvalidItemTypeException
+     */
     @Override
     public HashMap<String, Object> getItem(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, NullResultException, InvalidItemTypeException {
         
@@ -369,6 +432,14 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param itemID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws InvalidItemTypeException
+     */
     @Override
     public void deleteItem(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
@@ -377,6 +448,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param details
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void addNewCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
         
@@ -385,6 +462,14 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param details
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException
+     */
     @Override
     public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
@@ -393,6 +478,15 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException
+     */
     @Override
     public HashMap<String, Object> getCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
@@ -405,6 +499,13 @@ public class Book extends CatalogueCopy
         
     }
 
+    /**
+     *
+     * @param copyID
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     */
     @Override
     public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         

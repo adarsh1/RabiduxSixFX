@@ -62,6 +62,7 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException  
      */
     public boolean isEligibleToBorrow() throws SQLException, ClassNotFoundException, UserNotFoundException{
         
@@ -81,6 +82,13 @@ public abstract class Member extends User implements BorrowRecordAccessible{
         
     }
     
+    /**
+     *
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws UserNotFoundException
+     */
     public boolean isEligibleToReserve() throws SQLException, ClassNotFoundException, UserNotFoundException{
         
         boolean result;
@@ -166,6 +174,8 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      *
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException 
+     * @throws NullResultException  
      */
     public void resetFine() throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
@@ -185,6 +195,10 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException 
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException
+     * @throws InvalidUserTypeException  
      */
     @Override
     public ArrayList<PastTransaction> getPastTransactions () throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException, InvalidUserTypeException {
@@ -199,6 +213,9 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException 
+     * @throws CopyNotFoundException
+     * @throws ItemNotFoundException  
      */
     @Override
     public ArrayList<ReservedCopy> getReservedCopies() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException {
@@ -213,6 +230,9 @@ public abstract class Member extends User implements BorrowRecordAccessible{
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws UserNotFoundException 
+     * @throws CopyNotFoundException
+     * @throws ItemNotFoundException  
      */
     @Override
     public ArrayList<CurrentHolding> getCurrentHoldingItems() throws SQLException, ClassNotFoundException, UserNotFoundException, CopyNotFoundException, ItemNotFoundException{

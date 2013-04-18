@@ -36,6 +36,8 @@ public class ReservableCopyGroup {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws ItemNotFoundException
+     * @throws CopyNotFoundException  
      */
     public static ReservableCopyGroup getReservableCopyGroup (String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException, CopyNotFoundException {
         
@@ -51,6 +53,9 @@ public class ReservableCopyGroup {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws InvalidKeywordException 
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public static ArrayList<ReservableCopyGroup> getReservableCopyGroups (String searchCriteria, String keyword) throws SQLException, ClassNotFoundException, InvalidKeywordException, CopyNotFoundException, ItemNotFoundException {
         

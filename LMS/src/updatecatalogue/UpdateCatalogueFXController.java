@@ -521,12 +521,20 @@ public class UpdateCatalogueFXController extends BaseFXController
     }
     
     // Handler for Button[fx:id="noConfirm"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleNoConfirmButtonAction(ActionEvent event) {
         confirmPane.setVisible(false);
         maskPane.setVisible(false);
     }
 
     // Handler for Button[fx:id="yesConfirm"] onAction
+    /**
+     *
+     * @param event
+     */
     public void handleYesConfirmButtonAction(ActionEvent event) {
         if (updateItemPane.isVisible()){
             deleteItem();

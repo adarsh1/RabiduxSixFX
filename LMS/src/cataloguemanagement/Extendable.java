@@ -19,6 +19,12 @@ public interface Extendable extends Displayable {
      * @param loanDuration
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws NullResultException
+     * @throws CopyReservedException
+     * @throws RecordNotFoundException
+     * @throws ItemNotFoundException
+     * @throws CopyOverdueException  
      */
     public abstract void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException, CopyOverdueException, CopyReservedException;
 }

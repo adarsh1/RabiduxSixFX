@@ -54,6 +54,9 @@ public class ReturnMgr {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException
+     * @throws CopyNotBorrowedException  
      */
     public boolean returnbook() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, CopyNotBorrowedException{
         
@@ -70,6 +73,10 @@ public class ReturnMgr {
      * @throws SQLException
      * @throws ClassNotFoundException
      * @throws TypeMismatchException
+     * @throws CopyNotFoundException 
+     * @throws InvalidUserTypeException
+     * @throws ItemNotFoundException 
+     * @throws UserNotFoundException  
      */
     public void createItem(String copyID) throws SQLException, ClassNotFoundException, TypeMismatchException, CopyNotFoundException, ItemNotFoundException, UserNotFoundException, InvalidUserTypeException{
         //get the catalogue item from catalogue management

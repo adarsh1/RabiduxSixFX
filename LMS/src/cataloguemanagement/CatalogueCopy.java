@@ -47,6 +47,8 @@ public abstract class CatalogueCopy implements Displayable, CopyUpdatable {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException 
+     * @throws ItemNotFoundException  
      */
     public static CatalogueCopy getCatalogueCopy (String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
@@ -74,6 +76,8 @@ public abstract class CatalogueCopy implements Displayable, CopyUpdatable {
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws CopyNotFoundException
+     * @throws NullResultException  
      */
     public Boolean isOverdue() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
