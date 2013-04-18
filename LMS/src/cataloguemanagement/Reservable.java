@@ -4,6 +4,7 @@
  */
 package cataloguemanagement;
 
+import exception.*;
 import java.sql.SQLException;
 
 /**
@@ -18,7 +19,7 @@ public interface Reservable extends Displayable {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public abstract void reserve(String userID) throws SQLException, ClassNotFoundException;
+    public abstract void reserve(String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, CopyNotBorrowedException, NullResultException, CopyReservedException, UserNotFoundException, CopyBorrowedException ;
     /**
      *
      * @return

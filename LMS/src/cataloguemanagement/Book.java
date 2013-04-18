@@ -5,6 +5,7 @@
 package cataloguemanagement;
 
 import datamanagement.DataStore;
+import exception.*;
 import java.sql.*;
 import java.util.*;
 
@@ -106,13 +107,13 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException {
+    public PastTransaction borrow(String userID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyReservedException, CopyBorrowedException {
         
         DataStore dataStore = new DataStore();
         
         if (dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
             
-//            throw new BookBorrowedException();
+            throw new CopyBorrowedException();
             
         }
         
@@ -179,7 +180,7 @@ public class Book extends CatalogueCopy
      * @throws ClassNotFoundException
      */
     @Override
-    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException{
+    public void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException{
         
         DataStore dataStore = new DataStore();
                 
@@ -206,13 +207,13 @@ public class Book extends CatalogueCopy
         
         if (!dataStore.isCopyBorrowed(super.getIndividualCopyID())) {
             
-//            throw new CopyNotBorrowedException();
+            throw new CopyNotBorrowedException();
             
         }
         
         if (dataStore.isCopyReserved(super.getIndividualCopyID())) {
             
-//            throw new CopyReservedException();
+            throw new CopyReservedException();
             
         }
         

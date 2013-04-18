@@ -48,7 +48,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public CatalogueCopy getCopy(String copyID) throws SQLException, ClassNotFoundException {
+    public CatalogueCopy getCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, ItemNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -56,7 +56,7 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
@@ -105,8 +105,8 @@ public class DataStore {
             
         } else {
             
-//            database.closeConnection();
-//            throw new ItemNotFoundException("Item ID is not valid");
+            database.closeConnection();
+            throw new ItemNotFoundException("Item ID is not valid");
             
         }
         
@@ -124,7 +124,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public User getUserByName(String username) throws SQLException, ClassNotFoundException {
+    public User getUserByName(String username) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -132,7 +132,7 @@ public class DataStore {
         
         if (!isValidUsername(username)) {
             
-//            throw new UserNotFoundException("Username is not valid");
+            throw new UserNotFoundException("Username is not valid");
             
         }
         
@@ -168,8 +168,8 @@ public class DataStore {
             
         } else {
             
-//            database.closeConnection();            
-//            throw new InvalidUserTypeException("The user type is invalid");
+            database.closeConnection();            
+            throw new InvalidUserTypeException("The user type is invalid");
             
         }
             
@@ -190,7 +190,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public User getUser(String userID) throws SQLException, ClassNotFoundException {
+    public User getUser(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, InvalidUserTypeException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -198,7 +198,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -234,8 +234,8 @@ public class DataStore {
             
         } else {
             
-//            database.closeConnection();            
-//            throw new InvalidUserTypeException("The user type is invalid");
+            database.closeConnection();            
+            throw new InvalidUserTypeException("The user type is invalid");
             
         }
             
@@ -256,7 +256,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException {
+    public ReservableCopyGroup getCopyGroup(String itemID) throws SQLException, ClassNotFoundException, ItemNotFoundException {
         
         ResultSet resultSet;
         ReservableCopyGroup result = new ReservableCopyGroup ();
@@ -294,7 +294,7 @@ public class DataStore {
             
         } else {
             
-//            throw new ItemNotFoundException("Item ID is invalid");
+            throw new ItemNotFoundException("Item ID is invalid");
             
         }
         
@@ -310,7 +310,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException {
+    public ArrayList<ReservableCopyGroup> getCopyGroups(String searchCriteria, String keyword) throws SQLException, ClassNotFoundException, InvalidKeywordException {
         
         ResultSet resultSet;
         ArrayList<ReservableCopyGroup> result = new ArrayList<> ();
@@ -318,7 +318,7 @@ public class DataStore {
         
         if (keyword == null || keyword.compareTo("") == 0) {
             
-//            throw InvalidKeywordException("The search keyword cannot be empty");
+            throw new InvalidKeywordException("The search keyword cannot be empty");
             
         }
         
@@ -412,14 +412,14 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isCopyBorrowed(String copyID) throws SQLException, ClassNotFoundException {
+    public boolean isCopyBorrowed(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         boolean result;
         ArrayList<String> where = new ArrayList<> ();
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
@@ -454,14 +454,14 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isCopyOverdue(String copyID) throws SQLException, ClassNotFoundException {
+    public boolean isCopyOverdue(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
@@ -476,8 +476,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -503,14 +503,14 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isCopyReserved(String copyID) throws SQLException, ClassNotFoundException {
+    public boolean isCopyReserved(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         boolean result;
         ArrayList<String> condition = new ArrayList<> ();
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
@@ -524,8 +524,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -551,7 +551,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isUserSuspended(String userID) throws SQLException, ClassNotFoundException {
+    public boolean isUserSuspended(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
         boolean result;
         ResultSet resultSet;
@@ -559,7 +559,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -572,8 +572,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -599,7 +599,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean isValidUserPassword(String username, String password) throws SQLException, ClassNotFoundException {
+    public boolean isValidUserPassword(String username, String password) throws SQLException, ClassNotFoundException, NullResultException, UserNotFoundException {
         
         boolean result;
         ResultSet resultSet;
@@ -607,7 +607,7 @@ public class DataStore {
         
         if (!isValidUsername(username)) {
             
-//            throw new UserNotFoundException("Username is not valid");
+            throw new UserNotFoundException("Username is not valid");
             
         }
         
@@ -620,8 +620,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -829,7 +829,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public int getNumOfBorrowing(String userID) throws SQLException, ClassNotFoundException {
+    public int getNumOfBorrowing(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         int result;
         ResultSet resultSet;
@@ -837,7 +837,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -864,7 +864,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public int getNumOfReserving(String userID) throws SQLException, ClassNotFoundException {
+    public int getNumOfReserving(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         int result;
         ResultSet resultSet;
@@ -872,7 +872,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -898,7 +898,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<PastTransaction> getRecords(String userID) throws SQLException, ClassNotFoundException {
+    public ArrayList<PastTransaction> getRecords(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         ResultSet resultSet;
         ArrayList<PastTransaction> result = new ArrayList<> ();
@@ -909,7 +909,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -968,7 +968,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public PastTransaction borrow(String copyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException {
+    public PastTransaction borrow(String copyID, String userID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyReservedException {
         
         ResultSet resultSet;
         ArrayList<String> values = new ArrayList<> ();
@@ -981,13 +981,13 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -1011,15 +1011,15 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
         if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)) != null && resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)).compareTo(userID) != 0) {
             
-//            database.closeConnection();
-//            throw new BookReservedException();
+            database.closeConnection();
+            throw new CopyReservedException();
             
         }
         
@@ -1054,7 +1054,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public PastTransaction extend(String copyID, String loanID, int extend_time) throws SQLException, ClassNotFoundException {
+    public PastTransaction extend(String copyID, String loanID, int extend_time) throws SQLException, ClassNotFoundException, RecordNotFoundException, CopyNotFoundException, NullResultException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -1066,13 +1066,13 @@ public class DataStore {
         
         if (!isValidLoanID(loanID)) {
             
-//            throw new RecordNotFoundException();
+            throw new RecordNotFoundException();
             
         }
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException();
+            throw new CopyNotFoundException();
             
         }
         
@@ -1087,8 +1087,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -1130,7 +1130,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void reserve(String copyID, String userID) throws SQLException, ClassNotFoundException {
+    public void reserve(String copyID, String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException, CopyBorrowedException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -1138,13 +1138,13 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -1158,15 +1158,15 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
         if (resultSet.getString(Table.COPY.getAttribute(Table.COPY_RESERVED_BY)).compareTo(userID) == 0) {
             
-//            database.closeConnection();
-//            throw new CopyBorrowedException("The copy has borrowed by the user");
+            database.closeConnection();
+            throw new CopyBorrowedException("The copy has borrowed by the user");
             
         }
         
@@ -1189,7 +1189,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void cancelReservation(String copyID, String userID) throws SQLException, ClassNotFoundException {
+    public void cancelReservation(String copyID, String userID) throws SQLException, ClassNotFoundException, CopyNotFoundException, UserNotFoundException, NullResultException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -1197,13 +1197,13 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -1217,8 +1217,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -1241,7 +1241,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void returnBook(String copyID, double fine) throws SQLException, ClassNotFoundException {
+    public void returnBook(String copyID, double fine) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -1250,7 +1250,7 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
@@ -1265,8 +1265,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -1289,8 +1289,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -1328,7 +1328,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException {
+    public ArrayList<ReservedCopy> getReservedCopies(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1336,7 +1336,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -1395,7 +1395,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ArrayList<CurrentHolding> getCurrentHoldings(String userID) throws SQLException, ClassNotFoundException {
+    public ArrayList<CurrentHolding> getCurrentHoldings(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1403,7 +1403,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -1458,7 +1458,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public ReservedCopy getReservedCopy(String copyID) throws SQLException, ClassNotFoundException {
+    public ReservedCopy getReservedCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1467,7 +1467,7 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
@@ -1502,7 +1502,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public PastTransaction getRecord(String copyID) throws SQLException, ClassNotFoundException {
+    public PastTransaction getRecord(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         ResultSet resultSet;
         PastTransaction result = new PastTransaction ();
@@ -1513,7 +1513,7 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException("Copy ID does not exsit");
+            throw new CopyNotFoundException("Copy ID does not exsit");
             
         }
         
@@ -1567,7 +1567,7 @@ public class DataStore {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public void resetFine(String userID) throws SQLException, ClassNotFoundException {
+    public void resetFine(String userID) throws SQLException, ClassNotFoundException, UserNotFoundException, NullResultException {
         
         ResultSet resultSet;
         ArrayList<String> set = new ArrayList<> ();
@@ -1575,7 +1575,7 @@ public class DataStore {
         
         if (!isValidUserID(userID)) {
             
-//            throw new UserNotFoundException("User ID is not valid");
+            throw new UserNotFoundException("User ID is not valid");
             
         }
         
@@ -1588,8 +1588,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -1608,7 +1608,7 @@ public class DataStore {
         
     }
 
-    public void addItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException {
+    public void addItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException, InvalidItemTypeException {
         
         ArrayList<String> values = new ArrayList<> ();
         String itemID;
@@ -1633,13 +1633,13 @@ public class DataStore {
             
         } else {
             
-//            throw new InvalidItemTypeException();
+            throw new InvalidItemTypeException();
             
         }
         
     }
 
-    public void updateItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException {
+    public void updateItem(HashMap<String, Object> details, int itemType) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
@@ -1648,7 +1648,7 @@ public class DataStore {
             
             if (!isValidBookID((String)details.get(Table.BOOK_BOOK_ID))) {
                 
-//                throw new ItemNotFoundException();
+                throw new ItemNotFoundException();
                 
             }
             
@@ -1669,13 +1669,13 @@ public class DataStore {
             
         } else {
             
-//            throw new InvalidItemTypeException();
+            throw new InvalidItemTypeException();
             
         }
         
     }
 
-    public HashMap<String, Object> getItemInfo(String itemID, int itemType) throws SQLException, ClassNotFoundException {
+    public HashMap<String, Object> getItemInfo(String itemID, int itemType) throws SQLException, ClassNotFoundException, ItemNotFoundException, NullResultException, InvalidItemTypeException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1686,7 +1686,7 @@ public class DataStore {
             
             if (!isValidBookID(itemID)) {
                 
-//                throw new ItemNotFoundException();
+                throw new ItemNotFoundException();
                 
             }
             
@@ -1702,8 +1702,8 @@ public class DataStore {
             
             if (!resultSet.next()) {
                 
-//                database.closeConnection();
-//                throw new NullResultException();
+                database.closeConnection();
+                throw new NullResultException();
                 
             }
             
@@ -1722,7 +1722,7 @@ public class DataStore {
             
         } else {
             
-//            throw new InvalidItemTypeException();
+            throw new InvalidItemTypeException();
             
         }
         
@@ -1730,7 +1730,7 @@ public class DataStore {
         
     }
 
-    public void deleteItem(String itemID, int itemType) throws SQLException, ClassNotFoundException {
+    public void deleteItem(String itemID, int itemType) throws SQLException, ClassNotFoundException, ItemNotFoundException, InvalidItemTypeException {
         
         ArrayList<String> where = new ArrayList<> ();
         
@@ -1738,7 +1738,7 @@ public class DataStore {
             
             if (!isValidBookID(itemID)) {
                 
-//                throw new ItemNotFoundException();
+                throw new ItemNotFoundException();
                 
             }
             
@@ -1752,7 +1752,7 @@ public class DataStore {
             
         } else {
             
-//            throw new InvalidItemTypeException();
+            throw new InvalidItemTypeException();
             
         }
         
@@ -1776,7 +1776,7 @@ public class DataStore {
         
     }
 
-    public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException {
+    public void updateCopy(HashMap<String, Object> details) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         ArrayList<String> set = new ArrayList<> ();
         ArrayList<String> where = new ArrayList<> ();
@@ -1784,7 +1784,7 @@ public class DataStore {
         
         if (!isValidCopyID((String)details.get(Table.COPY_COPY_ID))) {
             
-//            throw new CopyNotFoundException();
+            throw new CopyNotFoundException();
             
         }
         
@@ -1798,8 +1798,8 @@ public class DataStore {
         
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
             
         }
         
@@ -1824,7 +1824,7 @@ public class DataStore {
         
     }
 
-    public HashMap<String, Object> getCopyInfo(String copyID) throws SQLException, ClassNotFoundException {
+    public HashMap<String, Object> getCopyInfo(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
         
         ResultSet resultSet;
         ArrayList<String> where = new ArrayList<> ();
@@ -1833,7 +1833,7 @@ public class DataStore {
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException();
+            throw new CopyNotFoundException();
             
         }
         
@@ -1847,8 +1847,8 @@ public class DataStore {
 
         if (!resultSet.next()) {
             
-//            database.closeConnection();
-//            throw new NullResultException();
+            database.closeConnection();
+            throw new NullResultException();
 
         }
 
@@ -1863,13 +1863,13 @@ public class DataStore {
         
     }
 
-    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException {
+    public void deleteCopy(String copyID) throws SQLException, ClassNotFoundException, CopyNotFoundException {
         
         ArrayList<String> where = new ArrayList<> ();
         
         if (!isValidCopyID(copyID)) {
             
-//            throw new CopyNotFoundException();
+            throw new CopyNotFoundException();
             
         }
         
