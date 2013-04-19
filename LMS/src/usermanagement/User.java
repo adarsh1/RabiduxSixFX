@@ -188,5 +188,12 @@ public class User {
         
     }
     
+    public void suspend() throws SQLException, ClassNotFoundException, NullResultException {
+        
+        DataStore dataStore = new DataStore();
+        dataStore.suspendUser(this.getUserID());
+        
+    }
+    
     
 }

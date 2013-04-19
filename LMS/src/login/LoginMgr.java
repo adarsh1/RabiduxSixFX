@@ -4,13 +4,17 @@
  */
 package login;
 
+import cataloguemanagement.*;
+import exception.CopyNotFoundException;
 import exception.IncorrectPasswordException;
 import exception.InvalidUserTypeException;
+import exception.ItemNotFoundException;
 import exception.NullResultException;
 import exception.UserNotFoundException;
 import globalcontrol.ModelController;
 import java.sql.SQLException;
-import usermanagement.User;
+import java.util.ArrayList;
+import usermanagement.*;
 
 /**
  *
@@ -41,8 +45,30 @@ public class LoginMgr {
      * @throws NullResultException
      * @throws InvalidUserTypeException  
      */
-    public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException, NullResultException, InvalidUserTypeException{
-        setUser(User.getUser(username, password));
+    public void createUser(String username, String password) throws UserNotFoundException, IncorrectPasswordException, SQLException, ClassNotFoundException, NullResultException, InvalidUserTypeException, CopyNotFoundException, ItemNotFoundException{
+        
+        ArrayList<CurrentHolding> holdings;
+        User newUser = User.getUser(username, password);
+        
+        setUser(newUser);
+        
+        if (newUser.getUsertype() != User.LIBRARIAN) {
+            
+            holdings = ((Member)newUser).getCurrentHoldingItems();
+            
+            for (int i = 0; i < holdings.size(); i++) {
+                
+                if (holdings.get(i).getCopy().isOverdued()) {
+                    
+                    newUser.suspend();
+                    break;
+                    
+                }
+                
+            }
+            
+        }
+        
         //if no exception was thrown, user can be set in main controller
         modelController.setUser(user);
     }

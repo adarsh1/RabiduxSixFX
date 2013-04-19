@@ -27,4 +27,5 @@ public interface Extendable extends Displayable {
      * @throws CopyOverdueException  
      */
     public abstract void extend(String loanID, int loanDuration) throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException, RecordNotFoundException, ItemNotFoundException, CopyOverdueException, CopyReservedException;
+    public abstract boolean isOverdued() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException;
 }
