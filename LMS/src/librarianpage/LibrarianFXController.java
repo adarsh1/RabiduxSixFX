@@ -205,6 +205,7 @@ public class LibrarianFXController extends BaseFXController implements Initializ
     public void setInitialData( ModelController modelController){
         this.addObserver(this);
         username.setText(modelController.getUser().getUsername());
+        helpText.setText("RabidusSIX Library Management System serves you the best. If you have any question while using the system or encounter any bugs, please feel free to contact us at 94715985");
     }
 
     /**
