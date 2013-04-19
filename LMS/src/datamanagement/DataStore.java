@@ -2104,4 +2104,40 @@ public class DataStore {
         
     }
 
+    public void suspendUser(String userID) throws SQLException, ClassNotFoundException, NullResultException {
+        
+        ResultSet resultSet;
+        ArrayList<String> set = new ArrayList<> ();
+        ArrayList<String> where = new ArrayList<> ();
+        
+        where.add(userID);
+        where.add(WILDCARD_CHAR);
+        
+        database.initializeConnection();
+        
+        resultSet = database.selectRecord(Table.USER, where);
+        
+        if (!resultSet.next()) {
+            
+            database.closeConnection();
+            throw new NullResultException();
+            
+        }
+        
+        set.clear();
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_TYPE)));
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USERNAME)));
+        set.add(resultSet.getString(Table.USER.getAttribute(Table.USER_PASSWORD)));
+        set.add(Double.toString(resultSet.getDouble(Table.USER.getAttribute(Table.USER_FINE))));
+        set.add("1");
+        
+        where.clear();
+        where.add(resultSet.getString(Table.USER.getAttribute(Table.USER_USER_ID)));
+        
+        database.updateRecord(Table.USER, set, where);
+        
+        database.closeConnection();
+        
+    }
+
 }

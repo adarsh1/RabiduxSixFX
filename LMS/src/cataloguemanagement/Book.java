@@ -514,4 +514,12 @@ public class Book extends CatalogueCopy
         
     }
 
+    @Override
+    public boolean isOverdued() throws SQLException, ClassNotFoundException, CopyNotFoundException, NullResultException {
+        
+        DataStore dataStore = new DataStore();
+        return dataStore.isCopyOverdue(super.getIndividualCopyID());
+        
+    }
+
 }
