@@ -15,8 +15,8 @@ import exception.NullResultException;
 import exception.TypeMismatchException;
 import exception.UserNotFoundException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import usermanagement.Librarian;
 import usermanagement.Member;
 
@@ -128,13 +128,13 @@ public class ReturnMgr {
      */
     public boolean calculatefine()
     {
-        Calendar now = Calendar.getInstance();
+        Calendar now = new GregorianCalendar();
         Calendar toreturn = loandetails.getDateToReturn();
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d 'at' h:m:s a z");
-        System.out.println("Date now:   " + dateFormatter.format(now.getTime()));
-        System.out.println("Date to return:   " + dateFormatter.format(toreturn.getTime()));
-        System.out.println(now.before(toreturn));
-        if(now.before(toreturn))
+//        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, y-M-d 'at' h:m:s a z");
+//        System.out.println("Date now:   " + dateFormatter.format(now.getTime()));
+//        System.out.println("Date to return:   " + dateFormatter.format(toreturn.getTime()));
+//        System.out.println(now.before(toreturn));
+        if(now.compareTo(toreturn) <= 0)
         {
             fine = 0;
             return false;

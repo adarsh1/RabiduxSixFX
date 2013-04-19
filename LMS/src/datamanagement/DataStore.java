@@ -1589,11 +1589,11 @@ public class DataStore {
         where.add(WILDCARD_CHAR);
         where.add(WILDCARD_CHAR);
         where.add(copyID);
-        where.add(WILDCARD_CHAR);
+        where.add(NULL_DATETIME);
         
         database.initializeConnection();
         
-        resultSet = database.selectRecord(Table.RECORD, where);
+        resultSet = database.selectRecord(Table.RECORD, where, 1);
         
         if(resultSet.next()) {
             
